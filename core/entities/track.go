@@ -11,7 +11,7 @@ import (
 type Track struct {
 
 	// Unique string identifier. Can be a Globally Unique Identifier (GUID).
-	EntityId string `json:"entityId validate:"required""`
+	EntityId string `json:"entityId" validate:"required""`
 
 	// A human-readable entity description that's helpful for debugging purposes and
 	// human traceability. If this field is empty, the Entity Manager API generates one for you.
@@ -19,7 +19,7 @@ type Track struct {
 
 	// Boolean that when true, creates or updates the entity.
 	// If false and the entity is still live, triggers a DELETE event.
-	IsLive bool `json:"isLive validate:"required""`
+	IsLive bool `json:"isLive" validate:"required""`
 
 	// The time when the entity was first known to the entity producer. If this field is empty,
 	// the Entity Manager API uses the current timestamp of when the entity is first received.
@@ -30,7 +30,7 @@ type Track struct {
 	// Expiration time that must be greater than the current time and less than 30 days in the future.
 	// The Entities API will reject any entity update with an expiry_time in the past.
 	// When the expiry_time has passed, the Entities API will delete the entity from the COP and send a DELETE event.
-	ExpiryTime time.Time `json:"expiryTime validate:"required""`
+	ExpiryTime time.Time `json:"expiryTime" validate:"required""`
 
 	// The primary data source provenance for this entity.
 	Provenance Provenance `json:"provenance" validate:"required"`
