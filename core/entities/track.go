@@ -36,4 +36,14 @@ type Track struct {
 	Provenance Provenance `json:"provenance" validate:"required"`
 
 	Location Location `json:"location"`
+
+	LocationUncertainty LocationUncertainty `json:"locationUncertainty"`
+
+	GeoShape GeoShape `json:"geoShape"`
+
+	GeoDetails GeoDetails `json:"geoDetails"`
+
+	Aliases Aliases `json:"aliases"`
+
+	Tracked Tracked `json:"tracked"`
 }
