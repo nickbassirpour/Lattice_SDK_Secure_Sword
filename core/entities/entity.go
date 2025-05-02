@@ -8,7 +8,7 @@ import (
 // Tracks are not directly under the control of friendly forces.
 // This includes aircraft tracks from radar or sensor hits, signal detections,
 // and vehicles, people, or animals detected through cameras.
-type Track struct {
+type Entity struct {
 
 	// Unique string identifier. Can be a Globally Unique Identifier (GUID).
 	EntityId string `json:"entityId" validate:"required"`
@@ -32,7 +32,6 @@ type Track struct {
 	// When the expiry_time has passed, the Entities API will delete the entity from the COP and send a DELETE event.
 	ExpiryTime time.Time `json:"expiryTime" validate:"required"`
 
-	// The primary data source provenance for this entity.
 	Provenance Provenance `json:"provenance" validate:"required"`
 
 	Location Location `json:"location"`
@@ -46,4 +45,16 @@ type Track struct {
 	Aliases Aliases `json:"aliases"`
 
 	Tracked Tracked `json:"tracked"`
+
+	Correlation Correlation `json:"correlation"`
+
+	Ontology Ontology `json:"ontology"`
+
+	Sensors Sensors `json:"sensors"`
+
+	Payloads Payloads `json:"payloads"`
+
+	PowerState PowerState `json:"powerState"`
+
+	Overrides Overrides `json:"overrides"`
 }
