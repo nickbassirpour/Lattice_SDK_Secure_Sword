@@ -57,4 +57,34 @@ type Entity struct {
 	PowerState PowerState `json:"powerState"`
 
 	Overrides Overrides `json:"overrides"`
+
+	Indicators Indicators `json:"indicators"`
+
+	TargetPriority TargetPriority `json:"targetPriority"`
+
+	Signal Signal `json:"signal"`
+
+	TransponderCodes TransponderCodes `json:"transponderCodes"`
+
+	DataClassifiction DataClassifiction `json:"dataClassification"`
+
+	TaskCatalog TaskCatalog `json:"taskCatalog"`
+
+	Relationships Relationships `json:"relationships"`
+
+	VisualDetails VisualDetails `json:"visualDetails"`
+
+	Dimensions Dimensions `json:"dimensions"`
+
+	RouteDetails RouteDetails `json:"routeDetails"`
+
+	Schedules Schedules `json:"schedules"`
+
+	Health Health `json:"health"`
+
+	GroupDetails GroupDetails `json:"groupDetails"`
+
+	Supplies Supplies `json:"supplies"`
+
+	Orbit Orbit `json:"orbit"`
 }
