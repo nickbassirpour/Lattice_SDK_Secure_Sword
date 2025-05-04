@@ -88,3 +88,13 @@ type Entity struct {
 
 	Orbit Orbit `json:"orbit"`
 }
+
+type EntityBuilder struct {
+	entity *Entity
+}
+
+func NewEntityBuilder() *EntityBuilder {
+	return &EntityBuilder{
+		entity: &Entity{},
+	}
+}
