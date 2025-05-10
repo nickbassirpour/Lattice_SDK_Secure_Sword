@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package entitymanager.v1;
+
+option go_package = "github.com/nickbassirpour/Lattice_SDK_Secure_Sword.git";
+
+import "google/protobuf/timestamp.proto";
+
+message Entity {
+    string id = 1;
+    string source = 2; //with integration/system created it
+    google.protobuf.Timestamp created_at = 3;
+    google.protobuf.Timestamp updated_at = 4;
+    map<string, bytes> components = 5; // component name -> serialized proto bytes
+}
+
+message PublishEntityRequest {
+    Entity entity = 1;
+}
+
+message PublishEntityResponse {
+    bool success = 1;
+    string message = 2; //optional error/warning message
+}
+
+message GetEntityRequest {
+    string id = 1;
+}
+
+message GetEntityResponse {
+    Entity entity = 1;
+}
+
+service EntityManagerAPI {
+    rpc PublishEntity(PublishEntityRequest) returns (PublishEntityResponse);
+
+    rpc GetEntity(GetEntityRequest) returns (GetEntityResponse);
+}

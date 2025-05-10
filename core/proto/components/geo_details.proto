@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "github.com/nickbassirpour/Lattice_SDK_Secure_Sword.git";
+
+enum GeoType {
+    GEO_TYPE_INVALID = 0;
+    GEO_TYPE_GENERAL = 1;
+    GEO_TYPE_HAZARD = 2;
+    GEO_TYPE_EMERGENCY = 3;
+    GEO_TYPE_ENGAGEMENT_ZONE = 4;
+    GEO_TYPE_CONTROL_AREA = 5;
+    GEO_TYPE_BULLSEYE = 6;
+    GEO_TYPE_ACM = 7;
+}
+
+enum ControlAreaType {
+    CONTROL_AREA_TYPE_INVALID = 0;
+    CONTROL_AREA_TYPE_KEEP_IN_ZONE = 1;
+    CONTROL_AREA_TYPE_KEEP_OUT_ZONE = 2;
+    CONTROL_AREA_TYPE_DITCH_ZONE = 3;
+    CONTROL_AREA_TYPE_LOITER_ZONE = 4;
+  }
+
+enum AcmType {
+    ACM_DETAIL_TYPE_INVALID = 0;
+    ACM_DETAIL_TYPE_LANDING_ZONE = 1;
+}
+
+message ControlArea {
+    ControlAreaType type = 1;
+}
+
+message Acm {
+    AcmType acm_type = 1;
+    string acm_description = 2; 
+}
+
+message GeoDetails {
+    GeoType type = 1;
+    ControlArea control_area = 2;
+    Acm acm = 3;
+}
+
+
