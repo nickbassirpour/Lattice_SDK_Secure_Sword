@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package components;
 
-option go_package = "github.com/nickbassirpour/Lattice_SDK_Secure_Sword.git";
+option go_package = "/";
 
 enum GeoType {
     GEO_TYPE_INVALID = 0;

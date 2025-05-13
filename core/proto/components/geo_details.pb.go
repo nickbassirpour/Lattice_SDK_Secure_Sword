@@ -4,7 +4,7 @@
 // 	protoc        v6.30.2
 // source: geo_details.proto
 
-package Lattice_SDK_Secure_Sword_git
+package __
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -375,7 +375,7 @@ const file_geo_details_proto_rawDesc = "" +
 	"\x1dCONTROL_AREA_TYPE_LOITER_ZONE\x10\x04*H\n" +
 	"\aAcmType\x12\x1b\n" +
 	"\x17ACM_DETAIL_TYPE_INVALID\x10\x00\x12 \n" +
-	"\x1cACM_DETAIL_TYPE_LANDING_ZONE\x10\x01B8Z6github.com/nickbassirpour/Lattice_SDK_Secure_Sword.gitb\x06proto3"
+	"\x1cACM_DETAIL_TYPE_LANDING_ZONE\x10\x01B\x03Z\x01/b\x06proto3"
 
 var (
 	file_geo_details_proto_rawDescOnce sync.Once

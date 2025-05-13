@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/";
+
+// Top-level Correlation type
+message Correlation {
+  Primary primary = 1;
+  Secondary secondary = 2;
+  Membership membership = 3;
+}
+
+// Primary type for Correlation
+message Primary {
+  repeated string secondaryEntityIds = 1;
+}
+
+// Secondary type for Correlation
+message Secondary {
+  string primaryEntityId = 1;
+  Metadata metadata = 2;
+}
+
+// Metadata structure
+message Metadata {
+  Provenance provenance = 1;
+  ReplicationMode replicationMode = 2;
+  CorrelationType type = 3;
+}
+
+// Provenance is referenced but not defined in your Go code.
+// Add definition or stub:
+message Provenance {
+  // Add actual fields if known
+}
+
+// Enum for replication mode
+enum ReplicationMode {
+  CORRELATION_REPLICATION_MODE_INVALID = 0;
+  CORRELATION_REPLICATION_MODE_LOCAL = 1;
+  CORRELATION_REPLICATION_MODE_GLOBAL = 2;
+}
+
+// Enum for correlation type
+enum CorrelationType {
+  CORRELATION_TYPE_INVALID = 0;
+  CORRELATION_TYPE_MANUAL = 1;
+  CORRELATION_TYPE_AUTOMATED = 2;
+}
+
+// Membership structure
+message Membership {
+  string correlationSetId = 1;
+  Primary primary = 2;
+  Secondary nonPrimary = 3;
+  Metadata metadata = 4;
+}
+
+// Decorrelation block
+message Decorrelation {
+  All all = 1;
+  repeated DecorrelatedEntity decorrelatedEntities = 2;
+}
+
+message All {
+  Metadata metadata = 1;
+}
+
+message DecorrelatedEntity {
+  string entityId = 1;
+  Metadata metadata = 2;
+}
+

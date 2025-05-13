@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/";
+
+// Enum for AltIDType
+enum AltIDType {
+  ALT_ID_TYPE_INVALID = 0;
+  ALT_ID_TYPE_TRACK_ID_2 = 1;
+  ALT_ID_TYPE_TRACK_ID_1 = 2;
+  ALT_ID_TYPE_SPI_ID = 3;
+  ALT_ID_TYPE_NITF_FILE_TITLE = 4;
+  ALT_ID_TYPE_TRACK_REPO_ALERT_ID = 5;
+  ALT_ID_TYPE_ASSET_ID = 6;
+  ALT_ID_TYPE_LINK16_TRACK_NUMBER = 7;
+  ALT_ID_TYPE_LINK16_JU = 8;
+  ALT_ID_TYPE_NCCT_MESSAGE_ID = 9;
+  ALT_ID_TYPE_CALLSIGN = 10;
+  ALT_ID_TYPE_MMSI_ID = 11;
+  ALT_ID_TYPE_VMF_URN = 12;
+  ALT_ID_TYPE_IMO_ID = 13;
+  ALT_ID_TYPE_VMF_TARGET_NUMBER = 14;
+  ALT_ID_TYPE_SERIAL_NUMBER = 15;
+  ALT_ID_TYPE_REGISTRATION_ID = 16;
+  ALT_ID_TYPE_IBS_GID = 17;
+  ALT_ID_TYPE_DODAAC = 18;
+  ALT_ID_TYPE_UIC = 19;
+  ALT_ID_TYPE_NORAD_CAT_ID = 20;
+  ALT_ID_TYPE_UNOOSA_NAME = 21;
+  ALT_ID_TYPE_UNOOSA_ID = 22;
+}
+
+// Message for AlternateIds
+message AlternateIds {
+  string id = 1;
+  AltIDType type = 2;
+}
+
+// Message for Aliases
+message Aliases {
+  repeated AlternateIds alternateIds = 1;
+  string name = 2;
+}
