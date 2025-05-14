@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package components;
 
-option go_package = "/";
+option go_package = "/components";
 
 enum GeoType {
     GEO_TYPE_INVALID = 0;

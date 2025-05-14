@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v6.30.2
-// source: aliases.proto
+// source: components/aliases.proto
 
-package __
+package components
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -115,11 +115,11 @@ func (x AltIDType) String() string {
 }
 
 func (AltIDType) Descriptor() protoreflect.EnumDescriptor {
-	return file_aliases_proto_enumTypes[0].Descriptor()
+	return file_components_aliases_proto_enumTypes[0].Descriptor()
 }
 
 func (AltIDType) Type() protoreflect.EnumType {
-	return &file_aliases_proto_enumTypes[0]
+	return &file_components_aliases_proto_enumTypes[0]
 }
 
 func (x AltIDType) Number() protoreflect.EnumNumber {
@@ -128,7 +128,7 @@ func (x AltIDType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use AltIDType.Descriptor instead.
 func (AltIDType) EnumDescriptor() ([]byte, []int) {
-	return file_aliases_proto_rawDescGZIP(), []int{0}
+	return file_components_aliases_proto_rawDescGZIP(), []int{0}
 }
 
 // Message for AlternateIds
@@ -142,7 +142,7 @@ type AlternateIds struct {
 
 func (x *AlternateIds) Reset() {
 	*x = AlternateIds{}
-	mi := &file_aliases_proto_msgTypes[0]
+	mi := &file_components_aliases_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -154,7 +154,7 @@ func (x *AlternateIds) String() string {
 func (*AlternateIds) ProtoMessage() {}
 
 func (x *AlternateIds) ProtoReflect() protoreflect.Message {
-	mi := &file_aliases_proto_msgTypes[0]
+	mi := &file_components_aliases_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -167,7 +167,7 @@ func (x *AlternateIds) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AlternateIds.ProtoReflect.Descriptor instead.
 func (*AlternateIds) Descriptor() ([]byte, []int) {
-	return file_aliases_proto_rawDescGZIP(), []int{0}
+	return file_components_aliases_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *AlternateIds) GetId() string {
@@ -195,7 +195,7 @@ type Aliases struct {
 
 func (x *Aliases) Reset() {
 	*x = Aliases{}
-	mi := &file_aliases_proto_msgTypes[1]
+	mi := &file_components_aliases_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -207,7 +207,7 @@ func (x *Aliases) String() string {
 func (*Aliases) ProtoMessage() {}
 
 func (x *Aliases) ProtoReflect() protoreflect.Message {
-	mi := &file_aliases_proto_msgTypes[1]
+	mi := &file_components_aliases_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -220,7 +220,7 @@ func (x *Aliases) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Aliases.ProtoReflect.Descriptor instead.
 func (*Aliases) Descriptor() ([]byte, []int) {
-	return file_aliases_proto_rawDescGZIP(), []int{1}
+	return file_components_aliases_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Aliases) GetAlternateIds() []*AlternateIds {
@@ -237,11 +237,11 @@ func (x *Aliases) GetName() string {
 	return ""
 }
 
-var File_aliases_proto protoreflect.FileDescriptor
+var File_components_aliases_proto protoreflect.FileDescriptor
 
-const file_aliases_proto_rawDesc = "" +
+const file_components_aliases_proto_rawDesc = "" +
 	"\n" +
-	"\raliases.proto\x12\n" +
+	"\x18components/aliases.proto\x12\n" +
 	"components\"I\n" +
 	"\fAlternateIds\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12)\n" +
@@ -273,28 +273,28 @@ const file_aliases_proto_rawDesc = "" +
 	"\x0fALT_ID_TYPE_UIC\x10\x13\x12\x1c\n" +
 	"\x18ALT_ID_TYPE_NORAD_CAT_ID\x10\x14\x12\x1b\n" +
 	"\x17ALT_ID_TYPE_UNOOSA_NAME\x10\x15\x12\x19\n" +
-	"\x15ALT_ID_TYPE_UNOOSA_ID\x10\x16B\x03Z\x01/b\x06proto3"
+	"\x15ALT_ID_TYPE_UNOOSA_ID\x10\x16B\rZ\v/componentsb\x06proto3"
 
 var (
-	file_aliases_proto_rawDescOnce sync.Once
-	file_aliases_proto_rawDescData []byte
+	file_components_aliases_proto_rawDescOnce sync.Once
+	file_components_aliases_proto_rawDescData []byte
 )
 
-func file_aliases_proto_rawDescGZIP() []byte {
-	file_aliases_proto_rawDescOnce.Do(func() {
-		file_aliases_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_aliases_proto_rawDesc), len(file_aliases_proto_rawDesc)))
+func file_components_aliases_proto_rawDescGZIP() []byte {
+	file_components_aliases_proto_rawDescOnce.Do(func() {
+		file_components_aliases_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_components_aliases_proto_rawDesc), len(file_components_aliases_proto_rawDesc)))
 	})
-	return file_aliases_proto_rawDescData
+	return file_components_aliases_proto_rawDescData
 }
 
-var file_aliases_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_aliases_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_aliases_proto_goTypes = []any{
+var file_components_aliases_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_components_aliases_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_components_aliases_proto_goTypes = []any{
 	(AltIDType)(0),       // 0: components.AltIDType
 	(*AlternateIds)(nil), // 1: components.AlternateIds
 	(*Aliases)(nil),      // 2: components.Aliases
 }
-var file_aliases_proto_depIdxs = []int32{
+var file_components_aliases_proto_depIdxs = []int32{
 	0, // 0: components.AlternateIds.type:type_name -> components.AltIDType
 	1, // 1: components.Aliases.alternateIds:type_name -> components.AlternateIds
 	2, // [2:2] is the sub-list for method output_type
@@ -304,27 +304,27 @@ var file_aliases_proto_depIdxs = []int32{
 	0, // [0:2] is the sub-list for field type_name
 }
 
-func init() { file_aliases_proto_init() }
-func file_aliases_proto_init() {
-	if File_aliases_proto != nil {
+func init() { file_components_aliases_proto_init() }
+func file_components_aliases_proto_init() {
+	if File_components_aliases_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_aliases_proto_rawDesc), len(file_aliases_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_components_aliases_proto_rawDesc), len(file_components_aliases_proto_rawDesc)),
 			NumEnums:      1,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_aliases_proto_goTypes,
-		DependencyIndexes: file_aliases_proto_depIdxs,
-		EnumInfos:         file_aliases_proto_enumTypes,
-		MessageInfos:      file_aliases_proto_msgTypes,
+		GoTypes:           file_components_aliases_proto_goTypes,
+		DependencyIndexes: file_components_aliases_proto_depIdxs,
+		EnumInfos:         file_components_aliases_proto_enumTypes,
+		MessageInfos:      file_components_aliases_proto_msgTypes,
 	}.Build()
-	File_aliases_proto = out.File
-	file_aliases_proto_goTypes = nil
-	file_aliases_proto_depIdxs = nil
+	File_components_aliases_proto = out.File
+	file_components_aliases_proto_goTypes = nil
+	file_components_aliases_proto_depIdxs = nil
 }

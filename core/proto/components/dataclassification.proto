@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+// Top-level classification component for an entity
+message DataClassification {
+  Default default = 1;
+  repeated Field fields = 2;
+}
+
+// Default classification information applied entity-wide
+message Default {
+  Level level = 1;
+  repeated string caveats = 2;
+}
+
+// Field-specific classification override
+message Field {
+  string fieldPath = 1;
+  Default classificationInformation = 2;
+}
+
+// Enum for classification levels
+enum Level {
+  CLASSIFICATION_LEVELS_INVALID = 0;
+  CLASSIFICATION_LEVELS_UNCLASSIFIED = 1;
+  CLASSIFICATION_LEVELS_CONTROLLED_UNCLASSIFIED = 2;
+  CLASSIFICATION_LEVELS_CONFIDENTIAL = 3;
+  CLASSIFICATION_LEVELS_SECRET = 4;
+  CLASSIFICATION_LEVELS_TOP_SECRET = 5;
+}

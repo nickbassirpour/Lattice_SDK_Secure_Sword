@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+import "components/position.proto";
+
+message GeoShape {
+  Point point = 1;
+  Line line = 2;
+  Polygon polygon = 3;
+  Ellipse ellipse = 4;
+  Ellipsoid ellipsoid = 5;
+}
+
+message Point {
+  Position position = 1;
+}
+
+message Line {
+  Position position = 1;
+}
+
+message Polygon {
+  repeated Ring rings = 1;
+  bool isRectangle = 2;
+}
+
+message Ring {
+  repeated LinearRing positions = 1;
+}
+
+message LinearRing {
+  Position position = 1;
+  float heightM = 2;
+}
+
+message Ellipse {
+  double semiMajorAxisM = 1;
+  double semiMinorAxisM = 2;
+  double orientationD = 3;
+  double heightM = 4;
+}
+
+message Ellipsoid {
+  double forwardAxisM = 1;
+  double sideAxisM = 2;
+  double upAxisM = 3;
+}

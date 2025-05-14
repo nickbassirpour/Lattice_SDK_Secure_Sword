@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v6.30.2
-// source: geo_details.proto
+// source: components/geo_details.proto
 
-package __
+package components
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -69,11 +69,11 @@ func (x GeoType) String() string {
 }
 
 func (GeoType) Descriptor() protoreflect.EnumDescriptor {
-	return file_geo_details_proto_enumTypes[0].Descriptor()
+	return file_components_geo_details_proto_enumTypes[0].Descriptor()
 }
 
 func (GeoType) Type() protoreflect.EnumType {
-	return &file_geo_details_proto_enumTypes[0]
+	return &file_components_geo_details_proto_enumTypes[0]
 }
 
 func (x GeoType) Number() protoreflect.EnumNumber {
@@ -82,7 +82,7 @@ func (x GeoType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GeoType.Descriptor instead.
 func (GeoType) EnumDescriptor() ([]byte, []int) {
-	return file_geo_details_proto_rawDescGZIP(), []int{0}
+	return file_components_geo_details_proto_rawDescGZIP(), []int{0}
 }
 
 type ControlAreaType int32
@@ -124,11 +124,11 @@ func (x ControlAreaType) String() string {
 }
 
 func (ControlAreaType) Descriptor() protoreflect.EnumDescriptor {
-	return file_geo_details_proto_enumTypes[1].Descriptor()
+	return file_components_geo_details_proto_enumTypes[1].Descriptor()
 }
 
 func (ControlAreaType) Type() protoreflect.EnumType {
-	return &file_geo_details_proto_enumTypes[1]
+	return &file_components_geo_details_proto_enumTypes[1]
 }
 
 func (x ControlAreaType) Number() protoreflect.EnumNumber {
@@ -137,7 +137,7 @@ func (x ControlAreaType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ControlAreaType.Descriptor instead.
 func (ControlAreaType) EnumDescriptor() ([]byte, []int) {
-	return file_geo_details_proto_rawDescGZIP(), []int{1}
+	return file_components_geo_details_proto_rawDescGZIP(), []int{1}
 }
 
 type AcmType int32
@@ -170,11 +170,11 @@ func (x AcmType) String() string {
 }
 
 func (AcmType) Descriptor() protoreflect.EnumDescriptor {
-	return file_geo_details_proto_enumTypes[2].Descriptor()
+	return file_components_geo_details_proto_enumTypes[2].Descriptor()
 }
 
 func (AcmType) Type() protoreflect.EnumType {
-	return &file_geo_details_proto_enumTypes[2]
+	return &file_components_geo_details_proto_enumTypes[2]
 }
 
 func (x AcmType) Number() protoreflect.EnumNumber {
@@ -183,7 +183,7 @@ func (x AcmType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use AcmType.Descriptor instead.
 func (AcmType) EnumDescriptor() ([]byte, []int) {
-	return file_geo_details_proto_rawDescGZIP(), []int{2}
+	return file_components_geo_details_proto_rawDescGZIP(), []int{2}
 }
 
 type ControlArea struct {
@@ -195,7 +195,7 @@ type ControlArea struct {
 
 func (x *ControlArea) Reset() {
 	*x = ControlArea{}
-	mi := &file_geo_details_proto_msgTypes[0]
+	mi := &file_components_geo_details_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -207,7 +207,7 @@ func (x *ControlArea) String() string {
 func (*ControlArea) ProtoMessage() {}
 
 func (x *ControlArea) ProtoReflect() protoreflect.Message {
-	mi := &file_geo_details_proto_msgTypes[0]
+	mi := &file_components_geo_details_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -220,7 +220,7 @@ func (x *ControlArea) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ControlArea.ProtoReflect.Descriptor instead.
 func (*ControlArea) Descriptor() ([]byte, []int) {
-	return file_geo_details_proto_rawDescGZIP(), []int{0}
+	return file_components_geo_details_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *ControlArea) GetType() ControlAreaType {
@@ -240,7 +240,7 @@ type Acm struct {
 
 func (x *Acm) Reset() {
 	*x = Acm{}
-	mi := &file_geo_details_proto_msgTypes[1]
+	mi := &file_components_geo_details_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -252,7 +252,7 @@ func (x *Acm) String() string {
 func (*Acm) ProtoMessage() {}
 
 func (x *Acm) ProtoReflect() protoreflect.Message {
-	mi := &file_geo_details_proto_msgTypes[1]
+	mi := &file_components_geo_details_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -265,7 +265,7 @@ func (x *Acm) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Acm.ProtoReflect.Descriptor instead.
 func (*Acm) Descriptor() ([]byte, []int) {
-	return file_geo_details_proto_rawDescGZIP(), []int{1}
+	return file_components_geo_details_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Acm) GetAcmType() AcmType {
@@ -293,7 +293,7 @@ type GeoDetails struct {
 
 func (x *GeoDetails) Reset() {
 	*x = GeoDetails{}
-	mi := &file_geo_details_proto_msgTypes[2]
+	mi := &file_components_geo_details_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -305,7 +305,7 @@ func (x *GeoDetails) String() string {
 func (*GeoDetails) ProtoMessage() {}
 
 func (x *GeoDetails) ProtoReflect() protoreflect.Message {
-	mi := &file_geo_details_proto_msgTypes[2]
+	mi := &file_components_geo_details_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -318,7 +318,7 @@ func (x *GeoDetails) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GeoDetails.ProtoReflect.Descriptor instead.
 func (*GeoDetails) Descriptor() ([]byte, []int) {
-	return file_geo_details_proto_rawDescGZIP(), []int{2}
+	return file_components_geo_details_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GeoDetails) GetType() GeoType {
@@ -342,11 +342,11 @@ func (x *GeoDetails) GetAcm() *Acm {
 	return nil
 }
 
-var File_geo_details_proto protoreflect.FileDescriptor
+var File_components_geo_details_proto protoreflect.FileDescriptor
 
-const file_geo_details_proto_rawDesc = "" +
+const file_components_geo_details_proto_rawDesc = "" +
 	"\n" +
-	"\x11geo_details.proto\x12\n" +
+	"\x1ccomponents/geo_details.proto\x12\n" +
 	"components\">\n" +
 	"\vControlArea\x12/\n" +
 	"\x04type\x18\x01 \x01(\x0e2\x1b.components.ControlAreaTypeR\x04type\"^\n" +
@@ -375,23 +375,23 @@ const file_geo_details_proto_rawDesc = "" +
 	"\x1dCONTROL_AREA_TYPE_LOITER_ZONE\x10\x04*H\n" +
 	"\aAcmType\x12\x1b\n" +
 	"\x17ACM_DETAIL_TYPE_INVALID\x10\x00\x12 \n" +
-	"\x1cACM_DETAIL_TYPE_LANDING_ZONE\x10\x01B\x03Z\x01/b\x06proto3"
+	"\x1cACM_DETAIL_TYPE_LANDING_ZONE\x10\x01B\rZ\v/componentsb\x06proto3"
 
 var (
-	file_geo_details_proto_rawDescOnce sync.Once
-	file_geo_details_proto_rawDescData []byte
+	file_components_geo_details_proto_rawDescOnce sync.Once
+	file_components_geo_details_proto_rawDescData []byte
 )
 
-func file_geo_details_proto_rawDescGZIP() []byte {
-	file_geo_details_proto_rawDescOnce.Do(func() {
-		file_geo_details_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_geo_details_proto_rawDesc), len(file_geo_details_proto_rawDesc)))
+func file_components_geo_details_proto_rawDescGZIP() []byte {
+	file_components_geo_details_proto_rawDescOnce.Do(func() {
+		file_components_geo_details_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_components_geo_details_proto_rawDesc), len(file_components_geo_details_proto_rawDesc)))
 	})
-	return file_geo_details_proto_rawDescData
+	return file_components_geo_details_proto_rawDescData
 }
 
-var file_geo_details_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_geo_details_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_geo_details_proto_goTypes = []any{
+var file_components_geo_details_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
+var file_components_geo_details_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_components_geo_details_proto_goTypes = []any{
 	(GeoType)(0),         // 0: components.GeoType
 	(ControlAreaType)(0), // 1: components.ControlAreaType
 	(AcmType)(0),         // 2: components.AcmType
@@ -399,7 +399,7 @@ var file_geo_details_proto_goTypes = []any{
 	(*Acm)(nil),          // 4: components.Acm
 	(*GeoDetails)(nil),   // 5: components.GeoDetails
 }
-var file_geo_details_proto_depIdxs = []int32{
+var file_components_geo_details_proto_depIdxs = []int32{
 	1, // 0: components.ControlArea.type:type_name -> components.ControlAreaType
 	2, // 1: components.Acm.acm_type:type_name -> components.AcmType
 	0, // 2: components.GeoDetails.type:type_name -> components.GeoType
@@ -412,27 +412,27 @@ var file_geo_details_proto_depIdxs = []int32{
 	0, // [0:5] is the sub-list for field type_name
 }
 
-func init() { file_geo_details_proto_init() }
-func file_geo_details_proto_init() {
-	if File_geo_details_proto != nil {
+func init() { file_components_geo_details_proto_init() }
+func file_components_geo_details_proto_init() {
+	if File_components_geo_details_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_geo_details_proto_rawDesc), len(file_geo_details_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_components_geo_details_proto_rawDesc), len(file_components_geo_details_proto_rawDesc)),
 			NumEnums:      3,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_geo_details_proto_goTypes,
-		DependencyIndexes: file_geo_details_proto_depIdxs,
-		EnumInfos:         file_geo_details_proto_enumTypes,
-		MessageInfos:      file_geo_details_proto_msgTypes,
+		GoTypes:           file_components_geo_details_proto_goTypes,
+		DependencyIndexes: file_components_geo_details_proto_depIdxs,
+		EnumInfos:         file_components_geo_details_proto_enumTypes,
+		MessageInfos:      file_components_geo_details_proto_msgTypes,
 	}.Build()
-	File_geo_details_proto = out.File
-	file_geo_details_proto_goTypes = nil
-	file_geo_details_proto_depIdxs = nil
+	File_components_geo_details_proto = out.File
+	file_components_geo_details_proto_goTypes = nil
+	file_components_geo_details_proto_depIdxs = nil
 }

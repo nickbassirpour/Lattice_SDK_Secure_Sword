@@ -1,0 +1,7 @@
+{
+    "protoc": {
+    "options": [
+            "--proto_path=C:/Users/nickb/Desktop/Code_Projects/Lattice_SDK_Secure_Sword/core/proto/components"
+        ]
+  }
+}
