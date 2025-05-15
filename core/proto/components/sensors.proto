@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package entities;
+
+import "google/protobuf/timestamp.proto";
+
+import "components/tracked.proto";
+import "components/position.proto";
+
+message Sensors {
+  repeated Sensor sensor = 1;
+}
+
+message Sensor {
+  string sensorId = 1;
+  OperationalState operationalState = 2;
+  SensorType sensorType = 3;
+  string sensorDescription = 4;
+  RFConfiguration rfConfiguration = 5;
+  google.protobuf.Timestamp lastDetectionTimestamp = 6;
+  repeated FieldOfView fieldsOfView = 7;
+}
+
+enum SensorType {
+  SENSOR_TYPE_INVALID = 0;
+  SENSOR_TYPE_RADAR = 1;
+  SENSOR_TYPE_CAMERA = 2;
+  SENSOR_TYPE_TRANSPONDER = 3;
+  SENSOR_TYPE_RF = 4;
+  SENSOR_TYPE_GPS = 5;
+  SENSOR_TYPE_PTU_POS = 6;
+  SENSOR_TYPE_PERIMETER = 7;
+  SENSOR_TYPE_SONAR = 8;
+}
+
+enum OperationalState {
+  OPERATIONAL_STATE_INVALID = 0;
+  OPERATIONAL_STATE_OFF = 1;
+  OPERATIONAL_STATE_NON_OPERATIONAL = 2;
+  OPERATIONAL_STATE_DEGRADED = 3;
+  OPERATIONAL_STATE_OPERATIONAL = 4;
+  OPERATIONAL_STATE_DENIED = 5;
+}
+
+message RFConfiguration {
+  repeated FrequencyRangeHz frequencyRangeHz = 1;
+  repeated BandwidthRangeHz bandwidthRangeHz = 2;
+}
+
+message FrequencyRangeHz {
+  MinimumFrequencyRangeHz minimumFrequencyRangeHz = 1;
+  MaximumFrequencyRangeHz maximumFrequencyRangeHz = 2;
+}
+
+message MinimumFrequencyRangeHz {
+  FrequencyHz frequencyHz = 1;
+}
+
+message MaximumFrequencyRangeHz {
+  FrequencyHz frequencyHz = 1;
+}
+
+message FrequencyHz {
+  double value = 1;
+  double sigma = 2;
+}
+
+message BandwidthRangeHz {
+  MinimumBandwidth minimumBandwidth = 1;
+  MaximumBandwidth maximumBandwidth = 2;
+}
+
+message MinimumBandwidth {
+  double bandwidthHz = 1;  // fixed typo from bandwithHz to bandwidthHz
+}
+
+message MaximumBandwidth {
+  double bandwidthHz = 1;  // fixed typo from bandwithHz to bandwidthHz
+}
+
+message FieldOfView {
+  int32 fovId = 1;
+  string mountId = 2;
+  ProjectFrustum projectFrustum = 3;
+  Position projectedCenterRay = 4;
+  RelativePose centerRayPose = 5;
+  float horizontalFov = 6;
+  float verticalFov = 7;
+  float range = 8;
+  Mode mode = 9;
+}
+
+message ProjectFrustum {
+  Position upperLeft = 1;
+  Position upperRight = 2;
+  Position bottomRight = 3;
+  Position bottomLeft = 4;
+}
+
+enum Mode {
+  SENSOR_MODE_INVALID = 0;
+  SENSOR_MODE_SEARCH = 1;
+  SENSOR_MODE_TRACK = 2;
+  SENSOR_MODE_WEAPON_SUPPORT = 3;
+  SENSOR_MODE_AUTOSENSOR_MODE_MUTE = 4;
+}

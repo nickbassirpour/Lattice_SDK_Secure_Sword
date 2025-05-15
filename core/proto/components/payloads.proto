@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+import "components/mil_view.proto";
+
+message Payloads {
+  repeated Config payloadConfigurations = 1;
+}
+
+message Config {
+  string capabilityId = 1;
+  uint32 quantity = 2;
+  Environment effectiveEnvironment = 3;
+  PayloadOperationalState payloadOperationalState = 4;
+  string payloadDescription = 5;
+}
+
+enum PayloadOperationalState {
+  PAYLOAD_OPERATIONAL_STATE_INVALID = 0;
+  PAYLOAD_OPERATIONAL_STATE_OFF = 1;
+  PAYLOAD_OPERATIONAL_STATE_NON_OPERATIONAL = 2;
+  PAYLOAD_OPERATIONAL_STATE_DEGRADED = 3;
+  PAYLOAD_OPERATIONAL_STATE_OPERATIONAL = 4;
+  PAYLOAD_OPERATIONAL_STATE_OUT_OF_SERVICE = 5;
+  PAYLOAD_OPERATIONAL_STATE_UNKNOWN = 6;
+}

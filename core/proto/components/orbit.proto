@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+message Orbit {
+  OrbitMeanElements orbitMeanElements = 1;
+}
+
+message OrbitMeanElements {
+  OrbitMetadata metadata = 1;
+  MeanKeplarianElements meanKeplarianElements = 2;
+  TleParamaters tleParameters = 3;
+}
+
+message OrbitMetadata {
+  string creationDate = 1;
+  string originator = 2;
+  string messageId = 3;
+  RefFrame refFrame = 4;
+  string refFrameEpoch = 5;
+  MeanElementTheory meanElementTheory = 6;
+}
+
+enum RefFrame {
+  ECI_REFERENCE_FRAME_INVALID = 0;
+  ECI_REFERENCE_FRAME_TEME = 1;
+}
+
+enum MeanElementTheory {
+  MEAN_ELEMENT_THEORY_INVALID = 0;
+  MEAN_ELEMENT_THEORY_SGP4 = 1;
+}
+
+message MeanKeplarianElements {
+  string epoch = 1;
+  double semiMajorAxisKm = 2;
+  double meanMotion = 3;
+  double eccentricity = 4;
+  double inclinationDeg = 5;
+  double raOfAscNodeDeg = 6;
+  double argOfPericenterDeg = 7;
+  double meanAnomalyDeg = 8;
+  double gm = 9;
+}
+
+message TleParamaters {
+  uint32 ephemerisType = 1;
+  string classificationType = 2;
+  uint32 noradCatId = 3;
+  uint32 elementSetNo = 4;
+  uint32 revAtEpoch = 5;
+  double bstar = 6;
+  double bterm = 7;
+  double meanMotionDot = 8;
+  double meanMotionDdot = 9;
+  double agom = 10;
+}

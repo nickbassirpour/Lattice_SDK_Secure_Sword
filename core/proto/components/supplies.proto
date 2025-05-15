@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+import "components/data_classification.proto";
+
+import "google/protobuf/timestamp.proto";
+
+message Supplies {
+  repeated Fuel fuel = 1;
+}
+
+message Fuel {
+  string fieldId = 1;
+  string name = 2;
+  google.protobuf.Timestamp reportedDate = 3;
+  uint32 amountGallons = 4;
+  uint32 maxAuthorizedCapacityGallons = 5;
+  uint32 operationalRequirementGallons = 6;
+  DataClassification dataClassification = 7;
+  string dataSource = 8;
+}

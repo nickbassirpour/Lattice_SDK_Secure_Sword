@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+enum InterrogationResponse {
+  INTERROGATION_RESPONSE_INVALID = 0;
+  INTERROGATION_RESPONSE_CORRECT = 1;
+  INTERROGATION_RESPONSE_INCORRECT = 2;
+  INTERROGATION_RESPONSE_NO_RESPONSE = 3;
+}
+
+message Mode5 {
+  InterrogationResponse mode5_interrogation_response = 1;
+  uint32 mode5 = 2;
+  uint32 mode5_platform_id = 3;
+}
+
+message ModeS {
+  string id = 1;
+  uint32 address = 2;
+}
+
+message TransponderCodes {
+  uint32 mode1 = 1;
+  uint32 mode2 = 2;
+  uint32 mode3 = 3;
+  InterrogationResponse mode4_interrogation_response = 4;
+  Mode5 mode5 = 5;
+  ModeS modeS = 6;
+}

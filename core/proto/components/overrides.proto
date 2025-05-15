@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+import "components/entity.proto";
+import "components/provenance.proto";
+
+message Overrides {
+  repeated Override override = 1;
+}
+
+message Override {
+  string requestId = 1;
+  string fieldPath = 2;
+  Entity maskedFieldValue = 3;
+  OverideStatus status = 4;
+  Provenance provenance = 5;
+  Type type = 6;
+  string requestTimeStamp = 7;
+}
+
+enum OverideStatus {
+  OVERRIDE_STATUS_INVALID = 0;
+  OVERRIDE_STATUS_APPLIED = 1;
+  OVERRIDE_STATUS_PENDING = 2;
+  OVERRIDE_STATUS_TIMEOUT = 3;
+  OVERRIDE_STATUS_REJECTED = 4;
+  OVERRIDE_STATUS_DELETION_PENDING = 5;
+}
+
+enum Type {
+  OVERRIDE_TYPE_INVALID = 0;
+  OVERRIDE_TYPE_LIVE = 1;
+  OVERRIDE_TYPE_POST_EXPIRY = 2;
+}

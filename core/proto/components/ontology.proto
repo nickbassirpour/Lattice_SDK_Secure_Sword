@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+message Ontology {
+  string platformType = 1;
+  string specificType = 2;
+  Template template = 3;
+}
+
+enum Template {
+  TEMPLATE_INVALID = 0;
+  TEMPLATE_TRACK = 1;
+  TEMPLATE_SENSOR_POINT_OF_INTEREST = 2;
+  TEMPLATE_ASSET = 3;
+  TEMPLATE_GEO = 4;
+  TEMPLATE_SIGNAL_OF_INTEREST = 5;
+}

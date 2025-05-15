@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/sensors.proto";
+
+message Relationships {
+  repeated Relationship relationships = 1;
+}
+
+message Relationship {
+  string relatedEntityId = 1;
+  string relationshipId = 2;
+  RelationshipType relationshipType = 3;
+}
+
+message RelationshipType {
+  TrackedBy trackedBy = 1;
+  GroupChild groupChild = 2;
+  GroupParent groupParent = 3;
+  MergedFrom mergedFrom = 4;
+  ActiveTarget activeTarget = 5;
+}
+
+message TrackedBy {
+  Sensors activelyTrackingSensors = 1;
+  google.protobuf.Timestamp lastMeasurementTimeStamp = 2;
+}
+
+message GroupChild {}
+
+message GroupParent {}
+
+message MergedFrom {}
+
+message ActiveTarget {}

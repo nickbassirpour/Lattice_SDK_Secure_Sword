@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+import "google/protobuf/timestamp.proto";
+
+message Health {
+  ConnectionStatus connectionStatus = 1;
+  HealthStatus healthStatus = 2;
+  repeated Component components = 3;
+  google.protobuf.Timestamp updateTime = 4;
+  repeated ActiveAlert activeAlerts = 5;
+}
+
+enum ConnectionStatus {
+  CONNECTION_STATUS_INVALID = 0;
+  CONNECTION_STATUS_ONLINE = 1;
+  CONNECTION_STATUS_OFFLINE = 2;
+}
+
+message Component {
+  string id = 1;
+  string name = 2;
+  HealthStatus health = 3;
+  repeated Message messages = 4;
+  google.protobuf.Timestamp updateTime = 5;
+}
+
+message Message {
+  HealthStatus status = 1;
+  string message = 2;
+}
+
+enum HealthStatus {
+  HEALTH_STATUS_INVALID = 0;
+  HEALTH_STATUS_HEALTHY = 1;
+  HEALTH_STATUS_WARN = 2;
+  HEALTH_STATUS_FAIL = 3;
+  HEALTH_STATUS_OFFLINE = 4;
+  HEALTH_STATUS_NOT_READY = 5;
+}
+
+message ActiveAlert {
+  string alertCode = 1;
+  string description = 2;
+  AlertLevel level = 3;
+  google.protobuf.Timestamp activatedTime = 4;
+  repeated ActiveCondition activeConditions = 5;
+}
+
+enum AlertLevel {
+  ALERT_LEVEL_INVALID = 0;
+  ALERT_LEVEL_ADVISORY = 1;
+  ALERT_LEVEL_CAUTION = 2;
+  ALERT_LEVEL_WARNING = 3;
+}
+
+message ActiveCondition {
+  string conditionCode = 1;
+  string description = 2;
+}

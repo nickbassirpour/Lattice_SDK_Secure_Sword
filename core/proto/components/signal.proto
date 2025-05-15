@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+import "components/tracked.proto";
+
+message Signal {
+  FrequencyCenter frequencyCenter = 1;
+  FrequencyRange frequencyRange = 2;
+  double bandwidthHz = 3;
+  double signalToNoiseRatio = 4;
+  LineOfBearing lineOfBearing = 5;
+  Fixed fixed = 6;
+  repeated EmitterNotation emitterNotations = 7;
+  double pulseWidthS = 8;
+  PulseRepetitionInterval pulseRepetitionInterval = 9;
+  ScanCharacteristics scanCharacteristics = 10;
+}
+
+message FrequencyCenter {
+  FrequencyHz frequencyHz = 1;
+}
+
+message FrequencyRange {
+  MinimumFrequencyRangeHz minimumFrequencyRangeHz = 1;
+  MaximumFrequencyRangeHz maximumFrequencyRangeHz = 2;
+}
+
+message Fixed {}
+
+message EmitterNotation {
+  string emitterNotation = 1;
+  double confidence = 2;
+}
+
+message PulseRepetitionInterval {
+  PulseRepetitionIntervalS pulseRepetitionIntervalS = 1;
+}
+
+message PulseRepetitionIntervalS {
+  double value = 1;
+  double sigma = 2;
+}
+
+message ScanCharacteristics {
+  ScanType scanType = 1;
+  double scanPeriodS = 2;
+}
+
+enum ScanType {
+  SCAN_TYPE_INVALID = 0;
+  SCAN_TYPE_CIRCULAR = 1;
+  SCAN_TYPE_BIDIRECTIONAL_HORIZONTAL_SECTOR = 2;
+  SCAN_TYPE_BIDIRECTIONAL_VERTICAL_SECTOR = 3;
+  SCAN_TYPE_NON_SCANNING = 4;
+  SCAN_TYPE_IRREGULAR = 5;
+  SCAN_TYPE_CONICAL = 6;
+  SCAN_TYPE_LOBE_SWITCHING = 7;
+  SCAN_TYPE_RASTER = 8;
+  SCAN_TYPE_CIRCULAR_VERTICAL_SECTOR = 9;
+  SCAN_TYPE_CIRCULAR_CONICAL = 10;
+  SCAN_TYPE_SECTOR_CONICAL = 11;
+  SCAN_TYPE_AGILE_BEAM = 12;
+  SCAN_TYPE_UNIDIRECTIONAL_VERTICAL_SECTOR = 13;
+  SCAN_TYPE_UNIDIRECTIONAL_HORIZONTAL_SECTOR = 14;
+  SCAN_TYPE_UNIDIRECTIONAL_SECTOR = 15;
+  SCAN_TYPE_BIDIRECTIONAL_SECTOR = 16;
+}
+
+message FrequencyHz {
+  double value = 1;
+  double sigma = 2;
+}
+
+message MinimumFrequencyRangeHz {
+  FrequencyHz frequencyHz = 1;
+}
+
+message MaximumFrequencyRangeHz {
+  FrequencyHz frequencyHz = 1;
+}

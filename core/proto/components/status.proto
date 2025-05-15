@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+message Status {
+  int32 code = 1;
+  string message = 2;
+  repeated StatusDetail details = 3;
+}
+
+message StatusDetail {
+  string type = 1;  // JSON field "@type" will be mapped in Go, but proto field name can't have '@'
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+message Indicators {
+  bool simulated = 1;
+  bool exercise = 2;
+  bool emergency = 3;
+  bool c2 = 4;
+  bool egressable = 5;
+  bool starred = 6;
+}

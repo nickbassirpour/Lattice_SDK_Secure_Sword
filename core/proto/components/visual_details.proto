@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+message VisualDetails {
+  RangeRings range_rings = 1;
+}
+
+message RangeRings {
+  double min_distance_m = 1;
+  double max_distance_m = 2;
+  uint32 ring_count = 3;
+  RingLineColor ring_line_color = 4;
+}
+
+message RingLineColor {
+  float red = 1;
+  float green = 2;
+  float blue = 3;
+  float alpha = 4;
+}

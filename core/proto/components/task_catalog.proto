@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+message TaskCatalog {
+  repeated TaskDefinition taskDefinitions = 1;
+}
+
+message TaskDefinition {
+  string taskSpecificationUrl = 1;
+}

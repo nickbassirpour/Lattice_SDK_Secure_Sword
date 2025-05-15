@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+message TargetPriority {
+  HighValueTarget highValueTarget = 1;
+  Threat threat = 2;
+}
+
+message HighValueTarget {
+  bool isHighValueTarget = 1;
+  uint32 targetPriority = 2;
+  repeated TargetMatch targetMatches = 3;
+}
+
+message TargetMatch {
+  string highValueTargetListId = 1;
+  string highValueTargetDescriptionId = 2;
+  bool isHighPayoffTarget = 3;
+}
+
+message Threat {
+  bool isThreat = 1;
+}

@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+import "google/protobuf/timestamp.proto";
+import "components/location.proto";
+
+message Tracked {
+  int32 track_quality_wrapper = 1;
+  int32 sensor_hits = 2;
+  NumberOfObjects number_of_objects = 3;
+  double radar_cross_section = 4;
+  google.protobuf.Timestamp last_measurement_time = 5;
+  LineOfBearing line_of_bearing = 6;
+}
+
+message NumberOfObjects {
+  uint32 lower_bound = 1;
+  uint32 upper_bound = 2;
+}
+
+message LineOfBearing {
+  AngleOfArrival angle_of_arrival = 1;
+  RangeEstimateM range_estimate_m = 2;
+  MaxRangeM max_range_m = 3;
+}
+
+message AngleOfArrival {
+  RelativePose relative_pose = 1;
+  BearingElevationCovarianceRad2 bearing_elevation_covariance_rad2 = 2;
+}
+
+message RelativePose {
+  Pos pos = 1;
+  AttitudeEnu att_enu = 2;
+}
+
+message Pos {
+  double lon = 1;
+  double lat = 2;
+  double alt = 3;
+  bool is2d = 4;
+  AltitudeReference altitude_reference = 5;
+}
+
+enum AltitudeReference {
+  ALTITUDE_REFERENCE_INVALID = 0;
+  ALTITUDE_REFERENCE_HEIGHT_ABOVE_WGS84 = 1;
+  ALTITUDE_REFERENCE_HEIGHT_ABOVE_EGM96 = 2;
+  ALTITUDE_REFERENCE_UNKNOWN = 3;
+  ALTITUDE_REFERENCE_BAROMETRIC = 4;
+  ALTITUDE_REFERENCE_ABOVE_SEA_FLOOR = 5;
+  ALTITUDE_REFERENCE_BELOW_SEA_SURFACE = 6;
+}
+
+message BearingElevationCovarianceRad2 {
+  double mxx = 1;
+  double mxy = 2;
+  double myy = 3;
+}
+
+message RangeEstimateM {
+  double value = 1;
+  double sigma = 2;
+}
+
+message MaxRangeM {
+  double value = 1;
+  double sigma = 2;
+}
+

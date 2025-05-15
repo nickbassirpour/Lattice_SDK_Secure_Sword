@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+import "google/protobuf/timestamp.proto";
+
+message Provenance {
+  string integrationName = 1;
+  string dataType = 2;
+  string sourceId = 3;
+  google.protobuf.Timestamp sourceUpdateTime = 4;
+  string sourceDescription = 5;
+}

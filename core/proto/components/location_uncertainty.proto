@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+message LocationUncertainty {
+  PositionEnuCov positionEnuCov = 1;
+  VelocityEnuCov velocityEnuCov = 2;
+}
+
+message PositionEnuCov {
+  float mxx = 1;
+  float mxy = 2;
+  float mxz = 3;
+  float myy = 4;
+  float myz = 5;
+  float mzz = 6;
+}
+
+message VelocityEnuCov {
+  float mxx = 1;
+  float mxy = 2;
+  float mxz = 3;
+  float myy = 4;
+  float myz = 5;
+  float mzz = 6;
+}
+
+message PositionErrorEllipse {
+  double probability = 1;
+  double semiMajorAxisM = 2;
+  double semiMinorAxisM = 3;
+  double orientationD = 4;
+}

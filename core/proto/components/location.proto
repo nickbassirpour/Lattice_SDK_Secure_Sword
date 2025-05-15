@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+import "components/position.proto";
+
+message Location {
+  Position position = 1;
+  VelocityEnu velocityEnu = 2;
+  double speedMps = 3;
+  Acceleration acceleration = 4;
+  AttitudeEnu attitudeEnu = 5;
+}
+
+message VelocityEnu {
+  double e = 1;
+  double n = 2;
+  double u = 3;
+}
+
+message Acceleration {
+  double e = 1;
+  double n = 2;
+  double u = 3;
+}
+
+message AttitudeEnu {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+  double w = 4;
+}

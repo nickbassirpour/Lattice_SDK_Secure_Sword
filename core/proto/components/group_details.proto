@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+message GroupDetails {
+  Team team = 1;
+  Echelon echelon = 2;
+}
+
+message Team {
+  // Team currently has no fields, but it's defined as a type.
+}
+
+message Echelon {
+  ArmyEchelon armyEchelon = 1;
+}
+
+enum ArmyEchelon {
+  ARMY_ECHELON_INVALID = 0;
+  ARMY_ECHELON_FIRE_TEAM = 1;
+  ARMY_ECHELON_SQUAD = 2;
+  ARMY_ECHELON_PLATOON = 3;
+  ARMY_ECHELON_COMPANY = 4;
+  ARMY_ECHELON_BATTALION = 5;
+  ARMY_ECHELON_REGIMENT = 6;
+  ARMY_ECHELON_BRIGADE = 7;
+  ARMY_ECHELON_DIVISION = 8;
+  ARMY_ECHELON_CORPS = 9;
+  ARMY_ECHELON_ARMY = 10;
+}
