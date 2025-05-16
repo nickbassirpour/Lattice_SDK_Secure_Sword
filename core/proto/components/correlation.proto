@@ -4,6 +4,8 @@ package components;
 
 option go_package = "/components";
 
+import "components/provenance.proto";
+
 // Top-level Correlation type
 message Correlation {
   Primary primary = 1;
@@ -27,12 +29,6 @@ message Metadata {
   Provenance provenance = 1;
   ReplicationMode replicationMode = 2;
   CorrelationType type = 3;
-}
-
-// Provenance is referenced but not defined in your Go code.
-// Add definition or stub:
-message Provenance {
-  // Add actual fields if known
 }
 
 // Enum for replication mode

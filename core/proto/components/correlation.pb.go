@@ -341,44 +341,6 @@ func (x *Metadata) GetType() CorrelationType {
 	return CorrelationType_CORRELATION_TYPE_INVALID
 }
 
-// Provenance is referenced but not defined in your Go code.
-// Add definition or stub:
-type Provenance struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Provenance) Reset() {
-	*x = Provenance{}
-	mi := &file_components_correlation_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Provenance) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Provenance) ProtoMessage() {}
-
-func (x *Provenance) ProtoReflect() protoreflect.Message {
-	mi := &file_components_correlation_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Provenance.ProtoReflect.Descriptor instead.
-func (*Provenance) Descriptor() ([]byte, []int) {
-	return file_components_correlation_proto_rawDescGZIP(), []int{4}
-}
-
 // Membership structure
 type Membership struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
@@ -392,7 +354,7 @@ type Membership struct {
 
 func (x *Membership) Reset() {
 	*x = Membership{}
-	mi := &file_components_correlation_proto_msgTypes[5]
+	mi := &file_components_correlation_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -404,7 +366,7 @@ func (x *Membership) String() string {
 func (*Membership) ProtoMessage() {}
 
 func (x *Membership) ProtoReflect() protoreflect.Message {
-	mi := &file_components_correlation_proto_msgTypes[5]
+	mi := &file_components_correlation_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -417,7 +379,7 @@ func (x *Membership) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Membership.ProtoReflect.Descriptor instead.
 func (*Membership) Descriptor() ([]byte, []int) {
-	return file_components_correlation_proto_rawDescGZIP(), []int{5}
+	return file_components_correlation_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Membership) GetCorrelationSetId() string {
@@ -459,7 +421,7 @@ type Decorrelation struct {
 
 func (x *Decorrelation) Reset() {
 	*x = Decorrelation{}
-	mi := &file_components_correlation_proto_msgTypes[6]
+	mi := &file_components_correlation_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -471,7 +433,7 @@ func (x *Decorrelation) String() string {
 func (*Decorrelation) ProtoMessage() {}
 
 func (x *Decorrelation) ProtoReflect() protoreflect.Message {
-	mi := &file_components_correlation_proto_msgTypes[6]
+	mi := &file_components_correlation_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -484,7 +446,7 @@ func (x *Decorrelation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Decorrelation.ProtoReflect.Descriptor instead.
 func (*Decorrelation) Descriptor() ([]byte, []int) {
-	return file_components_correlation_proto_rawDescGZIP(), []int{6}
+	return file_components_correlation_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *Decorrelation) GetAll() *All {
@@ -510,7 +472,7 @@ type All struct {
 
 func (x *All) Reset() {
 	*x = All{}
-	mi := &file_components_correlation_proto_msgTypes[7]
+	mi := &file_components_correlation_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -522,7 +484,7 @@ func (x *All) String() string {
 func (*All) ProtoMessage() {}
 
 func (x *All) ProtoReflect() protoreflect.Message {
-	mi := &file_components_correlation_proto_msgTypes[7]
+	mi := &file_components_correlation_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -535,7 +497,7 @@ func (x *All) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use All.ProtoReflect.Descriptor instead.
 func (*All) Descriptor() ([]byte, []int) {
-	return file_components_correlation_proto_rawDescGZIP(), []int{7}
+	return file_components_correlation_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *All) GetMetadata() *Metadata {
@@ -555,7 +517,7 @@ type DecorrelatedEntity struct {
 
 func (x *DecorrelatedEntity) Reset() {
 	*x = DecorrelatedEntity{}
-	mi := &file_components_correlation_proto_msgTypes[8]
+	mi := &file_components_correlation_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -567,7 +529,7 @@ func (x *DecorrelatedEntity) String() string {
 func (*DecorrelatedEntity) ProtoMessage() {}
 
 func (x *DecorrelatedEntity) ProtoReflect() protoreflect.Message {
-	mi := &file_components_correlation_proto_msgTypes[8]
+	mi := &file_components_correlation_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -580,7 +542,7 @@ func (x *DecorrelatedEntity) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DecorrelatedEntity.ProtoReflect.Descriptor instead.
 func (*DecorrelatedEntity) Descriptor() ([]byte, []int) {
-	return file_components_correlation_proto_rawDescGZIP(), []int{8}
+	return file_components_correlation_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *DecorrelatedEntity) GetEntityId() string {
@@ -602,7 +564,7 @@ var File_components_correlation_proto protoreflect.FileDescriptor
 const file_components_correlation_proto_rawDesc = "" +
 	"\n" +
 	"\x1ccomponents/correlation.proto\x12\n" +
-	"components\"\xa9\x01\n" +
+	"components\x1a\x1bcomponents/provenance.proto\"\xa9\x01\n" +
 	"\vCorrelation\x12-\n" +
 	"\aprimary\x18\x01 \x01(\v2\x13.components.PrimaryR\aprimary\x123\n" +
 	"\tsecondary\x18\x02 \x01(\v2\x15.components.SecondaryR\tsecondary\x126\n" +
@@ -619,9 +581,7 @@ const file_components_correlation_proto_rawDesc = "" +
 	"provenance\x18\x01 \x01(\v2\x16.components.ProvenanceR\n" +
 	"provenance\x12E\n" +
 	"\x0freplicationMode\x18\x02 \x01(\x0e2\x1b.components.ReplicationModeR\x0freplicationMode\x12/\n" +
-	"\x04type\x18\x03 \x01(\x0e2\x1b.components.CorrelationTypeR\x04type\"\f\n" +
-	"\n" +
-	"Provenance\"\xd0\x01\n" +
+	"\x04type\x18\x03 \x01(\x0e2\x1b.components.CorrelationTypeR\x04type\"\xd0\x01\n" +
 	"\n" +
 	"Membership\x12*\n" +
 	"\x10correlationSetId\x18\x01 \x01(\tR\x10correlationSetId\x12-\n" +
@@ -660,7 +620,7 @@ func file_components_correlation_proto_rawDescGZIP() []byte {
 }
 
 var file_components_correlation_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_components_correlation_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_components_correlation_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_components_correlation_proto_goTypes = []any{
 	(ReplicationMode)(0),       // 0: components.ReplicationMode
 	(CorrelationType)(0),       // 1: components.CorrelationType
@@ -668,25 +628,25 @@ var file_components_correlation_proto_goTypes = []any{
 	(*Primary)(nil),            // 3: components.Primary
 	(*Secondary)(nil),          // 4: components.Secondary
 	(*Metadata)(nil),           // 5: components.Metadata
-	(*Provenance)(nil),         // 6: components.Provenance
-	(*Membership)(nil),         // 7: components.Membership
-	(*Decorrelation)(nil),      // 8: components.Decorrelation
-	(*All)(nil),                // 9: components.All
-	(*DecorrelatedEntity)(nil), // 10: components.DecorrelatedEntity
+	(*Membership)(nil),         // 6: components.Membership
+	(*Decorrelation)(nil),      // 7: components.Decorrelation
+	(*All)(nil),                // 8: components.All
+	(*DecorrelatedEntity)(nil), // 9: components.DecorrelatedEntity
+	(*Provenance)(nil),         // 10: components.Provenance
 }
 var file_components_correlation_proto_depIdxs = []int32{
 	3,  // 0: components.Correlation.primary:type_name -> components.Primary
 	4,  // 1: components.Correlation.secondary:type_name -> components.Secondary
-	7,  // 2: components.Correlation.membership:type_name -> components.Membership
+	6,  // 2: components.Correlation.membership:type_name -> components.Membership
 	5,  // 3: components.Secondary.metadata:type_name -> components.Metadata
-	6,  // 4: components.Metadata.provenance:type_name -> components.Provenance
+	10, // 4: components.Metadata.provenance:type_name -> components.Provenance
 	0,  // 5: components.Metadata.replicationMode:type_name -> components.ReplicationMode
 	1,  // 6: components.Metadata.type:type_name -> components.CorrelationType
 	3,  // 7: components.Membership.primary:type_name -> components.Primary
 	4,  // 8: components.Membership.nonPrimary:type_name -> components.Secondary
 	5,  // 9: components.Membership.metadata:type_name -> components.Metadata
-	9,  // 10: components.Decorrelation.all:type_name -> components.All
-	10, // 11: components.Decorrelation.decorrelatedEntities:type_name -> components.DecorrelatedEntity
+	8,  // 10: components.Decorrelation.all:type_name -> components.All
+	9,  // 11: components.Decorrelation.decorrelatedEntities:type_name -> components.DecorrelatedEntity
 	5,  // 12: components.All.metadata:type_name -> components.Metadata
 	5,  // 13: components.DecorrelatedEntity.metadata:type_name -> components.Metadata
 	14, // [14:14] is the sub-list for method output_type
@@ -701,13 +661,14 @@ func file_components_correlation_proto_init() {
 	if File_components_correlation_proto != nil {
 		return
 	}
+	file_components_provenance_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_components_correlation_proto_rawDesc), len(file_components_correlation_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   9,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

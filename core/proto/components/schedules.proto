@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+message Schedules {
+  repeated Schedule schedules = 1;
+}
+
+message Schedule {
+  repeated Window windows = 1;
+  string scheduleId = 2;
+  ScheduleType scheduleType = 3;
+}
+
+message Window {
+  // in UTC, describes when and at what cadence this window starts, in the quartz flavor of cron
+  string cronExpression = 1;
+
+  // describes the duration
+  string durationMillis = 2;
+}
+
+enum ScheduleType {
+  SCHEDULE_TYPE_INVALID = 0;
+  SCHEDULE_TYPE_ZONE_ENABLED = 1;
+  SCHEDULE_TYPE_ZONE_TEMP_ENABLED = 2;
+}

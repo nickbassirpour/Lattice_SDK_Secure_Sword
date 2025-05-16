@@ -32,7 +32,7 @@ type Entity struct {
 	// When the expiry_time has passed, the Entities API will delete the entity from the COP and send a DELETE event.
 	ExpiryTime time.Time `json:"expiryTime" validate:"required"`
 
-	Provenance Provenance `json:"provenance" validate:"required"`
+	Status Status `json:"status"`
 
 	Location Location `json:"location"`
 
@@ -48,6 +48,8 @@ type Entity struct {
 
 	Correlation Correlation `json:"correlation"`
 
+	MilView MilView `json:"milView"`
+
 	Ontology Ontology `json:"ontology"`
 
 	Sensors Sensors `json:"sensors"`
@@ -55,6 +57,8 @@ type Entity struct {
 	Payloads Payloads `json:"payloads"`
 
 	PowerState PowerState `json:"powerState"`
+
+	Provenance Provenance `json:"provenance" validate:"required"`
 
 	Overrides Overrides `json:"overrides"`
 
@@ -66,7 +70,7 @@ type Entity struct {
 
 	TransponderCodes TransponderCodes `json:"transponderCodes"`
 
-	DataClassifiction DataClassifiction `json:"dataClassification"`
+	DataClassification DataClassification `json:"dataClassification"`
 
 	TaskCatalog TaskCatalog `json:"taskCatalog"`
 

@@ -1,7 +1,7 @@
 package entities
 
 // A component that describes an entity's security classification levels.
-type DataClassifiction struct {
+type DataClassification struct {
 	Default Default `json:"default"`
 
 	// TYPO

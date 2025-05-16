@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package components;
+
+option go_package = "/components";
+
+import "google/protobuf/timestamp.proto";
+
+import "components/status.proto";
+import "components/location.proto";
+import "components/location_uncertainty.proto";
+import "components/geo_shape.proto";
+import "components/geo_details.proto";
+import "components/aliases.proto";
+import "components/tracked.proto";
+import "components/correlation.proto";
+import "components/mil_view.proto";
+import "components/ontology.proto";
+import "components/sensors.proto";
+import "components/payloads.proto";
+import "components/powerstate.proto";
+import "components/provenance.proto";
+import "components/overrides.proto";
+import "components/indicators.proto";
+import "components/target_priority.proto";
+import "components/signal.proto";
+import "components/transponder_codes.proto";
+import "components/data_classification.proto";
+import "components/task_catalog.proto";
+import "components/relationships.proto";
+import "components/visual_details.proto";
+import "components/dimensions.proto";
+import "components/route_details.proto";
+import "components/schedules.proto";
+import "components/health.proto";
+import "components/group_details.proto";
+import "components/supplies.proto";
+import "components/orbit.proto";
+
+message Entity {
+  string entityId = 1;
+  string description = 2;
+  bool isLive = 3;
+  google.protobuf.Timestamp createdTime = 4;
+  google.protobuf.Timestamp expiryTime = 5;
+
+  Status status = 6;
+  Location location = 7;
+  LocationUncertainty locationUncertainty = 8;
+  GeoShape geoShape = 9;
+  GeoDetails geoDetails = 10;
+  Aliases aliases = 11;
+  Tracked tracked = 12;
+  Correlation correlation = 13;
+  MilView milView = 14;
+  Ontology ontology = 15;
+  Sensors sensors = 16;
+  Payloads payloads = 17;
+  PowerState powerState = 18;
+  Provenance provenance = 19;
+  Overrides overrides = 20;
+  Indicators indicators = 21;
+  TargetPriority targetPriority = 22;
+  Signal signal = 23;
+  TransponderCodes transponderCodes = 24;
+  DataClassification dataClassification = 25;
+  TaskCatalog taskCatalog = 26;
+  Relationships relationships = 27;
+  VisualDetails visualDetails = 28;
+  Dimensions dimensions = 29;
+  RouteDetails routeDetails = 30;
+  Schedules schedules = 31;
+  Health health = 32;
+  GroupDetails groupDetails = 33;
+  Supplies supplies = 34;
+  Orbit orbit = 35;
+}
