@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package entitymanager;
+
+option go_package = "/components";
+
+import "google/protobuf/timestamp.proto";
+
+
+message PublishEntityRequest {
+    Entity entity = 1;
+}
+
+message PublishEntityResponse {
+    bool success = 1;
+    string message = 2; //optional error/warning message
+}
+
+message PublishEntitiesRequest {
+    repeated Entity entities = 1;
+}
+
+message PublishEntitiesResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message GetEntityRequest {
+    string entity_id = 1;
+}
+
+message GetEntityResponse {
+    Entity entity = 1;
+}
+
+message OverrideEntityRequest {
+    Entity entity = 1;
+    repeated string field_path = 2;
+    Provenance provenance = 3;
+}
+
+message OverrideEntityResponse {
+    OverrideStatus status = 1;
+}
+
+message RemoveEntityOverrideRequest {
+    Entity entity = 1;
+    repeated string field_path = 2;
+}
+
+message RemoveEntityOverrideResponse {
+
+}
+
+enum OverrideStatus {
+    OVERRIDE_STATUS_INVALID = 0;
+    OVERRIDE_STATUS_APPLIED = 1;
+    OVERRIDE_STATUS_PENDING = 2;
+    OVERRIDE_STATUS_TIMEOUT = 3;
+    OVERRIDE_STATUS_REJECTED = 4;
+    OVERRIDE_STATUS_DELETION_PENDING = 5;
+}
+
+service EntityService {
+    rpc PublishEntity(PublishEntityRequest) returns (PublishEntityResponse);
+
+    rpc PublishEntities(PublishEntityRequest) returns (PublishEntitiesResponse);
+
+    rpc GetEntity(GetEntityRequest) returns (GetEntityResponse);
+
+    rpc OverrideEntity(OverrideEntityRequest) returns (OverrideEntityResponse);
+
+    rpc RemoveEntityOverride(RemoveEntityOverrideRequest) returns (RemoveEntityOverrideResponse);
+}
