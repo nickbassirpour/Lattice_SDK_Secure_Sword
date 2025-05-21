@@ -16,13 +16,13 @@ message Override {
   string requestId = 1;
   string fieldPath = 2;
   google.protobuf.Any maskedFieldValue = 3;
-  OverideStatus status = 4;
+  OverrideStatus status = 4;
   Provenance provenance = 5;
   Type type = 6;
   string requestTimeStamp = 7;
 }
 
-enum OverideStatus {
+enum OverrideStatus {
   OVERRIDE_STATUS_INVALID = 0;
   OVERRIDE_STATUS_APPLIED = 1;
   OVERRIDE_STATUS_PENDING = 2;

@@ -1,10 +1,12 @@
 syntax = "proto3";
 
-package entitymanager;
+package components;
 
 option go_package = "/components";
 
-import "google/protobuf/timestamp.proto";
+import "components/entity.proto";
+import "components/provenance.proto";
+import "components/overrides.proto";
 
 
 message PublishEntityRequest {
@@ -13,7 +15,7 @@ message PublishEntityRequest {
 
 message PublishEntityResponse {
     bool success = 1;
-    string message = 2; //optional error/warning message
+    string message = 2; 
 }
 
 message PublishEntitiesRequest {
@@ -52,16 +54,7 @@ message RemoveEntityOverrideResponse {
 
 }
 
-enum OverrideStatus {
-    OVERRIDE_STATUS_INVALID = 0;
-    OVERRIDE_STATUS_APPLIED = 1;
-    OVERRIDE_STATUS_PENDING = 2;
-    OVERRIDE_STATUS_TIMEOUT = 3;
-    OVERRIDE_STATUS_REJECTED = 4;
-    OVERRIDE_STATUS_DELETION_PENDING = 5;
-}
-
-service EntityService {
+service EntityManager {
     rpc PublishEntity(PublishEntityRequest) returns (PublishEntityResponse);
 
     rpc PublishEntities(PublishEntityRequest) returns (PublishEntitiesResponse);

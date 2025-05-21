@@ -22,20 +22,20 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type OverideStatus int32
+type OverrideStatus int32
 
 const (
-	OverideStatus_OVERRIDE_STATUS_INVALID          OverideStatus = 0
-	OverideStatus_OVERRIDE_STATUS_APPLIED          OverideStatus = 1
-	OverideStatus_OVERRIDE_STATUS_PENDING          OverideStatus = 2
-	OverideStatus_OVERRIDE_STATUS_TIMEOUT          OverideStatus = 3
-	OverideStatus_OVERRIDE_STATUS_REJECTED         OverideStatus = 4
-	OverideStatus_OVERRIDE_STATUS_DELETION_PENDING OverideStatus = 5
+	OverrideStatus_OVERRIDE_STATUS_INVALID          OverrideStatus = 0
+	OverrideStatus_OVERRIDE_STATUS_APPLIED          OverrideStatus = 1
+	OverrideStatus_OVERRIDE_STATUS_PENDING          OverrideStatus = 2
+	OverrideStatus_OVERRIDE_STATUS_TIMEOUT          OverrideStatus = 3
+	OverrideStatus_OVERRIDE_STATUS_REJECTED         OverrideStatus = 4
+	OverrideStatus_OVERRIDE_STATUS_DELETION_PENDING OverrideStatus = 5
 )
 
-// Enum value maps for OverideStatus.
+// Enum value maps for OverrideStatus.
 var (
-	OverideStatus_name = map[int32]string{
+	OverrideStatus_name = map[int32]string{
 		0: "OVERRIDE_STATUS_INVALID",
 		1: "OVERRIDE_STATUS_APPLIED",
 		2: "OVERRIDE_STATUS_PENDING",
@@ -43,7 +43,7 @@ var (
 		4: "OVERRIDE_STATUS_REJECTED",
 		5: "OVERRIDE_STATUS_DELETION_PENDING",
 	}
-	OverideStatus_value = map[string]int32{
+	OverrideStatus_value = map[string]int32{
 		"OVERRIDE_STATUS_INVALID":          0,
 		"OVERRIDE_STATUS_APPLIED":          1,
 		"OVERRIDE_STATUS_PENDING":          2,
@@ -53,30 +53,30 @@ var (
 	}
 )
 
-func (x OverideStatus) Enum() *OverideStatus {
-	p := new(OverideStatus)
+func (x OverrideStatus) Enum() *OverrideStatus {
+	p := new(OverrideStatus)
 	*p = x
 	return p
 }
 
-func (x OverideStatus) String() string {
+func (x OverrideStatus) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (OverideStatus) Descriptor() protoreflect.EnumDescriptor {
+func (OverrideStatus) Descriptor() protoreflect.EnumDescriptor {
 	return file_components_overrides_proto_enumTypes[0].Descriptor()
 }
 
-func (OverideStatus) Type() protoreflect.EnumType {
+func (OverrideStatus) Type() protoreflect.EnumType {
 	return &file_components_overrides_proto_enumTypes[0]
 }
 
-func (x OverideStatus) Number() protoreflect.EnumNumber {
+func (x OverrideStatus) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use OverideStatus.Descriptor instead.
-func (OverideStatus) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use OverrideStatus.Descriptor instead.
+func (OverrideStatus) EnumDescriptor() ([]byte, []int) {
 	return file_components_overrides_proto_rawDescGZIP(), []int{0}
 }
 
@@ -178,7 +178,7 @@ type Override struct {
 	RequestId        string                 `protobuf:"bytes,1,opt,name=requestId,proto3" json:"requestId,omitempty"`
 	FieldPath        string                 `protobuf:"bytes,2,opt,name=fieldPath,proto3" json:"fieldPath,omitempty"`
 	MaskedFieldValue *anypb.Any             `protobuf:"bytes,3,opt,name=maskedFieldValue,proto3" json:"maskedFieldValue,omitempty"`
-	Status           OverideStatus          `protobuf:"varint,4,opt,name=status,proto3,enum=components.OverideStatus" json:"status,omitempty"`
+	Status           OverrideStatus         `protobuf:"varint,4,opt,name=status,proto3,enum=components.OverrideStatus" json:"status,omitempty"`
 	Provenance       *Provenance            `protobuf:"bytes,5,opt,name=provenance,proto3" json:"provenance,omitempty"`
 	Type             Type                   `protobuf:"varint,6,opt,name=type,proto3,enum=components.Type" json:"type,omitempty"`
 	RequestTimeStamp string                 `protobuf:"bytes,7,opt,name=requestTimeStamp,proto3" json:"requestTimeStamp,omitempty"`
@@ -237,11 +237,11 @@ func (x *Override) GetMaskedFieldValue() *anypb.Any {
 	return nil
 }
 
-func (x *Override) GetStatus() OverideStatus {
+func (x *Override) GetStatus() OverrideStatus {
 	if x != nil {
 		return x.Status
 	}
-	return OverideStatus_OVERRIDE_STATUS_INVALID
+	return OverrideStatus_OVERRIDE_STATUS_INVALID
 }
 
 func (x *Override) GetProvenance() *Provenance {
@@ -272,18 +272,18 @@ const file_components_overrides_proto_rawDesc = "" +
 	"\x1acomponents/overrides.proto\x12\n" +
 	"components\x1a\x19google/protobuf/any.proto\x1a\x1bcomponents/provenance.proto\"=\n" +
 	"\tOverrides\x120\n" +
-	"\boverride\x18\x01 \x03(\v2\x14.components.OverrideR\boverride\"\xc5\x02\n" +
+	"\boverride\x18\x01 \x03(\v2\x14.components.OverrideR\boverride\"\xc6\x02\n" +
 	"\bOverride\x12\x1c\n" +
 	"\trequestId\x18\x01 \x01(\tR\trequestId\x12\x1c\n" +
 	"\tfieldPath\x18\x02 \x01(\tR\tfieldPath\x12@\n" +
-	"\x10maskedFieldValue\x18\x03 \x01(\v2\x14.google.protobuf.AnyR\x10maskedFieldValue\x121\n" +
-	"\x06status\x18\x04 \x01(\x0e2\x19.components.OverideStatusR\x06status\x126\n" +
+	"\x10maskedFieldValue\x18\x03 \x01(\v2\x14.google.protobuf.AnyR\x10maskedFieldValue\x122\n" +
+	"\x06status\x18\x04 \x01(\x0e2\x1a.components.OverrideStatusR\x06status\x126\n" +
 	"\n" +
 	"provenance\x18\x05 \x01(\v2\x16.components.ProvenanceR\n" +
 	"provenance\x12$\n" +
 	"\x04type\x18\x06 \x01(\x0e2\x10.components.TypeR\x04type\x12*\n" +
-	"\x10requestTimeStamp\x18\a \x01(\tR\x10requestTimeStamp*\xc7\x01\n" +
-	"\rOverideStatus\x12\x1b\n" +
+	"\x10requestTimeStamp\x18\a \x01(\tR\x10requestTimeStamp*\xc8\x01\n" +
+	"\x0eOverrideStatus\x12\x1b\n" +
 	"\x17OVERRIDE_STATUS_INVALID\x10\x00\x12\x1b\n" +
 	"\x17OVERRIDE_STATUS_APPLIED\x10\x01\x12\x1b\n" +
 	"\x17OVERRIDE_STATUS_PENDING\x10\x02\x12\x1b\n" +
@@ -310,17 +310,17 @@ func file_components_overrides_proto_rawDescGZIP() []byte {
 var file_components_overrides_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_components_overrides_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_components_overrides_proto_goTypes = []any{
-	(OverideStatus)(0), // 0: components.OverideStatus
-	(Type)(0),          // 1: components.Type
-	(*Overrides)(nil),  // 2: components.Overrides
-	(*Override)(nil),   // 3: components.Override
-	(*anypb.Any)(nil),  // 4: google.protobuf.Any
-	(*Provenance)(nil), // 5: components.Provenance
+	(OverrideStatus)(0), // 0: components.OverrideStatus
+	(Type)(0),           // 1: components.Type
+	(*Overrides)(nil),   // 2: components.Overrides
+	(*Override)(nil),    // 3: components.Override
+	(*anypb.Any)(nil),   // 4: google.protobuf.Any
+	(*Provenance)(nil),  // 5: components.Provenance
 }
 var file_components_overrides_proto_depIdxs = []int32{
 	3, // 0: components.Overrides.override:type_name -> components.Override
 	4, // 1: components.Override.maskedFieldValue:type_name -> google.protobuf.Any
-	0, // 2: components.Override.status:type_name -> components.OverideStatus
+	0, // 2: components.Override.status:type_name -> components.OverrideStatus
 	5, // 3: components.Override.provenance:type_name -> components.Provenance
 	1, // 4: components.Override.type:type_name -> components.Type
 	5, // [5:5] is the sub-list for method output_type
