@@ -171,7 +171,7 @@ var File_components_supplies_proto protoreflect.FileDescriptor
 const file_components_supplies_proto_rawDesc = "" +
 	"\n" +
 	"\x19components/supplies.proto\x12\n" +
-	"components\x1a$components/data_classification.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"0\n" +
+	"components\x1a#components/dataclassification.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"0\n" +
 	"\bSupplies\x12$\n" +
 	"\x04fuel\x18\x01 \x03(\v2\x10.components.FuelR\x04fuel\"\x94\x03\n" +
 	"\x04Fuel\x12\x18\n" +
@@ -221,7 +221,7 @@ func file_components_supplies_proto_init() {
 	if File_components_supplies_proto != nil {
 		return
 	}
-	file_components_data_classification_proto_init()
+	file_components_dataclassification_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

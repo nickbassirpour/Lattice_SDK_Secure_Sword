@@ -442,146 +442,6 @@ func (x *FrequencyRangeHz) GetMaximumFrequencyRangeHz() *MaximumFrequencyRangeHz
 	return nil
 }
 
-type MinimumFrequencyRangeHz struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	FrequencyHz   *FrequencyHz           `protobuf:"bytes,1,opt,name=frequencyHz,proto3" json:"frequencyHz,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MinimumFrequencyRangeHz) Reset() {
-	*x = MinimumFrequencyRangeHz{}
-	mi := &file_components_sensors_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MinimumFrequencyRangeHz) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MinimumFrequencyRangeHz) ProtoMessage() {}
-
-func (x *MinimumFrequencyRangeHz) ProtoReflect() protoreflect.Message {
-	mi := &file_components_sensors_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MinimumFrequencyRangeHz.ProtoReflect.Descriptor instead.
-func (*MinimumFrequencyRangeHz) Descriptor() ([]byte, []int) {
-	return file_components_sensors_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *MinimumFrequencyRangeHz) GetFrequencyHz() *FrequencyHz {
-	if x != nil {
-		return x.FrequencyHz
-	}
-	return nil
-}
-
-type MaximumFrequencyRangeHz struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	FrequencyHz   *FrequencyHz           `protobuf:"bytes,1,opt,name=frequencyHz,proto3" json:"frequencyHz,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MaximumFrequencyRangeHz) Reset() {
-	*x = MaximumFrequencyRangeHz{}
-	mi := &file_components_sensors_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MaximumFrequencyRangeHz) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MaximumFrequencyRangeHz) ProtoMessage() {}
-
-func (x *MaximumFrequencyRangeHz) ProtoReflect() protoreflect.Message {
-	mi := &file_components_sensors_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MaximumFrequencyRangeHz.ProtoReflect.Descriptor instead.
-func (*MaximumFrequencyRangeHz) Descriptor() ([]byte, []int) {
-	return file_components_sensors_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *MaximumFrequencyRangeHz) GetFrequencyHz() *FrequencyHz {
-	if x != nil {
-		return x.FrequencyHz
-	}
-	return nil
-}
-
-type FrequencyHz struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Value         float64                `protobuf:"fixed64,1,opt,name=value,proto3" json:"value,omitempty"`
-	Sigma         float64                `protobuf:"fixed64,2,opt,name=sigma,proto3" json:"sigma,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *FrequencyHz) Reset() {
-	*x = FrequencyHz{}
-	mi := &file_components_sensors_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *FrequencyHz) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FrequencyHz) ProtoMessage() {}
-
-func (x *FrequencyHz) ProtoReflect() protoreflect.Message {
-	mi := &file_components_sensors_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FrequencyHz.ProtoReflect.Descriptor instead.
-func (*FrequencyHz) Descriptor() ([]byte, []int) {
-	return file_components_sensors_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *FrequencyHz) GetValue() float64 {
-	if x != nil {
-		return x.Value
-	}
-	return 0
-}
-
-func (x *FrequencyHz) GetSigma() float64 {
-	if x != nil {
-		return x.Sigma
-	}
-	return 0
-}
-
 type BandwidthRangeHz struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	MinimumBandwidth *MinimumBandwidth      `protobuf:"bytes,1,opt,name=minimumBandwidth,proto3" json:"minimumBandwidth,omitempty"`
@@ -592,7 +452,7 @@ type BandwidthRangeHz struct {
 
 func (x *BandwidthRangeHz) Reset() {
 	*x = BandwidthRangeHz{}
-	mi := &file_components_sensors_proto_msgTypes[7]
+	mi := &file_components_sensors_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -604,7 +464,7 @@ func (x *BandwidthRangeHz) String() string {
 func (*BandwidthRangeHz) ProtoMessage() {}
 
 func (x *BandwidthRangeHz) ProtoReflect() protoreflect.Message {
-	mi := &file_components_sensors_proto_msgTypes[7]
+	mi := &file_components_sensors_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -617,7 +477,7 @@ func (x *BandwidthRangeHz) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BandwidthRangeHz.ProtoReflect.Descriptor instead.
 func (*BandwidthRangeHz) Descriptor() ([]byte, []int) {
-	return file_components_sensors_proto_rawDescGZIP(), []int{7}
+	return file_components_sensors_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *BandwidthRangeHz) GetMinimumBandwidth() *MinimumBandwidth {
@@ -643,7 +503,7 @@ type MinimumBandwidth struct {
 
 func (x *MinimumBandwidth) Reset() {
 	*x = MinimumBandwidth{}
-	mi := &file_components_sensors_proto_msgTypes[8]
+	mi := &file_components_sensors_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -655,7 +515,7 @@ func (x *MinimumBandwidth) String() string {
 func (*MinimumBandwidth) ProtoMessage() {}
 
 func (x *MinimumBandwidth) ProtoReflect() protoreflect.Message {
-	mi := &file_components_sensors_proto_msgTypes[8]
+	mi := &file_components_sensors_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -668,7 +528,7 @@ func (x *MinimumBandwidth) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MinimumBandwidth.ProtoReflect.Descriptor instead.
 func (*MinimumBandwidth) Descriptor() ([]byte, []int) {
-	return file_components_sensors_proto_rawDescGZIP(), []int{8}
+	return file_components_sensors_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *MinimumBandwidth) GetBandwidthHz() float64 {
@@ -687,7 +547,7 @@ type MaximumBandwidth struct {
 
 func (x *MaximumBandwidth) Reset() {
 	*x = MaximumBandwidth{}
-	mi := &file_components_sensors_proto_msgTypes[9]
+	mi := &file_components_sensors_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -699,7 +559,7 @@ func (x *MaximumBandwidth) String() string {
 func (*MaximumBandwidth) ProtoMessage() {}
 
 func (x *MaximumBandwidth) ProtoReflect() protoreflect.Message {
-	mi := &file_components_sensors_proto_msgTypes[9]
+	mi := &file_components_sensors_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -712,7 +572,7 @@ func (x *MaximumBandwidth) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MaximumBandwidth.ProtoReflect.Descriptor instead.
 func (*MaximumBandwidth) Descriptor() ([]byte, []int) {
-	return file_components_sensors_proto_rawDescGZIP(), []int{9}
+	return file_components_sensors_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *MaximumBandwidth) GetBandwidthHz() float64 {
@@ -739,7 +599,7 @@ type FieldOfView struct {
 
 func (x *FieldOfView) Reset() {
 	*x = FieldOfView{}
-	mi := &file_components_sensors_proto_msgTypes[10]
+	mi := &file_components_sensors_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -751,7 +611,7 @@ func (x *FieldOfView) String() string {
 func (*FieldOfView) ProtoMessage() {}
 
 func (x *FieldOfView) ProtoReflect() protoreflect.Message {
-	mi := &file_components_sensors_proto_msgTypes[10]
+	mi := &file_components_sensors_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -764,7 +624,7 @@ func (x *FieldOfView) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FieldOfView.ProtoReflect.Descriptor instead.
 func (*FieldOfView) Descriptor() ([]byte, []int) {
-	return file_components_sensors_proto_rawDescGZIP(), []int{10}
+	return file_components_sensors_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *FieldOfView) GetFovId() int32 {
@@ -842,7 +702,7 @@ type ProjectFrustum struct {
 
 func (x *ProjectFrustum) Reset() {
 	*x = ProjectFrustum{}
-	mi := &file_components_sensors_proto_msgTypes[11]
+	mi := &file_components_sensors_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -854,7 +714,7 @@ func (x *ProjectFrustum) String() string {
 func (*ProjectFrustum) ProtoMessage() {}
 
 func (x *ProjectFrustum) ProtoReflect() protoreflect.Message {
-	mi := &file_components_sensors_proto_msgTypes[11]
+	mi := &file_components_sensors_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -867,7 +727,7 @@ func (x *ProjectFrustum) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProjectFrustum.ProtoReflect.Descriptor instead.
 func (*ProjectFrustum) Descriptor() ([]byte, []int) {
-	return file_components_sensors_proto_rawDescGZIP(), []int{11}
+	return file_components_sensors_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ProjectFrustum) GetUpperLeft() *Position {
@@ -903,7 +763,7 @@ var File_components_sensors_proto protoreflect.FileDescriptor
 const file_components_sensors_proto_rawDesc = "" +
 	"\n" +
 	"\x18components/sensors.proto\x12\n" +
-	"components\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x18components/tracked.proto\x1a\x19components/position.proto\"5\n" +
+	"components\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17components/signal.proto\x1a\x18components/tracked.proto\x1a\x19components/position.proto\"5\n" +
 	"\aSensors\x12*\n" +
 	"\x06sensor\x18\x01 \x03(\v2\x12.components.SensorR\x06sensor\"\xac\x03\n" +
 	"\x06Sensor\x12\x1a\n" +
@@ -921,14 +781,7 @@ const file_components_sensors_proto_rawDesc = "" +
 	"\x10bandwidthRangeHz\x18\x02 \x03(\v2\x1c.components.BandwidthRangeHzR\x10bandwidthRangeHz\"\xd0\x01\n" +
 	"\x10FrequencyRangeHz\x12]\n" +
 	"\x17minimumFrequencyRangeHz\x18\x01 \x01(\v2#.components.MinimumFrequencyRangeHzR\x17minimumFrequencyRangeHz\x12]\n" +
-	"\x17maximumFrequencyRangeHz\x18\x02 \x01(\v2#.components.MaximumFrequencyRangeHzR\x17maximumFrequencyRangeHz\"T\n" +
-	"\x17MinimumFrequencyRangeHz\x129\n" +
-	"\vfrequencyHz\x18\x01 \x01(\v2\x17.components.FrequencyHzR\vfrequencyHz\"T\n" +
-	"\x17MaximumFrequencyRangeHz\x129\n" +
-	"\vfrequencyHz\x18\x01 \x01(\v2\x17.components.FrequencyHzR\vfrequencyHz\"9\n" +
-	"\vFrequencyHz\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\x01R\x05value\x12\x14\n" +
-	"\x05sigma\x18\x02 \x01(\x01R\x05sigma\"\xa6\x01\n" +
+	"\x17maximumFrequencyRangeHz\x18\x02 \x01(\v2#.components.MaximumFrequencyRangeHzR\x17maximumFrequencyRangeHz\"\xa6\x01\n" +
 	"\x10BandwidthRangeHz\x12H\n" +
 	"\x10minimumBandwidth\x18\x01 \x01(\v2\x1c.components.MinimumBandwidthR\x10minimumBandwidth\x12H\n" +
 	"\x10maximumBandwidth\x18\x02 \x01(\v2\x1c.components.MaximumBandwidthR\x10maximumBandwidth\"4\n" +
@@ -993,7 +846,7 @@ func file_components_sensors_proto_rawDescGZIP() []byte {
 }
 
 var file_components_sensors_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_components_sensors_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_components_sensors_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_components_sensors_proto_goTypes = []any{
 	(SensorType)(0),                 // 0: components.SensorType
 	(OperationalState)(0),           // 1: components.OperationalState
@@ -1002,46 +855,43 @@ var file_components_sensors_proto_goTypes = []any{
 	(*Sensor)(nil),                  // 4: components.Sensor
 	(*RFConfiguration)(nil),         // 5: components.RFConfiguration
 	(*FrequencyRangeHz)(nil),        // 6: components.FrequencyRangeHz
-	(*MinimumFrequencyRangeHz)(nil), // 7: components.MinimumFrequencyRangeHz
-	(*MaximumFrequencyRangeHz)(nil), // 8: components.MaximumFrequencyRangeHz
-	(*FrequencyHz)(nil),             // 9: components.FrequencyHz
-	(*BandwidthRangeHz)(nil),        // 10: components.BandwidthRangeHz
-	(*MinimumBandwidth)(nil),        // 11: components.MinimumBandwidth
-	(*MaximumBandwidth)(nil),        // 12: components.MaximumBandwidth
-	(*FieldOfView)(nil),             // 13: components.FieldOfView
-	(*ProjectFrustum)(nil),          // 14: components.ProjectFrustum
-	(*timestamppb.Timestamp)(nil),   // 15: google.protobuf.Timestamp
-	(*Position)(nil),                // 16: components.Position
-	(*RelativePose)(nil),            // 17: components.RelativePose
+	(*BandwidthRangeHz)(nil),        // 7: components.BandwidthRangeHz
+	(*MinimumBandwidth)(nil),        // 8: components.MinimumBandwidth
+	(*MaximumBandwidth)(nil),        // 9: components.MaximumBandwidth
+	(*FieldOfView)(nil),             // 10: components.FieldOfView
+	(*ProjectFrustum)(nil),          // 11: components.ProjectFrustum
+	(*timestamppb.Timestamp)(nil),   // 12: google.protobuf.Timestamp
+	(*MinimumFrequencyRangeHz)(nil), // 13: components.MinimumFrequencyRangeHz
+	(*MaximumFrequencyRangeHz)(nil), // 14: components.MaximumFrequencyRangeHz
+	(*Position)(nil),                // 15: components.Position
+	(*RelativePose)(nil),            // 16: components.RelativePose
 }
 var file_components_sensors_proto_depIdxs = []int32{
 	4,  // 0: components.Sensors.sensor:type_name -> components.Sensor
 	1,  // 1: components.Sensor.operationalState:type_name -> components.OperationalState
 	0,  // 2: components.Sensor.sensorType:type_name -> components.SensorType
 	5,  // 3: components.Sensor.rfConfiguration:type_name -> components.RFConfiguration
-	15, // 4: components.Sensor.lastDetectionTimestamp:type_name -> google.protobuf.Timestamp
-	13, // 5: components.Sensor.fieldsOfView:type_name -> components.FieldOfView
+	12, // 4: components.Sensor.lastDetectionTimestamp:type_name -> google.protobuf.Timestamp
+	10, // 5: components.Sensor.fieldsOfView:type_name -> components.FieldOfView
 	6,  // 6: components.RFConfiguration.frequencyRangeHz:type_name -> components.FrequencyRangeHz
-	10, // 7: components.RFConfiguration.bandwidthRangeHz:type_name -> components.BandwidthRangeHz
-	7,  // 8: components.FrequencyRangeHz.minimumFrequencyRangeHz:type_name -> components.MinimumFrequencyRangeHz
-	8,  // 9: components.FrequencyRangeHz.maximumFrequencyRangeHz:type_name -> components.MaximumFrequencyRangeHz
-	9,  // 10: components.MinimumFrequencyRangeHz.frequencyHz:type_name -> components.FrequencyHz
-	9,  // 11: components.MaximumFrequencyRangeHz.frequencyHz:type_name -> components.FrequencyHz
-	11, // 12: components.BandwidthRangeHz.minimumBandwidth:type_name -> components.MinimumBandwidth
-	12, // 13: components.BandwidthRangeHz.maximumBandwidth:type_name -> components.MaximumBandwidth
-	14, // 14: components.FieldOfView.projectFrustum:type_name -> components.ProjectFrustum
-	16, // 15: components.FieldOfView.projectedCenterRay:type_name -> components.Position
-	17, // 16: components.FieldOfView.centerRayPose:type_name -> components.RelativePose
-	2,  // 17: components.FieldOfView.mode:type_name -> components.Mode
-	16, // 18: components.ProjectFrustum.upperLeft:type_name -> components.Position
-	16, // 19: components.ProjectFrustum.upperRight:type_name -> components.Position
-	16, // 20: components.ProjectFrustum.bottomRight:type_name -> components.Position
-	16, // 21: components.ProjectFrustum.bottomLeft:type_name -> components.Position
-	22, // [22:22] is the sub-list for method output_type
-	22, // [22:22] is the sub-list for method input_type
-	22, // [22:22] is the sub-list for extension type_name
-	22, // [22:22] is the sub-list for extension extendee
-	0,  // [0:22] is the sub-list for field type_name
+	7,  // 7: components.RFConfiguration.bandwidthRangeHz:type_name -> components.BandwidthRangeHz
+	13, // 8: components.FrequencyRangeHz.minimumFrequencyRangeHz:type_name -> components.MinimumFrequencyRangeHz
+	14, // 9: components.FrequencyRangeHz.maximumFrequencyRangeHz:type_name -> components.MaximumFrequencyRangeHz
+	8,  // 10: components.BandwidthRangeHz.minimumBandwidth:type_name -> components.MinimumBandwidth
+	9,  // 11: components.BandwidthRangeHz.maximumBandwidth:type_name -> components.MaximumBandwidth
+	11, // 12: components.FieldOfView.projectFrustum:type_name -> components.ProjectFrustum
+	15, // 13: components.FieldOfView.projectedCenterRay:type_name -> components.Position
+	16, // 14: components.FieldOfView.centerRayPose:type_name -> components.RelativePose
+	2,  // 15: components.FieldOfView.mode:type_name -> components.Mode
+	15, // 16: components.ProjectFrustum.upperLeft:type_name -> components.Position
+	15, // 17: components.ProjectFrustum.upperRight:type_name -> components.Position
+	15, // 18: components.ProjectFrustum.bottomRight:type_name -> components.Position
+	15, // 19: components.ProjectFrustum.bottomLeft:type_name -> components.Position
+	20, // [20:20] is the sub-list for method output_type
+	20, // [20:20] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_components_sensors_proto_init() }
@@ -1049,6 +899,7 @@ func file_components_sensors_proto_init() {
 	if File_components_sensors_proto != nil {
 		return
 	}
+	file_components_signal_proto_init()
 	file_components_tracked_proto_init()
 	file_components_position_proto_init()
 	type x struct{}
@@ -1057,7 +908,7 @@ func file_components_sensors_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_components_sensors_proto_rawDesc), len(file_components_sensors_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   12,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

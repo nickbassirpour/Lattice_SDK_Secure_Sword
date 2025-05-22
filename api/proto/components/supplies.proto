@@ -4,7 +4,7 @@ package components;
 
 option go_package = "/components";
 
-import "components/data_classification.proto";
+import "components/dataclassification.proto";
 
 import "google/protobuf/timestamp.proto";
 

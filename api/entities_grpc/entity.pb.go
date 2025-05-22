@@ -343,7 +343,7 @@ var File_components_entity_proto protoreflect.FileDescriptor
 const file_components_entity_proto_rawDesc = "" +
 	"\n" +
 	"\x17components/entity.proto\x12\n" +
-	"components\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17components/status.proto\x1a\x19components/location.proto\x1a%components/location_uncertainty.proto\x1a\x1acomponents/geo_shape.proto\x1a\x1ccomponents/geo_details.proto\x1a\x18components/aliases.proto\x1a\x18components/tracked.proto\x1a\x1ccomponents/correlation.proto\x1a\x19components/mil_view.proto\x1a\x19components/ontology.proto\x1a\x18components/sensors.proto\x1a\x19components/payloads.proto\x1a\x1bcomponents/powerstate.proto\x1a\x1bcomponents/provenance.proto\x1a\x1acomponents/overrides.proto\x1a\x1bcomponents/indicators.proto\x1a components/target_priority.proto\x1a\x17components/signal.proto\x1a\"components/transponder_codes.proto\x1a$components/data_classification.proto\x1a\x1dcomponents/task_catalog.proto\x1a\x1ecomponents/relationships.proto\x1a\x1fcomponents/visual_details.proto\x1a\x1bcomponents/dimensions.proto\x1a\x1ecomponents/route_details.proto\x1a\x1acomponents/schedules.proto\x1a\x17components/health.proto\x1a\x1ecomponents/group_details.proto\x1a\x19components/supplies.proto\x1a\x16components/orbit.proto\"\xe2\x0e\n" +
+	"components\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17components/status.proto\x1a\x19components/location.proto\x1a%components/location_uncertainty.proto\x1a\x19components/geoshape.proto\x1a\x1ccomponents/geo_details.proto\x1a\x18components/aliases.proto\x1a\x18components/tracked.proto\x1a\x1ccomponents/correlation.proto\x1a\x19components/mil_view.proto\x1a\x19components/ontology.proto\x1a\x18components/sensors.proto\x1a\x19components/payloads.proto\x1a\x1bcomponents/powerstate.proto\x1a\x1bcomponents/provenance.proto\x1a\x1acomponents/overrides.proto\x1a\x1bcomponents/indicators.proto\x1a components/target_priority.proto\x1a\x17components/signal.proto\x1a\"components/transponder_codes.proto\x1a#components/dataclassification.proto\x1a\x1dcomponents/task_catalog.proto\x1a\x1ecomponents/relationships.proto\x1a\x1fcomponents/visual_details.proto\x1a\x1bcomponents/dimensions.proto\x1a\x1ecomponents/route_details.proto\x1a\x1acomponents/schedules.proto\x1a\x17components/health.proto\x1a\x1dcomponents/groupdetails.proto\x1a\x19components/supplies.proto\x1a\x16components/orbit.proto\"\xe2\x0e\n" +
 	"\x06Entity\x12\x1a\n" +
 	"\bentityId\x18\x01 \x01(\tR\bentityId\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x16\n" +
@@ -489,7 +489,7 @@ func file_components_entity_proto_init() {
 	file_components_status_proto_init()
 	file_components_location_proto_init()
 	file_components_location_uncertainty_proto_init()
-	file_components_geo_shape_proto_init()
+	file_components_geoshape_proto_init()
 	file_components_geo_details_proto_init()
 	file_components_aliases_proto_init()
 	file_components_tracked_proto_init()
@@ -505,7 +505,7 @@ func file_components_entity_proto_init() {
 	file_components_target_priority_proto_init()
 	file_components_signal_proto_init()
 	file_components_transponder_codes_proto_init()
-	file_components_data_classification_proto_init()
+	file_components_dataclassification_proto_init()
 	file_components_task_catalog_proto_init()
 	file_components_relationships_proto_init()
 	file_components_visual_details_proto_init()
@@ -513,7 +513,7 @@ func file_components_entity_proto_init() {
 	file_components_route_details_proto_init()
 	file_components_schedules_proto_init()
 	file_components_health_proto_init()
-	file_components_group_details_proto_init()
+	file_components_groupdetails_proto_init()
 	file_components_supplies_proto_init()
 	file_components_orbit_proto_init()
 	type x struct{}
