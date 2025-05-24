@@ -16,7 +16,8 @@ func main() {
 	}
 
 	grpcServer := grpc.NewServer()
-	components.RegisterEntityManagerServer(grpcServer, &entitymanager.Server{})
+	server := entitymanager.NewServer()
+	components.RegisterEntityManagerServer(grpcServer, server)
 
 	log.Println("gRPC server listening on :50050")
 	if err := grpcServer.Serve(lis); err != nil {

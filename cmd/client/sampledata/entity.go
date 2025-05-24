@@ -9,12 +9,15 @@ import (
 
 func SampleEntity() *components.Entity {
 	return &components.Entity{
-		EntityId:    "sample-entity",
+		EntityId:    "",
 		Description: "Sample entity for testing",
 		IsLive:      true,
 		CreatedTime: timestamppb.New(time.Now()),
 		ExpiryTime:  timestamppb.New(time.Now().Add(48 * time.Hour)),
 		Status:      SampleStatus(),
 		Location:    SampleLocation(),
+		Provenance:  SampleProvenance(),
+		Aliases:     SampleAliases(),
+		Ontology:    SampleOntology(),
 	}
 }

@@ -10,9 +10,6 @@ func ValidateEntity(entity *components.Entity) error {
 	if entity == nil {
 		return errors.New("entity is nil")
 	}
-	if entity.EntityId == "" {
-		return errors.New("missing EntityId")
-	}
 	if entity.ExpiryTime == nil || entity.ExpiryTime.AsTime().IsZero() {
 		return errors.New("missing ExpiryTime")
 	}
