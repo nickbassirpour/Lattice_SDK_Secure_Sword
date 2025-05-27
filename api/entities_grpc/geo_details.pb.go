@@ -188,7 +188,7 @@ func (AcmType) EnumDescriptor() ([]byte, []int) {
 
 type ControlArea struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Type          ControlAreaType        `protobuf:"varint,1,opt,name=type,proto3,enum=components.ControlAreaType" json:"type,omitempty"`
+	Type          *ControlAreaType       `protobuf:"varint,1,opt,name=type,proto3,enum=components.ControlAreaType,oneof" json:"type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -224,16 +224,16 @@ func (*ControlArea) Descriptor() ([]byte, []int) {
 }
 
 func (x *ControlArea) GetType() ControlAreaType {
-	if x != nil {
-		return x.Type
+	if x != nil && x.Type != nil {
+		return *x.Type
 	}
 	return ControlAreaType_CONTROL_AREA_TYPE_INVALID
 }
 
 type Acm struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	AcmType        AcmType                `protobuf:"varint,1,opt,name=acm_type,json=acmType,proto3,enum=components.AcmType" json:"acm_type,omitempty"`
-	AcmDescription string                 `protobuf:"bytes,2,opt,name=acm_description,json=acmDescription,proto3" json:"acm_description,omitempty"`
+	AcmType        *AcmType               `protobuf:"varint,1,opt,name=acm_type,json=acmType,proto3,enum=components.AcmType,oneof" json:"acm_type,omitempty"`
+	AcmDescription *string                `protobuf:"bytes,2,opt,name=acm_description,json=acmDescription,proto3,oneof" json:"acm_description,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -269,24 +269,24 @@ func (*Acm) Descriptor() ([]byte, []int) {
 }
 
 func (x *Acm) GetAcmType() AcmType {
-	if x != nil {
-		return x.AcmType
+	if x != nil && x.AcmType != nil {
+		return *x.AcmType
 	}
 	return AcmType_ACM_DETAIL_TYPE_INVALID
 }
 
 func (x *Acm) GetAcmDescription() string {
-	if x != nil {
-		return x.AcmDescription
+	if x != nil && x.AcmDescription != nil {
+		return *x.AcmDescription
 	}
 	return ""
 }
 
 type GeoDetails struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Type          GeoType                `protobuf:"varint,1,opt,name=type,proto3,enum=components.GeoType" json:"type,omitempty"`
-	ControlArea   *ControlArea           `protobuf:"bytes,2,opt,name=control_area,json=controlArea,proto3" json:"control_area,omitempty"`
-	Acm           *Acm                   `protobuf:"bytes,3,opt,name=acm,proto3" json:"acm,omitempty"`
+	Type          *GeoType               `protobuf:"varint,1,opt,name=type,proto3,enum=components.GeoType,oneof" json:"type,omitempty"`
+	ControlArea   *ControlArea           `protobuf:"bytes,2,opt,name=control_area,json=controlArea,proto3,oneof" json:"control_area,omitempty"`
+	Acm           *Acm                   `protobuf:"bytes,3,opt,name=acm,proto3,oneof" json:"acm,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -322,8 +322,8 @@ func (*GeoDetails) Descriptor() ([]byte, []int) {
 }
 
 func (x *GeoDetails) GetType() GeoType {
-	if x != nil {
-		return x.Type
+	if x != nil && x.Type != nil {
+		return *x.Type
 	}
 	return GeoType_GEO_TYPE_INVALID
 }
@@ -347,17 +347,23 @@ var File_components_geo_details_proto protoreflect.FileDescriptor
 const file_components_geo_details_proto_rawDesc = "" +
 	"\n" +
 	"\x1ccomponents/geo_details.proto\x12\n" +
-	"components\">\n" +
-	"\vControlArea\x12/\n" +
-	"\x04type\x18\x01 \x01(\x0e2\x1b.components.ControlAreaTypeR\x04type\"^\n" +
-	"\x03Acm\x12.\n" +
-	"\bacm_type\x18\x01 \x01(\x0e2\x13.components.AcmTypeR\aacmType\x12'\n" +
-	"\x0facm_description\x18\x02 \x01(\tR\x0eacmDescription\"\x94\x01\n" +
+	"components\"L\n" +
+	"\vControlArea\x124\n" +
+	"\x04type\x18\x01 \x01(\x0e2\x1b.components.ControlAreaTypeH\x00R\x04type\x88\x01\x01B\a\n" +
+	"\x05_type\"\x89\x01\n" +
+	"\x03Acm\x123\n" +
+	"\bacm_type\x18\x01 \x01(\x0e2\x13.components.AcmTypeH\x00R\aacmType\x88\x01\x01\x12,\n" +
+	"\x0facm_description\x18\x02 \x01(\tH\x01R\x0eacmDescription\x88\x01\x01B\v\n" +
+	"\t_acm_typeB\x12\n" +
+	"\x10_acm_description\"\xc5\x01\n" +
 	"\n" +
-	"GeoDetails\x12'\n" +
-	"\x04type\x18\x01 \x01(\x0e2\x13.components.GeoTypeR\x04type\x12:\n" +
-	"\fcontrol_area\x18\x02 \x01(\v2\x17.components.ControlAreaR\vcontrolArea\x12!\n" +
-	"\x03acm\x18\x03 \x01(\v2\x0f.components.AcmR\x03acm*\xc4\x01\n" +
+	"GeoDetails\x12,\n" +
+	"\x04type\x18\x01 \x01(\x0e2\x13.components.GeoTypeH\x00R\x04type\x88\x01\x01\x12?\n" +
+	"\fcontrol_area\x18\x02 \x01(\v2\x17.components.ControlAreaH\x01R\vcontrolArea\x88\x01\x01\x12&\n" +
+	"\x03acm\x18\x03 \x01(\v2\x0f.components.AcmH\x02R\x03acm\x88\x01\x01B\a\n" +
+	"\x05_typeB\x0f\n" +
+	"\r_control_areaB\x06\n" +
+	"\x04_acm*\xc4\x01\n" +
 	"\aGeoType\x12\x14\n" +
 	"\x10GEO_TYPE_INVALID\x10\x00\x12\x14\n" +
 	"\x10GEO_TYPE_GENERAL\x10\x01\x12\x13\n" +
@@ -417,6 +423,9 @@ func file_components_geo_details_proto_init() {
 	if File_components_geo_details_proto != nil {
 		return
 	}
+	file_components_geo_details_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_geo_details_proto_msgTypes[1].OneofWrappers = []any{}
+	file_components_geo_details_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

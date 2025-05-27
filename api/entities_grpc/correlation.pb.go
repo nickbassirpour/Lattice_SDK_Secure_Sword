@@ -124,9 +124,9 @@ func (CorrelationType) EnumDescriptor() ([]byte, []int) {
 // Top-level Correlation type
 type Correlation struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Primary       *Primary               `protobuf:"bytes,1,opt,name=primary,proto3" json:"primary,omitempty"`
-	Secondary     *Secondary             `protobuf:"bytes,2,opt,name=secondary,proto3" json:"secondary,omitempty"`
-	Membership    *Membership            `protobuf:"bytes,3,opt,name=membership,proto3" json:"membership,omitempty"`
+	Primary       *Primary               `protobuf:"bytes,1,opt,name=primary,proto3,oneof" json:"primary,omitempty"`
+	Secondary     *Secondary             `protobuf:"bytes,2,opt,name=secondary,proto3,oneof" json:"secondary,omitempty"`
+	Membership    *Membership            `protobuf:"bytes,3,opt,name=membership,proto3,oneof" json:"membership,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -230,8 +230,8 @@ func (x *Primary) GetSecondaryEntityIds() []string {
 // Secondary type for Correlation
 type Secondary struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	PrimaryEntityId string                 `protobuf:"bytes,1,opt,name=primaryEntityId,proto3" json:"primaryEntityId,omitempty"`
-	Metadata        *Metadata              `protobuf:"bytes,2,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	PrimaryEntityId *string                `protobuf:"bytes,1,opt,name=primaryEntityId,proto3,oneof" json:"primaryEntityId,omitempty"`
+	Metadata        *Metadata              `protobuf:"bytes,2,opt,name=metadata,proto3,oneof" json:"metadata,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -267,8 +267,8 @@ func (*Secondary) Descriptor() ([]byte, []int) {
 }
 
 func (x *Secondary) GetPrimaryEntityId() string {
-	if x != nil {
-		return x.PrimaryEntityId
+	if x != nil && x.PrimaryEntityId != nil {
+		return *x.PrimaryEntityId
 	}
 	return ""
 }
@@ -283,9 +283,9 @@ func (x *Secondary) GetMetadata() *Metadata {
 // Metadata structure
 type Metadata struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	Provenance      *Provenance            `protobuf:"bytes,1,opt,name=provenance,proto3" json:"provenance,omitempty"`
-	ReplicationMode ReplicationMode        `protobuf:"varint,2,opt,name=replicationMode,proto3,enum=components.ReplicationMode" json:"replicationMode,omitempty"`
-	Type            CorrelationType        `protobuf:"varint,3,opt,name=type,proto3,enum=components.CorrelationType" json:"type,omitempty"`
+	Provenance      *Provenance            `protobuf:"bytes,1,opt,name=provenance,proto3,oneof" json:"provenance,omitempty"`
+	ReplicationMode *ReplicationMode       `protobuf:"varint,2,opt,name=replicationMode,proto3,enum=components.ReplicationMode,oneof" json:"replicationMode,omitempty"`
+	Type            *CorrelationType       `protobuf:"varint,3,opt,name=type,proto3,enum=components.CorrelationType,oneof" json:"type,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -328,15 +328,15 @@ func (x *Metadata) GetProvenance() *Provenance {
 }
 
 func (x *Metadata) GetReplicationMode() ReplicationMode {
-	if x != nil {
-		return x.ReplicationMode
+	if x != nil && x.ReplicationMode != nil {
+		return *x.ReplicationMode
 	}
 	return ReplicationMode_CORRELATION_REPLICATION_MODE_INVALID
 }
 
 func (x *Metadata) GetType() CorrelationType {
-	if x != nil {
-		return x.Type
+	if x != nil && x.Type != nil {
+		return *x.Type
 	}
 	return CorrelationType_CORRELATION_TYPE_INVALID
 }
@@ -344,10 +344,10 @@ func (x *Metadata) GetType() CorrelationType {
 // Membership structure
 type Membership struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	CorrelationSetId string                 `protobuf:"bytes,1,opt,name=correlationSetId,proto3" json:"correlationSetId,omitempty"`
-	Primary          *Primary               `protobuf:"bytes,2,opt,name=primary,proto3" json:"primary,omitempty"`
-	NonPrimary       *Secondary             `protobuf:"bytes,3,opt,name=nonPrimary,proto3" json:"nonPrimary,omitempty"`
-	Metadata         *Metadata              `protobuf:"bytes,4,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	CorrelationSetId *string                `protobuf:"bytes,1,opt,name=correlationSetId,proto3,oneof" json:"correlationSetId,omitempty"`
+	Primary          *Primary               `protobuf:"bytes,2,opt,name=primary,proto3,oneof" json:"primary,omitempty"`
+	NonPrimary       *Secondary             `protobuf:"bytes,3,opt,name=nonPrimary,proto3,oneof" json:"nonPrimary,omitempty"`
+	Metadata         *Metadata              `protobuf:"bytes,4,opt,name=metadata,proto3,oneof" json:"metadata,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -383,8 +383,8 @@ func (*Membership) Descriptor() ([]byte, []int) {
 }
 
 func (x *Membership) GetCorrelationSetId() string {
-	if x != nil {
-		return x.CorrelationSetId
+	if x != nil && x.CorrelationSetId != nil {
+		return *x.CorrelationSetId
 	}
 	return ""
 }
@@ -465,7 +465,7 @@ func (x *Decorrelation) GetDecorrelatedEntities() []*DecorrelatedEntity {
 
 type All struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Metadata      *Metadata              `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	Metadata      *Metadata              `protobuf:"bytes,1,opt,name=metadata,proto3,oneof" json:"metadata,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -509,8 +509,8 @@ func (x *All) GetMetadata() *Metadata {
 
 type DecorrelatedEntity struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	EntityId      string                 `protobuf:"bytes,1,opt,name=entityId,proto3" json:"entityId,omitempty"`
-	Metadata      *Metadata              `protobuf:"bytes,2,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	EntityId      *string                `protobuf:"bytes,1,opt,name=entityId,proto3,oneof" json:"entityId,omitempty"`
+	Metadata      *Metadata              `protobuf:"bytes,2,opt,name=metadata,proto3,oneof" json:"metadata,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -546,8 +546,8 @@ func (*DecorrelatedEntity) Descriptor() ([]byte, []int) {
 }
 
 func (x *DecorrelatedEntity) GetEntityId() string {
-	if x != nil {
-		return x.EntityId
+	if x != nil && x.EntityId != nil {
+		return *x.EntityId
 	}
 	return ""
 }
@@ -564,40 +564,58 @@ var File_components_correlation_proto protoreflect.FileDescriptor
 const file_components_correlation_proto_rawDesc = "" +
 	"\n" +
 	"\x1ccomponents/correlation.proto\x12\n" +
-	"components\x1a\x1bcomponents/provenance.proto\"\xa9\x01\n" +
-	"\vCorrelation\x12-\n" +
-	"\aprimary\x18\x01 \x01(\v2\x13.components.PrimaryR\aprimary\x123\n" +
-	"\tsecondary\x18\x02 \x01(\v2\x15.components.SecondaryR\tsecondary\x126\n" +
+	"components\x1a\x1bcomponents/provenance.proto\"\xe1\x01\n" +
+	"\vCorrelation\x122\n" +
+	"\aprimary\x18\x01 \x01(\v2\x13.components.PrimaryH\x00R\aprimary\x88\x01\x01\x128\n" +
+	"\tsecondary\x18\x02 \x01(\v2\x15.components.SecondaryH\x01R\tsecondary\x88\x01\x01\x12;\n" +
 	"\n" +
-	"membership\x18\x03 \x01(\v2\x16.components.MembershipR\n" +
-	"membership\"9\n" +
+	"membership\x18\x03 \x01(\v2\x16.components.MembershipH\x02R\n" +
+	"membership\x88\x01\x01B\n" +
+	"\n" +
+	"\b_primaryB\f\n" +
+	"\n" +
+	"_secondaryB\r\n" +
+	"\v_membership\"9\n" +
 	"\aPrimary\x12.\n" +
-	"\x12secondaryEntityIds\x18\x01 \x03(\tR\x12secondaryEntityIds\"g\n" +
-	"\tSecondary\x12(\n" +
-	"\x0fprimaryEntityId\x18\x01 \x01(\tR\x0fprimaryEntityId\x120\n" +
-	"\bmetadata\x18\x02 \x01(\v2\x14.components.MetadataR\bmetadata\"\xba\x01\n" +
-	"\bMetadata\x126\n" +
+	"\x12secondaryEntityIds\x18\x01 \x03(\tR\x12secondaryEntityIds\"\x92\x01\n" +
+	"\tSecondary\x12-\n" +
+	"\x0fprimaryEntityId\x18\x01 \x01(\tH\x00R\x0fprimaryEntityId\x88\x01\x01\x125\n" +
+	"\bmetadata\x18\x02 \x01(\v2\x14.components.MetadataH\x01R\bmetadata\x88\x01\x01B\x12\n" +
+	"\x10_primaryEntityIdB\v\n" +
+	"\t_metadata\"\xf5\x01\n" +
+	"\bMetadata\x12;\n" +
 	"\n" +
-	"provenance\x18\x01 \x01(\v2\x16.components.ProvenanceR\n" +
-	"provenance\x12E\n" +
-	"\x0freplicationMode\x18\x02 \x01(\x0e2\x1b.components.ReplicationModeR\x0freplicationMode\x12/\n" +
-	"\x04type\x18\x03 \x01(\x0e2\x1b.components.CorrelationTypeR\x04type\"\xd0\x01\n" +
+	"provenance\x18\x01 \x01(\v2\x16.components.ProvenanceH\x00R\n" +
+	"provenance\x88\x01\x01\x12J\n" +
+	"\x0freplicationMode\x18\x02 \x01(\x0e2\x1b.components.ReplicationModeH\x01R\x0freplicationMode\x88\x01\x01\x124\n" +
+	"\x04type\x18\x03 \x01(\x0e2\x1b.components.CorrelationTypeH\x02R\x04type\x88\x01\x01B\r\n" +
+	"\v_provenanceB\x12\n" +
+	"\x10_replicationModeB\a\n" +
+	"\x05_type\"\xa1\x02\n" +
 	"\n" +
-	"Membership\x12*\n" +
-	"\x10correlationSetId\x18\x01 \x01(\tR\x10correlationSetId\x12-\n" +
-	"\aprimary\x18\x02 \x01(\v2\x13.components.PrimaryR\aprimary\x125\n" +
+	"Membership\x12/\n" +
+	"\x10correlationSetId\x18\x01 \x01(\tH\x00R\x10correlationSetId\x88\x01\x01\x122\n" +
+	"\aprimary\x18\x02 \x01(\v2\x13.components.PrimaryH\x01R\aprimary\x88\x01\x01\x12:\n" +
 	"\n" +
-	"nonPrimary\x18\x03 \x01(\v2\x15.components.SecondaryR\n" +
-	"nonPrimary\x120\n" +
-	"\bmetadata\x18\x04 \x01(\v2\x14.components.MetadataR\bmetadata\"\x86\x01\n" +
+	"nonPrimary\x18\x03 \x01(\v2\x15.components.SecondaryH\x02R\n" +
+	"nonPrimary\x88\x01\x01\x125\n" +
+	"\bmetadata\x18\x04 \x01(\v2\x14.components.MetadataH\x03R\bmetadata\x88\x01\x01B\x13\n" +
+	"\x11_correlationSetIdB\n" +
+	"\n" +
+	"\b_primaryB\r\n" +
+	"\v_nonPrimaryB\v\n" +
+	"\t_metadata\"\x86\x01\n" +
 	"\rDecorrelation\x12!\n" +
 	"\x03all\x18\x01 \x01(\v2\x0f.components.AllR\x03all\x12R\n" +
-	"\x14decorrelatedEntities\x18\x02 \x03(\v2\x1e.components.DecorrelatedEntityR\x14decorrelatedEntities\"7\n" +
-	"\x03All\x120\n" +
-	"\bmetadata\x18\x01 \x01(\v2\x14.components.MetadataR\bmetadata\"b\n" +
-	"\x12DecorrelatedEntity\x12\x1a\n" +
-	"\bentityId\x18\x01 \x01(\tR\bentityId\x120\n" +
-	"\bmetadata\x18\x02 \x01(\v2\x14.components.MetadataR\bmetadata*\x8c\x01\n" +
+	"\x14decorrelatedEntities\x18\x02 \x03(\v2\x1e.components.DecorrelatedEntityR\x14decorrelatedEntities\"I\n" +
+	"\x03All\x125\n" +
+	"\bmetadata\x18\x01 \x01(\v2\x14.components.MetadataH\x00R\bmetadata\x88\x01\x01B\v\n" +
+	"\t_metadata\"\x86\x01\n" +
+	"\x12DecorrelatedEntity\x12\x1f\n" +
+	"\bentityId\x18\x01 \x01(\tH\x00R\bentityId\x88\x01\x01\x125\n" +
+	"\bmetadata\x18\x02 \x01(\v2\x14.components.MetadataH\x01R\bmetadata\x88\x01\x01B\v\n" +
+	"\t_entityIdB\v\n" +
+	"\t_metadata*\x8c\x01\n" +
 	"\x0fReplicationMode\x12(\n" +
 	"$CORRELATION_REPLICATION_MODE_INVALID\x10\x00\x12&\n" +
 	"\"CORRELATION_REPLICATION_MODE_LOCAL\x10\x01\x12'\n" +
@@ -662,6 +680,12 @@ func file_components_correlation_proto_init() {
 		return
 	}
 	file_components_provenance_proto_init()
+	file_components_correlation_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_correlation_proto_msgTypes[2].OneofWrappers = []any{}
+	file_components_correlation_proto_msgTypes[3].OneofWrappers = []any{}
+	file_components_correlation_proto_msgTypes[4].OneofWrappers = []any{}
+	file_components_correlation_proto_msgTypes[6].OneofWrappers = []any{}
+	file_components_correlation_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

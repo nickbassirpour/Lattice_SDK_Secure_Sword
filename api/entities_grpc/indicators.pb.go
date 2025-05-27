@@ -23,12 +23,12 @@ const (
 
 type Indicators struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Simulated     bool                   `protobuf:"varint,1,opt,name=simulated,proto3" json:"simulated,omitempty"`
-	Exercise      bool                   `protobuf:"varint,2,opt,name=exercise,proto3" json:"exercise,omitempty"`
-	Emergency     bool                   `protobuf:"varint,3,opt,name=emergency,proto3" json:"emergency,omitempty"`
-	C2            bool                   `protobuf:"varint,4,opt,name=c2,proto3" json:"c2,omitempty"`
-	Egressable    bool                   `protobuf:"varint,5,opt,name=egressable,proto3" json:"egressable,omitempty"`
-	Starred       bool                   `protobuf:"varint,6,opt,name=starred,proto3" json:"starred,omitempty"`
+	Simulated     *bool                  `protobuf:"varint,1,opt,name=simulated,proto3,oneof" json:"simulated,omitempty"`
+	Exercise      *bool                  `protobuf:"varint,2,opt,name=exercise,proto3,oneof" json:"exercise,omitempty"`
+	Emergency     *bool                  `protobuf:"varint,3,opt,name=emergency,proto3,oneof" json:"emergency,omitempty"`
+	C2            *bool                  `protobuf:"varint,4,opt,name=c2,proto3,oneof" json:"c2,omitempty"`
+	Egressable    *bool                  `protobuf:"varint,5,opt,name=egressable,proto3,oneof" json:"egressable,omitempty"`
+	Starred       *bool                  `protobuf:"varint,6,opt,name=starred,proto3,oneof" json:"starred,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -64,43 +64,43 @@ func (*Indicators) Descriptor() ([]byte, []int) {
 }
 
 func (x *Indicators) GetSimulated() bool {
-	if x != nil {
-		return x.Simulated
+	if x != nil && x.Simulated != nil {
+		return *x.Simulated
 	}
 	return false
 }
 
 func (x *Indicators) GetExercise() bool {
-	if x != nil {
-		return x.Exercise
+	if x != nil && x.Exercise != nil {
+		return *x.Exercise
 	}
 	return false
 }
 
 func (x *Indicators) GetEmergency() bool {
-	if x != nil {
-		return x.Emergency
+	if x != nil && x.Emergency != nil {
+		return *x.Emergency
 	}
 	return false
 }
 
 func (x *Indicators) GetC2() bool {
-	if x != nil {
-		return x.C2
+	if x != nil && x.C2 != nil {
+		return *x.C2
 	}
 	return false
 }
 
 func (x *Indicators) GetEgressable() bool {
-	if x != nil {
-		return x.Egressable
+	if x != nil && x.Egressable != nil {
+		return *x.Egressable
 	}
 	return false
 }
 
 func (x *Indicators) GetStarred() bool {
-	if x != nil {
-		return x.Starred
+	if x != nil && x.Starred != nil {
+		return *x.Starred
 	}
 	return false
 }
@@ -110,17 +110,26 @@ var File_components_indicators_proto protoreflect.FileDescriptor
 const file_components_indicators_proto_rawDesc = "" +
 	"\n" +
 	"\x1bcomponents/indicators.proto\x12\n" +
-	"components\"\xae\x01\n" +
+	"components\"\x97\x02\n" +
 	"\n" +
-	"Indicators\x12\x1c\n" +
-	"\tsimulated\x18\x01 \x01(\bR\tsimulated\x12\x1a\n" +
-	"\bexercise\x18\x02 \x01(\bR\bexercise\x12\x1c\n" +
-	"\temergency\x18\x03 \x01(\bR\temergency\x12\x0e\n" +
-	"\x02c2\x18\x04 \x01(\bR\x02c2\x12\x1e\n" +
+	"Indicators\x12!\n" +
+	"\tsimulated\x18\x01 \x01(\bH\x00R\tsimulated\x88\x01\x01\x12\x1f\n" +
+	"\bexercise\x18\x02 \x01(\bH\x01R\bexercise\x88\x01\x01\x12!\n" +
+	"\temergency\x18\x03 \x01(\bH\x02R\temergency\x88\x01\x01\x12\x13\n" +
+	"\x02c2\x18\x04 \x01(\bH\x03R\x02c2\x88\x01\x01\x12#\n" +
 	"\n" +
-	"egressable\x18\x05 \x01(\bR\n" +
-	"egressable\x12\x18\n" +
-	"\astarred\x18\x06 \x01(\bR\astarredB\rZ\v/componentsb\x06proto3"
+	"egressable\x18\x05 \x01(\bH\x04R\n" +
+	"egressable\x88\x01\x01\x12\x1d\n" +
+	"\astarred\x18\x06 \x01(\bH\x05R\astarred\x88\x01\x01B\f\n" +
+	"\n" +
+	"_simulatedB\v\n" +
+	"\t_exerciseB\f\n" +
+	"\n" +
+	"_emergencyB\x05\n" +
+	"\x03_c2B\r\n" +
+	"\v_egressableB\n" +
+	"\n" +
+	"\b_starredB\rZ\v/componentsb\x06proto3"
 
 var (
 	file_components_indicators_proto_rawDescOnce sync.Once
@@ -151,6 +160,7 @@ func file_components_indicators_proto_init() {
 	if File_components_indicators_proto != nil {
 		return
 	}
+	file_components_indicators_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

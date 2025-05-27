@@ -6,5 +6,5 @@ option go_package = "/components";
 
 message Dimensions {
   // Length of the entity in meters
-  float lengthM = 1;
+  optional float lengthM = 1;
 }

@@ -83,7 +83,7 @@ func (Level) EnumDescriptor() ([]byte, []int) {
 // Top-level classification component for an entity
 type DataClassification struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Default       *Default               `protobuf:"bytes,1,opt,name=default,proto3" json:"default,omitempty"`
+	Default       *Default               `protobuf:"bytes,1,opt,name=default,proto3,oneof" json:"default,omitempty"`
 	Fields        []*Field               `protobuf:"bytes,2,rep,name=fields,proto3" json:"fields,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -136,7 +136,7 @@ func (x *DataClassification) GetFields() []*Field {
 // Default classification information applied entity-wide
 type Default struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Level         Level                  `protobuf:"varint,1,opt,name=level,proto3,enum=components.Level" json:"level,omitempty"`
+	Level         *Level                 `protobuf:"varint,1,opt,name=level,proto3,enum=components.Level,oneof" json:"level,omitempty"`
 	Caveats       []string               `protobuf:"bytes,2,rep,name=caveats,proto3" json:"caveats,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -173,8 +173,8 @@ func (*Default) Descriptor() ([]byte, []int) {
 }
 
 func (x *Default) GetLevel() Level {
-	if x != nil {
-		return x.Level
+	if x != nil && x.Level != nil {
+		return *x.Level
 	}
 	return Level_CLASSIFICATION_LEVELS_INVALID
 }
@@ -189,8 +189,8 @@ func (x *Default) GetCaveats() []string {
 // Field-specific classification override
 type Field struct {
 	state                     protoimpl.MessageState `protogen:"open.v1"`
-	FieldPath                 string                 `protobuf:"bytes,1,opt,name=fieldPath,proto3" json:"fieldPath,omitempty"`
-	ClassificationInformation *Default               `protobuf:"bytes,2,opt,name=classificationInformation,proto3" json:"classificationInformation,omitempty"`
+	FieldPath                 *string                `protobuf:"bytes,1,opt,name=fieldPath,proto3,oneof" json:"fieldPath,omitempty"`
+	ClassificationInformation *Default               `protobuf:"bytes,2,opt,name=classificationInformation,proto3,oneof" json:"classificationInformation,omitempty"`
 	unknownFields             protoimpl.UnknownFields
 	sizeCache                 protoimpl.SizeCache
 }
@@ -226,8 +226,8 @@ func (*Field) Descriptor() ([]byte, []int) {
 }
 
 func (x *Field) GetFieldPath() string {
-	if x != nil {
-		return x.FieldPath
+	if x != nil && x.FieldPath != nil {
+		return *x.FieldPath
 	}
 	return ""
 }
@@ -244,16 +244,22 @@ var File_components_dataclassification_proto protoreflect.FileDescriptor
 const file_components_dataclassification_proto_rawDesc = "" +
 	"\n" +
 	"#components/dataclassification.proto\x12\n" +
-	"components\"n\n" +
-	"\x12DataClassification\x12-\n" +
-	"\adefault\x18\x01 \x01(\v2\x13.components.DefaultR\adefault\x12)\n" +
-	"\x06fields\x18\x02 \x03(\v2\x11.components.FieldR\x06fields\"L\n" +
-	"\aDefault\x12'\n" +
-	"\x05level\x18\x01 \x01(\x0e2\x11.components.LevelR\x05level\x12\x18\n" +
-	"\acaveats\x18\x02 \x03(\tR\acaveats\"x\n" +
-	"\x05Field\x12\x1c\n" +
-	"\tfieldPath\x18\x01 \x01(\tR\tfieldPath\x12Q\n" +
-	"\x19classificationInformation\x18\x02 \x01(\v2\x13.components.DefaultR\x19classificationInformation*\xf5\x01\n" +
+	"components\"\x7f\n" +
+	"\x12DataClassification\x122\n" +
+	"\adefault\x18\x01 \x01(\v2\x13.components.DefaultH\x00R\adefault\x88\x01\x01\x12)\n" +
+	"\x06fields\x18\x02 \x03(\v2\x11.components.FieldR\x06fieldsB\n" +
+	"\n" +
+	"\b_default\"[\n" +
+	"\aDefault\x12,\n" +
+	"\x05level\x18\x01 \x01(\x0e2\x11.components.LevelH\x00R\x05level\x88\x01\x01\x12\x18\n" +
+	"\acaveats\x18\x02 \x03(\tR\acaveatsB\b\n" +
+	"\x06_level\"\xae\x01\n" +
+	"\x05Field\x12!\n" +
+	"\tfieldPath\x18\x01 \x01(\tH\x00R\tfieldPath\x88\x01\x01\x12V\n" +
+	"\x19classificationInformation\x18\x02 \x01(\v2\x13.components.DefaultH\x01R\x19classificationInformation\x88\x01\x01B\f\n" +
+	"\n" +
+	"_fieldPathB\x1c\n" +
+	"\x1a_classificationInformation*\xf5\x01\n" +
 	"\x05Level\x12!\n" +
 	"\x1dCLASSIFICATION_LEVELS_INVALID\x10\x00\x12&\n" +
 	"\"CLASSIFICATION_LEVELS_UNCLASSIFIED\x10\x01\x121\n" +
@@ -299,6 +305,9 @@ func file_components_dataclassification_proto_init() {
 	if File_components_dataclassification_proto != nil {
 		return
 	}
+	file_components_dataclassification_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_dataclassification_proto_msgTypes[1].OneofWrappers = []any{}
+	file_components_dataclassification_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

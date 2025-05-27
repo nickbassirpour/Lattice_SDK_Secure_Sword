@@ -133,7 +133,7 @@ func (PowerType) EnumDescriptor() ([]byte, []int) {
 
 type PowerState struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	SourceIdToState *SourceIdToState       `protobuf:"bytes,1,opt,name=sourceIdToState,proto3" json:"sourceIdToState,omitempty"`
+	SourceIdToState *SourceIdToState       `protobuf:"bytes,1,opt,name=sourceIdToState,proto3,oneof" json:"sourceIdToState,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -177,8 +177,8 @@ func (x *PowerState) GetSourceIdToState() *SourceIdToState {
 
 type SourceIdToState struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Key           string                 `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
-	Value         *Value                 `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+	Key           *string                `protobuf:"bytes,1,opt,name=key,proto3,oneof" json:"key,omitempty"`
+	Value         *Value                 `protobuf:"bytes,2,opt,name=value,proto3,oneof" json:"value,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -214,8 +214,8 @@ func (*SourceIdToState) Descriptor() ([]byte, []int) {
 }
 
 func (x *SourceIdToState) GetKey() string {
-	if x != nil {
-		return x.Key
+	if x != nil && x.Key != nil {
+		return *x.Key
 	}
 	return ""
 }
@@ -229,11 +229,11 @@ func (x *SourceIdToState) GetValue() *Value {
 
 type Value struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	PowerStatus   PowerStatus            `protobuf:"varint,1,opt,name=powerStatus,proto3,enum=components.PowerStatus" json:"powerStatus,omitempty"`
-	PowerType     PowerType              `protobuf:"varint,2,opt,name=powerType,proto3,enum=components.PowerType" json:"powerType,omitempty"`
-	PowerLevel    *PowerLevel            `protobuf:"bytes,3,opt,name=powerLevel,proto3" json:"powerLevel,omitempty"`
+	PowerStatus   *PowerStatus           `protobuf:"varint,1,opt,name=powerStatus,proto3,enum=components.PowerStatus,oneof" json:"powerStatus,omitempty"`
+	PowerType     *PowerType             `protobuf:"varint,2,opt,name=powerType,proto3,enum=components.PowerType,oneof" json:"powerType,omitempty"`
+	PowerLevel    *PowerLevel            `protobuf:"bytes,3,opt,name=powerLevel,proto3,oneof" json:"powerLevel,omitempty"`
 	Messages      []string               `protobuf:"bytes,4,rep,name=messages,proto3" json:"messages,omitempty"`
-	Offloadable   bool                   `protobuf:"varint,5,opt,name=offloadable,proto3" json:"offloadable,omitempty"`
+	Offloadable   *bool                  `protobuf:"varint,5,opt,name=offloadable,proto3,oneof" json:"offloadable,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -269,15 +269,15 @@ func (*Value) Descriptor() ([]byte, []int) {
 }
 
 func (x *Value) GetPowerStatus() PowerStatus {
-	if x != nil {
-		return x.PowerStatus
+	if x != nil && x.PowerStatus != nil {
+		return *x.PowerStatus
 	}
 	return PowerStatus_POWER_STATUS_INVALID
 }
 
 func (x *Value) GetPowerType() PowerType {
-	if x != nil {
-		return x.PowerType
+	if x != nil && x.PowerType != nil {
+		return *x.PowerType
 	}
 	return PowerType_POWER_TYPE_INVALID
 }
@@ -297,21 +297,21 @@ func (x *Value) GetMessages() []string {
 }
 
 func (x *Value) GetOffloadable() bool {
-	if x != nil {
-		return x.Offloadable
+	if x != nil && x.Offloadable != nil {
+		return *x.Offloadable
 	}
 	return false
 }
 
 type PowerLevel struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	Capacity             float32                `protobuf:"fixed32,1,opt,name=capacity,proto3" json:"capacity,omitempty"`
-	Remaining            float32                `protobuf:"fixed32,2,opt,name=remaining,proto3" json:"remaining,omitempty"`
-	PercentRemaining     float32                `protobuf:"fixed32,3,opt,name=percentRemaining,proto3" json:"percentRemaining,omitempty"`
-	Voltage              float64                `protobuf:"fixed64,4,opt,name=voltage,proto3" json:"voltage,omitempty"`
-	CurrentAmps          float64                `protobuf:"fixed64,5,opt,name=currentAmps,proto3" json:"currentAmps,omitempty"`
-	RunTimeToEmptyMins   float64                `protobuf:"fixed64,6,opt,name=runTimeToEmptyMins,proto3" json:"runTimeToEmptyMins,omitempty"`
-	ConsumptionRateLPerS float64                `protobuf:"fixed64,7,opt,name=consumptionRateLPerS,proto3" json:"consumptionRateLPerS,omitempty"`
+	Capacity             *float32               `protobuf:"fixed32,1,opt,name=capacity,proto3,oneof" json:"capacity,omitempty"`
+	Remaining            *float32               `protobuf:"fixed32,2,opt,name=remaining,proto3,oneof" json:"remaining,omitempty"`
+	PercentRemaining     *float32               `protobuf:"fixed32,3,opt,name=percentRemaining,proto3,oneof" json:"percentRemaining,omitempty"`
+	Voltage              *float64               `protobuf:"fixed64,4,opt,name=voltage,proto3,oneof" json:"voltage,omitempty"`
+	CurrentAmps          *float64               `protobuf:"fixed64,5,opt,name=currentAmps,proto3,oneof" json:"currentAmps,omitempty"`
+	RunTimeToEmptyMins   *float64               `protobuf:"fixed64,6,opt,name=runTimeToEmptyMins,proto3,oneof" json:"runTimeToEmptyMins,omitempty"`
+	ConsumptionRateLPerS *float64               `protobuf:"fixed64,7,opt,name=consumptionRateLPerS,proto3,oneof" json:"consumptionRateLPerS,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -347,50 +347,50 @@ func (*PowerLevel) Descriptor() ([]byte, []int) {
 }
 
 func (x *PowerLevel) GetCapacity() float32 {
-	if x != nil {
-		return x.Capacity
+	if x != nil && x.Capacity != nil {
+		return *x.Capacity
 	}
 	return 0
 }
 
 func (x *PowerLevel) GetRemaining() float32 {
-	if x != nil {
-		return x.Remaining
+	if x != nil && x.Remaining != nil {
+		return *x.Remaining
 	}
 	return 0
 }
 
 func (x *PowerLevel) GetPercentRemaining() float32 {
-	if x != nil {
-		return x.PercentRemaining
+	if x != nil && x.PercentRemaining != nil {
+		return *x.PercentRemaining
 	}
 	return 0
 }
 
 func (x *PowerLevel) GetVoltage() float64 {
-	if x != nil {
-		return x.Voltage
+	if x != nil && x.Voltage != nil {
+		return *x.Voltage
 	}
 	return 0
 }
 
 func (x *PowerLevel) GetCurrentAmps() float64 {
-	if x != nil {
-		return x.CurrentAmps
+	if x != nil && x.CurrentAmps != nil {
+		return *x.CurrentAmps
 	}
 	return 0
 }
 
 func (x *PowerLevel) GetRunTimeToEmptyMins() float64 {
-	if x != nil {
-		return x.RunTimeToEmptyMins
+	if x != nil && x.RunTimeToEmptyMins != nil {
+		return *x.RunTimeToEmptyMins
 	}
 	return 0
 }
 
 func (x *PowerLevel) GetConsumptionRateLPerS() float64 {
-	if x != nil {
-		return x.ConsumptionRateLPerS
+	if x != nil && x.ConsumptionRateLPerS != nil {
+		return *x.ConsumptionRateLPerS
 	}
 	return 0
 }
@@ -400,30 +400,47 @@ var File_components_powerstate_proto protoreflect.FileDescriptor
 const file_components_powerstate_proto_rawDesc = "" +
 	"\n" +
 	"\x1bcomponents/powerstate.proto\x12\n" +
-	"components\"S\n" +
+	"components\"l\n" +
 	"\n" +
-	"PowerState\x12E\n" +
-	"\x0fsourceIdToState\x18\x01 \x01(\v2\x1b.components.SourceIdToStateR\x0fsourceIdToState\"L\n" +
-	"\x0fSourceIdToState\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12'\n" +
-	"\x05value\x18\x02 \x01(\v2\x11.components.ValueR\x05value\"\xed\x01\n" +
-	"\x05Value\x129\n" +
-	"\vpowerStatus\x18\x01 \x01(\x0e2\x17.components.PowerStatusR\vpowerStatus\x123\n" +
-	"\tpowerType\x18\x02 \x01(\x0e2\x15.components.PowerTypeR\tpowerType\x126\n" +
+	"PowerState\x12J\n" +
+	"\x0fsourceIdToState\x18\x01 \x01(\v2\x1b.components.SourceIdToStateH\x00R\x0fsourceIdToState\x88\x01\x01B\x12\n" +
+	"\x10_sourceIdToState\"h\n" +
+	"\x0fSourceIdToState\x12\x15\n" +
+	"\x03key\x18\x01 \x01(\tH\x00R\x03key\x88\x01\x01\x12,\n" +
+	"\x05value\x18\x02 \x01(\v2\x11.components.ValueH\x01R\x05value\x88\x01\x01B\x06\n" +
+	"\x04_keyB\b\n" +
+	"\x06_value\"\xbe\x02\n" +
+	"\x05Value\x12>\n" +
+	"\vpowerStatus\x18\x01 \x01(\x0e2\x17.components.PowerStatusH\x00R\vpowerStatus\x88\x01\x01\x128\n" +
+	"\tpowerType\x18\x02 \x01(\x0e2\x15.components.PowerTypeH\x01R\tpowerType\x88\x01\x01\x12;\n" +
 	"\n" +
-	"powerLevel\x18\x03 \x01(\v2\x16.components.PowerLevelR\n" +
-	"powerLevel\x12\x1a\n" +
-	"\bmessages\x18\x04 \x03(\tR\bmessages\x12 \n" +
-	"\voffloadable\x18\x05 \x01(\bR\voffloadable\"\x92\x02\n" +
+	"powerLevel\x18\x03 \x01(\v2\x16.components.PowerLevelH\x02R\n" +
+	"powerLevel\x88\x01\x01\x12\x1a\n" +
+	"\bmessages\x18\x04 \x03(\tR\bmessages\x12%\n" +
+	"\voffloadable\x18\x05 \x01(\bH\x03R\voffloadable\x88\x01\x01B\x0e\n" +
+	"\f_powerStatusB\f\n" +
 	"\n" +
-	"PowerLevel\x12\x1a\n" +
-	"\bcapacity\x18\x01 \x01(\x02R\bcapacity\x12\x1c\n" +
-	"\tremaining\x18\x02 \x01(\x02R\tremaining\x12*\n" +
-	"\x10percentRemaining\x18\x03 \x01(\x02R\x10percentRemaining\x12\x18\n" +
-	"\avoltage\x18\x04 \x01(\x01R\avoltage\x12 \n" +
-	"\vcurrentAmps\x18\x05 \x01(\x01R\vcurrentAmps\x12.\n" +
-	"\x12runTimeToEmptyMins\x18\x06 \x01(\x01R\x12runTimeToEmptyMins\x122\n" +
-	"\x14consumptionRateLPerS\x18\a \x01(\x01R\x14consumptionRateLPerS*\xae\x01\n" +
+	"_powerTypeB\r\n" +
+	"\v_powerLevelB\x0e\n" +
+	"\f_offloadable\"\xb1\x03\n" +
+	"\n" +
+	"PowerLevel\x12\x1f\n" +
+	"\bcapacity\x18\x01 \x01(\x02H\x00R\bcapacity\x88\x01\x01\x12!\n" +
+	"\tremaining\x18\x02 \x01(\x02H\x01R\tremaining\x88\x01\x01\x12/\n" +
+	"\x10percentRemaining\x18\x03 \x01(\x02H\x02R\x10percentRemaining\x88\x01\x01\x12\x1d\n" +
+	"\avoltage\x18\x04 \x01(\x01H\x03R\avoltage\x88\x01\x01\x12%\n" +
+	"\vcurrentAmps\x18\x05 \x01(\x01H\x04R\vcurrentAmps\x88\x01\x01\x123\n" +
+	"\x12runTimeToEmptyMins\x18\x06 \x01(\x01H\x05R\x12runTimeToEmptyMins\x88\x01\x01\x127\n" +
+	"\x14consumptionRateLPerS\x18\a \x01(\x01H\x06R\x14consumptionRateLPerS\x88\x01\x01B\v\n" +
+	"\t_capacityB\f\n" +
+	"\n" +
+	"_remainingB\x13\n" +
+	"\x11_percentRemainingB\n" +
+	"\n" +
+	"\b_voltageB\x0e\n" +
+	"\f_currentAmpsB\x15\n" +
+	"\x13_runTimeToEmptyMinsB\x17\n" +
+	"\x15_consumptionRateLPerS*\xae\x01\n" +
 	"\vPowerStatus\x12\x18\n" +
 	"\x14POWER_STATUS_INVALID\x10\x00\x12\x18\n" +
 	"\x14POWER_STATUS_UNKNOWN\x10\x01\x12\x1c\n" +
@@ -477,6 +494,10 @@ func file_components_powerstate_proto_init() {
 	if File_components_powerstate_proto != nil {
 		return
 	}
+	file_components_powerstate_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_powerstate_proto_msgTypes[1].OneofWrappers = []any{}
+	file_components_powerstate_proto_msgTypes[2].OneofWrappers = []any{}
+	file_components_powerstate_proto_msgTypes[3].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

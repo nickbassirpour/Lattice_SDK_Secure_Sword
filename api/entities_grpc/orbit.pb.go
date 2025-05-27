@@ -115,7 +115,7 @@ func (MeanElementTheory) EnumDescriptor() ([]byte, []int) {
 
 type Orbit struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	OrbitMeanElements *OrbitMeanElements     `protobuf:"bytes,1,opt,name=orbitMeanElements,proto3" json:"orbitMeanElements,omitempty"`
+	OrbitMeanElements *OrbitMeanElements     `protobuf:"bytes,1,opt,name=orbitMeanElements,proto3,oneof" json:"orbitMeanElements,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -159,9 +159,9 @@ func (x *Orbit) GetOrbitMeanElements() *OrbitMeanElements {
 
 type OrbitMeanElements struct {
 	state                 protoimpl.MessageState `protogen:"open.v1"`
-	Metadata              *OrbitMetadata         `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	MeanKeplarianElements *MeanKeplarianElements `protobuf:"bytes,2,opt,name=meanKeplarianElements,proto3" json:"meanKeplarianElements,omitempty"`
-	TleParameters         *TleParamaters         `protobuf:"bytes,3,opt,name=tleParameters,proto3" json:"tleParameters,omitempty"`
+	Metadata              *OrbitMetadata         `protobuf:"bytes,1,opt,name=metadata,proto3,oneof" json:"metadata,omitempty"`
+	MeanKeplarianElements *MeanKeplarianElements `protobuf:"bytes,2,opt,name=meanKeplarianElements,proto3,oneof" json:"meanKeplarianElements,omitempty"`
+	TleParameters         *TleParamaters         `protobuf:"bytes,3,opt,name=tleParameters,proto3,oneof" json:"tleParameters,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -219,12 +219,12 @@ func (x *OrbitMeanElements) GetTleParameters() *TleParamaters {
 
 type OrbitMetadata struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	CreationDate      string                 `protobuf:"bytes,1,opt,name=creationDate,proto3" json:"creationDate,omitempty"`
-	Originator        string                 `protobuf:"bytes,2,opt,name=originator,proto3" json:"originator,omitempty"`
-	MessageId         string                 `protobuf:"bytes,3,opt,name=messageId,proto3" json:"messageId,omitempty"`
-	RefFrame          RefFrame               `protobuf:"varint,4,opt,name=refFrame,proto3,enum=components.RefFrame" json:"refFrame,omitempty"`
-	RefFrameEpoch     string                 `protobuf:"bytes,5,opt,name=refFrameEpoch,proto3" json:"refFrameEpoch,omitempty"`
-	MeanElementTheory MeanElementTheory      `protobuf:"varint,6,opt,name=meanElementTheory,proto3,enum=components.MeanElementTheory" json:"meanElementTheory,omitempty"`
+	CreationDate      *string                `protobuf:"bytes,1,opt,name=creationDate,proto3,oneof" json:"creationDate,omitempty"`
+	Originator        *string                `protobuf:"bytes,2,opt,name=originator,proto3,oneof" json:"originator,omitempty"`
+	MessageId         *string                `protobuf:"bytes,3,opt,name=messageId,proto3,oneof" json:"messageId,omitempty"`
+	RefFrame          *RefFrame              `protobuf:"varint,4,opt,name=refFrame,proto3,enum=components.RefFrame,oneof" json:"refFrame,omitempty"`
+	RefFrameEpoch     *string                `protobuf:"bytes,5,opt,name=refFrameEpoch,proto3,oneof" json:"refFrameEpoch,omitempty"`
+	MeanElementTheory *MeanElementTheory     `protobuf:"varint,6,opt,name=meanElementTheory,proto3,enum=components.MeanElementTheory,oneof" json:"meanElementTheory,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -260,58 +260,58 @@ func (*OrbitMetadata) Descriptor() ([]byte, []int) {
 }
 
 func (x *OrbitMetadata) GetCreationDate() string {
-	if x != nil {
-		return x.CreationDate
+	if x != nil && x.CreationDate != nil {
+		return *x.CreationDate
 	}
 	return ""
 }
 
 func (x *OrbitMetadata) GetOriginator() string {
-	if x != nil {
-		return x.Originator
+	if x != nil && x.Originator != nil {
+		return *x.Originator
 	}
 	return ""
 }
 
 func (x *OrbitMetadata) GetMessageId() string {
-	if x != nil {
-		return x.MessageId
+	if x != nil && x.MessageId != nil {
+		return *x.MessageId
 	}
 	return ""
 }
 
 func (x *OrbitMetadata) GetRefFrame() RefFrame {
-	if x != nil {
-		return x.RefFrame
+	if x != nil && x.RefFrame != nil {
+		return *x.RefFrame
 	}
 	return RefFrame_ECI_REFERENCE_FRAME_INVALID
 }
 
 func (x *OrbitMetadata) GetRefFrameEpoch() string {
-	if x != nil {
-		return x.RefFrameEpoch
+	if x != nil && x.RefFrameEpoch != nil {
+		return *x.RefFrameEpoch
 	}
 	return ""
 }
 
 func (x *OrbitMetadata) GetMeanElementTheory() MeanElementTheory {
-	if x != nil {
-		return x.MeanElementTheory
+	if x != nil && x.MeanElementTheory != nil {
+		return *x.MeanElementTheory
 	}
 	return MeanElementTheory_MEAN_ELEMENT_THEORY_INVALID
 }
 
 type MeanKeplarianElements struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	Epoch              string                 `protobuf:"bytes,1,opt,name=epoch,proto3" json:"epoch,omitempty"`
-	SemiMajorAxisKm    float64                `protobuf:"fixed64,2,opt,name=semiMajorAxisKm,proto3" json:"semiMajorAxisKm,omitempty"`
-	MeanMotion         float64                `protobuf:"fixed64,3,opt,name=meanMotion,proto3" json:"meanMotion,omitempty"`
-	Eccentricity       float64                `protobuf:"fixed64,4,opt,name=eccentricity,proto3" json:"eccentricity,omitempty"`
-	InclinationDeg     float64                `protobuf:"fixed64,5,opt,name=inclinationDeg,proto3" json:"inclinationDeg,omitempty"`
-	RaOfAscNodeDeg     float64                `protobuf:"fixed64,6,opt,name=raOfAscNodeDeg,proto3" json:"raOfAscNodeDeg,omitempty"`
-	ArgOfPericenterDeg float64                `protobuf:"fixed64,7,opt,name=argOfPericenterDeg,proto3" json:"argOfPericenterDeg,omitempty"`
-	MeanAnomalyDeg     float64                `protobuf:"fixed64,8,opt,name=meanAnomalyDeg,proto3" json:"meanAnomalyDeg,omitempty"`
-	Gm                 float64                `protobuf:"fixed64,9,opt,name=gm,proto3" json:"gm,omitempty"`
+	Epoch              *string                `protobuf:"bytes,1,opt,name=epoch,proto3,oneof" json:"epoch,omitempty"`
+	SemiMajorAxisKm    *float64               `protobuf:"fixed64,2,opt,name=semiMajorAxisKm,proto3,oneof" json:"semiMajorAxisKm,omitempty"`
+	MeanMotion         *float64               `protobuf:"fixed64,3,opt,name=meanMotion,proto3,oneof" json:"meanMotion,omitempty"`
+	Eccentricity       *float64               `protobuf:"fixed64,4,opt,name=eccentricity,proto3,oneof" json:"eccentricity,omitempty"`
+	InclinationDeg     *float64               `protobuf:"fixed64,5,opt,name=inclinationDeg,proto3,oneof" json:"inclinationDeg,omitempty"`
+	RaOfAscNodeDeg     *float64               `protobuf:"fixed64,6,opt,name=raOfAscNodeDeg,proto3,oneof" json:"raOfAscNodeDeg,omitempty"`
+	ArgOfPericenterDeg *float64               `protobuf:"fixed64,7,opt,name=argOfPericenterDeg,proto3,oneof" json:"argOfPericenterDeg,omitempty"`
+	MeanAnomalyDeg     *float64               `protobuf:"fixed64,8,opt,name=meanAnomalyDeg,proto3,oneof" json:"meanAnomalyDeg,omitempty"`
+	Gm                 *float64               `protobuf:"fixed64,9,opt,name=gm,proto3,oneof" json:"gm,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -347,80 +347,80 @@ func (*MeanKeplarianElements) Descriptor() ([]byte, []int) {
 }
 
 func (x *MeanKeplarianElements) GetEpoch() string {
-	if x != nil {
-		return x.Epoch
+	if x != nil && x.Epoch != nil {
+		return *x.Epoch
 	}
 	return ""
 }
 
 func (x *MeanKeplarianElements) GetSemiMajorAxisKm() float64 {
-	if x != nil {
-		return x.SemiMajorAxisKm
+	if x != nil && x.SemiMajorAxisKm != nil {
+		return *x.SemiMajorAxisKm
 	}
 	return 0
 }
 
 func (x *MeanKeplarianElements) GetMeanMotion() float64 {
-	if x != nil {
-		return x.MeanMotion
+	if x != nil && x.MeanMotion != nil {
+		return *x.MeanMotion
 	}
 	return 0
 }
 
 func (x *MeanKeplarianElements) GetEccentricity() float64 {
-	if x != nil {
-		return x.Eccentricity
+	if x != nil && x.Eccentricity != nil {
+		return *x.Eccentricity
 	}
 	return 0
 }
 
 func (x *MeanKeplarianElements) GetInclinationDeg() float64 {
-	if x != nil {
-		return x.InclinationDeg
+	if x != nil && x.InclinationDeg != nil {
+		return *x.InclinationDeg
 	}
 	return 0
 }
 
 func (x *MeanKeplarianElements) GetRaOfAscNodeDeg() float64 {
-	if x != nil {
-		return x.RaOfAscNodeDeg
+	if x != nil && x.RaOfAscNodeDeg != nil {
+		return *x.RaOfAscNodeDeg
 	}
 	return 0
 }
 
 func (x *MeanKeplarianElements) GetArgOfPericenterDeg() float64 {
-	if x != nil {
-		return x.ArgOfPericenterDeg
+	if x != nil && x.ArgOfPericenterDeg != nil {
+		return *x.ArgOfPericenterDeg
 	}
 	return 0
 }
 
 func (x *MeanKeplarianElements) GetMeanAnomalyDeg() float64 {
-	if x != nil {
-		return x.MeanAnomalyDeg
+	if x != nil && x.MeanAnomalyDeg != nil {
+		return *x.MeanAnomalyDeg
 	}
 	return 0
 }
 
 func (x *MeanKeplarianElements) GetGm() float64 {
-	if x != nil {
-		return x.Gm
+	if x != nil && x.Gm != nil {
+		return *x.Gm
 	}
 	return 0
 }
 
 type TleParamaters struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	EphemerisType      uint32                 `protobuf:"varint,1,opt,name=ephemerisType,proto3" json:"ephemerisType,omitempty"`
-	ClassificationType string                 `protobuf:"bytes,2,opt,name=classificationType,proto3" json:"classificationType,omitempty"`
-	NoradCatId         uint32                 `protobuf:"varint,3,opt,name=noradCatId,proto3" json:"noradCatId,omitempty"`
-	ElementSetNo       uint32                 `protobuf:"varint,4,opt,name=elementSetNo,proto3" json:"elementSetNo,omitempty"`
-	RevAtEpoch         uint32                 `protobuf:"varint,5,opt,name=revAtEpoch,proto3" json:"revAtEpoch,omitempty"`
-	Bstar              float64                `protobuf:"fixed64,6,opt,name=bstar,proto3" json:"bstar,omitempty"`
-	Bterm              float64                `protobuf:"fixed64,7,opt,name=bterm,proto3" json:"bterm,omitempty"`
-	MeanMotionDot      float64                `protobuf:"fixed64,8,opt,name=meanMotionDot,proto3" json:"meanMotionDot,omitempty"`
-	MeanMotionDdot     float64                `protobuf:"fixed64,9,opt,name=meanMotionDdot,proto3" json:"meanMotionDdot,omitempty"`
-	Agom               float64                `protobuf:"fixed64,10,opt,name=agom,proto3" json:"agom,omitempty"`
+	EphemerisType      *uint32                `protobuf:"varint,1,opt,name=ephemerisType,proto3,oneof" json:"ephemerisType,omitempty"`
+	ClassificationType *string                `protobuf:"bytes,2,opt,name=classificationType,proto3,oneof" json:"classificationType,omitempty"`
+	NoradCatId         *uint32                `protobuf:"varint,3,opt,name=noradCatId,proto3,oneof" json:"noradCatId,omitempty"`
+	ElementSetNo       *uint32                `protobuf:"varint,4,opt,name=elementSetNo,proto3,oneof" json:"elementSetNo,omitempty"`
+	RevAtEpoch         *uint32                `protobuf:"varint,5,opt,name=revAtEpoch,proto3,oneof" json:"revAtEpoch,omitempty"`
+	Bstar              *float64               `protobuf:"fixed64,6,opt,name=bstar,proto3,oneof" json:"bstar,omitempty"`
+	Bterm              *float64               `protobuf:"fixed64,7,opt,name=bterm,proto3,oneof" json:"bterm,omitempty"`
+	MeanMotionDot      *float64               `protobuf:"fixed64,8,opt,name=meanMotionDot,proto3,oneof" json:"meanMotionDot,omitempty"`
+	MeanMotionDdot     *float64               `protobuf:"fixed64,9,opt,name=meanMotionDdot,proto3,oneof" json:"meanMotionDdot,omitempty"`
+	Agom               *float64               `protobuf:"fixed64,10,opt,name=agom,proto3,oneof" json:"agom,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -456,71 +456,71 @@ func (*TleParamaters) Descriptor() ([]byte, []int) {
 }
 
 func (x *TleParamaters) GetEphemerisType() uint32 {
-	if x != nil {
-		return x.EphemerisType
+	if x != nil && x.EphemerisType != nil {
+		return *x.EphemerisType
 	}
 	return 0
 }
 
 func (x *TleParamaters) GetClassificationType() string {
-	if x != nil {
-		return x.ClassificationType
+	if x != nil && x.ClassificationType != nil {
+		return *x.ClassificationType
 	}
 	return ""
 }
 
 func (x *TleParamaters) GetNoradCatId() uint32 {
-	if x != nil {
-		return x.NoradCatId
+	if x != nil && x.NoradCatId != nil {
+		return *x.NoradCatId
 	}
 	return 0
 }
 
 func (x *TleParamaters) GetElementSetNo() uint32 {
-	if x != nil {
-		return x.ElementSetNo
+	if x != nil && x.ElementSetNo != nil {
+		return *x.ElementSetNo
 	}
 	return 0
 }
 
 func (x *TleParamaters) GetRevAtEpoch() uint32 {
-	if x != nil {
-		return x.RevAtEpoch
+	if x != nil && x.RevAtEpoch != nil {
+		return *x.RevAtEpoch
 	}
 	return 0
 }
 
 func (x *TleParamaters) GetBstar() float64 {
-	if x != nil {
-		return x.Bstar
+	if x != nil && x.Bstar != nil {
+		return *x.Bstar
 	}
 	return 0
 }
 
 func (x *TleParamaters) GetBterm() float64 {
-	if x != nil {
-		return x.Bterm
+	if x != nil && x.Bterm != nil {
+		return *x.Bterm
 	}
 	return 0
 }
 
 func (x *TleParamaters) GetMeanMotionDot() float64 {
-	if x != nil {
-		return x.MeanMotionDot
+	if x != nil && x.MeanMotionDot != nil {
+		return *x.MeanMotionDot
 	}
 	return 0
 }
 
 func (x *TleParamaters) GetMeanMotionDdot() float64 {
-	if x != nil {
-		return x.MeanMotionDdot
+	if x != nil && x.MeanMotionDdot != nil {
+		return *x.MeanMotionDdot
 	}
 	return 0
 }
 
 func (x *TleParamaters) GetAgom() float64 {
-	if x != nil {
-		return x.Agom
+	if x != nil && x.Agom != nil {
+		return *x.Agom
 	}
 	return 0
 }
@@ -530,50 +530,80 @@ var File_components_orbit_proto protoreflect.FileDescriptor
 const file_components_orbit_proto_rawDesc = "" +
 	"\n" +
 	"\x16components/orbit.proto\x12\n" +
-	"components\"T\n" +
-	"\x05Orbit\x12K\n" +
-	"\x11orbitMeanElements\x18\x01 \x01(\v2\x1d.components.OrbitMeanElementsR\x11orbitMeanElements\"\xe4\x01\n" +
-	"\x11OrbitMeanElements\x125\n" +
-	"\bmetadata\x18\x01 \x01(\v2\x19.components.OrbitMetadataR\bmetadata\x12W\n" +
-	"\x15meanKeplarianElements\x18\x02 \x01(\v2!.components.MeanKeplarianElementsR\x15meanKeplarianElements\x12?\n" +
-	"\rtleParameters\x18\x03 \x01(\v2\x19.components.TleParamatersR\rtleParameters\"\x96\x02\n" +
-	"\rOrbitMetadata\x12\"\n" +
-	"\fcreationDate\x18\x01 \x01(\tR\fcreationDate\x12\x1e\n" +
+	"components\"o\n" +
+	"\x05Orbit\x12P\n" +
+	"\x11orbitMeanElements\x18\x01 \x01(\v2\x1d.components.OrbitMeanElementsH\x00R\x11orbitMeanElements\x88\x01\x01B\x14\n" +
+	"\x12_orbitMeanElements\"\xac\x02\n" +
+	"\x11OrbitMeanElements\x12:\n" +
+	"\bmetadata\x18\x01 \x01(\v2\x19.components.OrbitMetadataH\x00R\bmetadata\x88\x01\x01\x12\\\n" +
+	"\x15meanKeplarianElements\x18\x02 \x01(\v2!.components.MeanKeplarianElementsH\x01R\x15meanKeplarianElements\x88\x01\x01\x12D\n" +
+	"\rtleParameters\x18\x03 \x01(\v2\x19.components.TleParamatersH\x02R\rtleParameters\x88\x01\x01B\v\n" +
+	"\t_metadataB\x18\n" +
+	"\x16_meanKeplarianElementsB\x10\n" +
+	"\x0e_tleParameters\"\x97\x03\n" +
+	"\rOrbitMetadata\x12'\n" +
+	"\fcreationDate\x18\x01 \x01(\tH\x00R\fcreationDate\x88\x01\x01\x12#\n" +
 	"\n" +
-	"originator\x18\x02 \x01(\tR\n" +
-	"originator\x12\x1c\n" +
-	"\tmessageId\x18\x03 \x01(\tR\tmessageId\x120\n" +
-	"\brefFrame\x18\x04 \x01(\x0e2\x14.components.RefFrameR\brefFrame\x12$\n" +
-	"\rrefFrameEpoch\x18\x05 \x01(\tR\rrefFrameEpoch\x12K\n" +
-	"\x11meanElementTheory\x18\x06 \x01(\x0e2\x1d.components.MeanElementTheoryR\x11meanElementTheory\"\xd3\x02\n" +
-	"\x15MeanKeplarianElements\x12\x14\n" +
-	"\x05epoch\x18\x01 \x01(\tR\x05epoch\x12(\n" +
-	"\x0fsemiMajorAxisKm\x18\x02 \x01(\x01R\x0fsemiMajorAxisKm\x12\x1e\n" +
+	"originator\x18\x02 \x01(\tH\x01R\n" +
+	"originator\x88\x01\x01\x12!\n" +
+	"\tmessageId\x18\x03 \x01(\tH\x02R\tmessageId\x88\x01\x01\x125\n" +
+	"\brefFrame\x18\x04 \x01(\x0e2\x14.components.RefFrameH\x03R\brefFrame\x88\x01\x01\x12)\n" +
+	"\rrefFrameEpoch\x18\x05 \x01(\tH\x04R\rrefFrameEpoch\x88\x01\x01\x12P\n" +
+	"\x11meanElementTheory\x18\x06 \x01(\x0e2\x1d.components.MeanElementTheoryH\x05R\x11meanElementTheory\x88\x01\x01B\x0f\n" +
+	"\r_creationDateB\r\n" +
+	"\v_originatorB\f\n" +
 	"\n" +
-	"meanMotion\x18\x03 \x01(\x01R\n" +
-	"meanMotion\x12\"\n" +
-	"\feccentricity\x18\x04 \x01(\x01R\feccentricity\x12&\n" +
-	"\x0einclinationDeg\x18\x05 \x01(\x01R\x0einclinationDeg\x12&\n" +
-	"\x0eraOfAscNodeDeg\x18\x06 \x01(\x01R\x0eraOfAscNodeDeg\x12.\n" +
-	"\x12argOfPericenterDeg\x18\a \x01(\x01R\x12argOfPericenterDeg\x12&\n" +
-	"\x0emeanAnomalyDeg\x18\b \x01(\x01R\x0emeanAnomalyDeg\x12\x0e\n" +
-	"\x02gm\x18\t \x01(\x01R\x02gm\"\xd7\x02\n" +
-	"\rTleParamaters\x12$\n" +
-	"\rephemerisType\x18\x01 \x01(\rR\rephemerisType\x12.\n" +
-	"\x12classificationType\x18\x02 \x01(\tR\x12classificationType\x12\x1e\n" +
+	"_messageIdB\v\n" +
+	"\t_refFrameB\x10\n" +
+	"\x0e_refFrameEpochB\x14\n" +
+	"\x12_meanElementTheory\"\x95\x04\n" +
+	"\x15MeanKeplarianElements\x12\x19\n" +
+	"\x05epoch\x18\x01 \x01(\tH\x00R\x05epoch\x88\x01\x01\x12-\n" +
+	"\x0fsemiMajorAxisKm\x18\x02 \x01(\x01H\x01R\x0fsemiMajorAxisKm\x88\x01\x01\x12#\n" +
 	"\n" +
-	"noradCatId\x18\x03 \x01(\rR\n" +
-	"noradCatId\x12\"\n" +
-	"\felementSetNo\x18\x04 \x01(\rR\felementSetNo\x12\x1e\n" +
+	"meanMotion\x18\x03 \x01(\x01H\x02R\n" +
+	"meanMotion\x88\x01\x01\x12'\n" +
+	"\feccentricity\x18\x04 \x01(\x01H\x03R\feccentricity\x88\x01\x01\x12+\n" +
+	"\x0einclinationDeg\x18\x05 \x01(\x01H\x04R\x0einclinationDeg\x88\x01\x01\x12+\n" +
+	"\x0eraOfAscNodeDeg\x18\x06 \x01(\x01H\x05R\x0eraOfAscNodeDeg\x88\x01\x01\x123\n" +
+	"\x12argOfPericenterDeg\x18\a \x01(\x01H\x06R\x12argOfPericenterDeg\x88\x01\x01\x12+\n" +
+	"\x0emeanAnomalyDeg\x18\b \x01(\x01H\aR\x0emeanAnomalyDeg\x88\x01\x01\x12\x13\n" +
+	"\x02gm\x18\t \x01(\x01H\bR\x02gm\x88\x01\x01B\b\n" +
+	"\x06_epochB\x12\n" +
+	"\x10_semiMajorAxisKmB\r\n" +
+	"\v_meanMotionB\x0f\n" +
+	"\r_eccentricityB\x11\n" +
+	"\x0f_inclinationDegB\x11\n" +
+	"\x0f_raOfAscNodeDegB\x15\n" +
+	"\x13_argOfPericenterDegB\x11\n" +
+	"\x0f_meanAnomalyDegB\x05\n" +
+	"\x03_gm\"\xa3\x04\n" +
+	"\rTleParamaters\x12)\n" +
+	"\rephemerisType\x18\x01 \x01(\rH\x00R\rephemerisType\x88\x01\x01\x123\n" +
+	"\x12classificationType\x18\x02 \x01(\tH\x01R\x12classificationType\x88\x01\x01\x12#\n" +
 	"\n" +
-	"revAtEpoch\x18\x05 \x01(\rR\n" +
-	"revAtEpoch\x12\x14\n" +
-	"\x05bstar\x18\x06 \x01(\x01R\x05bstar\x12\x14\n" +
-	"\x05bterm\x18\a \x01(\x01R\x05bterm\x12$\n" +
-	"\rmeanMotionDot\x18\b \x01(\x01R\rmeanMotionDot\x12&\n" +
-	"\x0emeanMotionDdot\x18\t \x01(\x01R\x0emeanMotionDdot\x12\x12\n" +
+	"noradCatId\x18\x03 \x01(\rH\x02R\n" +
+	"noradCatId\x88\x01\x01\x12'\n" +
+	"\felementSetNo\x18\x04 \x01(\rH\x03R\felementSetNo\x88\x01\x01\x12#\n" +
+	"\n" +
+	"revAtEpoch\x18\x05 \x01(\rH\x04R\n" +
+	"revAtEpoch\x88\x01\x01\x12\x19\n" +
+	"\x05bstar\x18\x06 \x01(\x01H\x05R\x05bstar\x88\x01\x01\x12\x19\n" +
+	"\x05bterm\x18\a \x01(\x01H\x06R\x05bterm\x88\x01\x01\x12)\n" +
+	"\rmeanMotionDot\x18\b \x01(\x01H\aR\rmeanMotionDot\x88\x01\x01\x12+\n" +
+	"\x0emeanMotionDdot\x18\t \x01(\x01H\bR\x0emeanMotionDdot\x88\x01\x01\x12\x17\n" +
 	"\x04agom\x18\n" +
-	" \x01(\x01R\x04agom*I\n" +
+	" \x01(\x01H\tR\x04agom\x88\x01\x01B\x10\n" +
+	"\x0e_ephemerisTypeB\x15\n" +
+	"\x13_classificationTypeB\r\n" +
+	"\v_noradCatIdB\x0f\n" +
+	"\r_elementSetNoB\r\n" +
+	"\v_revAtEpochB\b\n" +
+	"\x06_bstarB\b\n" +
+	"\x06_btermB\x10\n" +
+	"\x0e_meanMotionDotB\x11\n" +
+	"\x0f_meanMotionDdotB\a\n" +
+	"\x05_agom*I\n" +
 	"\bRefFrame\x12\x1f\n" +
 	"\x1bECI_REFERENCE_FRAME_INVALID\x10\x00\x12\x1c\n" +
 	"\x18ECI_REFERENCE_FRAME_TEME\x10\x01*R\n" +
@@ -623,6 +653,11 @@ func file_components_orbit_proto_init() {
 	if File_components_orbit_proto != nil {
 		return
 	}
+	file_components_orbit_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_orbit_proto_msgTypes[1].OneofWrappers = []any{}
+	file_components_orbit_proto_msgTypes[2].OneofWrappers = []any{}
+	file_components_orbit_proto_msgTypes[3].OneofWrappers = []any{}
+	file_components_orbit_proto_msgTypes[4].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

@@ -23,7 +23,7 @@ const (
 
 type VisualDetails struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	RangeRings    *RangeRings            `protobuf:"bytes,1,opt,name=range_rings,json=rangeRings,proto3" json:"range_rings,omitempty"`
+	RangeRings    *RangeRings            `protobuf:"bytes,1,opt,name=range_rings,json=rangeRings,proto3,oneof" json:"range_rings,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -67,10 +67,10 @@ func (x *VisualDetails) GetRangeRings() *RangeRings {
 
 type RangeRings struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	MinDistanceM  float64                `protobuf:"fixed64,1,opt,name=min_distance_m,json=minDistanceM,proto3" json:"min_distance_m,omitempty"`
-	MaxDistanceM  float64                `protobuf:"fixed64,2,opt,name=max_distance_m,json=maxDistanceM,proto3" json:"max_distance_m,omitempty"`
-	RingCount     uint32                 `protobuf:"varint,3,opt,name=ring_count,json=ringCount,proto3" json:"ring_count,omitempty"`
-	RingLineColor *RingLineColor         `protobuf:"bytes,4,opt,name=ring_line_color,json=ringLineColor,proto3" json:"ring_line_color,omitempty"`
+	MinDistanceM  *float64               `protobuf:"fixed64,1,opt,name=min_distance_m,json=minDistanceM,proto3,oneof" json:"min_distance_m,omitempty"`
+	MaxDistanceM  *float64               `protobuf:"fixed64,2,opt,name=max_distance_m,json=maxDistanceM,proto3,oneof" json:"max_distance_m,omitempty"`
+	RingCount     *uint32                `protobuf:"varint,3,opt,name=ring_count,json=ringCount,proto3,oneof" json:"ring_count,omitempty"`
+	RingLineColor *RingLineColor         `protobuf:"bytes,4,opt,name=ring_line_color,json=ringLineColor,proto3,oneof" json:"ring_line_color,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -106,22 +106,22 @@ func (*RangeRings) Descriptor() ([]byte, []int) {
 }
 
 func (x *RangeRings) GetMinDistanceM() float64 {
-	if x != nil {
-		return x.MinDistanceM
+	if x != nil && x.MinDistanceM != nil {
+		return *x.MinDistanceM
 	}
 	return 0
 }
 
 func (x *RangeRings) GetMaxDistanceM() float64 {
-	if x != nil {
-		return x.MaxDistanceM
+	if x != nil && x.MaxDistanceM != nil {
+		return *x.MaxDistanceM
 	}
 	return 0
 }
 
 func (x *RangeRings) GetRingCount() uint32 {
-	if x != nil {
-		return x.RingCount
+	if x != nil && x.RingCount != nil {
+		return *x.RingCount
 	}
 	return 0
 }
@@ -135,10 +135,10 @@ func (x *RangeRings) GetRingLineColor() *RingLineColor {
 
 type RingLineColor struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Red           float32                `protobuf:"fixed32,1,opt,name=red,proto3" json:"red,omitempty"`
-	Green         float32                `protobuf:"fixed32,2,opt,name=green,proto3" json:"green,omitempty"`
-	Blue          float32                `protobuf:"fixed32,3,opt,name=blue,proto3" json:"blue,omitempty"`
-	Alpha         float32                `protobuf:"fixed32,4,opt,name=alpha,proto3" json:"alpha,omitempty"`
+	Red           *float32               `protobuf:"fixed32,1,opt,name=red,proto3,oneof" json:"red,omitempty"`
+	Green         *float32               `protobuf:"fixed32,2,opt,name=green,proto3,oneof" json:"green,omitempty"`
+	Blue          *float32               `protobuf:"fixed32,3,opt,name=blue,proto3,oneof" json:"blue,omitempty"`
+	Alpha         *float32               `protobuf:"fixed32,4,opt,name=alpha,proto3,oneof" json:"alpha,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -174,29 +174,29 @@ func (*RingLineColor) Descriptor() ([]byte, []int) {
 }
 
 func (x *RingLineColor) GetRed() float32 {
-	if x != nil {
-		return x.Red
+	if x != nil && x.Red != nil {
+		return *x.Red
 	}
 	return 0
 }
 
 func (x *RingLineColor) GetGreen() float32 {
-	if x != nil {
-		return x.Green
+	if x != nil && x.Green != nil {
+		return *x.Green
 	}
 	return 0
 }
 
 func (x *RingLineColor) GetBlue() float32 {
-	if x != nil {
-		return x.Blue
+	if x != nil && x.Blue != nil {
+		return *x.Blue
 	}
 	return 0
 }
 
 func (x *RingLineColor) GetAlpha() float32 {
-	if x != nil {
-		return x.Alpha
+	if x != nil && x.Alpha != nil {
+		return *x.Alpha
 	}
 	return 0
 }
@@ -206,22 +206,31 @@ var File_components_visual_details_proto protoreflect.FileDescriptor
 const file_components_visual_details_proto_rawDesc = "" +
 	"\n" +
 	"\x1fcomponents/visual_details.proto\x12\n" +
-	"components\"H\n" +
-	"\rVisualDetails\x127\n" +
-	"\vrange_rings\x18\x01 \x01(\v2\x16.components.RangeRingsR\n" +
-	"rangeRings\"\xba\x01\n" +
+	"components\"]\n" +
+	"\rVisualDetails\x12<\n" +
+	"\vrange_rings\x18\x01 \x01(\v2\x16.components.RangeRingsH\x00R\n" +
+	"rangeRings\x88\x01\x01B\x0e\n" +
+	"\f_range_rings\"\x97\x02\n" +
 	"\n" +
-	"RangeRings\x12$\n" +
-	"\x0emin_distance_m\x18\x01 \x01(\x01R\fminDistanceM\x12$\n" +
-	"\x0emax_distance_m\x18\x02 \x01(\x01R\fmaxDistanceM\x12\x1d\n" +
+	"RangeRings\x12)\n" +
+	"\x0emin_distance_m\x18\x01 \x01(\x01H\x00R\fminDistanceM\x88\x01\x01\x12)\n" +
+	"\x0emax_distance_m\x18\x02 \x01(\x01H\x01R\fmaxDistanceM\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"ring_count\x18\x03 \x01(\rR\tringCount\x12A\n" +
-	"\x0fring_line_color\x18\x04 \x01(\v2\x19.components.RingLineColorR\rringLineColor\"a\n" +
-	"\rRingLineColor\x12\x10\n" +
-	"\x03red\x18\x01 \x01(\x02R\x03red\x12\x14\n" +
-	"\x05green\x18\x02 \x01(\x02R\x05green\x12\x12\n" +
-	"\x04blue\x18\x03 \x01(\x02R\x04blue\x12\x14\n" +
-	"\x05alpha\x18\x04 \x01(\x02R\x05alphaB\rZ\v/componentsb\x06proto3"
+	"ring_count\x18\x03 \x01(\rH\x02R\tringCount\x88\x01\x01\x12F\n" +
+	"\x0fring_line_color\x18\x04 \x01(\v2\x19.components.RingLineColorH\x03R\rringLineColor\x88\x01\x01B\x11\n" +
+	"\x0f_min_distance_mB\x11\n" +
+	"\x0f_max_distance_mB\r\n" +
+	"\v_ring_countB\x12\n" +
+	"\x10_ring_line_color\"\x9a\x01\n" +
+	"\rRingLineColor\x12\x15\n" +
+	"\x03red\x18\x01 \x01(\x02H\x00R\x03red\x88\x01\x01\x12\x19\n" +
+	"\x05green\x18\x02 \x01(\x02H\x01R\x05green\x88\x01\x01\x12\x17\n" +
+	"\x04blue\x18\x03 \x01(\x02H\x02R\x04blue\x88\x01\x01\x12\x19\n" +
+	"\x05alpha\x18\x04 \x01(\x02H\x03R\x05alpha\x88\x01\x01B\x06\n" +
+	"\x04_redB\b\n" +
+	"\x06_greenB\a\n" +
+	"\x05_blueB\b\n" +
+	"\x06_alphaB\rZ\v/componentsb\x06proto3"
 
 var (
 	file_components_visual_details_proto_rawDescOnce sync.Once
@@ -256,6 +265,9 @@ func file_components_visual_details_proto_init() {
 	if File_components_visual_details_proto != nil {
 		return
 	}
+	file_components_visual_details_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_visual_details_proto_msgTypes[1].OneofWrappers = []any{}
+	file_components_visual_details_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

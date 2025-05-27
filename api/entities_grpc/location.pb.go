@@ -23,11 +23,11 @@ const (
 
 type Location struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Position      *Position              `protobuf:"bytes,1,opt,name=position,proto3" json:"position,omitempty"`
-	VelocityEnu   *VelocityEnu           `protobuf:"bytes,2,opt,name=velocityEnu,proto3" json:"velocityEnu,omitempty"`
-	SpeedMps      float64                `protobuf:"fixed64,3,opt,name=speedMps,proto3" json:"speedMps,omitempty"`
-	Acceleration  *Acceleration          `protobuf:"bytes,4,opt,name=acceleration,proto3" json:"acceleration,omitempty"`
-	AttitudeEnu   *AttitudeEnu           `protobuf:"bytes,5,opt,name=attitudeEnu,proto3" json:"attitudeEnu,omitempty"`
+	Position      *Position              `protobuf:"bytes,1,opt,name=position,proto3,oneof" json:"position,omitempty"`
+	VelocityEnu   *VelocityEnu           `protobuf:"bytes,2,opt,name=velocityEnu,proto3,oneof" json:"velocityEnu,omitempty"`
+	SpeedMps      *float64               `protobuf:"fixed64,3,opt,name=speedMps,proto3,oneof" json:"speedMps,omitempty"`
+	Acceleration  *Acceleration          `protobuf:"bytes,4,opt,name=acceleration,proto3,oneof" json:"acceleration,omitempty"`
+	AttitudeEnu   *AttitudeEnu           `protobuf:"bytes,5,opt,name=attitudeEnu,proto3,oneof" json:"attitudeEnu,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -77,8 +77,8 @@ func (x *Location) GetVelocityEnu() *VelocityEnu {
 }
 
 func (x *Location) GetSpeedMps() float64 {
-	if x != nil {
-		return x.SpeedMps
+	if x != nil && x.SpeedMps != nil {
+		return *x.SpeedMps
 	}
 	return 0
 }
@@ -99,9 +99,9 @@ func (x *Location) GetAttitudeEnu() *AttitudeEnu {
 
 type VelocityEnu struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	E             float64                `protobuf:"fixed64,1,opt,name=e,proto3" json:"e,omitempty"`
-	N             float64                `protobuf:"fixed64,2,opt,name=n,proto3" json:"n,omitempty"`
-	U             float64                `protobuf:"fixed64,3,opt,name=u,proto3" json:"u,omitempty"`
+	E             *float64               `protobuf:"fixed64,1,opt,name=e,proto3,oneof" json:"e,omitempty"`
+	N             *float64               `protobuf:"fixed64,2,opt,name=n,proto3,oneof" json:"n,omitempty"`
+	U             *float64               `protobuf:"fixed64,3,opt,name=u,proto3,oneof" json:"u,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -137,31 +137,31 @@ func (*VelocityEnu) Descriptor() ([]byte, []int) {
 }
 
 func (x *VelocityEnu) GetE() float64 {
-	if x != nil {
-		return x.E
+	if x != nil && x.E != nil {
+		return *x.E
 	}
 	return 0
 }
 
 func (x *VelocityEnu) GetN() float64 {
-	if x != nil {
-		return x.N
+	if x != nil && x.N != nil {
+		return *x.N
 	}
 	return 0
 }
 
 func (x *VelocityEnu) GetU() float64 {
-	if x != nil {
-		return x.U
+	if x != nil && x.U != nil {
+		return *x.U
 	}
 	return 0
 }
 
 type Acceleration struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	E             float64                `protobuf:"fixed64,1,opt,name=e,proto3" json:"e,omitempty"`
-	N             float64                `protobuf:"fixed64,2,opt,name=n,proto3" json:"n,omitempty"`
-	U             float64                `protobuf:"fixed64,3,opt,name=u,proto3" json:"u,omitempty"`
+	E             *float64               `protobuf:"fixed64,1,opt,name=e,proto3,oneof" json:"e,omitempty"`
+	N             *float64               `protobuf:"fixed64,2,opt,name=n,proto3,oneof" json:"n,omitempty"`
+	U             *float64               `protobuf:"fixed64,3,opt,name=u,proto3,oneof" json:"u,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -197,32 +197,32 @@ func (*Acceleration) Descriptor() ([]byte, []int) {
 }
 
 func (x *Acceleration) GetE() float64 {
-	if x != nil {
-		return x.E
+	if x != nil && x.E != nil {
+		return *x.E
 	}
 	return 0
 }
 
 func (x *Acceleration) GetN() float64 {
-	if x != nil {
-		return x.N
+	if x != nil && x.N != nil {
+		return *x.N
 	}
 	return 0
 }
 
 func (x *Acceleration) GetU() float64 {
-	if x != nil {
-		return x.U
+	if x != nil && x.U != nil {
+		return *x.U
 	}
 	return 0
 }
 
 type AttitudeEnu struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	X             float64                `protobuf:"fixed64,1,opt,name=x,proto3" json:"x,omitempty"`
-	Y             float64                `protobuf:"fixed64,2,opt,name=y,proto3" json:"y,omitempty"`
-	Z             float64                `protobuf:"fixed64,3,opt,name=z,proto3" json:"z,omitempty"`
-	W             float64                `protobuf:"fixed64,4,opt,name=w,proto3" json:"w,omitempty"`
+	X             *float64               `protobuf:"fixed64,1,opt,name=x,proto3,oneof" json:"x,omitempty"`
+	Y             *float64               `protobuf:"fixed64,2,opt,name=y,proto3,oneof" json:"y,omitempty"`
+	Z             *float64               `protobuf:"fixed64,3,opt,name=z,proto3,oneof" json:"z,omitempty"`
+	W             *float64               `protobuf:"fixed64,4,opt,name=w,proto3,oneof" json:"w,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -258,29 +258,29 @@ func (*AttitudeEnu) Descriptor() ([]byte, []int) {
 }
 
 func (x *AttitudeEnu) GetX() float64 {
-	if x != nil {
-		return x.X
+	if x != nil && x.X != nil {
+		return *x.X
 	}
 	return 0
 }
 
 func (x *AttitudeEnu) GetY() float64 {
-	if x != nil {
-		return x.Y
+	if x != nil && x.Y != nil {
+		return *x.Y
 	}
 	return 0
 }
 
 func (x *AttitudeEnu) GetZ() float64 {
-	if x != nil {
-		return x.Z
+	if x != nil && x.Z != nil {
+		return *x.Z
 	}
 	return 0
 }
 
 func (x *AttitudeEnu) GetW() float64 {
-	if x != nil {
-		return x.W
+	if x != nil && x.W != nil {
+		return *x.W
 	}
 	return 0
 }
@@ -290,26 +290,41 @@ var File_components_location_proto protoreflect.FileDescriptor
 const file_components_location_proto_rawDesc = "" +
 	"\n" +
 	"\x19components/location.proto\x12\n" +
-	"components\x1a\x19components/position.proto\"\x8c\x02\n" +
-	"\bLocation\x120\n" +
-	"\bposition\x18\x01 \x01(\v2\x14.components.PositionR\bposition\x129\n" +
-	"\vvelocityEnu\x18\x02 \x01(\v2\x17.components.VelocityEnuR\vvelocityEnu\x12\x1a\n" +
-	"\bspeedMps\x18\x03 \x01(\x01R\bspeedMps\x12<\n" +
-	"\facceleration\x18\x04 \x01(\v2\x18.components.AccelerationR\facceleration\x129\n" +
-	"\vattitudeEnu\x18\x05 \x01(\v2\x17.components.AttitudeEnuR\vattitudeEnu\"7\n" +
-	"\vVelocityEnu\x12\f\n" +
-	"\x01e\x18\x01 \x01(\x01R\x01e\x12\f\n" +
-	"\x01n\x18\x02 \x01(\x01R\x01n\x12\f\n" +
-	"\x01u\x18\x03 \x01(\x01R\x01u\"8\n" +
-	"\fAcceleration\x12\f\n" +
-	"\x01e\x18\x01 \x01(\x01R\x01e\x12\f\n" +
-	"\x01n\x18\x02 \x01(\x01R\x01n\x12\f\n" +
-	"\x01u\x18\x03 \x01(\x01R\x01u\"E\n" +
-	"\vAttitudeEnu\x12\f\n" +
-	"\x01x\x18\x01 \x01(\x01R\x01x\x12\f\n" +
-	"\x01y\x18\x02 \x01(\x01R\x01y\x12\f\n" +
-	"\x01z\x18\x03 \x01(\x01R\x01z\x12\f\n" +
-	"\x01w\x18\x04 \x01(\x01R\x01wB\rZ\v/componentsb\x06proto3"
+	"components\x1a\x19components/position.proto\"\xf0\x02\n" +
+	"\bLocation\x125\n" +
+	"\bposition\x18\x01 \x01(\v2\x14.components.PositionH\x00R\bposition\x88\x01\x01\x12>\n" +
+	"\vvelocityEnu\x18\x02 \x01(\v2\x17.components.VelocityEnuH\x01R\vvelocityEnu\x88\x01\x01\x12\x1f\n" +
+	"\bspeedMps\x18\x03 \x01(\x01H\x02R\bspeedMps\x88\x01\x01\x12A\n" +
+	"\facceleration\x18\x04 \x01(\v2\x18.components.AccelerationH\x03R\facceleration\x88\x01\x01\x12>\n" +
+	"\vattitudeEnu\x18\x05 \x01(\v2\x17.components.AttitudeEnuH\x04R\vattitudeEnu\x88\x01\x01B\v\n" +
+	"\t_positionB\x0e\n" +
+	"\f_velocityEnuB\v\n" +
+	"\t_speedMpsB\x0f\n" +
+	"\r_accelerationB\x0e\n" +
+	"\f_attitudeEnu\"X\n" +
+	"\vVelocityEnu\x12\x11\n" +
+	"\x01e\x18\x01 \x01(\x01H\x00R\x01e\x88\x01\x01\x12\x11\n" +
+	"\x01n\x18\x02 \x01(\x01H\x01R\x01n\x88\x01\x01\x12\x11\n" +
+	"\x01u\x18\x03 \x01(\x01H\x02R\x01u\x88\x01\x01B\x04\n" +
+	"\x02_eB\x04\n" +
+	"\x02_nB\x04\n" +
+	"\x02_u\"Y\n" +
+	"\fAcceleration\x12\x11\n" +
+	"\x01e\x18\x01 \x01(\x01H\x00R\x01e\x88\x01\x01\x12\x11\n" +
+	"\x01n\x18\x02 \x01(\x01H\x01R\x01n\x88\x01\x01\x12\x11\n" +
+	"\x01u\x18\x03 \x01(\x01H\x02R\x01u\x88\x01\x01B\x04\n" +
+	"\x02_eB\x04\n" +
+	"\x02_nB\x04\n" +
+	"\x02_u\"q\n" +
+	"\vAttitudeEnu\x12\x11\n" +
+	"\x01x\x18\x01 \x01(\x01H\x00R\x01x\x88\x01\x01\x12\x11\n" +
+	"\x01y\x18\x02 \x01(\x01H\x01R\x01y\x88\x01\x01\x12\x11\n" +
+	"\x01z\x18\x03 \x01(\x01H\x02R\x01z\x88\x01\x01\x12\x11\n" +
+	"\x01w\x18\x04 \x01(\x01H\x03R\x01w\x88\x01\x01B\x04\n" +
+	"\x02_xB\x04\n" +
+	"\x02_yB\x04\n" +
+	"\x02_zB\x04\n" +
+	"\x02_wB\rZ\v/componentsb\x06proto3"
 
 var (
 	file_components_location_proto_rawDescOnce sync.Once
@@ -349,6 +364,10 @@ func file_components_location_proto_init() {
 		return
 	}
 	file_components_position_proto_init()
+	file_components_location_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_location_proto_msgTypes[1].OneofWrappers = []any{}
+	file_components_location_proto_msgTypes[2].OneofWrappers = []any{}
+	file_components_location_proto_msgTypes[3].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

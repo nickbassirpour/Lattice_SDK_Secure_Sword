@@ -11,11 +11,11 @@ message Payloads {
 }
 
 message Config {
-  string capabilityId = 1;
-  uint32 quantity = 2;
-  Environment effectiveEnvironment = 3;
-  PayloadOperationalState payloadOperationalState = 4;
-  string payloadDescription = 5;
+  optional string capabilityId = 1;
+  optional uint32 quantity = 2;
+  optional Environment effectiveEnvironment = 3;
+  optional PayloadOperationalState payloadOperationalState = 4;
+  optional string payloadDescription = 5;
 }
 
 enum PayloadOperationalState {

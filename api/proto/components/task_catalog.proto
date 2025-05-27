@@ -9,5 +9,5 @@ message TaskCatalog {
 }
 
 message TaskDefinition {
-  string taskSpecificationUrl = 1;
+  optional string taskSpecificationUrl = 1;
 }

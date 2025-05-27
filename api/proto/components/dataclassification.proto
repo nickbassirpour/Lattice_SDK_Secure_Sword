@@ -6,20 +6,20 @@ option go_package = "/components";
 
 // Top-level classification component for an entity
 message DataClassification {
-  Default default = 1;
+  optional Default default = 1;
   repeated Field fields = 2;
 }
 
 // Default classification information applied entity-wide
 message Default {
-  Level level = 1;
+  optional Level level = 1;
   repeated string caveats = 2;
 }
 
 // Field-specific classification override
 message Field {
-  string fieldPath = 1;
-  Default classificationInformation = 2;
+  optional string fieldPath = 1;
+  optional Default classificationInformation = 2;
 }
 
 // Enum for classification levels

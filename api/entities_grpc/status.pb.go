@@ -23,8 +23,8 @@ const (
 
 type Status struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Code          int32                  `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Code          *int32                 `protobuf:"varint,1,opt,name=code,proto3,oneof" json:"code,omitempty"`
+	Message       *string                `protobuf:"bytes,2,opt,name=message,proto3,oneof" json:"message,omitempty"`
 	Details       []*StatusDetail        `protobuf:"bytes,3,rep,name=details,proto3" json:"details,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -61,15 +61,15 @@ func (*Status) Descriptor() ([]byte, []int) {
 }
 
 func (x *Status) GetCode() int32 {
-	if x != nil {
-		return x.Code
+	if x != nil && x.Code != nil {
+		return *x.Code
 	}
 	return 0
 }
 
 func (x *Status) GetMessage() string {
-	if x != nil {
-		return x.Message
+	if x != nil && x.Message != nil {
+		return *x.Message
 	}
 	return ""
 }
@@ -83,7 +83,7 @@ func (x *Status) GetDetails() []*StatusDetail {
 
 type StatusDetail struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Type          string                 `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"` // JSON field "@type" will be mapped in Go, but proto field name can't have '@'
+	Type          *string                `protobuf:"bytes,1,opt,name=type,proto3,oneof" json:"type,omitempty"` // JSON field "@type" will be mapped in Go, but proto field name can't have '@'
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -119,8 +119,8 @@ func (*StatusDetail) Descriptor() ([]byte, []int) {
 }
 
 func (x *StatusDetail) GetType() string {
-	if x != nil {
-		return x.Type
+	if x != nil && x.Type != nil {
+		return *x.Type
 	}
 	return ""
 }
@@ -130,13 +130,17 @@ var File_components_status_proto protoreflect.FileDescriptor
 const file_components_status_proto_rawDesc = "" +
 	"\n" +
 	"\x17components/status.proto\x12\n" +
-	"components\"j\n" +
-	"\x06Status\x12\x12\n" +
-	"\x04code\x18\x01 \x01(\x05R\x04code\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x122\n" +
-	"\adetails\x18\x03 \x03(\v2\x18.components.StatusDetailR\adetails\"\"\n" +
-	"\fStatusDetail\x12\x12\n" +
-	"\x04type\x18\x01 \x01(\tR\x04typeB\rZ\v/componentsb\x06proto3"
+	"components\"\x89\x01\n" +
+	"\x06Status\x12\x17\n" +
+	"\x04code\x18\x01 \x01(\x05H\x00R\x04code\x88\x01\x01\x12\x1d\n" +
+	"\amessage\x18\x02 \x01(\tH\x01R\amessage\x88\x01\x01\x122\n" +
+	"\adetails\x18\x03 \x03(\v2\x18.components.StatusDetailR\adetailsB\a\n" +
+	"\x05_codeB\n" +
+	"\n" +
+	"\b_message\"0\n" +
+	"\fStatusDetail\x12\x17\n" +
+	"\x04type\x18\x01 \x01(\tH\x00R\x04type\x88\x01\x01B\a\n" +
+	"\x05_typeB\rZ\v/componentsb\x06proto3"
 
 var (
 	file_components_status_proto_rawDescOnce sync.Once
@@ -169,6 +173,8 @@ func file_components_status_proto_init() {
 	if File_components_status_proto != nil {
 		return
 	}
+	file_components_status_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_status_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

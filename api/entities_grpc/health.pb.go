@@ -183,10 +183,10 @@ func (AlertLevel) EnumDescriptor() ([]byte, []int) {
 
 type Health struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	ConnectionStatus ConnectionStatus       `protobuf:"varint,1,opt,name=connectionStatus,proto3,enum=components.ConnectionStatus" json:"connectionStatus,omitempty"`
-	HealthStatus     HealthStatus           `protobuf:"varint,2,opt,name=healthStatus,proto3,enum=components.HealthStatus" json:"healthStatus,omitempty"`
+	ConnectionStatus *ConnectionStatus      `protobuf:"varint,1,opt,name=connectionStatus,proto3,enum=components.ConnectionStatus,oneof" json:"connectionStatus,omitempty"`
+	HealthStatus     *HealthStatus          `protobuf:"varint,2,opt,name=healthStatus,proto3,enum=components.HealthStatus,oneof" json:"healthStatus,omitempty"`
 	Components       []*Component           `protobuf:"bytes,3,rep,name=components,proto3" json:"components,omitempty"`
-	UpdateTime       *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=updateTime,proto3" json:"updateTime,omitempty"`
+	UpdateTime       *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=updateTime,proto3,oneof" json:"updateTime,omitempty"`
 	ActiveAlerts     []*ActiveAlert         `protobuf:"bytes,5,rep,name=activeAlerts,proto3" json:"activeAlerts,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
@@ -223,15 +223,15 @@ func (*Health) Descriptor() ([]byte, []int) {
 }
 
 func (x *Health) GetConnectionStatus() ConnectionStatus {
-	if x != nil {
-		return x.ConnectionStatus
+	if x != nil && x.ConnectionStatus != nil {
+		return *x.ConnectionStatus
 	}
 	return ConnectionStatus_CONNECTION_STATUS_INVALID
 }
 
 func (x *Health) GetHealthStatus() HealthStatus {
-	if x != nil {
-		return x.HealthStatus
+	if x != nil && x.HealthStatus != nil {
+		return *x.HealthStatus
 	}
 	return HealthStatus_HEALTH_STATUS_INVALID
 }
@@ -259,11 +259,11 @@ func (x *Health) GetActiveAlerts() []*ActiveAlert {
 
 type Component struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Health        HealthStatus           `protobuf:"varint,3,opt,name=health,proto3,enum=components.HealthStatus" json:"health,omitempty"`
+	Id            *string                `protobuf:"bytes,1,opt,name=id,proto3,oneof" json:"id,omitempty"`
+	Name          *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	Health        *HealthStatus          `protobuf:"varint,3,opt,name=health,proto3,enum=components.HealthStatus,oneof" json:"health,omitempty"`
 	Messages      []*Message             `protobuf:"bytes,4,rep,name=messages,proto3" json:"messages,omitempty"`
-	UpdateTime    *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=updateTime,proto3" json:"updateTime,omitempty"`
+	UpdateTime    *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=updateTime,proto3,oneof" json:"updateTime,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -299,22 +299,22 @@ func (*Component) Descriptor() ([]byte, []int) {
 }
 
 func (x *Component) GetId() string {
-	if x != nil {
-		return x.Id
+	if x != nil && x.Id != nil {
+		return *x.Id
 	}
 	return ""
 }
 
 func (x *Component) GetName() string {
-	if x != nil {
-		return x.Name
+	if x != nil && x.Name != nil {
+		return *x.Name
 	}
 	return ""
 }
 
 func (x *Component) GetHealth() HealthStatus {
-	if x != nil {
-		return x.Health
+	if x != nil && x.Health != nil {
+		return *x.Health
 	}
 	return HealthStatus_HEALTH_STATUS_INVALID
 }
@@ -335,8 +335,8 @@ func (x *Component) GetUpdateTime() *timestamppb.Timestamp {
 
 type Message struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Status        HealthStatus           `protobuf:"varint,1,opt,name=status,proto3,enum=components.HealthStatus" json:"status,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Status        *HealthStatus          `protobuf:"varint,1,opt,name=status,proto3,enum=components.HealthStatus,oneof" json:"status,omitempty"`
+	Message       *string                `protobuf:"bytes,2,opt,name=message,proto3,oneof" json:"message,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -372,25 +372,25 @@ func (*Message) Descriptor() ([]byte, []int) {
 }
 
 func (x *Message) GetStatus() HealthStatus {
-	if x != nil {
-		return x.Status
+	if x != nil && x.Status != nil {
+		return *x.Status
 	}
 	return HealthStatus_HEALTH_STATUS_INVALID
 }
 
 func (x *Message) GetMessage() string {
-	if x != nil {
-		return x.Message
+	if x != nil && x.Message != nil {
+		return *x.Message
 	}
 	return ""
 }
 
 type ActiveAlert struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	AlertCode        string                 `protobuf:"bytes,1,opt,name=alertCode,proto3" json:"alertCode,omitempty"`
-	Description      string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
-	Level            AlertLevel             `protobuf:"varint,3,opt,name=level,proto3,enum=components.AlertLevel" json:"level,omitempty"`
-	ActivatedTime    *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=activatedTime,proto3" json:"activatedTime,omitempty"`
+	AlertCode        *string                `protobuf:"bytes,1,opt,name=alertCode,proto3,oneof" json:"alertCode,omitempty"`
+	Description      *string                `protobuf:"bytes,2,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	Level            *AlertLevel            `protobuf:"varint,3,opt,name=level,proto3,enum=components.AlertLevel,oneof" json:"level,omitempty"`
+	ActivatedTime    *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=activatedTime,proto3,oneof" json:"activatedTime,omitempty"`
 	ActiveConditions []*ActiveCondition     `protobuf:"bytes,5,rep,name=activeConditions,proto3" json:"activeConditions,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
@@ -427,22 +427,22 @@ func (*ActiveAlert) Descriptor() ([]byte, []int) {
 }
 
 func (x *ActiveAlert) GetAlertCode() string {
-	if x != nil {
-		return x.AlertCode
+	if x != nil && x.AlertCode != nil {
+		return *x.AlertCode
 	}
 	return ""
 }
 
 func (x *ActiveAlert) GetDescription() string {
-	if x != nil {
-		return x.Description
+	if x != nil && x.Description != nil {
+		return *x.Description
 	}
 	return ""
 }
 
 func (x *ActiveAlert) GetLevel() AlertLevel {
-	if x != nil {
-		return x.Level
+	if x != nil && x.Level != nil {
+		return *x.Level
 	}
 	return AlertLevel_ALERT_LEVEL_INVALID
 }
@@ -463,8 +463,8 @@ func (x *ActiveAlert) GetActiveConditions() []*ActiveCondition {
 
 type ActiveCondition struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ConditionCode string                 `protobuf:"bytes,1,opt,name=conditionCode,proto3" json:"conditionCode,omitempty"`
-	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	ConditionCode *string                `protobuf:"bytes,1,opt,name=conditionCode,proto3,oneof" json:"conditionCode,omitempty"`
+	Description   *string                `protobuf:"bytes,2,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -500,15 +500,15 @@ func (*ActiveCondition) Descriptor() ([]byte, []int) {
 }
 
 func (x *ActiveCondition) GetConditionCode() string {
-	if x != nil {
-		return x.ConditionCode
+	if x != nil && x.ConditionCode != nil {
+		return *x.ConditionCode
 	}
 	return ""
 }
 
 func (x *ActiveCondition) GetDescription() string {
-	if x != nil {
-		return x.Description
+	if x != nil && x.Description != nil {
+		return *x.Description
 	}
 	return ""
 }
@@ -518,37 +518,54 @@ var File_components_health_proto protoreflect.FileDescriptor
 const file_components_health_proto_rawDesc = "" +
 	"\n" +
 	"\x17components/health.proto\x12\n" +
-	"components\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc0\x02\n" +
-	"\x06Health\x12H\n" +
-	"\x10connectionStatus\x18\x01 \x01(\x0e2\x1c.components.ConnectionStatusR\x10connectionStatus\x12<\n" +
-	"\fhealthStatus\x18\x02 \x01(\x0e2\x18.components.HealthStatusR\fhealthStatus\x125\n" +
+	"components\x1a\x1fgoogle/protobuf/timestamp.proto\"\x84\x03\n" +
+	"\x06Health\x12M\n" +
+	"\x10connectionStatus\x18\x01 \x01(\x0e2\x1c.components.ConnectionStatusH\x00R\x10connectionStatus\x88\x01\x01\x12A\n" +
+	"\fhealthStatus\x18\x02 \x01(\x0e2\x18.components.HealthStatusH\x01R\fhealthStatus\x88\x01\x01\x125\n" +
 	"\n" +
 	"components\x18\x03 \x03(\v2\x15.components.ComponentR\n" +
-	"components\x12:\n" +
+	"components\x12?\n" +
 	"\n" +
-	"updateTime\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"updateTime\x12;\n" +
-	"\factiveAlerts\x18\x05 \x03(\v2\x17.components.ActiveAlertR\factiveAlerts\"\xce\x01\n" +
-	"\tComponent\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x120\n" +
-	"\x06health\x18\x03 \x01(\x0e2\x18.components.HealthStatusR\x06health\x12/\n" +
-	"\bmessages\x18\x04 \x03(\v2\x13.components.MessageR\bmessages\x12:\n" +
+	"updateTime\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x02R\n" +
+	"updateTime\x88\x01\x01\x12;\n" +
+	"\factiveAlerts\x18\x05 \x03(\v2\x17.components.ActiveAlertR\factiveAlertsB\x13\n" +
+	"\x11_connectionStatusB\x0f\n" +
+	"\r_healthStatusB\r\n" +
+	"\v_updateTime\"\x8c\x02\n" +
+	"\tComponent\x12\x13\n" +
+	"\x02id\x18\x01 \x01(\tH\x00R\x02id\x88\x01\x01\x12\x17\n" +
+	"\x04name\x18\x02 \x01(\tH\x01R\x04name\x88\x01\x01\x125\n" +
+	"\x06health\x18\x03 \x01(\x0e2\x18.components.HealthStatusH\x02R\x06health\x88\x01\x01\x12/\n" +
+	"\bmessages\x18\x04 \x03(\v2\x13.components.MessageR\bmessages\x12?\n" +
 	"\n" +
-	"updateTime\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"updateTime\"U\n" +
-	"\aMessage\x120\n" +
-	"\x06status\x18\x01 \x01(\x0e2\x18.components.HealthStatusR\x06status\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\x86\x02\n" +
-	"\vActiveAlert\x12\x1c\n" +
-	"\talertCode\x18\x01 \x01(\tR\talertCode\x12 \n" +
-	"\vdescription\x18\x02 \x01(\tR\vdescription\x12,\n" +
-	"\x05level\x18\x03 \x01(\x0e2\x16.components.AlertLevelR\x05level\x12@\n" +
-	"\ractivatedTime\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\ractivatedTime\x12G\n" +
-	"\x10activeConditions\x18\x05 \x03(\v2\x1b.components.ActiveConditionR\x10activeConditions\"Y\n" +
-	"\x0fActiveCondition\x12$\n" +
-	"\rconditionCode\x18\x01 \x01(\tR\rconditionCode\x12 \n" +
-	"\vdescription\x18\x02 \x01(\tR\vdescription*n\n" +
+	"updateTime\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x03R\n" +
+	"updateTime\x88\x01\x01B\x05\n" +
+	"\x03_idB\a\n" +
+	"\x05_nameB\t\n" +
+	"\a_healthB\r\n" +
+	"\v_updateTime\"v\n" +
+	"\aMessage\x125\n" +
+	"\x06status\x18\x01 \x01(\x0e2\x18.components.HealthStatusH\x00R\x06status\x88\x01\x01\x12\x1d\n" +
+	"\amessage\x18\x02 \x01(\tH\x01R\amessage\x88\x01\x01B\t\n" +
+	"\a_statusB\n" +
+	"\n" +
+	"\b_message\"\xd4\x02\n" +
+	"\vActiveAlert\x12!\n" +
+	"\talertCode\x18\x01 \x01(\tH\x00R\talertCode\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\x02 \x01(\tH\x01R\vdescription\x88\x01\x01\x121\n" +
+	"\x05level\x18\x03 \x01(\x0e2\x16.components.AlertLevelH\x02R\x05level\x88\x01\x01\x12E\n" +
+	"\ractivatedTime\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x03R\ractivatedTime\x88\x01\x01\x12G\n" +
+	"\x10activeConditions\x18\x05 \x03(\v2\x1b.components.ActiveConditionR\x10activeConditionsB\f\n" +
+	"\n" +
+	"_alertCodeB\x0e\n" +
+	"\f_descriptionB\b\n" +
+	"\x06_levelB\x10\n" +
+	"\x0e_activatedTime\"\x85\x01\n" +
+	"\x0fActiveCondition\x12)\n" +
+	"\rconditionCode\x18\x01 \x01(\tH\x00R\rconditionCode\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\x02 \x01(\tH\x01R\vdescription\x88\x01\x01B\x10\n" +
+	"\x0e_conditionCodeB\x0e\n" +
+	"\f_description*n\n" +
 	"\x10ConnectionStatus\x12\x1d\n" +
 	"\x19CONNECTION_STATUS_INVALID\x10\x00\x12\x1c\n" +
 	"\x18CONNECTION_STATUS_ONLINE\x10\x01\x12\x1d\n" +
@@ -617,6 +634,11 @@ func file_components_health_proto_init() {
 	if File_components_health_proto != nil {
 		return
 	}
+	file_components_health_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_health_proto_msgTypes[1].OneofWrappers = []any{}
+	file_components_health_proto_msgTypes[2].OneofWrappers = []any{}
+	file_components_health_proto_msgTypes[3].OneofWrappers = []any{}
+	file_components_health_proto_msgTypes[4].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

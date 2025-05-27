@@ -15,12 +15,12 @@ message Sensors {
 }
 
 message Sensor {
-  string sensorId = 1;
-  OperationalState operationalState = 2;
-  SensorType sensorType = 3;
-  string sensorDescription = 4;
-  RFConfiguration rfConfiguration = 5;
-  google.protobuf.Timestamp lastDetectionTimestamp = 6;
+  optional string sensorId = 1;
+  optional OperationalState operationalState = 2;
+  optional SensorType sensorType = 3;
+  optional string sensorDescription = 4;
+  optional RFConfiguration rfConfiguration = 5;
+  optional google.protobuf.Timestamp lastDetectionTimestamp = 6;
   repeated FieldOfView fieldsOfView = 7;
 }
 
@@ -51,40 +51,40 @@ message RFConfiguration {
 }
 
 message FrequencyRangeHz {
-  MinimumFrequencyRangeHz minimumFrequencyRangeHz = 1;
-  MaximumFrequencyRangeHz maximumFrequencyRangeHz = 2;
+  optional MinimumFrequencyRangeHz minimumFrequencyRangeHz = 1;
+  optional MaximumFrequencyRangeHz maximumFrequencyRangeHz = 2;
 }
 
 message BandwidthRangeHz {
-  MinimumBandwidth minimumBandwidth = 1;
-  MaximumBandwidth maximumBandwidth = 2;
+  optional MinimumBandwidth minimumBandwidth = 1;
+  optional MaximumBandwidth maximumBandwidth = 2;
 }
 
 message MinimumBandwidth {
-  double bandwidthHz = 1;  // fixed typo from bandwithHz to bandwidthHz
+  optional double bandwidthHz = 1;  // fixed typo from bandwithHz to bandwidthHz
 }
 
 message MaximumBandwidth {
-  double bandwidthHz = 1;  // fixed typo from bandwithHz to bandwidthHz
+  optional double bandwidthHz = 1;  // fixed typo from bandwithHz to bandwidthHz
 }
 
 message FieldOfView {
-  int32 fovId = 1;
-  string mountId = 2;
-  ProjectFrustum projectFrustum = 3;
-  Position projectedCenterRay = 4;
-  RelativePose centerRayPose = 5;
-  float horizontalFov = 6;
-  float verticalFov = 7;
-  float range = 8;
-  Mode mode = 9;
+  optional int32 fovId = 1;
+  optional string mountId = 2;
+  optional ProjectFrustum projectFrustum = 3;
+  optional Position projectedCenterRay = 4;
+  optional RelativePose centerRayPose = 5;
+  optional float horizontalFov = 6;
+  optional float verticalFov = 7;
+  optional float range = 8;
+  optional Mode mode = 9;
 }
 
 message ProjectFrustum {
-  Position upperLeft = 1;
-  Position upperRight = 2;
-  Position bottomRight = 3;
-  Position bottomLeft = 4;
+  optional Position upperLeft = 1;
+  optional Position upperRight = 2;
+  optional Position bottomRight = 3;
+  optional Position bottomLeft = 4;
 }
 
 enum Mode {

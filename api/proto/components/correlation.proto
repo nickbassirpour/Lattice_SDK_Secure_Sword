@@ -8,9 +8,9 @@ import "components/provenance.proto";
 
 // Top-level Correlation type
 message Correlation {
-  Primary primary = 1;
-  Secondary secondary = 2;
-  Membership membership = 3;
+  optional Primary primary = 1;
+  optional Secondary secondary = 2;
+  optional Membership membership = 3;
 }
 
 // Primary type for Correlation
@@ -20,15 +20,15 @@ message Primary {
 
 // Secondary type for Correlation
 message Secondary {
-  string primaryEntityId = 1;
-  Metadata metadata = 2;
+  optional string primaryEntityId = 1;
+  optional Metadata metadata = 2;
 }
 
 // Metadata structure
 message Metadata {
-  Provenance provenance = 1;
-  ReplicationMode replicationMode = 2;
-  CorrelationType type = 3;
+  optional Provenance provenance = 1;
+  optional ReplicationMode replicationMode = 2;
+  optional CorrelationType type = 3;
 }
 
 // Enum for replication mode
@@ -47,10 +47,10 @@ enum CorrelationType {
 
 // Membership structure
 message Membership {
-  string correlationSetId = 1;
-  Primary primary = 2;
-  Secondary nonPrimary = 3;
-  Metadata metadata = 4;
+  optional string correlationSetId = 1;
+  optional Primary primary = 2;
+  optional Secondary nonPrimary = 3;
+  optional Metadata metadata = 4;
 }
 
 // Decorrelation block
@@ -60,11 +60,11 @@ message Decorrelation {
 }
 
 message All {
-  Metadata metadata = 1;
+  optional Metadata metadata = 1;
 }
 
 message DecorrelatedEntity {
-  string entityId = 1;
-  Metadata metadata = 2;
+  optional string entityId = 1;
+  optional Metadata metadata = 2;
 }
 

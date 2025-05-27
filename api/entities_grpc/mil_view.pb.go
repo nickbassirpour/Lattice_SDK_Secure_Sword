@@ -524,9 +524,9 @@ func (Nationality) EnumDescriptor() ([]byte, []int) {
 
 type MilView struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Disposition   Disposition            `protobuf:"varint,1,opt,name=disposition,proto3,enum=components.Disposition" json:"disposition,omitempty"`
-	Environment   Environment            `protobuf:"varint,2,opt,name=environment,proto3,enum=components.Environment" json:"environment,omitempty"`
-	Nationality   Nationality            `protobuf:"varint,3,opt,name=nationality,proto3,enum=components.Nationality" json:"nationality,omitempty"`
+	Disposition   *Disposition           `protobuf:"varint,1,opt,name=disposition,proto3,enum=components.Disposition,oneof" json:"disposition,omitempty"`
+	Environment   *Environment           `protobuf:"varint,2,opt,name=environment,proto3,enum=components.Environment,oneof" json:"environment,omitempty"`
+	Nationality   *Nationality           `protobuf:"varint,3,opt,name=nationality,proto3,enum=components.Nationality,oneof" json:"nationality,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -562,22 +562,22 @@ func (*MilView) Descriptor() ([]byte, []int) {
 }
 
 func (x *MilView) GetDisposition() Disposition {
-	if x != nil {
-		return x.Disposition
+	if x != nil && x.Disposition != nil {
+		return *x.Disposition
 	}
 	return Disposition_DISPOSITION_UNKNOWN
 }
 
 func (x *MilView) GetEnvironment() Environment {
-	if x != nil {
-		return x.Environment
+	if x != nil && x.Environment != nil {
+		return *x.Environment
 	}
 	return Environment_ENVIRONMENT_UNKNOWN
 }
 
 func (x *MilView) GetNationality() Nationality {
-	if x != nil {
-		return x.Nationality
+	if x != nil && x.Nationality != nil {
+		return *x.Nationality
 	}
 	return Nationality_NATIONALITY_INVALID
 }
@@ -587,11 +587,14 @@ var File_components_mil_view_proto protoreflect.FileDescriptor
 const file_components_mil_view_proto_rawDesc = "" +
 	"\n" +
 	"\x19components/mil_view.proto\x12\n" +
-	"components\"\xba\x01\n" +
-	"\aMilView\x129\n" +
-	"\vdisposition\x18\x01 \x01(\x0e2\x17.components.DispositionR\vdisposition\x129\n" +
-	"\venvironment\x18\x02 \x01(\x0e2\x17.components.EnvironmentR\venvironment\x129\n" +
-	"\vnationality\x18\x03 \x01(\x0e2\x17.components.NationalityR\vnationality*\xc9\x01\n" +
+	"components\"\xf9\x01\n" +
+	"\aMilView\x12>\n" +
+	"\vdisposition\x18\x01 \x01(\x0e2\x17.components.DispositionH\x00R\vdisposition\x88\x01\x01\x12>\n" +
+	"\venvironment\x18\x02 \x01(\x0e2\x17.components.EnvironmentH\x01R\venvironment\x88\x01\x01\x12>\n" +
+	"\vnationality\x18\x03 \x01(\x0e2\x17.components.NationalityH\x02R\vnationality\x88\x01\x01B\x0e\n" +
+	"\f_dispositionB\x0e\n" +
+	"\f_environmentB\x0e\n" +
+	"\f_nationality*\xc9\x01\n" +
 	"\vDisposition\x12\x17\n" +
 	"\x13DISPOSITION_UNKNOWN\x10\x00\x12\x18\n" +
 	"\x14DISPOSITION_FRIENDLY\x10\x01\x12\x17\n" +
@@ -760,6 +763,7 @@ func file_components_mil_view_proto_init() {
 	if File_components_mil_view_proto != nil {
 		return
 	}
+	file_components_mil_view_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

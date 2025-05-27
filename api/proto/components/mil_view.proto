@@ -5,9 +5,9 @@ package components;
 option go_package = "/components";
 
 message MilView {
-  Disposition disposition = 1;
-  Environment environment = 2;
-  Nationality nationality = 3;
+  optional Disposition disposition = 1;
+  optional Environment environment = 2;
+  optional Nationality nationality = 3;
 }
 
 enum Disposition {

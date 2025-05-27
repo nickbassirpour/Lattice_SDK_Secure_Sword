@@ -22,7 +22,7 @@ func (s *Server) PublishEntity(ctx context.Context, req *components.PublishEntit
 	if entity.EntityId == "" {
 		return CreateEntity(entity, s)
 	} else {
-		UpdateEntity(entity, s)
+		return UpdateEntity(entity, s)
 	}
 }
 
@@ -39,4 +39,17 @@ func CreateEntity(entity *components.Entity, s *Server) (*components.PublishEnti
 		Success: true,
 		Message: "Published Entity",
 	}, nil
+}
+
+func UpdateEntity(new_data *components.Entity, s *Server) (*components.PublishEntitiesResponse, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	entity, ok := s.entities[new_data.EntityId]
+	if !ok {
+		return nil, status.Errorf(codes.NotFound, "entity with ID %s not found", new_data.EntityId)
+	}
+
+	new_data, err = UpdateComponents(entity, new_data)
+
 }

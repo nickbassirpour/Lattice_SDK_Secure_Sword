@@ -29,18 +29,18 @@ enum AcmType {
 }
 
 message ControlArea {
-    ControlAreaType type = 1;
+    optional ControlAreaType type = 1;
 }
 
 message Acm {
-    AcmType acm_type = 1;
-    string acm_description = 2; 
+    optional AcmType acm_type = 1;
+    optional string acm_description = 2; 
 }
 
 message GeoDetails {
-    GeoType type = 1;
-    ControlArea control_area = 2;
-    Acm acm = 3;
+    optional GeoType type = 1;
+    optional ControlArea control_area = 2;
+    optional Acm acm = 3;
 }
 
 

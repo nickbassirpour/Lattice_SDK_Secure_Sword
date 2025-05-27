@@ -81,9 +81,9 @@ func (Template) EnumDescriptor() ([]byte, []int) {
 
 type Ontology struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	PlatformType  string                 `protobuf:"bytes,1,opt,name=platformType,proto3" json:"platformType,omitempty"`
-	SpecificType  string                 `protobuf:"bytes,2,opt,name=specificType,proto3" json:"specificType,omitempty"`
-	Template      Template               `protobuf:"varint,3,opt,name=template,proto3,enum=components.Template" json:"template,omitempty"`
+	PlatformType  *string                `protobuf:"bytes,1,opt,name=platformType,proto3,oneof" json:"platformType,omitempty"`
+	SpecificType  *string                `protobuf:"bytes,2,opt,name=specificType,proto3,oneof" json:"specificType,omitempty"`
+	Template      *Template              `protobuf:"varint,3,opt,name=template,proto3,enum=components.Template,oneof" json:"template,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -119,22 +119,22 @@ func (*Ontology) Descriptor() ([]byte, []int) {
 }
 
 func (x *Ontology) GetPlatformType() string {
-	if x != nil {
-		return x.PlatformType
+	if x != nil && x.PlatformType != nil {
+		return *x.PlatformType
 	}
 	return ""
 }
 
 func (x *Ontology) GetSpecificType() string {
-	if x != nil {
-		return x.SpecificType
+	if x != nil && x.SpecificType != nil {
+		return *x.SpecificType
 	}
 	return ""
 }
 
 func (x *Ontology) GetTemplate() Template {
-	if x != nil {
-		return x.Template
+	if x != nil && x.Template != nil {
+		return *x.Template
 	}
 	return Template_TEMPLATE_INVALID
 }
@@ -144,11 +144,14 @@ var File_components_ontology_proto protoreflect.FileDescriptor
 const file_components_ontology_proto_rawDesc = "" +
 	"\n" +
 	"\x19components/ontology.proto\x12\n" +
-	"components\"\x84\x01\n" +
-	"\bOntology\x12\"\n" +
-	"\fplatformType\x18\x01 \x01(\tR\fplatformType\x12\"\n" +
-	"\fspecificType\x18\x02 \x01(\tR\fspecificType\x120\n" +
-	"\btemplate\x18\x03 \x01(\x0e2\x14.components.TemplateR\btemplate*\xa2\x01\n" +
+	"components\"\xc2\x01\n" +
+	"\bOntology\x12'\n" +
+	"\fplatformType\x18\x01 \x01(\tH\x00R\fplatformType\x88\x01\x01\x12'\n" +
+	"\fspecificType\x18\x02 \x01(\tH\x01R\fspecificType\x88\x01\x01\x125\n" +
+	"\btemplate\x18\x03 \x01(\x0e2\x14.components.TemplateH\x02R\btemplate\x88\x01\x01B\x0f\n" +
+	"\r_platformTypeB\x0f\n" +
+	"\r_specificTypeB\v\n" +
+	"\t_template*\xa2\x01\n" +
 	"\bTemplate\x12\x14\n" +
 	"\x10TEMPLATE_INVALID\x10\x00\x12\x12\n" +
 	"\x0eTEMPLATE_TRACK\x10\x01\x12%\n" +
@@ -189,6 +192,7 @@ func file_components_ontology_proto_init() {
 	if File_components_ontology_proto != nil {
 		return
 	}
+	file_components_ontology_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

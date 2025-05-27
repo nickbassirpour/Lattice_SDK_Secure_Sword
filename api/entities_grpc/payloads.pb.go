@@ -127,12 +127,12 @@ func (x *Payloads) GetPayloadConfigurations() []*Config {
 }
 
 type Config struct {
-	state                   protoimpl.MessageState  `protogen:"open.v1"`
-	CapabilityId            string                  `protobuf:"bytes,1,opt,name=capabilityId,proto3" json:"capabilityId,omitempty"`
-	Quantity                uint32                  `protobuf:"varint,2,opt,name=quantity,proto3" json:"quantity,omitempty"`
-	EffectiveEnvironment    Environment             `protobuf:"varint,3,opt,name=effectiveEnvironment,proto3,enum=components.Environment" json:"effectiveEnvironment,omitempty"`
-	PayloadOperationalState PayloadOperationalState `protobuf:"varint,4,opt,name=payloadOperationalState,proto3,enum=components.PayloadOperationalState" json:"payloadOperationalState,omitempty"`
-	PayloadDescription      string                  `protobuf:"bytes,5,opt,name=payloadDescription,proto3" json:"payloadDescription,omitempty"`
+	state                   protoimpl.MessageState   `protogen:"open.v1"`
+	CapabilityId            *string                  `protobuf:"bytes,1,opt,name=capabilityId,proto3,oneof" json:"capabilityId,omitempty"`
+	Quantity                *uint32                  `protobuf:"varint,2,opt,name=quantity,proto3,oneof" json:"quantity,omitempty"`
+	EffectiveEnvironment    *Environment             `protobuf:"varint,3,opt,name=effectiveEnvironment,proto3,enum=components.Environment,oneof" json:"effectiveEnvironment,omitempty"`
+	PayloadOperationalState *PayloadOperationalState `protobuf:"varint,4,opt,name=payloadOperationalState,proto3,enum=components.PayloadOperationalState,oneof" json:"payloadOperationalState,omitempty"`
+	PayloadDescription      *string                  `protobuf:"bytes,5,opt,name=payloadDescription,proto3,oneof" json:"payloadDescription,omitempty"`
 	unknownFields           protoimpl.UnknownFields
 	sizeCache               protoimpl.SizeCache
 }
@@ -168,36 +168,36 @@ func (*Config) Descriptor() ([]byte, []int) {
 }
 
 func (x *Config) GetCapabilityId() string {
-	if x != nil {
-		return x.CapabilityId
+	if x != nil && x.CapabilityId != nil {
+		return *x.CapabilityId
 	}
 	return ""
 }
 
 func (x *Config) GetQuantity() uint32 {
-	if x != nil {
-		return x.Quantity
+	if x != nil && x.Quantity != nil {
+		return *x.Quantity
 	}
 	return 0
 }
 
 func (x *Config) GetEffectiveEnvironment() Environment {
-	if x != nil {
-		return x.EffectiveEnvironment
+	if x != nil && x.EffectiveEnvironment != nil {
+		return *x.EffectiveEnvironment
 	}
 	return Environment_ENVIRONMENT_UNKNOWN
 }
 
 func (x *Config) GetPayloadOperationalState() PayloadOperationalState {
-	if x != nil {
-		return x.PayloadOperationalState
+	if x != nil && x.PayloadOperationalState != nil {
+		return *x.PayloadOperationalState
 	}
 	return PayloadOperationalState_PAYLOAD_OPERATIONAL_STATE_INVALID
 }
 
 func (x *Config) GetPayloadDescription() string {
-	if x != nil {
-		return x.PayloadDescription
+	if x != nil && x.PayloadDescription != nil {
+		return *x.PayloadDescription
 	}
 	return ""
 }
@@ -209,13 +209,18 @@ const file_components_payloads_proto_rawDesc = "" +
 	"\x19components/payloads.proto\x12\n" +
 	"components\x1a\x19components/mil_view.proto\"T\n" +
 	"\bPayloads\x12H\n" +
-	"\x15payloadConfigurations\x18\x01 \x03(\v2\x12.components.ConfigR\x15payloadConfigurations\"\xa4\x02\n" +
-	"\x06Config\x12\"\n" +
-	"\fcapabilityId\x18\x01 \x01(\tR\fcapabilityId\x12\x1a\n" +
-	"\bquantity\x18\x02 \x01(\rR\bquantity\x12K\n" +
-	"\x14effectiveEnvironment\x18\x03 \x01(\x0e2\x17.components.EnvironmentR\x14effectiveEnvironment\x12]\n" +
-	"\x17payloadOperationalState\x18\x04 \x01(\x0e2#.components.PayloadOperationalStateR\x17payloadOperationalState\x12.\n" +
-	"\x12payloadDescription\x18\x05 \x01(\tR\x12payloadDescription*\xba\x02\n" +
+	"\x15payloadConfigurations\x18\x01 \x03(\v2\x12.components.ConfigR\x15payloadConfigurations\"\xa7\x03\n" +
+	"\x06Config\x12'\n" +
+	"\fcapabilityId\x18\x01 \x01(\tH\x00R\fcapabilityId\x88\x01\x01\x12\x1f\n" +
+	"\bquantity\x18\x02 \x01(\rH\x01R\bquantity\x88\x01\x01\x12P\n" +
+	"\x14effectiveEnvironment\x18\x03 \x01(\x0e2\x17.components.EnvironmentH\x02R\x14effectiveEnvironment\x88\x01\x01\x12b\n" +
+	"\x17payloadOperationalState\x18\x04 \x01(\x0e2#.components.PayloadOperationalStateH\x03R\x17payloadOperationalState\x88\x01\x01\x123\n" +
+	"\x12payloadDescription\x18\x05 \x01(\tH\x04R\x12payloadDescription\x88\x01\x01B\x0f\n" +
+	"\r_capabilityIdB\v\n" +
+	"\t_quantityB\x17\n" +
+	"\x15_effectiveEnvironmentB\x1a\n" +
+	"\x18_payloadOperationalStateB\x15\n" +
+	"\x13_payloadDescription*\xba\x02\n" +
 	"\x17PayloadOperationalState\x12%\n" +
 	"!PAYLOAD_OPERATIONAL_STATE_INVALID\x10\x00\x12!\n" +
 	"\x1dPAYLOAD_OPERATIONAL_STATE_OFF\x10\x01\x12-\n" +
@@ -262,6 +267,7 @@ func file_components_payloads_proto_init() {
 		return
 	}
 	file_components_mil_view_proto_init()
+	file_components_payloads_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

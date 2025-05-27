@@ -5,20 +5,20 @@ package components;
 option go_package = "/components";
 
 message PowerState {
-  SourceIdToState sourceIdToState = 1;
+  optional SourceIdToState sourceIdToState = 1;
 }
 
 message SourceIdToState {
-  string key = 1;
-  Value value = 2;
+  optional string key = 1;
+  optional Value value = 2;
 }
 
 message Value {
-  PowerStatus powerStatus = 1;
-  PowerType powerType = 2;
-  PowerLevel powerLevel = 3;
+  optional PowerStatus powerStatus = 1;
+  optional PowerType powerType = 2;
+  optional PowerLevel powerLevel = 3;
   repeated string messages = 4;
-  bool offloadable = 5;
+  optional bool offloadable = 5;
 }
 
 enum PowerStatus {
@@ -38,11 +38,11 @@ enum PowerType {
 }
 
 message PowerLevel {
-  float capacity = 1;
-  float remaining = 2;
-  float percentRemaining = 3;
-  double voltage = 4;
-  double currentAmps = 5;
-  double runTimeToEmptyMins = 6;
-  double consumptionRateLPerS = 7;
+  optional float capacity = 1;
+  optional float remaining = 2;
+  optional float percentRemaining = 3;
+  optional double voltage = 4;
+  optional double currentAmps = 5;
+  optional double runTimeToEmptyMins = 6;
+  optional double consumptionRateLPerS = 7;
 }

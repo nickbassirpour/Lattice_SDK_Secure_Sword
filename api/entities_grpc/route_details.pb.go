@@ -24,8 +24,8 @@ const (
 
 type RouteDetails struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	DestinationName      string                 `protobuf:"bytes,1,opt,name=destinationName,proto3" json:"destinationName,omitempty"`
-	EstimatedArrivalTime *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=estimatedArrivalTime,proto3" json:"estimatedArrivalTime,omitempty"`
+	DestinationName      *string                `protobuf:"bytes,1,opt,name=destinationName,proto3,oneof" json:"destinationName,omitempty"`
+	EstimatedArrivalTime *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=estimatedArrivalTime,proto3,oneof" json:"estimatedArrivalTime,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -61,8 +61,8 @@ func (*RouteDetails) Descriptor() ([]byte, []int) {
 }
 
 func (x *RouteDetails) GetDestinationName() string {
-	if x != nil {
-		return x.DestinationName
+	if x != nil && x.DestinationName != nil {
+		return *x.DestinationName
 	}
 	return ""
 }
@@ -79,10 +79,12 @@ var File_components_route_details_proto protoreflect.FileDescriptor
 const file_components_route_details_proto_rawDesc = "" +
 	"\n" +
 	"\x1ecomponents/route_details.proto\x12\n" +
-	"components\x1a\x1fgoogle/protobuf/timestamp.proto\"\x88\x01\n" +
-	"\fRouteDetails\x12(\n" +
-	"\x0fdestinationName\x18\x01 \x01(\tR\x0fdestinationName\x12N\n" +
-	"\x14estimatedArrivalTime\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x14estimatedArrivalTimeB\rZ\v/componentsb\x06proto3"
+	"components\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbf\x01\n" +
+	"\fRouteDetails\x12-\n" +
+	"\x0fdestinationName\x18\x01 \x01(\tH\x00R\x0fdestinationName\x88\x01\x01\x12S\n" +
+	"\x14estimatedArrivalTime\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampH\x01R\x14estimatedArrivalTime\x88\x01\x01B\x12\n" +
+	"\x10_destinationNameB\x17\n" +
+	"\x15_estimatedArrivalTimeB\rZ\v/componentsb\x06proto3"
 
 var (
 	file_components_route_details_proto_rawDescOnce sync.Once
@@ -115,6 +117,7 @@ func file_components_route_details_proto_init() {
 	if File_components_route_details_proto != nil {
 		return
 	}
+	file_components_route_details_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

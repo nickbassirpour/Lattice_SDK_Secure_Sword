@@ -23,8 +23,8 @@ const (
 
 type LocationUncertainty struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	PositionEnuCov *PositionEnuCov        `protobuf:"bytes,1,opt,name=positionEnuCov,proto3" json:"positionEnuCov,omitempty"`
-	VelocityEnuCov *VelocityEnuCov        `protobuf:"bytes,2,opt,name=velocityEnuCov,proto3" json:"velocityEnuCov,omitempty"`
+	PositionEnuCov *PositionEnuCov        `protobuf:"bytes,1,opt,name=positionEnuCov,proto3,oneof" json:"positionEnuCov,omitempty"`
+	VelocityEnuCov *VelocityEnuCov        `protobuf:"bytes,2,opt,name=velocityEnuCov,proto3,oneof" json:"velocityEnuCov,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -75,12 +75,12 @@ func (x *LocationUncertainty) GetVelocityEnuCov() *VelocityEnuCov {
 
 type PositionEnuCov struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Mxx           float32                `protobuf:"fixed32,1,opt,name=mxx,proto3" json:"mxx,omitempty"`
-	Mxy           float32                `protobuf:"fixed32,2,opt,name=mxy,proto3" json:"mxy,omitempty"`
-	Mxz           float32                `protobuf:"fixed32,3,opt,name=mxz,proto3" json:"mxz,omitempty"`
-	Myy           float32                `protobuf:"fixed32,4,opt,name=myy,proto3" json:"myy,omitempty"`
-	Myz           float32                `protobuf:"fixed32,5,opt,name=myz,proto3" json:"myz,omitempty"`
-	Mzz           float32                `protobuf:"fixed32,6,opt,name=mzz,proto3" json:"mzz,omitempty"`
+	Mxx           *float32               `protobuf:"fixed32,1,opt,name=mxx,proto3,oneof" json:"mxx,omitempty"`
+	Mxy           *float32               `protobuf:"fixed32,2,opt,name=mxy,proto3,oneof" json:"mxy,omitempty"`
+	Mxz           *float32               `protobuf:"fixed32,3,opt,name=mxz,proto3,oneof" json:"mxz,omitempty"`
+	Myy           *float32               `protobuf:"fixed32,4,opt,name=myy,proto3,oneof" json:"myy,omitempty"`
+	Myz           *float32               `protobuf:"fixed32,5,opt,name=myz,proto3,oneof" json:"myz,omitempty"`
+	Mzz           *float32               `protobuf:"fixed32,6,opt,name=mzz,proto3,oneof" json:"mzz,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -116,55 +116,55 @@ func (*PositionEnuCov) Descriptor() ([]byte, []int) {
 }
 
 func (x *PositionEnuCov) GetMxx() float32 {
-	if x != nil {
-		return x.Mxx
+	if x != nil && x.Mxx != nil {
+		return *x.Mxx
 	}
 	return 0
 }
 
 func (x *PositionEnuCov) GetMxy() float32 {
-	if x != nil {
-		return x.Mxy
+	if x != nil && x.Mxy != nil {
+		return *x.Mxy
 	}
 	return 0
 }
 
 func (x *PositionEnuCov) GetMxz() float32 {
-	if x != nil {
-		return x.Mxz
+	if x != nil && x.Mxz != nil {
+		return *x.Mxz
 	}
 	return 0
 }
 
 func (x *PositionEnuCov) GetMyy() float32 {
-	if x != nil {
-		return x.Myy
+	if x != nil && x.Myy != nil {
+		return *x.Myy
 	}
 	return 0
 }
 
 func (x *PositionEnuCov) GetMyz() float32 {
-	if x != nil {
-		return x.Myz
+	if x != nil && x.Myz != nil {
+		return *x.Myz
 	}
 	return 0
 }
 
 func (x *PositionEnuCov) GetMzz() float32 {
-	if x != nil {
-		return x.Mzz
+	if x != nil && x.Mzz != nil {
+		return *x.Mzz
 	}
 	return 0
 }
 
 type VelocityEnuCov struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Mxx           float32                `protobuf:"fixed32,1,opt,name=mxx,proto3" json:"mxx,omitempty"`
-	Mxy           float32                `protobuf:"fixed32,2,opt,name=mxy,proto3" json:"mxy,omitempty"`
-	Mxz           float32                `protobuf:"fixed32,3,opt,name=mxz,proto3" json:"mxz,omitempty"`
-	Myy           float32                `protobuf:"fixed32,4,opt,name=myy,proto3" json:"myy,omitempty"`
-	Myz           float32                `protobuf:"fixed32,5,opt,name=myz,proto3" json:"myz,omitempty"`
-	Mzz           float32                `protobuf:"fixed32,6,opt,name=mzz,proto3" json:"mzz,omitempty"`
+	Mxx           *float32               `protobuf:"fixed32,1,opt,name=mxx,proto3,oneof" json:"mxx,omitempty"`
+	Mxy           *float32               `protobuf:"fixed32,2,opt,name=mxy,proto3,oneof" json:"mxy,omitempty"`
+	Mxz           *float32               `protobuf:"fixed32,3,opt,name=mxz,proto3,oneof" json:"mxz,omitempty"`
+	Myy           *float32               `protobuf:"fixed32,4,opt,name=myy,proto3,oneof" json:"myy,omitempty"`
+	Myz           *float32               `protobuf:"fixed32,5,opt,name=myz,proto3,oneof" json:"myz,omitempty"`
+	Mzz           *float32               `protobuf:"fixed32,6,opt,name=mzz,proto3,oneof" json:"mzz,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -200,53 +200,53 @@ func (*VelocityEnuCov) Descriptor() ([]byte, []int) {
 }
 
 func (x *VelocityEnuCov) GetMxx() float32 {
-	if x != nil {
-		return x.Mxx
+	if x != nil && x.Mxx != nil {
+		return *x.Mxx
 	}
 	return 0
 }
 
 func (x *VelocityEnuCov) GetMxy() float32 {
-	if x != nil {
-		return x.Mxy
+	if x != nil && x.Mxy != nil {
+		return *x.Mxy
 	}
 	return 0
 }
 
 func (x *VelocityEnuCov) GetMxz() float32 {
-	if x != nil {
-		return x.Mxz
+	if x != nil && x.Mxz != nil {
+		return *x.Mxz
 	}
 	return 0
 }
 
 func (x *VelocityEnuCov) GetMyy() float32 {
-	if x != nil {
-		return x.Myy
+	if x != nil && x.Myy != nil {
+		return *x.Myy
 	}
 	return 0
 }
 
 func (x *VelocityEnuCov) GetMyz() float32 {
-	if x != nil {
-		return x.Myz
+	if x != nil && x.Myz != nil {
+		return *x.Myz
 	}
 	return 0
 }
 
 func (x *VelocityEnuCov) GetMzz() float32 {
-	if x != nil {
-		return x.Mzz
+	if x != nil && x.Mzz != nil {
+		return *x.Mzz
 	}
 	return 0
 }
 
 type PositionErrorEllipse struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	Probability    float64                `protobuf:"fixed64,1,opt,name=probability,proto3" json:"probability,omitempty"`
-	SemiMajorAxisM float64                `protobuf:"fixed64,2,opt,name=semiMajorAxisM,proto3" json:"semiMajorAxisM,omitempty"`
-	SemiMinorAxisM float64                `protobuf:"fixed64,3,opt,name=semiMinorAxisM,proto3" json:"semiMinorAxisM,omitempty"`
-	OrientationD   float64                `protobuf:"fixed64,4,opt,name=orientationD,proto3" json:"orientationD,omitempty"`
+	Probability    *float64               `protobuf:"fixed64,1,opt,name=probability,proto3,oneof" json:"probability,omitempty"`
+	SemiMajorAxisM *float64               `protobuf:"fixed64,2,opt,name=semiMajorAxisM,proto3,oneof" json:"semiMajorAxisM,omitempty"`
+	SemiMinorAxisM *float64               `protobuf:"fixed64,3,opt,name=semiMinorAxisM,proto3,oneof" json:"semiMinorAxisM,omitempty"`
+	OrientationD   *float64               `protobuf:"fixed64,4,opt,name=orientationD,proto3,oneof" json:"orientationD,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -282,29 +282,29 @@ func (*PositionErrorEllipse) Descriptor() ([]byte, []int) {
 }
 
 func (x *PositionErrorEllipse) GetProbability() float64 {
-	if x != nil {
-		return x.Probability
+	if x != nil && x.Probability != nil {
+		return *x.Probability
 	}
 	return 0
 }
 
 func (x *PositionErrorEllipse) GetSemiMajorAxisM() float64 {
-	if x != nil {
-		return x.SemiMajorAxisM
+	if x != nil && x.SemiMajorAxisM != nil {
+		return *x.SemiMajorAxisM
 	}
 	return 0
 }
 
 func (x *PositionErrorEllipse) GetSemiMinorAxisM() float64 {
-	if x != nil {
-		return x.SemiMinorAxisM
+	if x != nil && x.SemiMinorAxisM != nil {
+		return *x.SemiMinorAxisM
 	}
 	return 0
 }
 
 func (x *PositionErrorEllipse) GetOrientationD() float64 {
-	if x != nil {
-		return x.OrientationD
+	if x != nil && x.OrientationD != nil {
+		return *x.OrientationD
 	}
 	return 0
 }
@@ -314,29 +314,47 @@ var File_components_location_uncertainty_proto protoreflect.FileDescriptor
 const file_components_location_uncertainty_proto_rawDesc = "" +
 	"\n" +
 	"%components/location_uncertainty.proto\x12\n" +
-	"components\"\x9d\x01\n" +
-	"\x13LocationUncertainty\x12B\n" +
-	"\x0epositionEnuCov\x18\x01 \x01(\v2\x1a.components.PositionEnuCovR\x0epositionEnuCov\x12B\n" +
-	"\x0evelocityEnuCov\x18\x02 \x01(\v2\x1a.components.VelocityEnuCovR\x0evelocityEnuCov\"|\n" +
-	"\x0ePositionEnuCov\x12\x10\n" +
-	"\x03mxx\x18\x01 \x01(\x02R\x03mxx\x12\x10\n" +
-	"\x03mxy\x18\x02 \x01(\x02R\x03mxy\x12\x10\n" +
-	"\x03mxz\x18\x03 \x01(\x02R\x03mxz\x12\x10\n" +
-	"\x03myy\x18\x04 \x01(\x02R\x03myy\x12\x10\n" +
-	"\x03myz\x18\x05 \x01(\x02R\x03myz\x12\x10\n" +
-	"\x03mzz\x18\x06 \x01(\x02R\x03mzz\"|\n" +
-	"\x0eVelocityEnuCov\x12\x10\n" +
-	"\x03mxx\x18\x01 \x01(\x02R\x03mxx\x12\x10\n" +
-	"\x03mxy\x18\x02 \x01(\x02R\x03mxy\x12\x10\n" +
-	"\x03mxz\x18\x03 \x01(\x02R\x03mxz\x12\x10\n" +
-	"\x03myy\x18\x04 \x01(\x02R\x03myy\x12\x10\n" +
-	"\x03myz\x18\x05 \x01(\x02R\x03myz\x12\x10\n" +
-	"\x03mzz\x18\x06 \x01(\x02R\x03mzz\"\xac\x01\n" +
-	"\x14PositionErrorEllipse\x12 \n" +
-	"\vprobability\x18\x01 \x01(\x01R\vprobability\x12&\n" +
-	"\x0esemiMajorAxisM\x18\x02 \x01(\x01R\x0esemiMajorAxisM\x12&\n" +
-	"\x0esemiMinorAxisM\x18\x03 \x01(\x01R\x0esemiMinorAxisM\x12\"\n" +
-	"\forientationD\x18\x04 \x01(\x01R\forientationDB\rZ\v/componentsb\x06proto3"
+	"components\"\xcd\x01\n" +
+	"\x13LocationUncertainty\x12G\n" +
+	"\x0epositionEnuCov\x18\x01 \x01(\v2\x1a.components.PositionEnuCovH\x00R\x0epositionEnuCov\x88\x01\x01\x12G\n" +
+	"\x0evelocityEnuCov\x18\x02 \x01(\v2\x1a.components.VelocityEnuCovH\x01R\x0evelocityEnuCov\x88\x01\x01B\x11\n" +
+	"\x0f_positionEnuCovB\x11\n" +
+	"\x0f_velocityEnuCov\"\xca\x01\n" +
+	"\x0ePositionEnuCov\x12\x15\n" +
+	"\x03mxx\x18\x01 \x01(\x02H\x00R\x03mxx\x88\x01\x01\x12\x15\n" +
+	"\x03mxy\x18\x02 \x01(\x02H\x01R\x03mxy\x88\x01\x01\x12\x15\n" +
+	"\x03mxz\x18\x03 \x01(\x02H\x02R\x03mxz\x88\x01\x01\x12\x15\n" +
+	"\x03myy\x18\x04 \x01(\x02H\x03R\x03myy\x88\x01\x01\x12\x15\n" +
+	"\x03myz\x18\x05 \x01(\x02H\x04R\x03myz\x88\x01\x01\x12\x15\n" +
+	"\x03mzz\x18\x06 \x01(\x02H\x05R\x03mzz\x88\x01\x01B\x06\n" +
+	"\x04_mxxB\x06\n" +
+	"\x04_mxyB\x06\n" +
+	"\x04_mxzB\x06\n" +
+	"\x04_myyB\x06\n" +
+	"\x04_myzB\x06\n" +
+	"\x04_mzz\"\xca\x01\n" +
+	"\x0eVelocityEnuCov\x12\x15\n" +
+	"\x03mxx\x18\x01 \x01(\x02H\x00R\x03mxx\x88\x01\x01\x12\x15\n" +
+	"\x03mxy\x18\x02 \x01(\x02H\x01R\x03mxy\x88\x01\x01\x12\x15\n" +
+	"\x03mxz\x18\x03 \x01(\x02H\x02R\x03mxz\x88\x01\x01\x12\x15\n" +
+	"\x03myy\x18\x04 \x01(\x02H\x03R\x03myy\x88\x01\x01\x12\x15\n" +
+	"\x03myz\x18\x05 \x01(\x02H\x04R\x03myz\x88\x01\x01\x12\x15\n" +
+	"\x03mzz\x18\x06 \x01(\x02H\x05R\x03mzz\x88\x01\x01B\x06\n" +
+	"\x04_mxxB\x06\n" +
+	"\x04_mxyB\x06\n" +
+	"\x04_mxzB\x06\n" +
+	"\x04_myyB\x06\n" +
+	"\x04_myzB\x06\n" +
+	"\x04_mzz\"\x87\x02\n" +
+	"\x14PositionErrorEllipse\x12%\n" +
+	"\vprobability\x18\x01 \x01(\x01H\x00R\vprobability\x88\x01\x01\x12+\n" +
+	"\x0esemiMajorAxisM\x18\x02 \x01(\x01H\x01R\x0esemiMajorAxisM\x88\x01\x01\x12+\n" +
+	"\x0esemiMinorAxisM\x18\x03 \x01(\x01H\x02R\x0esemiMinorAxisM\x88\x01\x01\x12'\n" +
+	"\forientationD\x18\x04 \x01(\x01H\x03R\forientationD\x88\x01\x01B\x0e\n" +
+	"\f_probabilityB\x11\n" +
+	"\x0f_semiMajorAxisMB\x11\n" +
+	"\x0f_semiMinorAxisMB\x0f\n" +
+	"\r_orientationDB\rZ\v/componentsb\x06proto3"
 
 var (
 	file_components_location_uncertainty_proto_rawDescOnce sync.Once
@@ -372,6 +390,10 @@ func file_components_location_uncertainty_proto_init() {
 	if File_components_location_uncertainty_proto != nil {
 		return
 	}
+	file_components_location_uncertainty_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_location_uncertainty_proto_msgTypes[1].OneofWrappers = []any{}
+	file_components_location_uncertainty_proto_msgTypes[2].OneofWrappers = []any{}
+	file_components_location_uncertainty_proto_msgTypes[3].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

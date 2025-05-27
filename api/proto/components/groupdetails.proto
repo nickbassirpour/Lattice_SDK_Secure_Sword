@@ -5,8 +5,8 @@ package components;
 option go_package = "/components";
 
 message GroupDetails {
-  Team team = 1;
-  Echelon echelon = 2;
+  optional Team team = 1;
+  optional Echelon echelon = 2;
 }
 
 message Team {
@@ -14,7 +14,7 @@ message Team {
 }
 
 message Echelon {
-  ArmyEchelon armyEchelon = 1;
+  optional ArmyEchelon armyEchelon = 1;
 }
 
 enum ArmyEchelon {

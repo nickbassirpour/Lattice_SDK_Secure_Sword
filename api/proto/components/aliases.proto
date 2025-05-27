@@ -33,12 +33,12 @@ enum AltIDType {
 
 // Message for AlternateIds
 message AlternateIds {
-  string id = 1;
-  AltIDType type = 2;
+  optional string id = 1;
+  optional AltIDType type = 2;
 }
 
 // Message for Aliases
 message Aliases {
   repeated AlternateIds alternateIds = 1;
-  string name = 2;
+  optional string name = 2;
 }

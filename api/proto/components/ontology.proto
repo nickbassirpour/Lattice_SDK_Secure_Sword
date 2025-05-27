@@ -5,9 +5,9 @@ package components;
 option go_package = "/components";
 
 message Ontology {
-  string platformType = 1;
-  string specificType = 2;
-  Template template = 3;
+  optional string platformType = 1;
+  optional string specificType = 2;
+  optional Template template = 3;
 }
 
 enum Template {

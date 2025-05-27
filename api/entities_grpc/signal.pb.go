@@ -114,16 +114,16 @@ func (ScanType) EnumDescriptor() ([]byte, []int) {
 
 type Signal struct {
 	state                   protoimpl.MessageState   `protogen:"open.v1"`
-	FrequencyCenter         *FrequencyCenter         `protobuf:"bytes,1,opt,name=frequencyCenter,proto3" json:"frequencyCenter,omitempty"`
-	FrequencyRange          *FrequencyRange          `protobuf:"bytes,2,opt,name=frequencyRange,proto3" json:"frequencyRange,omitempty"`
-	BandwidthHz             float64                  `protobuf:"fixed64,3,opt,name=bandwidthHz,proto3" json:"bandwidthHz,omitempty"`
-	SignalToNoiseRatio      float64                  `protobuf:"fixed64,4,opt,name=signalToNoiseRatio,proto3" json:"signalToNoiseRatio,omitempty"`
-	LineOfBearing           *LineOfBearing           `protobuf:"bytes,5,opt,name=lineOfBearing,proto3" json:"lineOfBearing,omitempty"`
-	Fixed                   *Fixed                   `protobuf:"bytes,6,opt,name=fixed,proto3" json:"fixed,omitempty"`
+	FrequencyCenter         *FrequencyCenter         `protobuf:"bytes,1,opt,name=frequencyCenter,proto3,oneof" json:"frequencyCenter,omitempty"`
+	FrequencyRange          *FrequencyRange          `protobuf:"bytes,2,opt,name=frequencyRange,proto3,oneof" json:"frequencyRange,omitempty"`
+	BandwidthHz             *float64                 `protobuf:"fixed64,3,opt,name=bandwidthHz,proto3,oneof" json:"bandwidthHz,omitempty"`
+	SignalToNoiseRatio      *float64                 `protobuf:"fixed64,4,opt,name=signalToNoiseRatio,proto3,oneof" json:"signalToNoiseRatio,omitempty"`
+	LineOfBearing           *LineOfBearing           `protobuf:"bytes,5,opt,name=lineOfBearing,proto3,oneof" json:"lineOfBearing,omitempty"`
+	Fixed                   *Fixed                   `protobuf:"bytes,6,opt,name=fixed,proto3,oneof" json:"fixed,omitempty"`
 	EmitterNotations        []*EmitterNotation       `protobuf:"bytes,7,rep,name=emitterNotations,proto3" json:"emitterNotations,omitempty"`
-	PulseWidthS             float64                  `protobuf:"fixed64,8,opt,name=pulseWidthS,proto3" json:"pulseWidthS,omitempty"`
-	PulseRepetitionInterval *PulseRepetitionInterval `protobuf:"bytes,9,opt,name=pulseRepetitionInterval,proto3" json:"pulseRepetitionInterval,omitempty"`
-	ScanCharacteristics     *ScanCharacteristics     `protobuf:"bytes,10,opt,name=scanCharacteristics,proto3" json:"scanCharacteristics,omitempty"`
+	PulseWidthS             *float64                 `protobuf:"fixed64,8,opt,name=pulseWidthS,proto3,oneof" json:"pulseWidthS,omitempty"`
+	PulseRepetitionInterval *PulseRepetitionInterval `protobuf:"bytes,9,opt,name=pulseRepetitionInterval,proto3,oneof" json:"pulseRepetitionInterval,omitempty"`
+	ScanCharacteristics     *ScanCharacteristics     `protobuf:"bytes,10,opt,name=scanCharacteristics,proto3,oneof" json:"scanCharacteristics,omitempty"`
 	unknownFields           protoimpl.UnknownFields
 	sizeCache               protoimpl.SizeCache
 }
@@ -173,15 +173,15 @@ func (x *Signal) GetFrequencyRange() *FrequencyRange {
 }
 
 func (x *Signal) GetBandwidthHz() float64 {
-	if x != nil {
-		return x.BandwidthHz
+	if x != nil && x.BandwidthHz != nil {
+		return *x.BandwidthHz
 	}
 	return 0
 }
 
 func (x *Signal) GetSignalToNoiseRatio() float64 {
-	if x != nil {
-		return x.SignalToNoiseRatio
+	if x != nil && x.SignalToNoiseRatio != nil {
+		return *x.SignalToNoiseRatio
 	}
 	return 0
 }
@@ -208,8 +208,8 @@ func (x *Signal) GetEmitterNotations() []*EmitterNotation {
 }
 
 func (x *Signal) GetPulseWidthS() float64 {
-	if x != nil {
-		return x.PulseWidthS
+	if x != nil && x.PulseWidthS != nil {
+		return *x.PulseWidthS
 	}
 	return 0
 }
@@ -230,7 +230,7 @@ func (x *Signal) GetScanCharacteristics() *ScanCharacteristics {
 
 type FrequencyCenter struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FrequencyHz   *FrequencyHz           `protobuf:"bytes,1,opt,name=frequencyHz,proto3" json:"frequencyHz,omitempty"`
+	FrequencyHz   *FrequencyHz           `protobuf:"bytes,1,opt,name=frequencyHz,proto3,oneof" json:"frequencyHz,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -274,8 +274,8 @@ func (x *FrequencyCenter) GetFrequencyHz() *FrequencyHz {
 
 type FrequencyRange struct {
 	state                   protoimpl.MessageState   `protogen:"open.v1"`
-	MinimumFrequencyRangeHz *MinimumFrequencyRangeHz `protobuf:"bytes,1,opt,name=minimumFrequencyRangeHz,proto3" json:"minimumFrequencyRangeHz,omitempty"`
-	MaximumFrequencyRangeHz *MaximumFrequencyRangeHz `protobuf:"bytes,2,opt,name=maximumFrequencyRangeHz,proto3" json:"maximumFrequencyRangeHz,omitempty"`
+	MinimumFrequencyRangeHz *MinimumFrequencyRangeHz `protobuf:"bytes,1,opt,name=minimumFrequencyRangeHz,proto3,oneof" json:"minimumFrequencyRangeHz,omitempty"`
+	MaximumFrequencyRangeHz *MaximumFrequencyRangeHz `protobuf:"bytes,2,opt,name=maximumFrequencyRangeHz,proto3,oneof" json:"maximumFrequencyRangeHz,omitempty"`
 	unknownFields           protoimpl.UnknownFields
 	sizeCache               protoimpl.SizeCache
 }
@@ -362,8 +362,8 @@ func (*Fixed) Descriptor() ([]byte, []int) {
 
 type EmitterNotation struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	EmitterNotation string                 `protobuf:"bytes,1,opt,name=emitterNotation,proto3" json:"emitterNotation,omitempty"`
-	Confidence      float64                `protobuf:"fixed64,2,opt,name=confidence,proto3" json:"confidence,omitempty"`
+	EmitterNotation *string                `protobuf:"bytes,1,opt,name=emitterNotation,proto3,oneof" json:"emitterNotation,omitempty"`
+	Confidence      *float64               `protobuf:"fixed64,2,opt,name=confidence,proto3,oneof" json:"confidence,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -399,22 +399,22 @@ func (*EmitterNotation) Descriptor() ([]byte, []int) {
 }
 
 func (x *EmitterNotation) GetEmitterNotation() string {
-	if x != nil {
-		return x.EmitterNotation
+	if x != nil && x.EmitterNotation != nil {
+		return *x.EmitterNotation
 	}
 	return ""
 }
 
 func (x *EmitterNotation) GetConfidence() float64 {
-	if x != nil {
-		return x.Confidence
+	if x != nil && x.Confidence != nil {
+		return *x.Confidence
 	}
 	return 0
 }
 
 type PulseRepetitionInterval struct {
 	state                    protoimpl.MessageState    `protogen:"open.v1"`
-	PulseRepetitionIntervalS *PulseRepetitionIntervalS `protobuf:"bytes,1,opt,name=pulseRepetitionIntervalS,proto3" json:"pulseRepetitionIntervalS,omitempty"`
+	PulseRepetitionIntervalS *PulseRepetitionIntervalS `protobuf:"bytes,1,opt,name=pulseRepetitionIntervalS,proto3,oneof" json:"pulseRepetitionIntervalS,omitempty"`
 	unknownFields            protoimpl.UnknownFields
 	sizeCache                protoimpl.SizeCache
 }
@@ -458,8 +458,8 @@ func (x *PulseRepetitionInterval) GetPulseRepetitionIntervalS() *PulseRepetition
 
 type PulseRepetitionIntervalS struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Value         float64                `protobuf:"fixed64,1,opt,name=value,proto3" json:"value,omitempty"`
-	Sigma         float64                `protobuf:"fixed64,2,opt,name=sigma,proto3" json:"sigma,omitempty"`
+	Value         *float64               `protobuf:"fixed64,1,opt,name=value,proto3,oneof" json:"value,omitempty"`
+	Sigma         *float64               `protobuf:"fixed64,2,opt,name=sigma,proto3,oneof" json:"sigma,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -495,23 +495,23 @@ func (*PulseRepetitionIntervalS) Descriptor() ([]byte, []int) {
 }
 
 func (x *PulseRepetitionIntervalS) GetValue() float64 {
-	if x != nil {
-		return x.Value
+	if x != nil && x.Value != nil {
+		return *x.Value
 	}
 	return 0
 }
 
 func (x *PulseRepetitionIntervalS) GetSigma() float64 {
-	if x != nil {
-		return x.Sigma
+	if x != nil && x.Sigma != nil {
+		return *x.Sigma
 	}
 	return 0
 }
 
 type ScanCharacteristics struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ScanType      ScanType               `protobuf:"varint,1,opt,name=scanType,proto3,enum=components.ScanType" json:"scanType,omitempty"`
-	ScanPeriodS   float64                `protobuf:"fixed64,2,opt,name=scanPeriodS,proto3" json:"scanPeriodS,omitempty"`
+	ScanType      *ScanType              `protobuf:"varint,1,opt,name=scanType,proto3,enum=components.ScanType,oneof" json:"scanType,omitempty"`
+	ScanPeriodS   *float64               `protobuf:"fixed64,2,opt,name=scanPeriodS,proto3,oneof" json:"scanPeriodS,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -547,23 +547,23 @@ func (*ScanCharacteristics) Descriptor() ([]byte, []int) {
 }
 
 func (x *ScanCharacteristics) GetScanType() ScanType {
-	if x != nil {
-		return x.ScanType
+	if x != nil && x.ScanType != nil {
+		return *x.ScanType
 	}
 	return ScanType_SCAN_TYPE_INVALID
 }
 
 func (x *ScanCharacteristics) GetScanPeriodS() float64 {
-	if x != nil {
-		return x.ScanPeriodS
+	if x != nil && x.ScanPeriodS != nil {
+		return *x.ScanPeriodS
 	}
 	return 0
 }
 
 type FrequencyHz struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Value         float64                `protobuf:"fixed64,1,opt,name=value,proto3" json:"value,omitempty"`
-	Sigma         float64                `protobuf:"fixed64,2,opt,name=sigma,proto3" json:"sigma,omitempty"`
+	Value         *float64               `protobuf:"fixed64,1,opt,name=value,proto3,oneof" json:"value,omitempty"`
+	Sigma         *float64               `protobuf:"fixed64,2,opt,name=sigma,proto3,oneof" json:"sigma,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -599,22 +599,22 @@ func (*FrequencyHz) Descriptor() ([]byte, []int) {
 }
 
 func (x *FrequencyHz) GetValue() float64 {
-	if x != nil {
-		return x.Value
+	if x != nil && x.Value != nil {
+		return *x.Value
 	}
 	return 0
 }
 
 func (x *FrequencyHz) GetSigma() float64 {
-	if x != nil {
-		return x.Sigma
+	if x != nil && x.Sigma != nil {
+		return *x.Sigma
 	}
 	return 0
 }
 
 type MinimumFrequencyRangeHz struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FrequencyHz   *FrequencyHz           `protobuf:"bytes,1,opt,name=frequencyHz,proto3" json:"frequencyHz,omitempty"`
+	FrequencyHz   *FrequencyHz           `protobuf:"bytes,1,opt,name=frequencyHz,proto3,oneof" json:"frequencyHz,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -658,7 +658,7 @@ func (x *MinimumFrequencyRangeHz) GetFrequencyHz() *FrequencyHz {
 
 type MaximumFrequencyRangeHz struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FrequencyHz   *FrequencyHz           `protobuf:"bytes,1,opt,name=frequencyHz,proto3" json:"frequencyHz,omitempty"`
+	FrequencyHz   *FrequencyHz           `protobuf:"bytes,1,opt,name=frequencyHz,proto3,oneof" json:"frequencyHz,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -705,45 +705,68 @@ var File_components_signal_proto protoreflect.FileDescriptor
 const file_components_signal_proto_rawDesc = "" +
 	"\n" +
 	"\x17components/signal.proto\x12\n" +
-	"components\x1a\x18components/tracked.proto\"\xec\x04\n" +
-	"\x06Signal\x12E\n" +
-	"\x0ffrequencyCenter\x18\x01 \x01(\v2\x1b.components.FrequencyCenterR\x0ffrequencyCenter\x12B\n" +
-	"\x0efrequencyRange\x18\x02 \x01(\v2\x1a.components.FrequencyRangeR\x0efrequencyRange\x12 \n" +
-	"\vbandwidthHz\x18\x03 \x01(\x01R\vbandwidthHz\x12.\n" +
-	"\x12signalToNoiseRatio\x18\x04 \x01(\x01R\x12signalToNoiseRatio\x12?\n" +
-	"\rlineOfBearing\x18\x05 \x01(\v2\x19.components.LineOfBearingR\rlineOfBearing\x12'\n" +
-	"\x05fixed\x18\x06 \x01(\v2\x11.components.FixedR\x05fixed\x12G\n" +
-	"\x10emitterNotations\x18\a \x03(\v2\x1b.components.EmitterNotationR\x10emitterNotations\x12 \n" +
-	"\vpulseWidthS\x18\b \x01(\x01R\vpulseWidthS\x12]\n" +
-	"\x17pulseRepetitionInterval\x18\t \x01(\v2#.components.PulseRepetitionIntervalR\x17pulseRepetitionInterval\x12Q\n" +
+	"components\x1a\x18components/tracked.proto\"\xc7\x06\n" +
+	"\x06Signal\x12J\n" +
+	"\x0ffrequencyCenter\x18\x01 \x01(\v2\x1b.components.FrequencyCenterH\x00R\x0ffrequencyCenter\x88\x01\x01\x12G\n" +
+	"\x0efrequencyRange\x18\x02 \x01(\v2\x1a.components.FrequencyRangeH\x01R\x0efrequencyRange\x88\x01\x01\x12%\n" +
+	"\vbandwidthHz\x18\x03 \x01(\x01H\x02R\vbandwidthHz\x88\x01\x01\x123\n" +
+	"\x12signalToNoiseRatio\x18\x04 \x01(\x01H\x03R\x12signalToNoiseRatio\x88\x01\x01\x12D\n" +
+	"\rlineOfBearing\x18\x05 \x01(\v2\x19.components.LineOfBearingH\x04R\rlineOfBearing\x88\x01\x01\x12,\n" +
+	"\x05fixed\x18\x06 \x01(\v2\x11.components.FixedH\x05R\x05fixed\x88\x01\x01\x12G\n" +
+	"\x10emitterNotations\x18\a \x03(\v2\x1b.components.EmitterNotationR\x10emitterNotations\x12%\n" +
+	"\vpulseWidthS\x18\b \x01(\x01H\x06R\vpulseWidthS\x88\x01\x01\x12b\n" +
+	"\x17pulseRepetitionInterval\x18\t \x01(\v2#.components.PulseRepetitionIntervalH\aR\x17pulseRepetitionInterval\x88\x01\x01\x12V\n" +
 	"\x13scanCharacteristics\x18\n" +
-	" \x01(\v2\x1f.components.ScanCharacteristicsR\x13scanCharacteristics\"L\n" +
-	"\x0fFrequencyCenter\x129\n" +
-	"\vfrequencyHz\x18\x01 \x01(\v2\x17.components.FrequencyHzR\vfrequencyHz\"\xce\x01\n" +
-	"\x0eFrequencyRange\x12]\n" +
-	"\x17minimumFrequencyRangeHz\x18\x01 \x01(\v2#.components.MinimumFrequencyRangeHzR\x17minimumFrequencyRangeHz\x12]\n" +
-	"\x17maximumFrequencyRangeHz\x18\x02 \x01(\v2#.components.MaximumFrequencyRangeHzR\x17maximumFrequencyRangeHz\"\a\n" +
-	"\x05Fixed\"[\n" +
-	"\x0fEmitterNotation\x12(\n" +
-	"\x0femitterNotation\x18\x01 \x01(\tR\x0femitterNotation\x12\x1e\n" +
+	" \x01(\v2\x1f.components.ScanCharacteristicsH\bR\x13scanCharacteristics\x88\x01\x01B\x12\n" +
+	"\x10_frequencyCenterB\x11\n" +
+	"\x0f_frequencyRangeB\x0e\n" +
+	"\f_bandwidthHzB\x15\n" +
+	"\x13_signalToNoiseRatioB\x10\n" +
+	"\x0e_lineOfBearingB\b\n" +
+	"\x06_fixedB\x0e\n" +
+	"\f_pulseWidthSB\x1a\n" +
+	"\x18_pulseRepetitionIntervalB\x16\n" +
+	"\x14_scanCharacteristics\"a\n" +
+	"\x0fFrequencyCenter\x12>\n" +
+	"\vfrequencyHz\x18\x01 \x01(\v2\x17.components.FrequencyHzH\x00R\vfrequencyHz\x88\x01\x01B\x0e\n" +
+	"\f_frequencyHz\"\x90\x02\n" +
+	"\x0eFrequencyRange\x12b\n" +
+	"\x17minimumFrequencyRangeHz\x18\x01 \x01(\v2#.components.MinimumFrequencyRangeHzH\x00R\x17minimumFrequencyRangeHz\x88\x01\x01\x12b\n" +
+	"\x17maximumFrequencyRangeHz\x18\x02 \x01(\v2#.components.MaximumFrequencyRangeHzH\x01R\x17maximumFrequencyRangeHz\x88\x01\x01B\x1a\n" +
+	"\x18_minimumFrequencyRangeHzB\x1a\n" +
+	"\x18_maximumFrequencyRangeHz\"\a\n" +
+	"\x05Fixed\"\x88\x01\n" +
+	"\x0fEmitterNotation\x12-\n" +
+	"\x0femitterNotation\x18\x01 \x01(\tH\x00R\x0femitterNotation\x88\x01\x01\x12#\n" +
 	"\n" +
-	"confidence\x18\x02 \x01(\x01R\n" +
-	"confidence\"{\n" +
-	"\x17PulseRepetitionInterval\x12`\n" +
-	"\x18pulseRepetitionIntervalS\x18\x01 \x01(\v2$.components.PulseRepetitionIntervalSR\x18pulseRepetitionIntervalS\"F\n" +
-	"\x18PulseRepetitionIntervalS\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\x01R\x05value\x12\x14\n" +
-	"\x05sigma\x18\x02 \x01(\x01R\x05sigma\"i\n" +
-	"\x13ScanCharacteristics\x120\n" +
-	"\bscanType\x18\x01 \x01(\x0e2\x14.components.ScanTypeR\bscanType\x12 \n" +
-	"\vscanPeriodS\x18\x02 \x01(\x01R\vscanPeriodS\"9\n" +
-	"\vFrequencyHz\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\x01R\x05value\x12\x14\n" +
-	"\x05sigma\x18\x02 \x01(\x01R\x05sigma\"T\n" +
-	"\x17MinimumFrequencyRangeHz\x129\n" +
-	"\vfrequencyHz\x18\x01 \x01(\v2\x17.components.FrequencyHzR\vfrequencyHz\"T\n" +
-	"\x17MaximumFrequencyRangeHz\x129\n" +
-	"\vfrequencyHz\x18\x01 \x01(\v2\x17.components.FrequencyHzR\vfrequencyHz*\xbc\x04\n" +
+	"confidence\x18\x02 \x01(\x01H\x01R\n" +
+	"confidence\x88\x01\x01B\x12\n" +
+	"\x10_emitterNotationB\r\n" +
+	"\v_confidence\"\x9d\x01\n" +
+	"\x17PulseRepetitionInterval\x12e\n" +
+	"\x18pulseRepetitionIntervalS\x18\x01 \x01(\v2$.components.PulseRepetitionIntervalSH\x00R\x18pulseRepetitionIntervalS\x88\x01\x01B\x1b\n" +
+	"\x19_pulseRepetitionIntervalS\"d\n" +
+	"\x18PulseRepetitionIntervalS\x12\x19\n" +
+	"\x05value\x18\x01 \x01(\x01H\x00R\x05value\x88\x01\x01\x12\x19\n" +
+	"\x05sigma\x18\x02 \x01(\x01H\x01R\x05sigma\x88\x01\x01B\b\n" +
+	"\x06_valueB\b\n" +
+	"\x06_sigma\"\x90\x01\n" +
+	"\x13ScanCharacteristics\x125\n" +
+	"\bscanType\x18\x01 \x01(\x0e2\x14.components.ScanTypeH\x00R\bscanType\x88\x01\x01\x12%\n" +
+	"\vscanPeriodS\x18\x02 \x01(\x01H\x01R\vscanPeriodS\x88\x01\x01B\v\n" +
+	"\t_scanTypeB\x0e\n" +
+	"\f_scanPeriodS\"W\n" +
+	"\vFrequencyHz\x12\x19\n" +
+	"\x05value\x18\x01 \x01(\x01H\x00R\x05value\x88\x01\x01\x12\x19\n" +
+	"\x05sigma\x18\x02 \x01(\x01H\x01R\x05sigma\x88\x01\x01B\b\n" +
+	"\x06_valueB\b\n" +
+	"\x06_sigma\"i\n" +
+	"\x17MinimumFrequencyRangeHz\x12>\n" +
+	"\vfrequencyHz\x18\x01 \x01(\v2\x17.components.FrequencyHzH\x00R\vfrequencyHz\x88\x01\x01B\x0e\n" +
+	"\f_frequencyHz\"i\n" +
+	"\x17MaximumFrequencyRangeHz\x12>\n" +
+	"\vfrequencyHz\x18\x01 \x01(\v2\x17.components.FrequencyHzH\x00R\vfrequencyHz\x88\x01\x01B\x0e\n" +
+	"\f_frequencyHz*\xbc\x04\n" +
 	"\bScanType\x12\x15\n" +
 	"\x11SCAN_TYPE_INVALID\x10\x00\x12\x16\n" +
 	"\x12SCAN_TYPE_CIRCULAR\x10\x01\x12-\n" +
@@ -821,6 +844,16 @@ func file_components_signal_proto_init() {
 		return
 	}
 	file_components_tracked_proto_init()
+	file_components_signal_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_signal_proto_msgTypes[1].OneofWrappers = []any{}
+	file_components_signal_proto_msgTypes[2].OneofWrappers = []any{}
+	file_components_signal_proto_msgTypes[4].OneofWrappers = []any{}
+	file_components_signal_proto_msgTypes[5].OneofWrappers = []any{}
+	file_components_signal_proto_msgTypes[6].OneofWrappers = []any{}
+	file_components_signal_proto_msgTypes[7].OneofWrappers = []any{}
+	file_components_signal_proto_msgTypes[8].OneofWrappers = []any{}
+	file_components_signal_proto_msgTypes[9].OneofWrappers = []any{}
+	file_components_signal_proto_msgTypes[10].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

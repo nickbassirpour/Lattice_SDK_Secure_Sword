@@ -248,12 +248,12 @@ func (x *Sensors) GetSensor() []*Sensor {
 
 type Sensor struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
-	SensorId               string                 `protobuf:"bytes,1,opt,name=sensorId,proto3" json:"sensorId,omitempty"`
-	OperationalState       OperationalState       `protobuf:"varint,2,opt,name=operationalState,proto3,enum=components.OperationalState" json:"operationalState,omitempty"`
-	SensorType             SensorType             `protobuf:"varint,3,opt,name=sensorType,proto3,enum=components.SensorType" json:"sensorType,omitempty"`
-	SensorDescription      string                 `protobuf:"bytes,4,opt,name=sensorDescription,proto3" json:"sensorDescription,omitempty"`
-	RfConfiguration        *RFConfiguration       `protobuf:"bytes,5,opt,name=rfConfiguration,proto3" json:"rfConfiguration,omitempty"`
-	LastDetectionTimestamp *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=lastDetectionTimestamp,proto3" json:"lastDetectionTimestamp,omitempty"`
+	SensorId               *string                `protobuf:"bytes,1,opt,name=sensorId,proto3,oneof" json:"sensorId,omitempty"`
+	OperationalState       *OperationalState      `protobuf:"varint,2,opt,name=operationalState,proto3,enum=components.OperationalState,oneof" json:"operationalState,omitempty"`
+	SensorType             *SensorType            `protobuf:"varint,3,opt,name=sensorType,proto3,enum=components.SensorType,oneof" json:"sensorType,omitempty"`
+	SensorDescription      *string                `protobuf:"bytes,4,opt,name=sensorDescription,proto3,oneof" json:"sensorDescription,omitempty"`
+	RfConfiguration        *RFConfiguration       `protobuf:"bytes,5,opt,name=rfConfiguration,proto3,oneof" json:"rfConfiguration,omitempty"`
+	LastDetectionTimestamp *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=lastDetectionTimestamp,proto3,oneof" json:"lastDetectionTimestamp,omitempty"`
 	FieldsOfView           []*FieldOfView         `protobuf:"bytes,7,rep,name=fieldsOfView,proto3" json:"fieldsOfView,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
@@ -290,29 +290,29 @@ func (*Sensor) Descriptor() ([]byte, []int) {
 }
 
 func (x *Sensor) GetSensorId() string {
-	if x != nil {
-		return x.SensorId
+	if x != nil && x.SensorId != nil {
+		return *x.SensorId
 	}
 	return ""
 }
 
 func (x *Sensor) GetOperationalState() OperationalState {
-	if x != nil {
-		return x.OperationalState
+	if x != nil && x.OperationalState != nil {
+		return *x.OperationalState
 	}
 	return OperationalState_OPERATIONAL_STATE_INVALID
 }
 
 func (x *Sensor) GetSensorType() SensorType {
-	if x != nil {
-		return x.SensorType
+	if x != nil && x.SensorType != nil {
+		return *x.SensorType
 	}
 	return SensorType_SENSOR_TYPE_INVALID
 }
 
 func (x *Sensor) GetSensorDescription() string {
-	if x != nil {
-		return x.SensorDescription
+	if x != nil && x.SensorDescription != nil {
+		return *x.SensorDescription
 	}
 	return ""
 }
@@ -392,8 +392,8 @@ func (x *RFConfiguration) GetBandwidthRangeHz() []*BandwidthRangeHz {
 
 type FrequencyRangeHz struct {
 	state                   protoimpl.MessageState   `protogen:"open.v1"`
-	MinimumFrequencyRangeHz *MinimumFrequencyRangeHz `protobuf:"bytes,1,opt,name=minimumFrequencyRangeHz,proto3" json:"minimumFrequencyRangeHz,omitempty"`
-	MaximumFrequencyRangeHz *MaximumFrequencyRangeHz `protobuf:"bytes,2,opt,name=maximumFrequencyRangeHz,proto3" json:"maximumFrequencyRangeHz,omitempty"`
+	MinimumFrequencyRangeHz *MinimumFrequencyRangeHz `protobuf:"bytes,1,opt,name=minimumFrequencyRangeHz,proto3,oneof" json:"minimumFrequencyRangeHz,omitempty"`
+	MaximumFrequencyRangeHz *MaximumFrequencyRangeHz `protobuf:"bytes,2,opt,name=maximumFrequencyRangeHz,proto3,oneof" json:"maximumFrequencyRangeHz,omitempty"`
 	unknownFields           protoimpl.UnknownFields
 	sizeCache               protoimpl.SizeCache
 }
@@ -444,8 +444,8 @@ func (x *FrequencyRangeHz) GetMaximumFrequencyRangeHz() *MaximumFrequencyRangeHz
 
 type BandwidthRangeHz struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	MinimumBandwidth *MinimumBandwidth      `protobuf:"bytes,1,opt,name=minimumBandwidth,proto3" json:"minimumBandwidth,omitempty"`
-	MaximumBandwidth *MaximumBandwidth      `protobuf:"bytes,2,opt,name=maximumBandwidth,proto3" json:"maximumBandwidth,omitempty"`
+	MinimumBandwidth *MinimumBandwidth      `protobuf:"bytes,1,opt,name=minimumBandwidth,proto3,oneof" json:"minimumBandwidth,omitempty"`
+	MaximumBandwidth *MaximumBandwidth      `protobuf:"bytes,2,opt,name=maximumBandwidth,proto3,oneof" json:"maximumBandwidth,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -496,7 +496,7 @@ func (x *BandwidthRangeHz) GetMaximumBandwidth() *MaximumBandwidth {
 
 type MinimumBandwidth struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	BandwidthHz   float64                `protobuf:"fixed64,1,opt,name=bandwidthHz,proto3" json:"bandwidthHz,omitempty"` // fixed typo from bandwithHz to bandwidthHz
+	BandwidthHz   *float64               `protobuf:"fixed64,1,opt,name=bandwidthHz,proto3,oneof" json:"bandwidthHz,omitempty"` // fixed typo from bandwithHz to bandwidthHz
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -532,15 +532,15 @@ func (*MinimumBandwidth) Descriptor() ([]byte, []int) {
 }
 
 func (x *MinimumBandwidth) GetBandwidthHz() float64 {
-	if x != nil {
-		return x.BandwidthHz
+	if x != nil && x.BandwidthHz != nil {
+		return *x.BandwidthHz
 	}
 	return 0
 }
 
 type MaximumBandwidth struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	BandwidthHz   float64                `protobuf:"fixed64,1,opt,name=bandwidthHz,proto3" json:"bandwidthHz,omitempty"` // fixed typo from bandwithHz to bandwidthHz
+	BandwidthHz   *float64               `protobuf:"fixed64,1,opt,name=bandwidthHz,proto3,oneof" json:"bandwidthHz,omitempty"` // fixed typo from bandwithHz to bandwidthHz
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -576,23 +576,23 @@ func (*MaximumBandwidth) Descriptor() ([]byte, []int) {
 }
 
 func (x *MaximumBandwidth) GetBandwidthHz() float64 {
-	if x != nil {
-		return x.BandwidthHz
+	if x != nil && x.BandwidthHz != nil {
+		return *x.BandwidthHz
 	}
 	return 0
 }
 
 type FieldOfView struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	FovId              int32                  `protobuf:"varint,1,opt,name=fovId,proto3" json:"fovId,omitempty"`
-	MountId            string                 `protobuf:"bytes,2,opt,name=mountId,proto3" json:"mountId,omitempty"`
-	ProjectFrustum     *ProjectFrustum        `protobuf:"bytes,3,opt,name=projectFrustum,proto3" json:"projectFrustum,omitempty"`
-	ProjectedCenterRay *Position              `protobuf:"bytes,4,opt,name=projectedCenterRay,proto3" json:"projectedCenterRay,omitempty"`
-	CenterRayPose      *RelativePose          `protobuf:"bytes,5,opt,name=centerRayPose,proto3" json:"centerRayPose,omitempty"`
-	HorizontalFov      float32                `protobuf:"fixed32,6,opt,name=horizontalFov,proto3" json:"horizontalFov,omitempty"`
-	VerticalFov        float32                `protobuf:"fixed32,7,opt,name=verticalFov,proto3" json:"verticalFov,omitempty"`
-	Range              float32                `protobuf:"fixed32,8,opt,name=range,proto3" json:"range,omitempty"`
-	Mode               Mode                   `protobuf:"varint,9,opt,name=mode,proto3,enum=components.Mode" json:"mode,omitempty"`
+	FovId              *int32                 `protobuf:"varint,1,opt,name=fovId,proto3,oneof" json:"fovId,omitempty"`
+	MountId            *string                `protobuf:"bytes,2,opt,name=mountId,proto3,oneof" json:"mountId,omitempty"`
+	ProjectFrustum     *ProjectFrustum        `protobuf:"bytes,3,opt,name=projectFrustum,proto3,oneof" json:"projectFrustum,omitempty"`
+	ProjectedCenterRay *Position              `protobuf:"bytes,4,opt,name=projectedCenterRay,proto3,oneof" json:"projectedCenterRay,omitempty"`
+	CenterRayPose      *RelativePose          `protobuf:"bytes,5,opt,name=centerRayPose,proto3,oneof" json:"centerRayPose,omitempty"`
+	HorizontalFov      *float32               `protobuf:"fixed32,6,opt,name=horizontalFov,proto3,oneof" json:"horizontalFov,omitempty"`
+	VerticalFov        *float32               `protobuf:"fixed32,7,opt,name=verticalFov,proto3,oneof" json:"verticalFov,omitempty"`
+	Range              *float32               `protobuf:"fixed32,8,opt,name=range,proto3,oneof" json:"range,omitempty"`
+	Mode               *Mode                  `protobuf:"varint,9,opt,name=mode,proto3,enum=components.Mode,oneof" json:"mode,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -628,15 +628,15 @@ func (*FieldOfView) Descriptor() ([]byte, []int) {
 }
 
 func (x *FieldOfView) GetFovId() int32 {
-	if x != nil {
-		return x.FovId
+	if x != nil && x.FovId != nil {
+		return *x.FovId
 	}
 	return 0
 }
 
 func (x *FieldOfView) GetMountId() string {
-	if x != nil {
-		return x.MountId
+	if x != nil && x.MountId != nil {
+		return *x.MountId
 	}
 	return ""
 }
@@ -663,39 +663,39 @@ func (x *FieldOfView) GetCenterRayPose() *RelativePose {
 }
 
 func (x *FieldOfView) GetHorizontalFov() float32 {
-	if x != nil {
-		return x.HorizontalFov
+	if x != nil && x.HorizontalFov != nil {
+		return *x.HorizontalFov
 	}
 	return 0
 }
 
 func (x *FieldOfView) GetVerticalFov() float32 {
-	if x != nil {
-		return x.VerticalFov
+	if x != nil && x.VerticalFov != nil {
+		return *x.VerticalFov
 	}
 	return 0
 }
 
 func (x *FieldOfView) GetRange() float32 {
-	if x != nil {
-		return x.Range
+	if x != nil && x.Range != nil {
+		return *x.Range
 	}
 	return 0
 }
 
 func (x *FieldOfView) GetMode() Mode {
-	if x != nil {
-		return x.Mode
+	if x != nil && x.Mode != nil {
+		return *x.Mode
 	}
 	return Mode_SENSOR_MODE_INVALID
 }
 
 type ProjectFrustum struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UpperLeft     *Position              `protobuf:"bytes,1,opt,name=upperLeft,proto3" json:"upperLeft,omitempty"`
-	UpperRight    *Position              `protobuf:"bytes,2,opt,name=upperRight,proto3" json:"upperRight,omitempty"`
-	BottomRight   *Position              `protobuf:"bytes,3,opt,name=bottomRight,proto3" json:"bottomRight,omitempty"`
-	BottomLeft    *Position              `protobuf:"bytes,4,opt,name=bottomLeft,proto3" json:"bottomLeft,omitempty"`
+	UpperLeft     *Position              `protobuf:"bytes,1,opt,name=upperLeft,proto3,oneof" json:"upperLeft,omitempty"`
+	UpperRight    *Position              `protobuf:"bytes,2,opt,name=upperRight,proto3,oneof" json:"upperRight,omitempty"`
+	BottomRight   *Position              `protobuf:"bytes,3,opt,name=bottomRight,proto3,oneof" json:"bottomRight,omitempty"`
+	BottomLeft    *Position              `protobuf:"bytes,4,opt,name=bottomLeft,proto3,oneof" json:"bottomLeft,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -765,49 +765,76 @@ const file_components_sensors_proto_rawDesc = "" +
 	"\x18components/sensors.proto\x12\n" +
 	"components\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17components/signal.proto\x1a\x18components/tracked.proto\x1a\x19components/position.proto\"5\n" +
 	"\aSensors\x12*\n" +
-	"\x06sensor\x18\x01 \x03(\v2\x12.components.SensorR\x06sensor\"\xac\x03\n" +
-	"\x06Sensor\x12\x1a\n" +
-	"\bsensorId\x18\x01 \x01(\tR\bsensorId\x12H\n" +
-	"\x10operationalState\x18\x02 \x01(\x0e2\x1c.components.OperationalStateR\x10operationalState\x126\n" +
+	"\x06sensor\x18\x01 \x03(\v2\x12.components.SensorR\x06sensor\"\xc0\x04\n" +
+	"\x06Sensor\x12\x1f\n" +
+	"\bsensorId\x18\x01 \x01(\tH\x00R\bsensorId\x88\x01\x01\x12M\n" +
+	"\x10operationalState\x18\x02 \x01(\x0e2\x1c.components.OperationalStateH\x01R\x10operationalState\x88\x01\x01\x12;\n" +
 	"\n" +
-	"sensorType\x18\x03 \x01(\x0e2\x16.components.SensorTypeR\n" +
-	"sensorType\x12,\n" +
-	"\x11sensorDescription\x18\x04 \x01(\tR\x11sensorDescription\x12E\n" +
-	"\x0frfConfiguration\x18\x05 \x01(\v2\x1b.components.RFConfigurationR\x0frfConfiguration\x12R\n" +
-	"\x16lastDetectionTimestamp\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x16lastDetectionTimestamp\x12;\n" +
-	"\ffieldsOfView\x18\a \x03(\v2\x17.components.FieldOfViewR\ffieldsOfView\"\xa5\x01\n" +
+	"sensorType\x18\x03 \x01(\x0e2\x16.components.SensorTypeH\x02R\n" +
+	"sensorType\x88\x01\x01\x121\n" +
+	"\x11sensorDescription\x18\x04 \x01(\tH\x03R\x11sensorDescription\x88\x01\x01\x12J\n" +
+	"\x0frfConfiguration\x18\x05 \x01(\v2\x1b.components.RFConfigurationH\x04R\x0frfConfiguration\x88\x01\x01\x12W\n" +
+	"\x16lastDetectionTimestamp\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampH\x05R\x16lastDetectionTimestamp\x88\x01\x01\x12;\n" +
+	"\ffieldsOfView\x18\a \x03(\v2\x17.components.FieldOfViewR\ffieldsOfViewB\v\n" +
+	"\t_sensorIdB\x13\n" +
+	"\x11_operationalStateB\r\n" +
+	"\v_sensorTypeB\x14\n" +
+	"\x12_sensorDescriptionB\x12\n" +
+	"\x10_rfConfigurationB\x19\n" +
+	"\x17_lastDetectionTimestamp\"\xa5\x01\n" +
 	"\x0fRFConfiguration\x12H\n" +
 	"\x10frequencyRangeHz\x18\x01 \x03(\v2\x1c.components.FrequencyRangeHzR\x10frequencyRangeHz\x12H\n" +
-	"\x10bandwidthRangeHz\x18\x02 \x03(\v2\x1c.components.BandwidthRangeHzR\x10bandwidthRangeHz\"\xd0\x01\n" +
-	"\x10FrequencyRangeHz\x12]\n" +
-	"\x17minimumFrequencyRangeHz\x18\x01 \x01(\v2#.components.MinimumFrequencyRangeHzR\x17minimumFrequencyRangeHz\x12]\n" +
-	"\x17maximumFrequencyRangeHz\x18\x02 \x01(\v2#.components.MaximumFrequencyRangeHzR\x17maximumFrequencyRangeHz\"\xa6\x01\n" +
-	"\x10BandwidthRangeHz\x12H\n" +
-	"\x10minimumBandwidth\x18\x01 \x01(\v2\x1c.components.MinimumBandwidthR\x10minimumBandwidth\x12H\n" +
-	"\x10maximumBandwidth\x18\x02 \x01(\v2\x1c.components.MaximumBandwidthR\x10maximumBandwidth\"4\n" +
-	"\x10MinimumBandwidth\x12 \n" +
-	"\vbandwidthHz\x18\x01 \x01(\x01R\vbandwidthHz\"4\n" +
-	"\x10MaximumBandwidth\x12 \n" +
-	"\vbandwidthHz\x18\x01 \x01(\x01R\vbandwidthHz\"\x8b\x03\n" +
-	"\vFieldOfView\x12\x14\n" +
-	"\x05fovId\x18\x01 \x01(\x05R\x05fovId\x12\x18\n" +
-	"\amountId\x18\x02 \x01(\tR\amountId\x12B\n" +
-	"\x0eprojectFrustum\x18\x03 \x01(\v2\x1a.components.ProjectFrustumR\x0eprojectFrustum\x12D\n" +
-	"\x12projectedCenterRay\x18\x04 \x01(\v2\x14.components.PositionR\x12projectedCenterRay\x12>\n" +
-	"\rcenterRayPose\x18\x05 \x01(\v2\x18.components.RelativePoseR\rcenterRayPose\x12$\n" +
-	"\rhorizontalFov\x18\x06 \x01(\x02R\rhorizontalFov\x12 \n" +
-	"\vverticalFov\x18\a \x01(\x02R\vverticalFov\x12\x14\n" +
-	"\x05range\x18\b \x01(\x02R\x05range\x12$\n" +
-	"\x04mode\x18\t \x01(\x0e2\x10.components.ModeR\x04mode\"\xe8\x01\n" +
-	"\x0eProjectFrustum\x122\n" +
-	"\tupperLeft\x18\x01 \x01(\v2\x14.components.PositionR\tupperLeft\x124\n" +
+	"\x10bandwidthRangeHz\x18\x02 \x03(\v2\x1c.components.BandwidthRangeHzR\x10bandwidthRangeHz\"\x92\x02\n" +
+	"\x10FrequencyRangeHz\x12b\n" +
+	"\x17minimumFrequencyRangeHz\x18\x01 \x01(\v2#.components.MinimumFrequencyRangeHzH\x00R\x17minimumFrequencyRangeHz\x88\x01\x01\x12b\n" +
+	"\x17maximumFrequencyRangeHz\x18\x02 \x01(\v2#.components.MaximumFrequencyRangeHzH\x01R\x17maximumFrequencyRangeHz\x88\x01\x01B\x1a\n" +
+	"\x18_minimumFrequencyRangeHzB\x1a\n" +
+	"\x18_maximumFrequencyRangeHz\"\xda\x01\n" +
+	"\x10BandwidthRangeHz\x12M\n" +
+	"\x10minimumBandwidth\x18\x01 \x01(\v2\x1c.components.MinimumBandwidthH\x00R\x10minimumBandwidth\x88\x01\x01\x12M\n" +
+	"\x10maximumBandwidth\x18\x02 \x01(\v2\x1c.components.MaximumBandwidthH\x01R\x10maximumBandwidth\x88\x01\x01B\x13\n" +
+	"\x11_minimumBandwidthB\x13\n" +
+	"\x11_maximumBandwidth\"I\n" +
+	"\x10MinimumBandwidth\x12%\n" +
+	"\vbandwidthHz\x18\x01 \x01(\x01H\x00R\vbandwidthHz\x88\x01\x01B\x0e\n" +
+	"\f_bandwidthHz\"I\n" +
+	"\x10MaximumBandwidth\x12%\n" +
+	"\vbandwidthHz\x18\x01 \x01(\x01H\x00R\vbandwidthHz\x88\x01\x01B\x0e\n" +
+	"\f_bandwidthHz\"\xbf\x04\n" +
+	"\vFieldOfView\x12\x19\n" +
+	"\x05fovId\x18\x01 \x01(\x05H\x00R\x05fovId\x88\x01\x01\x12\x1d\n" +
+	"\amountId\x18\x02 \x01(\tH\x01R\amountId\x88\x01\x01\x12G\n" +
+	"\x0eprojectFrustum\x18\x03 \x01(\v2\x1a.components.ProjectFrustumH\x02R\x0eprojectFrustum\x88\x01\x01\x12I\n" +
+	"\x12projectedCenterRay\x18\x04 \x01(\v2\x14.components.PositionH\x03R\x12projectedCenterRay\x88\x01\x01\x12C\n" +
+	"\rcenterRayPose\x18\x05 \x01(\v2\x18.components.RelativePoseH\x04R\rcenterRayPose\x88\x01\x01\x12)\n" +
+	"\rhorizontalFov\x18\x06 \x01(\x02H\x05R\rhorizontalFov\x88\x01\x01\x12%\n" +
+	"\vverticalFov\x18\a \x01(\x02H\x06R\vverticalFov\x88\x01\x01\x12\x19\n" +
+	"\x05range\x18\b \x01(\x02H\aR\x05range\x88\x01\x01\x12)\n" +
+	"\x04mode\x18\t \x01(\x0e2\x10.components.ModeH\bR\x04mode\x88\x01\x01B\b\n" +
+	"\x06_fovIdB\n" +
 	"\n" +
-	"upperRight\x18\x02 \x01(\v2\x14.components.PositionR\n" +
-	"upperRight\x126\n" +
-	"\vbottomRight\x18\x03 \x01(\v2\x14.components.PositionR\vbottomRight\x124\n" +
+	"\b_mountIdB\x11\n" +
+	"\x0f_projectFrustumB\x15\n" +
+	"\x13_projectedCenterRayB\x10\n" +
+	"\x0e_centerRayPoseB\x10\n" +
+	"\x0e_horizontalFovB\x0e\n" +
+	"\f_verticalFovB\b\n" +
+	"\x06_rangeB\a\n" +
+	"\x05_mode\"\xb8\x02\n" +
+	"\x0eProjectFrustum\x127\n" +
+	"\tupperLeft\x18\x01 \x01(\v2\x14.components.PositionH\x00R\tupperLeft\x88\x01\x01\x129\n" +
 	"\n" +
-	"bottomLeft\x18\x04 \x01(\v2\x14.components.PositionR\n" +
-	"bottomLeft*\xe5\x01\n" +
+	"upperRight\x18\x02 \x01(\v2\x14.components.PositionH\x01R\n" +
+	"upperRight\x88\x01\x01\x12;\n" +
+	"\vbottomRight\x18\x03 \x01(\v2\x14.components.PositionH\x02R\vbottomRight\x88\x01\x01\x129\n" +
+	"\n" +
+	"bottomLeft\x18\x04 \x01(\v2\x14.components.PositionH\x03R\n" +
+	"bottomLeft\x88\x01\x01B\f\n" +
+	"\n" +
+	"_upperLeftB\r\n" +
+	"\v_upperRightB\x0e\n" +
+	"\f_bottomRightB\r\n" +
+	"\v_bottomLeft*\xe5\x01\n" +
 	"\n" +
 	"SensorType\x12\x17\n" +
 	"\x13SENSOR_TYPE_INVALID\x10\x00\x12\x15\n" +
@@ -902,6 +929,13 @@ func file_components_sensors_proto_init() {
 	file_components_signal_proto_init()
 	file_components_tracked_proto_init()
 	file_components_position_proto_init()
+	file_components_sensors_proto_msgTypes[1].OneofWrappers = []any{}
+	file_components_sensors_proto_msgTypes[3].OneofWrappers = []any{}
+	file_components_sensors_proto_msgTypes[4].OneofWrappers = []any{}
+	file_components_sensors_proto_msgTypes[5].OneofWrappers = []any{}
+	file_components_sensors_proto_msgTypes[6].OneofWrappers = []any{}
+	file_components_sensors_proto_msgTypes[7].OneofWrappers = []any{}
+	file_components_sensors_proto_msgTypes[8].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

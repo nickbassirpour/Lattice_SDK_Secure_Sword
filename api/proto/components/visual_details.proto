@@ -5,19 +5,19 @@ package components;
 option go_package = "/components";
 
 message VisualDetails {
-  RangeRings range_rings = 1;
+  optional RangeRings range_rings = 1;
 }
 
 message RangeRings {
-  double min_distance_m = 1;
-  double max_distance_m = 2;
-  uint32 ring_count = 3;
-  RingLineColor ring_line_color = 4;
+  optional double min_distance_m = 1;
+  optional double max_distance_m = 2;
+  optional uint32 ring_count = 3;
+  optional RingLineColor ring_line_color = 4;
 }
 
 message RingLineColor {
-  float red = 1;
-  float green = 2;
-  float blue = 3;
-  float alpha = 4;
+  optional float red = 1;
+  optional float green = 2;
+  optional float blue = 3;
+  optional float alpha = 4;
 }

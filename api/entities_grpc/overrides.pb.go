@@ -175,13 +175,13 @@ func (x *Overrides) GetOverride() []*Override {
 
 type Override struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	RequestId        string                 `protobuf:"bytes,1,opt,name=requestId,proto3" json:"requestId,omitempty"`
-	FieldPath        string                 `protobuf:"bytes,2,opt,name=fieldPath,proto3" json:"fieldPath,omitempty"`
-	MaskedFieldValue *anypb.Any             `protobuf:"bytes,3,opt,name=maskedFieldValue,proto3" json:"maskedFieldValue,omitempty"`
-	Status           OverrideStatus         `protobuf:"varint,4,opt,name=status,proto3,enum=components.OverrideStatus" json:"status,omitempty"`
-	Provenance       *Provenance            `protobuf:"bytes,5,opt,name=provenance,proto3" json:"provenance,omitempty"`
-	Type             Type                   `protobuf:"varint,6,opt,name=type,proto3,enum=components.Type" json:"type,omitempty"`
-	RequestTimeStamp string                 `protobuf:"bytes,7,opt,name=requestTimeStamp,proto3" json:"requestTimeStamp,omitempty"`
+	RequestId        *string                `protobuf:"bytes,1,opt,name=requestId,proto3,oneof" json:"requestId,omitempty"`
+	FieldPath        *string                `protobuf:"bytes,2,opt,name=fieldPath,proto3,oneof" json:"fieldPath,omitempty"`
+	MaskedFieldValue *anypb.Any             `protobuf:"bytes,3,opt,name=maskedFieldValue,proto3,oneof" json:"maskedFieldValue,omitempty"`
+	Status           *OverrideStatus        `protobuf:"varint,4,opt,name=status,proto3,enum=components.OverrideStatus,oneof" json:"status,omitempty"`
+	Provenance       *Provenance            `protobuf:"bytes,5,opt,name=provenance,proto3,oneof" json:"provenance,omitempty"`
+	Type             *Type                  `protobuf:"varint,6,opt,name=type,proto3,enum=components.Type,oneof" json:"type,omitempty"`
+	RequestTimeStamp *string                `protobuf:"bytes,7,opt,name=requestTimeStamp,proto3,oneof" json:"requestTimeStamp,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -217,15 +217,15 @@ func (*Override) Descriptor() ([]byte, []int) {
 }
 
 func (x *Override) GetRequestId() string {
-	if x != nil {
-		return x.RequestId
+	if x != nil && x.RequestId != nil {
+		return *x.RequestId
 	}
 	return ""
 }
 
 func (x *Override) GetFieldPath() string {
-	if x != nil {
-		return x.FieldPath
+	if x != nil && x.FieldPath != nil {
+		return *x.FieldPath
 	}
 	return ""
 }
@@ -238,8 +238,8 @@ func (x *Override) GetMaskedFieldValue() *anypb.Any {
 }
 
 func (x *Override) GetStatus() OverrideStatus {
-	if x != nil {
-		return x.Status
+	if x != nil && x.Status != nil {
+		return *x.Status
 	}
 	return OverrideStatus_OVERRIDE_STATUS_INVALID
 }
@@ -252,15 +252,15 @@ func (x *Override) GetProvenance() *Provenance {
 }
 
 func (x *Override) GetType() Type {
-	if x != nil {
-		return x.Type
+	if x != nil && x.Type != nil {
+		return *x.Type
 	}
 	return Type_OVERRIDE_TYPE_INVALID
 }
 
 func (x *Override) GetRequestTimeStamp() string {
-	if x != nil {
-		return x.RequestTimeStamp
+	if x != nil && x.RequestTimeStamp != nil {
+		return *x.RequestTimeStamp
 	}
 	return ""
 }
@@ -272,17 +272,26 @@ const file_components_overrides_proto_rawDesc = "" +
 	"\x1acomponents/overrides.proto\x12\n" +
 	"components\x1a\x19google/protobuf/any.proto\x1a\x1bcomponents/provenance.proto\"=\n" +
 	"\tOverrides\x120\n" +
-	"\boverride\x18\x01 \x03(\v2\x14.components.OverrideR\boverride\"\xc6\x02\n" +
-	"\bOverride\x12\x1c\n" +
-	"\trequestId\x18\x01 \x01(\tR\trequestId\x12\x1c\n" +
-	"\tfieldPath\x18\x02 \x01(\tR\tfieldPath\x12@\n" +
-	"\x10maskedFieldValue\x18\x03 \x01(\v2\x14.google.protobuf.AnyR\x10maskedFieldValue\x122\n" +
-	"\x06status\x18\x04 \x01(\x0e2\x1a.components.OverrideStatusR\x06status\x126\n" +
+	"\boverride\x18\x01 \x03(\v2\x14.components.OverrideR\boverride\"\xd2\x03\n" +
+	"\bOverride\x12!\n" +
+	"\trequestId\x18\x01 \x01(\tH\x00R\trequestId\x88\x01\x01\x12!\n" +
+	"\tfieldPath\x18\x02 \x01(\tH\x01R\tfieldPath\x88\x01\x01\x12E\n" +
+	"\x10maskedFieldValue\x18\x03 \x01(\v2\x14.google.protobuf.AnyH\x02R\x10maskedFieldValue\x88\x01\x01\x127\n" +
+	"\x06status\x18\x04 \x01(\x0e2\x1a.components.OverrideStatusH\x03R\x06status\x88\x01\x01\x12;\n" +
 	"\n" +
-	"provenance\x18\x05 \x01(\v2\x16.components.ProvenanceR\n" +
-	"provenance\x12$\n" +
-	"\x04type\x18\x06 \x01(\x0e2\x10.components.TypeR\x04type\x12*\n" +
-	"\x10requestTimeStamp\x18\a \x01(\tR\x10requestTimeStamp*\xc8\x01\n" +
+	"provenance\x18\x05 \x01(\v2\x16.components.ProvenanceH\x04R\n" +
+	"provenance\x88\x01\x01\x12)\n" +
+	"\x04type\x18\x06 \x01(\x0e2\x10.components.TypeH\x05R\x04type\x88\x01\x01\x12/\n" +
+	"\x10requestTimeStamp\x18\a \x01(\tH\x06R\x10requestTimeStamp\x88\x01\x01B\f\n" +
+	"\n" +
+	"_requestIdB\f\n" +
+	"\n" +
+	"_fieldPathB\x13\n" +
+	"\x11_maskedFieldValueB\t\n" +
+	"\a_statusB\r\n" +
+	"\v_provenanceB\a\n" +
+	"\x05_typeB\x13\n" +
+	"\x11_requestTimeStamp*\xc8\x01\n" +
 	"\x0eOverrideStatus\x12\x1b\n" +
 	"\x17OVERRIDE_STATUS_INVALID\x10\x00\x12\x1b\n" +
 	"\x17OVERRIDE_STATUS_APPLIED\x10\x01\x12\x1b\n" +
@@ -336,6 +345,7 @@ func file_components_overrides_proto_init() {
 		return
 	}
 	file_components_provenance_proto_init()
+	file_components_overrides_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

@@ -5,22 +5,22 @@ package components;
 option go_package = "/components";
 
 message Orbit {
-  OrbitMeanElements orbitMeanElements = 1;
+  optional OrbitMeanElements orbitMeanElements = 1;
 }
 
 message OrbitMeanElements {
-  OrbitMetadata metadata = 1;
-  MeanKeplarianElements meanKeplarianElements = 2;
-  TleParamaters tleParameters = 3;
+  optional OrbitMetadata metadata = 1;
+  optional MeanKeplarianElements meanKeplarianElements = 2;
+  optional TleParamaters tleParameters = 3;
 }
 
 message OrbitMetadata {
-  string creationDate = 1;
-  string originator = 2;
-  string messageId = 3;
-  RefFrame refFrame = 4;
-  string refFrameEpoch = 5;
-  MeanElementTheory meanElementTheory = 6;
+  optional string creationDate = 1;
+  optional string originator = 2;
+  optional string messageId = 3;
+  optional RefFrame refFrame = 4;
+  optional string refFrameEpoch = 5;
+  optional MeanElementTheory meanElementTheory = 6;
 }
 
 enum RefFrame {
@@ -34,26 +34,26 @@ enum MeanElementTheory {
 }
 
 message MeanKeplarianElements {
-  string epoch = 1;
-  double semiMajorAxisKm = 2;
-  double meanMotion = 3;
-  double eccentricity = 4;
-  double inclinationDeg = 5;
-  double raOfAscNodeDeg = 6;
-  double argOfPericenterDeg = 7;
-  double meanAnomalyDeg = 8;
-  double gm = 9;
+  optional string epoch = 1;
+  optional double semiMajorAxisKm = 2;
+  optional double meanMotion = 3;
+  optional double eccentricity = 4;
+  optional double inclinationDeg = 5;
+  optional double raOfAscNodeDeg = 6;
+  optional double argOfPericenterDeg = 7;
+  optional double meanAnomalyDeg = 8;
+  optional double gm = 9;
 }
 
 message TleParamaters {
-  uint32 ephemerisType = 1;
-  string classificationType = 2;
-  uint32 noradCatId = 3;
-  uint32 elementSetNo = 4;
-  uint32 revAtEpoch = 5;
-  double bstar = 6;
-  double bterm = 7;
-  double meanMotionDot = 8;
-  double meanMotionDdot = 9;
-  double agom = 10;
+  optional uint32 ephemerisType = 1;
+  optional string classificationType = 2;
+  optional uint32 noradCatId = 3;
+  optional uint32 elementSetNo = 4;
+  optional uint32 revAtEpoch = 5;
+  optional double bstar = 6;
+  optional double bterm = 7;
+  optional double meanMotionDot = 8;
+  optional double meanMotionDdot = 9;
+  optional double agom = 10;
 }

@@ -24,17 +24,17 @@ const (
 type Position struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// WGS84 geodetic latitude in decimal degrees.
-	LatitudeDegrees float64 `protobuf:"fixed64,1,opt,name=latitudeDegrees,proto3" json:"latitudeDegrees,omitempty"`
+	LatitudeDegrees *float64 `protobuf:"fixed64,1,opt,name=latitudeDegrees,proto3,oneof" json:"latitudeDegrees,omitempty"`
 	// WGS84 longitude in decimal degrees.
-	LongitudeDegrees float64 `protobuf:"fixed64,2,opt,name=longitudeDegrees,proto3" json:"longitudeDegrees,omitempty"`
+	LongitudeDegrees *float64 `protobuf:"fixed64,2,opt,name=longitudeDegrees,proto3,oneof" json:"longitudeDegrees,omitempty"`
 	// Altitude as height above ellipsoid (WGS84) in meters.
-	AltitudeHaeMeters float64 `protobuf:"fixed64,3,opt,name=altitudeHaeMeters,proto3" json:"altitudeHaeMeters,omitempty"`
+	AltitudeHaeMeters *float64 `protobuf:"fixed64,3,opt,name=altitudeHaeMeters,proto3,oneof" json:"altitudeHaeMeters,omitempty"`
 	// Altitude as AGL (Above Ground Level).
-	AltitudeAglMeters float64 `protobuf:"fixed64,4,opt,name=altitudeAglMeters,proto3" json:"altitudeAglMeters,omitempty"`
+	AltitudeAglMeters *float64 `protobuf:"fixed64,4,opt,name=altitudeAglMeters,proto3,oneof" json:"altitudeAglMeters,omitempty"`
 	// Altitude as ASF (Above Sea Floor).
-	AltitudeAsfMeters float64 `protobuf:"fixed64,5,opt,name=altitudeAsfMeters,proto3" json:"altitudeAsfMeters,omitempty"`
+	AltitudeAsfMeters *float64 `protobuf:"fixed64,5,opt,name=altitudeAsfMeters,proto3,oneof" json:"altitudeAsfMeters,omitempty"`
 	// Depth from surface of water via pressure sensors.
-	PressureDepthMeters float64 `protobuf:"fixed64,6,opt,name=pressureDepthMeters,proto3" json:"pressureDepthMeters,omitempty"`
+	PressureDepthMeters *float64 `protobuf:"fixed64,6,opt,name=pressureDepthMeters,proto3,oneof" json:"pressureDepthMeters,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -70,43 +70,43 @@ func (*Position) Descriptor() ([]byte, []int) {
 }
 
 func (x *Position) GetLatitudeDegrees() float64 {
-	if x != nil {
-		return x.LatitudeDegrees
+	if x != nil && x.LatitudeDegrees != nil {
+		return *x.LatitudeDegrees
 	}
 	return 0
 }
 
 func (x *Position) GetLongitudeDegrees() float64 {
-	if x != nil {
-		return x.LongitudeDegrees
+	if x != nil && x.LongitudeDegrees != nil {
+		return *x.LongitudeDegrees
 	}
 	return 0
 }
 
 func (x *Position) GetAltitudeHaeMeters() float64 {
-	if x != nil {
-		return x.AltitudeHaeMeters
+	if x != nil && x.AltitudeHaeMeters != nil {
+		return *x.AltitudeHaeMeters
 	}
 	return 0
 }
 
 func (x *Position) GetAltitudeAglMeters() float64 {
-	if x != nil {
-		return x.AltitudeAglMeters
+	if x != nil && x.AltitudeAglMeters != nil {
+		return *x.AltitudeAglMeters
 	}
 	return 0
 }
 
 func (x *Position) GetAltitudeAsfMeters() float64 {
-	if x != nil {
-		return x.AltitudeAsfMeters
+	if x != nil && x.AltitudeAsfMeters != nil {
+		return *x.AltitudeAsfMeters
 	}
 	return 0
 }
 
 func (x *Position) GetPressureDepthMeters() float64 {
-	if x != nil {
-		return x.PressureDepthMeters
+	if x != nil && x.PressureDepthMeters != nil {
+		return *x.PressureDepthMeters
 	}
 	return 0
 }
@@ -116,14 +116,20 @@ var File_components_position_proto protoreflect.FileDescriptor
 const file_components_position_proto_rawDesc = "" +
 	"\n" +
 	"\x19components/position.proto\x12\n" +
-	"components\"\x9c\x02\n" +
-	"\bPosition\x12(\n" +
-	"\x0flatitudeDegrees\x18\x01 \x01(\x01R\x0flatitudeDegrees\x12*\n" +
-	"\x10longitudeDegrees\x18\x02 \x01(\x01R\x10longitudeDegrees\x12,\n" +
-	"\x11altitudeHaeMeters\x18\x03 \x01(\x01R\x11altitudeHaeMeters\x12,\n" +
-	"\x11altitudeAglMeters\x18\x04 \x01(\x01R\x11altitudeAglMeters\x12,\n" +
-	"\x11altitudeAsfMeters\x18\x05 \x01(\x01R\x11altitudeAsfMeters\x120\n" +
-	"\x13pressureDepthMeters\x18\x06 \x01(\x01R\x13pressureDepthMetersB\rZ\v/componentsb\x06proto3"
+	"components\"\xbd\x03\n" +
+	"\bPosition\x12-\n" +
+	"\x0flatitudeDegrees\x18\x01 \x01(\x01H\x00R\x0flatitudeDegrees\x88\x01\x01\x12/\n" +
+	"\x10longitudeDegrees\x18\x02 \x01(\x01H\x01R\x10longitudeDegrees\x88\x01\x01\x121\n" +
+	"\x11altitudeHaeMeters\x18\x03 \x01(\x01H\x02R\x11altitudeHaeMeters\x88\x01\x01\x121\n" +
+	"\x11altitudeAglMeters\x18\x04 \x01(\x01H\x03R\x11altitudeAglMeters\x88\x01\x01\x121\n" +
+	"\x11altitudeAsfMeters\x18\x05 \x01(\x01H\x04R\x11altitudeAsfMeters\x88\x01\x01\x125\n" +
+	"\x13pressureDepthMeters\x18\x06 \x01(\x01H\x05R\x13pressureDepthMeters\x88\x01\x01B\x12\n" +
+	"\x10_latitudeDegreesB\x13\n" +
+	"\x11_longitudeDegreesB\x14\n" +
+	"\x12_altitudeHaeMetersB\x14\n" +
+	"\x12_altitudeAglMetersB\x14\n" +
+	"\x12_altitudeAsfMetersB\x16\n" +
+	"\x14_pressureDepthMetersB\rZ\v/componentsb\x06proto3"
 
 var (
 	file_components_position_proto_rawDescOnce sync.Once
@@ -154,6 +160,7 @@ func file_components_position_proto_init() {
 	if File_components_position_proto != nil {
 		return
 	}
+	file_components_position_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

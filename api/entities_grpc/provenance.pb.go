@@ -24,11 +24,11 @@ const (
 
 type Provenance struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	IntegrationName   string                 `protobuf:"bytes,1,opt,name=integrationName,proto3" json:"integrationName,omitempty"`
-	DataType          string                 `protobuf:"bytes,2,opt,name=dataType,proto3" json:"dataType,omitempty"`
-	SourceId          string                 `protobuf:"bytes,3,opt,name=sourceId,proto3" json:"sourceId,omitempty"`
-	SourceUpdateTime  *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=sourceUpdateTime,proto3" json:"sourceUpdateTime,omitempty"`
-	SourceDescription string                 `protobuf:"bytes,5,opt,name=sourceDescription,proto3" json:"sourceDescription,omitempty"`
+	IntegrationName   *string                `protobuf:"bytes,1,opt,name=integrationName,proto3,oneof" json:"integrationName,omitempty"`
+	DataType          *string                `protobuf:"bytes,2,opt,name=dataType,proto3,oneof" json:"dataType,omitempty"`
+	SourceId          *string                `protobuf:"bytes,3,opt,name=sourceId,proto3,oneof" json:"sourceId,omitempty"`
+	SourceUpdateTime  *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=sourceUpdateTime,proto3,oneof" json:"sourceUpdateTime,omitempty"`
+	SourceDescription *string                `protobuf:"bytes,5,opt,name=sourceDescription,proto3,oneof" json:"sourceDescription,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -64,22 +64,22 @@ func (*Provenance) Descriptor() ([]byte, []int) {
 }
 
 func (x *Provenance) GetIntegrationName() string {
-	if x != nil {
-		return x.IntegrationName
+	if x != nil && x.IntegrationName != nil {
+		return *x.IntegrationName
 	}
 	return ""
 }
 
 func (x *Provenance) GetDataType() string {
-	if x != nil {
-		return x.DataType
+	if x != nil && x.DataType != nil {
+		return *x.DataType
 	}
 	return ""
 }
 
 func (x *Provenance) GetSourceId() string {
-	if x != nil {
-		return x.SourceId
+	if x != nil && x.SourceId != nil {
+		return *x.SourceId
 	}
 	return ""
 }
@@ -92,8 +92,8 @@ func (x *Provenance) GetSourceUpdateTime() *timestamppb.Timestamp {
 }
 
 func (x *Provenance) GetSourceDescription() string {
-	if x != nil {
-		return x.SourceDescription
+	if x != nil && x.SourceDescription != nil {
+		return *x.SourceDescription
 	}
 	return ""
 }
@@ -103,14 +103,19 @@ var File_components_provenance_proto protoreflect.FileDescriptor
 const file_components_provenance_proto_rawDesc = "" +
 	"\n" +
 	"\x1bcomponents/provenance.proto\x12\n" +
-	"components\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe4\x01\n" +
+	"components\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd6\x02\n" +
 	"\n" +
-	"Provenance\x12(\n" +
-	"\x0fintegrationName\x18\x01 \x01(\tR\x0fintegrationName\x12\x1a\n" +
-	"\bdataType\x18\x02 \x01(\tR\bdataType\x12\x1a\n" +
-	"\bsourceId\x18\x03 \x01(\tR\bsourceId\x12F\n" +
-	"\x10sourceUpdateTime\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x10sourceUpdateTime\x12,\n" +
-	"\x11sourceDescription\x18\x05 \x01(\tR\x11sourceDescriptionB\rZ\v/componentsb\x06proto3"
+	"Provenance\x12-\n" +
+	"\x0fintegrationName\x18\x01 \x01(\tH\x00R\x0fintegrationName\x88\x01\x01\x12\x1f\n" +
+	"\bdataType\x18\x02 \x01(\tH\x01R\bdataType\x88\x01\x01\x12\x1f\n" +
+	"\bsourceId\x18\x03 \x01(\tH\x02R\bsourceId\x88\x01\x01\x12K\n" +
+	"\x10sourceUpdateTime\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x03R\x10sourceUpdateTime\x88\x01\x01\x121\n" +
+	"\x11sourceDescription\x18\x05 \x01(\tH\x04R\x11sourceDescription\x88\x01\x01B\x12\n" +
+	"\x10_integrationNameB\v\n" +
+	"\t_dataTypeB\v\n" +
+	"\t_sourceIdB\x13\n" +
+	"\x11_sourceUpdateTimeB\x14\n" +
+	"\x12_sourceDescriptionB\rZ\v/componentsb\x06proto3"
 
 var (
 	file_components_provenance_proto_rawDescOnce sync.Once
@@ -143,6 +148,7 @@ func file_components_provenance_proto_init() {
 	if File_components_provenance_proto != nil {
 		return
 	}
+	file_components_provenance_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

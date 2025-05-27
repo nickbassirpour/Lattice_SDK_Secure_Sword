@@ -23,11 +23,11 @@ const (
 
 type GeoShape struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Point         *Point                 `protobuf:"bytes,1,opt,name=point,proto3" json:"point,omitempty"`
-	Line          *Line                  `protobuf:"bytes,2,opt,name=line,proto3" json:"line,omitempty"`
-	Polygon       *Polygon               `protobuf:"bytes,3,opt,name=polygon,proto3" json:"polygon,omitempty"`
-	Ellipse       *Ellipse               `protobuf:"bytes,4,opt,name=ellipse,proto3" json:"ellipse,omitempty"`
-	Ellipsoid     *Ellipsoid             `protobuf:"bytes,5,opt,name=ellipsoid,proto3" json:"ellipsoid,omitempty"`
+	Point         *Point                 `protobuf:"bytes,1,opt,name=point,proto3,oneof" json:"point,omitempty"`
+	Line          *Line                  `protobuf:"bytes,2,opt,name=line,proto3,oneof" json:"line,omitempty"`
+	Polygon       *Polygon               `protobuf:"bytes,3,opt,name=polygon,proto3,oneof" json:"polygon,omitempty"`
+	Ellipse       *Ellipse               `protobuf:"bytes,4,opt,name=ellipse,proto3,oneof" json:"ellipse,omitempty"`
+	Ellipsoid     *Ellipsoid             `protobuf:"bytes,5,opt,name=ellipsoid,proto3,oneof" json:"ellipsoid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -99,7 +99,7 @@ func (x *GeoShape) GetEllipsoid() *Ellipsoid {
 
 type Point struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Position      *Position              `protobuf:"bytes,1,opt,name=position,proto3" json:"position,omitempty"`
+	Position      *Position              `protobuf:"bytes,1,opt,name=position,proto3,oneof" json:"position,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -143,7 +143,7 @@ func (x *Point) GetPosition() *Position {
 
 type Line struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Position      *Position              `protobuf:"bytes,1,opt,name=position,proto3" json:"position,omitempty"`
+	Position      *Position              `protobuf:"bytes,1,opt,name=position,proto3,oneof" json:"position,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -188,7 +188,7 @@ func (x *Line) GetPosition() *Position {
 type Polygon struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Rings         []*Ring                `protobuf:"bytes,1,rep,name=rings,proto3" json:"rings,omitempty"`
-	IsRectangle   bool                   `protobuf:"varint,2,opt,name=isRectangle,proto3" json:"isRectangle,omitempty"`
+	IsRectangle   *bool                  `protobuf:"varint,2,opt,name=isRectangle,proto3,oneof" json:"isRectangle,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -231,8 +231,8 @@ func (x *Polygon) GetRings() []*Ring {
 }
 
 func (x *Polygon) GetIsRectangle() bool {
-	if x != nil {
-		return x.IsRectangle
+	if x != nil && x.IsRectangle != nil {
+		return *x.IsRectangle
 	}
 	return false
 }
@@ -283,8 +283,8 @@ func (x *Ring) GetPositions() []*LinearRing {
 
 type LinearRing struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Position      *Position              `protobuf:"bytes,1,opt,name=position,proto3" json:"position,omitempty"`
-	HeightM       float32                `protobuf:"fixed32,2,opt,name=heightM,proto3" json:"heightM,omitempty"`
+	Position      *Position              `protobuf:"bytes,1,opt,name=position,proto3,oneof" json:"position,omitempty"`
+	HeightM       *float32               `protobuf:"fixed32,2,opt,name=heightM,proto3,oneof" json:"heightM,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -327,18 +327,18 @@ func (x *LinearRing) GetPosition() *Position {
 }
 
 func (x *LinearRing) GetHeightM() float32 {
-	if x != nil {
-		return x.HeightM
+	if x != nil && x.HeightM != nil {
+		return *x.HeightM
 	}
 	return 0
 }
 
 type Ellipse struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	SemiMajorAxisM float64                `protobuf:"fixed64,1,opt,name=semiMajorAxisM,proto3" json:"semiMajorAxisM,omitempty"`
-	SemiMinorAxisM float64                `protobuf:"fixed64,2,opt,name=semiMinorAxisM,proto3" json:"semiMinorAxisM,omitempty"`
-	OrientationD   float64                `protobuf:"fixed64,3,opt,name=orientationD,proto3" json:"orientationD,omitempty"`
-	HeightM        float64                `protobuf:"fixed64,4,opt,name=heightM,proto3" json:"heightM,omitempty"`
+	SemiMajorAxisM *float64               `protobuf:"fixed64,1,opt,name=semiMajorAxisM,proto3,oneof" json:"semiMajorAxisM,omitempty"`
+	SemiMinorAxisM *float64               `protobuf:"fixed64,2,opt,name=semiMinorAxisM,proto3,oneof" json:"semiMinorAxisM,omitempty"`
+	OrientationD   *float64               `protobuf:"fixed64,3,opt,name=orientationD,proto3,oneof" json:"orientationD,omitempty"`
+	HeightM        *float64               `protobuf:"fixed64,4,opt,name=heightM,proto3,oneof" json:"heightM,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -374,38 +374,38 @@ func (*Ellipse) Descriptor() ([]byte, []int) {
 }
 
 func (x *Ellipse) GetSemiMajorAxisM() float64 {
-	if x != nil {
-		return x.SemiMajorAxisM
+	if x != nil && x.SemiMajorAxisM != nil {
+		return *x.SemiMajorAxisM
 	}
 	return 0
 }
 
 func (x *Ellipse) GetSemiMinorAxisM() float64 {
-	if x != nil {
-		return x.SemiMinorAxisM
+	if x != nil && x.SemiMinorAxisM != nil {
+		return *x.SemiMinorAxisM
 	}
 	return 0
 }
 
 func (x *Ellipse) GetOrientationD() float64 {
-	if x != nil {
-		return x.OrientationD
+	if x != nil && x.OrientationD != nil {
+		return *x.OrientationD
 	}
 	return 0
 }
 
 func (x *Ellipse) GetHeightM() float64 {
-	if x != nil {
-		return x.HeightM
+	if x != nil && x.HeightM != nil {
+		return *x.HeightM
 	}
 	return 0
 }
 
 type Ellipsoid struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ForwardAxisM  float64                `protobuf:"fixed64,1,opt,name=forwardAxisM,proto3" json:"forwardAxisM,omitempty"`
-	SideAxisM     float64                `protobuf:"fixed64,2,opt,name=sideAxisM,proto3" json:"sideAxisM,omitempty"`
-	UpAxisM       float64                `protobuf:"fixed64,3,opt,name=upAxisM,proto3" json:"upAxisM,omitempty"`
+	ForwardAxisM  *float64               `protobuf:"fixed64,1,opt,name=forwardAxisM,proto3,oneof" json:"forwardAxisM,omitempty"`
+	SideAxisM     *float64               `protobuf:"fixed64,2,opt,name=sideAxisM,proto3,oneof" json:"sideAxisM,omitempty"`
+	UpAxisM       *float64               `protobuf:"fixed64,3,opt,name=upAxisM,proto3,oneof" json:"upAxisM,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -441,22 +441,22 @@ func (*Ellipsoid) Descriptor() ([]byte, []int) {
 }
 
 func (x *Ellipsoid) GetForwardAxisM() float64 {
-	if x != nil {
-		return x.ForwardAxisM
+	if x != nil && x.ForwardAxisM != nil {
+		return *x.ForwardAxisM
 	}
 	return 0
 }
 
 func (x *Ellipsoid) GetSideAxisM() float64 {
-	if x != nil {
-		return x.SideAxisM
+	if x != nil && x.SideAxisM != nil {
+		return *x.SideAxisM
 	}
 	return 0
 }
 
 func (x *Ellipsoid) GetUpAxisM() float64 {
-	if x != nil {
-		return x.UpAxisM
+	if x != nil && x.UpAxisM != nil {
+		return *x.UpAxisM
 	}
 	return 0
 }
@@ -466,35 +466,59 @@ var File_components_geoshape_proto protoreflect.FileDescriptor
 const file_components_geoshape_proto_rawDesc = "" +
 	"\n" +
 	"\x19components/geoshape.proto\x12\n" +
-	"components\x1a\x19components/position.proto\"\xec\x01\n" +
-	"\bGeoShape\x12'\n" +
-	"\x05point\x18\x01 \x01(\v2\x11.components.PointR\x05point\x12$\n" +
-	"\x04line\x18\x02 \x01(\v2\x10.components.LineR\x04line\x12-\n" +
-	"\apolygon\x18\x03 \x01(\v2\x13.components.PolygonR\apolygon\x12-\n" +
-	"\aellipse\x18\x04 \x01(\v2\x13.components.EllipseR\aellipse\x123\n" +
-	"\tellipsoid\x18\x05 \x01(\v2\x15.components.EllipsoidR\tellipsoid\"9\n" +
-	"\x05Point\x120\n" +
-	"\bposition\x18\x01 \x01(\v2\x14.components.PositionR\bposition\"8\n" +
-	"\x04Line\x120\n" +
-	"\bposition\x18\x01 \x01(\v2\x14.components.PositionR\bposition\"S\n" +
-	"\aPolygon\x12&\n" +
-	"\x05rings\x18\x01 \x03(\v2\x10.components.RingR\x05rings\x12 \n" +
-	"\visRectangle\x18\x02 \x01(\bR\visRectangle\"<\n" +
-	"\x04Ring\x124\n" +
-	"\tpositions\x18\x01 \x03(\v2\x16.components.LinearRingR\tpositions\"X\n" +
+	"components\x1a\x19components/position.proto\"\xbe\x02\n" +
+	"\bGeoShape\x12,\n" +
+	"\x05point\x18\x01 \x01(\v2\x11.components.PointH\x00R\x05point\x88\x01\x01\x12)\n" +
+	"\x04line\x18\x02 \x01(\v2\x10.components.LineH\x01R\x04line\x88\x01\x01\x122\n" +
+	"\apolygon\x18\x03 \x01(\v2\x13.components.PolygonH\x02R\apolygon\x88\x01\x01\x122\n" +
+	"\aellipse\x18\x04 \x01(\v2\x13.components.EllipseH\x03R\aellipse\x88\x01\x01\x128\n" +
+	"\tellipsoid\x18\x05 \x01(\v2\x15.components.EllipsoidH\x04R\tellipsoid\x88\x01\x01B\b\n" +
+	"\x06_pointB\a\n" +
+	"\x05_lineB\n" +
 	"\n" +
-	"LinearRing\x120\n" +
-	"\bposition\x18\x01 \x01(\v2\x14.components.PositionR\bposition\x12\x18\n" +
-	"\aheightM\x18\x02 \x01(\x02R\aheightM\"\x97\x01\n" +
-	"\aEllipse\x12&\n" +
-	"\x0esemiMajorAxisM\x18\x01 \x01(\x01R\x0esemiMajorAxisM\x12&\n" +
-	"\x0esemiMinorAxisM\x18\x02 \x01(\x01R\x0esemiMinorAxisM\x12\"\n" +
-	"\forientationD\x18\x03 \x01(\x01R\forientationD\x12\x18\n" +
-	"\aheightM\x18\x04 \x01(\x01R\aheightM\"g\n" +
-	"\tEllipsoid\x12\"\n" +
-	"\fforwardAxisM\x18\x01 \x01(\x01R\fforwardAxisM\x12\x1c\n" +
-	"\tsideAxisM\x18\x02 \x01(\x01R\tsideAxisM\x12\x18\n" +
-	"\aupAxisM\x18\x03 \x01(\x01R\aupAxisMB\rZ\v/componentsb\x06proto3"
+	"\b_polygonB\n" +
+	"\n" +
+	"\b_ellipseB\f\n" +
+	"\n" +
+	"_ellipsoid\"K\n" +
+	"\x05Point\x125\n" +
+	"\bposition\x18\x01 \x01(\v2\x14.components.PositionH\x00R\bposition\x88\x01\x01B\v\n" +
+	"\t_position\"J\n" +
+	"\x04Line\x125\n" +
+	"\bposition\x18\x01 \x01(\v2\x14.components.PositionH\x00R\bposition\x88\x01\x01B\v\n" +
+	"\t_position\"h\n" +
+	"\aPolygon\x12&\n" +
+	"\x05rings\x18\x01 \x03(\v2\x10.components.RingR\x05rings\x12%\n" +
+	"\visRectangle\x18\x02 \x01(\bH\x00R\visRectangle\x88\x01\x01B\x0e\n" +
+	"\f_isRectangle\"<\n" +
+	"\x04Ring\x124\n" +
+	"\tpositions\x18\x01 \x03(\v2\x16.components.LinearRingR\tpositions\"{\n" +
+	"\n" +
+	"LinearRing\x125\n" +
+	"\bposition\x18\x01 \x01(\v2\x14.components.PositionH\x00R\bposition\x88\x01\x01\x12\x1d\n" +
+	"\aheightM\x18\x02 \x01(\x02H\x01R\aheightM\x88\x01\x01B\v\n" +
+	"\t_positionB\n" +
+	"\n" +
+	"\b_heightM\"\xee\x01\n" +
+	"\aEllipse\x12+\n" +
+	"\x0esemiMajorAxisM\x18\x01 \x01(\x01H\x00R\x0esemiMajorAxisM\x88\x01\x01\x12+\n" +
+	"\x0esemiMinorAxisM\x18\x02 \x01(\x01H\x01R\x0esemiMinorAxisM\x88\x01\x01\x12'\n" +
+	"\forientationD\x18\x03 \x01(\x01H\x02R\forientationD\x88\x01\x01\x12\x1d\n" +
+	"\aheightM\x18\x04 \x01(\x01H\x03R\aheightM\x88\x01\x01B\x11\n" +
+	"\x0f_semiMajorAxisMB\x11\n" +
+	"\x0f_semiMinorAxisMB\x0f\n" +
+	"\r_orientationDB\n" +
+	"\n" +
+	"\b_heightM\"\xa1\x01\n" +
+	"\tEllipsoid\x12'\n" +
+	"\fforwardAxisM\x18\x01 \x01(\x01H\x00R\fforwardAxisM\x88\x01\x01\x12!\n" +
+	"\tsideAxisM\x18\x02 \x01(\x01H\x01R\tsideAxisM\x88\x01\x01\x12\x1d\n" +
+	"\aupAxisM\x18\x03 \x01(\x01H\x02R\aupAxisM\x88\x01\x01B\x0f\n" +
+	"\r_forwardAxisMB\f\n" +
+	"\n" +
+	"_sideAxisMB\n" +
+	"\n" +
+	"\b_upAxisMB\rZ\v/componentsb\x06proto3"
 
 var (
 	file_components_geoshape_proto_rawDescOnce sync.Once
@@ -544,6 +568,13 @@ func file_components_geoshape_proto_init() {
 		return
 	}
 	file_components_position_proto_init()
+	file_components_geoshape_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_geoshape_proto_msgTypes[1].OneofWrappers = []any{}
+	file_components_geoshape_proto_msgTypes[2].OneofWrappers = []any{}
+	file_components_geoshape_proto_msgTypes[3].OneofWrappers = []any{}
+	file_components_geoshape_proto_msgTypes[5].OneofWrappers = []any{}
+	file_components_geoshape_proto_msgTypes[6].OneofWrappers = []any{}
+	file_components_geoshape_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

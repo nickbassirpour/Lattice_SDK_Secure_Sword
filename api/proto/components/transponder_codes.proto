@@ -12,21 +12,21 @@ enum InterrogationResponse {
 }
 
 message Mode5 {
-  InterrogationResponse mode5_interrogation_response = 1;
-  uint32 mode5 = 2;
-  uint32 mode5_platform_id = 3;
+  optional InterrogationResponse mode5_interrogation_response = 1;
+  optional uint32 mode5 = 2;
+  optional uint32 mode5_platform_id = 3;
 }
 
 message ModeS {
-  string id = 1;
-  uint32 address = 2;
+  optional string id = 1;
+  optional uint32 address = 2;
 }
 
 message TransponderCodes {
-  uint32 mode1 = 1;
-  uint32 mode2 = 2;
-  uint32 mode3 = 3;
-  InterrogationResponse mode4_interrogation_response = 4;
-  Mode5 mode5 = 5;
-  ModeS modeS = 6;
+  optional uint32 mode1 = 1;
+  optional uint32 mode2 = 2;
+  optional uint32 mode3 = 3;
+  optional InterrogationResponse mode4_interrogation_response = 4;
+  optional Mode5 mode5 = 5;
+  optional ModeS modeS = 6;
 }

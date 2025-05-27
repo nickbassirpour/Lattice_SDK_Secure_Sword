@@ -10,16 +10,16 @@ message Schedules {
 
 message Schedule {
   repeated Window windows = 1;
-  string scheduleId = 2;
-  ScheduleType scheduleType = 3;
+  optional string scheduleId = 2;
+  optional ScheduleType scheduleType = 3;
 }
 
 message Window {
   // in UTC, describes when and at what cadence this window starts, in the quartz flavor of cron
-  string cronExpression = 1;
+  optional string cronExpression = 1;
 
   // describes the duration
-  string durationMillis = 2;
+  optional string durationMillis = 2;
 }
 
 enum ScheduleType {

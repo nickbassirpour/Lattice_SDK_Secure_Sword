@@ -23,8 +23,8 @@ const (
 
 type TargetPriority struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
-	HighValueTarget *HighValueTarget       `protobuf:"bytes,1,opt,name=highValueTarget,proto3" json:"highValueTarget,omitempty"`
-	Threat          *Threat                `protobuf:"bytes,2,opt,name=threat,proto3" json:"threat,omitempty"`
+	HighValueTarget *HighValueTarget       `protobuf:"bytes,1,opt,name=highValueTarget,proto3,oneof" json:"highValueTarget,omitempty"`
+	Threat          *Threat                `protobuf:"bytes,2,opt,name=threat,proto3,oneof" json:"threat,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -75,8 +75,8 @@ func (x *TargetPriority) GetThreat() *Threat {
 
 type HighValueTarget struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	IsHighValueTarget bool                   `protobuf:"varint,1,opt,name=isHighValueTarget,proto3" json:"isHighValueTarget,omitempty"`
-	TargetPriority    uint32                 `protobuf:"varint,2,opt,name=targetPriority,proto3" json:"targetPriority,omitempty"`
+	IsHighValueTarget *bool                  `protobuf:"varint,1,opt,name=isHighValueTarget,proto3,oneof" json:"isHighValueTarget,omitempty"`
+	TargetPriority    *uint32                `protobuf:"varint,2,opt,name=targetPriority,proto3,oneof" json:"targetPriority,omitempty"`
 	TargetMatches     []*TargetMatch         `protobuf:"bytes,3,rep,name=targetMatches,proto3" json:"targetMatches,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
@@ -113,15 +113,15 @@ func (*HighValueTarget) Descriptor() ([]byte, []int) {
 }
 
 func (x *HighValueTarget) GetIsHighValueTarget() bool {
-	if x != nil {
-		return x.IsHighValueTarget
+	if x != nil && x.IsHighValueTarget != nil {
+		return *x.IsHighValueTarget
 	}
 	return false
 }
 
 func (x *HighValueTarget) GetTargetPriority() uint32 {
-	if x != nil {
-		return x.TargetPriority
+	if x != nil && x.TargetPriority != nil {
+		return *x.TargetPriority
 	}
 	return 0
 }
@@ -135,9 +135,9 @@ func (x *HighValueTarget) GetTargetMatches() []*TargetMatch {
 
 type TargetMatch struct {
 	state                        protoimpl.MessageState `protogen:"open.v1"`
-	HighValueTargetListId        string                 `protobuf:"bytes,1,opt,name=highValueTargetListId,proto3" json:"highValueTargetListId,omitempty"`
-	HighValueTargetDescriptionId string                 `protobuf:"bytes,2,opt,name=highValueTargetDescriptionId,proto3" json:"highValueTargetDescriptionId,omitempty"`
-	IsHighPayoffTarget           bool                   `protobuf:"varint,3,opt,name=isHighPayoffTarget,proto3" json:"isHighPayoffTarget,omitempty"`
+	HighValueTargetListId        *string                `protobuf:"bytes,1,opt,name=highValueTargetListId,proto3,oneof" json:"highValueTargetListId,omitempty"`
+	HighValueTargetDescriptionId *string                `protobuf:"bytes,2,opt,name=highValueTargetDescriptionId,proto3,oneof" json:"highValueTargetDescriptionId,omitempty"`
+	IsHighPayoffTarget           *bool                  `protobuf:"varint,3,opt,name=isHighPayoffTarget,proto3,oneof" json:"isHighPayoffTarget,omitempty"`
 	unknownFields                protoimpl.UnknownFields
 	sizeCache                    protoimpl.SizeCache
 }
@@ -173,29 +173,29 @@ func (*TargetMatch) Descriptor() ([]byte, []int) {
 }
 
 func (x *TargetMatch) GetHighValueTargetListId() string {
-	if x != nil {
-		return x.HighValueTargetListId
+	if x != nil && x.HighValueTargetListId != nil {
+		return *x.HighValueTargetListId
 	}
 	return ""
 }
 
 func (x *TargetMatch) GetHighValueTargetDescriptionId() string {
-	if x != nil {
-		return x.HighValueTargetDescriptionId
+	if x != nil && x.HighValueTargetDescriptionId != nil {
+		return *x.HighValueTargetDescriptionId
 	}
 	return ""
 }
 
 func (x *TargetMatch) GetIsHighPayoffTarget() bool {
-	if x != nil {
-		return x.IsHighPayoffTarget
+	if x != nil && x.IsHighPayoffTarget != nil {
+		return *x.IsHighPayoffTarget
 	}
 	return false
 }
 
 type Threat struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	IsThreat      bool                   `protobuf:"varint,1,opt,name=isThreat,proto3" json:"isThreat,omitempty"`
+	IsThreat      *bool                  `protobuf:"varint,1,opt,name=isThreat,proto3,oneof" json:"isThreat,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -231,8 +231,8 @@ func (*Threat) Descriptor() ([]byte, []int) {
 }
 
 func (x *Threat) GetIsThreat() bool {
-	if x != nil {
-		return x.IsThreat
+	if x != nil && x.IsThreat != nil {
+		return *x.IsThreat
 	}
 	return false
 }
@@ -242,20 +242,28 @@ var File_components_target_priority_proto protoreflect.FileDescriptor
 const file_components_target_priority_proto_rawDesc = "" +
 	"\n" +
 	" components/target_priority.proto\x12\n" +
-	"components\"\x83\x01\n" +
-	"\x0eTargetPriority\x12E\n" +
-	"\x0fhighValueTarget\x18\x01 \x01(\v2\x1b.components.HighValueTargetR\x0fhighValueTarget\x12*\n" +
-	"\x06threat\x18\x02 \x01(\v2\x12.components.ThreatR\x06threat\"\xa6\x01\n" +
-	"\x0fHighValueTarget\x12,\n" +
-	"\x11isHighValueTarget\x18\x01 \x01(\bR\x11isHighValueTarget\x12&\n" +
-	"\x0etargetPriority\x18\x02 \x01(\rR\x0etargetPriority\x12=\n" +
-	"\rtargetMatches\x18\x03 \x03(\v2\x17.components.TargetMatchR\rtargetMatches\"\xb7\x01\n" +
-	"\vTargetMatch\x124\n" +
-	"\x15highValueTargetListId\x18\x01 \x01(\tR\x15highValueTargetListId\x12B\n" +
-	"\x1chighValueTargetDescriptionId\x18\x02 \x01(\tR\x1chighValueTargetDescriptionId\x12.\n" +
-	"\x12isHighPayoffTarget\x18\x03 \x01(\bR\x12isHighPayoffTarget\"$\n" +
-	"\x06Threat\x12\x1a\n" +
-	"\bisThreat\x18\x01 \x01(\bR\bisThreatB\rZ\v/componentsb\x06proto3"
+	"components\"\xac\x01\n" +
+	"\x0eTargetPriority\x12J\n" +
+	"\x0fhighValueTarget\x18\x01 \x01(\v2\x1b.components.HighValueTargetH\x00R\x0fhighValueTarget\x88\x01\x01\x12/\n" +
+	"\x06threat\x18\x02 \x01(\v2\x12.components.ThreatH\x01R\x06threat\x88\x01\x01B\x12\n" +
+	"\x10_highValueTargetB\t\n" +
+	"\a_threat\"\xd9\x01\n" +
+	"\x0fHighValueTarget\x121\n" +
+	"\x11isHighValueTarget\x18\x01 \x01(\bH\x00R\x11isHighValueTarget\x88\x01\x01\x12+\n" +
+	"\x0etargetPriority\x18\x02 \x01(\rH\x01R\x0etargetPriority\x88\x01\x01\x12=\n" +
+	"\rtargetMatches\x18\x03 \x03(\v2\x17.components.TargetMatchR\rtargetMatchesB\x14\n" +
+	"\x12_isHighValueTargetB\x11\n" +
+	"\x0f_targetPriority\"\x98\x02\n" +
+	"\vTargetMatch\x129\n" +
+	"\x15highValueTargetListId\x18\x01 \x01(\tH\x00R\x15highValueTargetListId\x88\x01\x01\x12G\n" +
+	"\x1chighValueTargetDescriptionId\x18\x02 \x01(\tH\x01R\x1chighValueTargetDescriptionId\x88\x01\x01\x123\n" +
+	"\x12isHighPayoffTarget\x18\x03 \x01(\bH\x02R\x12isHighPayoffTarget\x88\x01\x01B\x18\n" +
+	"\x16_highValueTargetListIdB\x1f\n" +
+	"\x1d_highValueTargetDescriptionIdB\x15\n" +
+	"\x13_isHighPayoffTarget\"6\n" +
+	"\x06Threat\x12\x1f\n" +
+	"\bisThreat\x18\x01 \x01(\bH\x00R\bisThreat\x88\x01\x01B\v\n" +
+	"\t_isThreatB\rZ\v/componentsb\x06proto3"
 
 var (
 	file_components_target_priority_proto_rawDescOnce sync.Once
@@ -292,6 +300,10 @@ func file_components_target_priority_proto_init() {
 	if File_components_target_priority_proto != nil {
 		return
 	}
+	file_components_target_priority_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_target_priority_proto_msgTypes[1].OneofWrappers = []any{}
+	file_components_target_priority_proto_msgTypes[2].OneofWrappers = []any{}
+	file_components_target_priority_proto_msgTypes[3].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

@@ -24,41 +24,41 @@ const (
 
 type Entity struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
-	EntityId            string                 `protobuf:"bytes,1,opt,name=entityId,proto3" json:"entityId,omitempty"`
-	Description         string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
-	IsLive              bool                   `protobuf:"varint,3,opt,name=isLive,proto3" json:"isLive,omitempty"`
-	CreatedTime         *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=createdTime,proto3" json:"createdTime,omitempty"`
-	ExpiryTime          *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=expiryTime,proto3" json:"expiryTime,omitempty"`
-	Status              *Status                `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
-	Location            *Location              `protobuf:"bytes,7,opt,name=location,proto3" json:"location,omitempty"`
-	LocationUncertainty *LocationUncertainty   `protobuf:"bytes,8,opt,name=locationUncertainty,proto3" json:"locationUncertainty,omitempty"`
-	GeoShape            *GeoShape              `protobuf:"bytes,9,opt,name=geoShape,proto3" json:"geoShape,omitempty"`
-	GeoDetails          *GeoDetails            `protobuf:"bytes,10,opt,name=geoDetails,proto3" json:"geoDetails,omitempty"`
-	Aliases             *Aliases               `protobuf:"bytes,11,opt,name=aliases,proto3" json:"aliases,omitempty"`
-	Tracked             *Tracked               `protobuf:"bytes,12,opt,name=tracked,proto3" json:"tracked,omitempty"`
-	Correlation         *Correlation           `protobuf:"bytes,13,opt,name=correlation,proto3" json:"correlation,omitempty"`
-	MilView             *MilView               `protobuf:"bytes,14,opt,name=milView,proto3" json:"milView,omitempty"`
-	Ontology            *Ontology              `protobuf:"bytes,15,opt,name=ontology,proto3" json:"ontology,omitempty"`
-	Sensors             *Sensors               `protobuf:"bytes,16,opt,name=sensors,proto3" json:"sensors,omitempty"`
-	Payloads            *Payloads              `protobuf:"bytes,17,opt,name=payloads,proto3" json:"payloads,omitempty"`
-	PowerState          *PowerState            `protobuf:"bytes,18,opt,name=powerState,proto3" json:"powerState,omitempty"`
-	Provenance          *Provenance            `protobuf:"bytes,19,opt,name=provenance,proto3" json:"provenance,omitempty"`
-	Overrides           *Overrides             `protobuf:"bytes,20,opt,name=overrides,proto3" json:"overrides,omitempty"`
-	Indicators          *Indicators            `protobuf:"bytes,21,opt,name=indicators,proto3" json:"indicators,omitempty"`
-	TargetPriority      *TargetPriority        `protobuf:"bytes,22,opt,name=targetPriority,proto3" json:"targetPriority,omitempty"`
-	Signal              *Signal                `protobuf:"bytes,23,opt,name=signal,proto3" json:"signal,omitempty"`
-	TransponderCodes    *TransponderCodes      `protobuf:"bytes,24,opt,name=transponderCodes,proto3" json:"transponderCodes,omitempty"`
-	DataClassification  *DataClassification    `protobuf:"bytes,25,opt,name=dataClassification,proto3" json:"dataClassification,omitempty"`
-	TaskCatalog         *TaskCatalog           `protobuf:"bytes,26,opt,name=taskCatalog,proto3" json:"taskCatalog,omitempty"`
-	Relationships       *Relationships         `protobuf:"bytes,27,opt,name=relationships,proto3" json:"relationships,omitempty"`
-	VisualDetails       *VisualDetails         `protobuf:"bytes,28,opt,name=visualDetails,proto3" json:"visualDetails,omitempty"`
-	Dimensions          *Dimensions            `protobuf:"bytes,29,opt,name=dimensions,proto3" json:"dimensions,omitempty"`
-	RouteDetails        *RouteDetails          `protobuf:"bytes,30,opt,name=routeDetails,proto3" json:"routeDetails,omitempty"`
-	Schedules           *Schedules             `protobuf:"bytes,31,opt,name=schedules,proto3" json:"schedules,omitempty"`
-	Health              *Health                `protobuf:"bytes,32,opt,name=health,proto3" json:"health,omitempty"`
-	GroupDetails        *GroupDetails          `protobuf:"bytes,33,opt,name=groupDetails,proto3" json:"groupDetails,omitempty"`
-	Supplies            *Supplies              `protobuf:"bytes,34,opt,name=supplies,proto3" json:"supplies,omitempty"`
-	Orbit               *Orbit                 `protobuf:"bytes,35,opt,name=orbit,proto3" json:"orbit,omitempty"`
+	EntityId            *string                `protobuf:"bytes,1,opt,name=entityId,proto3,oneof" json:"entityId,omitempty"`
+	Description         *string                `protobuf:"bytes,2,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	IsLive              *bool                  `protobuf:"varint,3,opt,name=isLive,proto3,oneof" json:"isLive,omitempty"`
+	CreatedTime         *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=createdTime,proto3,oneof" json:"createdTime,omitempty"`
+	ExpiryTime          *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=expiryTime,proto3,oneof" json:"expiryTime,omitempty"`
+	Status              *Status                `protobuf:"bytes,6,opt,name=status,proto3,oneof" json:"status,omitempty"`
+	Location            *Location              `protobuf:"bytes,7,opt,name=location,proto3,oneof" json:"location,omitempty"`
+	LocationUncertainty *LocationUncertainty   `protobuf:"bytes,8,opt,name=locationUncertainty,proto3,oneof" json:"locationUncertainty,omitempty"`
+	GeoShape            *GeoShape              `protobuf:"bytes,9,opt,name=geoShape,proto3,oneof" json:"geoShape,omitempty"`
+	GeoDetails          *GeoDetails            `protobuf:"bytes,10,opt,name=geoDetails,proto3,oneof" json:"geoDetails,omitempty"`
+	Aliases             *Aliases               `protobuf:"bytes,11,opt,name=aliases,proto3,oneof" json:"aliases,omitempty"`
+	Tracked             *Tracked               `protobuf:"bytes,12,opt,name=tracked,proto3,oneof" json:"tracked,omitempty"`
+	Correlation         *Correlation           `protobuf:"bytes,13,opt,name=correlation,proto3,oneof" json:"correlation,omitempty"`
+	MilView             *MilView               `protobuf:"bytes,14,opt,name=milView,proto3,oneof" json:"milView,omitempty"`
+	Ontology            *Ontology              `protobuf:"bytes,15,opt,name=ontology,proto3,oneof" json:"ontology,omitempty"`
+	Sensors             *Sensors               `protobuf:"bytes,16,opt,name=sensors,proto3,oneof" json:"sensors,omitempty"`
+	Payloads            *Payloads              `protobuf:"bytes,17,opt,name=payloads,proto3,oneof" json:"payloads,omitempty"`
+	PowerState          *PowerState            `protobuf:"bytes,18,opt,name=powerState,proto3,oneof" json:"powerState,omitempty"`
+	Provenance          *Provenance            `protobuf:"bytes,19,opt,name=provenance,proto3,oneof" json:"provenance,omitempty"`
+	Overrides           *Overrides             `protobuf:"bytes,20,opt,name=overrides,proto3,oneof" json:"overrides,omitempty"`
+	Indicators          *Indicators            `protobuf:"bytes,21,opt,name=indicators,proto3,oneof" json:"indicators,omitempty"`
+	TargetPriority      *TargetPriority        `protobuf:"bytes,22,opt,name=targetPriority,proto3,oneof" json:"targetPriority,omitempty"`
+	Signal              *Signal                `protobuf:"bytes,23,opt,name=signal,proto3,oneof" json:"signal,omitempty"`
+	TransponderCodes    *TransponderCodes      `protobuf:"bytes,24,opt,name=transponderCodes,proto3,oneof" json:"transponderCodes,omitempty"`
+	DataClassification  *DataClassification    `protobuf:"bytes,25,opt,name=dataClassification,proto3,oneof" json:"dataClassification,omitempty"`
+	TaskCatalog         *TaskCatalog           `protobuf:"bytes,26,opt,name=taskCatalog,proto3,oneof" json:"taskCatalog,omitempty"`
+	Relationships       *Relationships         `protobuf:"bytes,27,opt,name=relationships,proto3,oneof" json:"relationships,omitempty"`
+	VisualDetails       *VisualDetails         `protobuf:"bytes,28,opt,name=visualDetails,proto3,oneof" json:"visualDetails,omitempty"`
+	Dimensions          *Dimensions            `protobuf:"bytes,29,opt,name=dimensions,proto3,oneof" json:"dimensions,omitempty"`
+	RouteDetails        *RouteDetails          `protobuf:"bytes,30,opt,name=routeDetails,proto3,oneof" json:"routeDetails,omitempty"`
+	Schedules           *Schedules             `protobuf:"bytes,31,opt,name=schedules,proto3,oneof" json:"schedules,omitempty"`
+	Health              *Health                `protobuf:"bytes,32,opt,name=health,proto3,oneof" json:"health,omitempty"`
+	GroupDetails        *GroupDetails          `protobuf:"bytes,33,opt,name=groupDetails,proto3,oneof" json:"groupDetails,omitempty"`
+	Supplies            *Supplies              `protobuf:"bytes,34,opt,name=supplies,proto3,oneof" json:"supplies,omitempty"`
+	Orbit               *Orbit                 `protobuf:"bytes,35,opt,name=orbit,proto3,oneof" json:"orbit,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -94,22 +94,22 @@ func (*Entity) Descriptor() ([]byte, []int) {
 }
 
 func (x *Entity) GetEntityId() string {
-	if x != nil {
-		return x.EntityId
+	if x != nil && x.EntityId != nil {
+		return *x.EntityId
 	}
 	return ""
 }
 
 func (x *Entity) GetDescription() string {
-	if x != nil {
-		return x.Description
+	if x != nil && x.Description != nil {
+		return *x.Description
 	}
 	return ""
 }
 
 func (x *Entity) GetIsLive() bool {
-	if x != nil {
-		return x.IsLive
+	if x != nil && x.IsLive != nil {
+		return *x.IsLive
 	}
 	return false
 }
@@ -343,56 +343,98 @@ var File_components_entity_proto protoreflect.FileDescriptor
 const file_components_entity_proto_rawDesc = "" +
 	"\n" +
 	"\x17components/entity.proto\x12\n" +
-	"components\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17components/status.proto\x1a\x19components/location.proto\x1a%components/location_uncertainty.proto\x1a\x19components/geoshape.proto\x1a\x1ccomponents/geo_details.proto\x1a\x18components/aliases.proto\x1a\x18components/tracked.proto\x1a\x1ccomponents/correlation.proto\x1a\x19components/mil_view.proto\x1a\x19components/ontology.proto\x1a\x18components/sensors.proto\x1a\x19components/payloads.proto\x1a\x1bcomponents/powerstate.proto\x1a\x1bcomponents/provenance.proto\x1a\x1acomponents/overrides.proto\x1a\x1bcomponents/indicators.proto\x1a components/target_priority.proto\x1a\x17components/signal.proto\x1a\"components/transponder_codes.proto\x1a#components/dataclassification.proto\x1a\x1dcomponents/task_catalog.proto\x1a\x1ecomponents/relationships.proto\x1a\x1fcomponents/visual_details.proto\x1a\x1bcomponents/dimensions.proto\x1a\x1ecomponents/route_details.proto\x1a\x1acomponents/schedules.proto\x1a\x17components/health.proto\x1a\x1dcomponents/groupdetails.proto\x1a\x19components/supplies.proto\x1a\x16components/orbit.proto\"\xe2\x0e\n" +
-	"\x06Entity\x12\x1a\n" +
-	"\bentityId\x18\x01 \x01(\tR\bentityId\x12 \n" +
-	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x16\n" +
-	"\x06isLive\x18\x03 \x01(\bR\x06isLive\x12<\n" +
-	"\vcreatedTime\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\vcreatedTime\x12:\n" +
+	"components\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17components/status.proto\x1a\x19components/location.proto\x1a%components/location_uncertainty.proto\x1a\x19components/geoshape.proto\x1a\x1ccomponents/geo_details.proto\x1a\x18components/aliases.proto\x1a\x18components/tracked.proto\x1a\x1ccomponents/correlation.proto\x1a\x19components/mil_view.proto\x1a\x19components/ontology.proto\x1a\x18components/sensors.proto\x1a\x19components/payloads.proto\x1a\x1bcomponents/powerstate.proto\x1a\x1bcomponents/provenance.proto\x1a\x1acomponents/overrides.proto\x1a\x1bcomponents/indicators.proto\x1a components/target_priority.proto\x1a\x17components/signal.proto\x1a\"components/transponder_codes.proto\x1a#components/dataclassification.proto\x1a\x1dcomponents/task_catalog.proto\x1a\x1ecomponents/relationships.proto\x1a\x1fcomponents/visual_details.proto\x1a\x1bcomponents/dimensions.proto\x1a\x1ecomponents/route_details.proto\x1a\x1acomponents/schedules.proto\x1a\x17components/health.proto\x1a\x1dcomponents/groupdetails.proto\x1a\x19components/supplies.proto\x1a\x16components/orbit.proto\"\x98\x14\n" +
+	"\x06Entity\x12\x1f\n" +
+	"\bentityId\x18\x01 \x01(\tH\x00R\bentityId\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\x02 \x01(\tH\x01R\vdescription\x88\x01\x01\x12\x1b\n" +
+	"\x06isLive\x18\x03 \x01(\bH\x02R\x06isLive\x88\x01\x01\x12A\n" +
+	"\vcreatedTime\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x03R\vcreatedTime\x88\x01\x01\x12?\n" +
 	"\n" +
-	"expiryTime\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"expiryTime\x12*\n" +
-	"\x06status\x18\x06 \x01(\v2\x12.components.StatusR\x06status\x120\n" +
-	"\blocation\x18\a \x01(\v2\x14.components.LocationR\blocation\x12Q\n" +
-	"\x13locationUncertainty\x18\b \x01(\v2\x1f.components.LocationUncertaintyR\x13locationUncertainty\x120\n" +
-	"\bgeoShape\x18\t \x01(\v2\x14.components.GeoShapeR\bgeoShape\x126\n" +
+	"expiryTime\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x04R\n" +
+	"expiryTime\x88\x01\x01\x12/\n" +
+	"\x06status\x18\x06 \x01(\v2\x12.components.StatusH\x05R\x06status\x88\x01\x01\x125\n" +
+	"\blocation\x18\a \x01(\v2\x14.components.LocationH\x06R\blocation\x88\x01\x01\x12V\n" +
+	"\x13locationUncertainty\x18\b \x01(\v2\x1f.components.LocationUncertaintyH\aR\x13locationUncertainty\x88\x01\x01\x125\n" +
+	"\bgeoShape\x18\t \x01(\v2\x14.components.GeoShapeH\bR\bgeoShape\x88\x01\x01\x12;\n" +
 	"\n" +
 	"geoDetails\x18\n" +
-	" \x01(\v2\x16.components.GeoDetailsR\n" +
-	"geoDetails\x12-\n" +
-	"\aaliases\x18\v \x01(\v2\x13.components.AliasesR\aaliases\x12-\n" +
-	"\atracked\x18\f \x01(\v2\x13.components.TrackedR\atracked\x129\n" +
-	"\vcorrelation\x18\r \x01(\v2\x17.components.CorrelationR\vcorrelation\x12-\n" +
-	"\amilView\x18\x0e \x01(\v2\x13.components.MilViewR\amilView\x120\n" +
-	"\bontology\x18\x0f \x01(\v2\x14.components.OntologyR\bontology\x12-\n" +
-	"\asensors\x18\x10 \x01(\v2\x13.components.SensorsR\asensors\x120\n" +
-	"\bpayloads\x18\x11 \x01(\v2\x14.components.PayloadsR\bpayloads\x126\n" +
+	" \x01(\v2\x16.components.GeoDetailsH\tR\n" +
+	"geoDetails\x88\x01\x01\x122\n" +
+	"\aaliases\x18\v \x01(\v2\x13.components.AliasesH\n" +
+	"R\aaliases\x88\x01\x01\x122\n" +
+	"\atracked\x18\f \x01(\v2\x13.components.TrackedH\vR\atracked\x88\x01\x01\x12>\n" +
+	"\vcorrelation\x18\r \x01(\v2\x17.components.CorrelationH\fR\vcorrelation\x88\x01\x01\x122\n" +
+	"\amilView\x18\x0e \x01(\v2\x13.components.MilViewH\rR\amilView\x88\x01\x01\x125\n" +
+	"\bontology\x18\x0f \x01(\v2\x14.components.OntologyH\x0eR\bontology\x88\x01\x01\x122\n" +
+	"\asensors\x18\x10 \x01(\v2\x13.components.SensorsH\x0fR\asensors\x88\x01\x01\x125\n" +
+	"\bpayloads\x18\x11 \x01(\v2\x14.components.PayloadsH\x10R\bpayloads\x88\x01\x01\x12;\n" +
 	"\n" +
-	"powerState\x18\x12 \x01(\v2\x16.components.PowerStateR\n" +
-	"powerState\x126\n" +
+	"powerState\x18\x12 \x01(\v2\x16.components.PowerStateH\x11R\n" +
+	"powerState\x88\x01\x01\x12;\n" +
 	"\n" +
-	"provenance\x18\x13 \x01(\v2\x16.components.ProvenanceR\n" +
-	"provenance\x123\n" +
-	"\toverrides\x18\x14 \x01(\v2\x15.components.OverridesR\toverrides\x126\n" +
+	"provenance\x18\x13 \x01(\v2\x16.components.ProvenanceH\x12R\n" +
+	"provenance\x88\x01\x01\x128\n" +
+	"\toverrides\x18\x14 \x01(\v2\x15.components.OverridesH\x13R\toverrides\x88\x01\x01\x12;\n" +
 	"\n" +
-	"indicators\x18\x15 \x01(\v2\x16.components.IndicatorsR\n" +
-	"indicators\x12B\n" +
-	"\x0etargetPriority\x18\x16 \x01(\v2\x1a.components.TargetPriorityR\x0etargetPriority\x12*\n" +
-	"\x06signal\x18\x17 \x01(\v2\x12.components.SignalR\x06signal\x12H\n" +
-	"\x10transponderCodes\x18\x18 \x01(\v2\x1c.components.TransponderCodesR\x10transponderCodes\x12N\n" +
-	"\x12dataClassification\x18\x19 \x01(\v2\x1e.components.DataClassificationR\x12dataClassification\x129\n" +
-	"\vtaskCatalog\x18\x1a \x01(\v2\x17.components.TaskCatalogR\vtaskCatalog\x12?\n" +
-	"\rrelationships\x18\x1b \x01(\v2\x19.components.RelationshipsR\rrelationships\x12?\n" +
-	"\rvisualDetails\x18\x1c \x01(\v2\x19.components.VisualDetailsR\rvisualDetails\x126\n" +
+	"indicators\x18\x15 \x01(\v2\x16.components.IndicatorsH\x14R\n" +
+	"indicators\x88\x01\x01\x12G\n" +
+	"\x0etargetPriority\x18\x16 \x01(\v2\x1a.components.TargetPriorityH\x15R\x0etargetPriority\x88\x01\x01\x12/\n" +
+	"\x06signal\x18\x17 \x01(\v2\x12.components.SignalH\x16R\x06signal\x88\x01\x01\x12M\n" +
+	"\x10transponderCodes\x18\x18 \x01(\v2\x1c.components.TransponderCodesH\x17R\x10transponderCodes\x88\x01\x01\x12S\n" +
+	"\x12dataClassification\x18\x19 \x01(\v2\x1e.components.DataClassificationH\x18R\x12dataClassification\x88\x01\x01\x12>\n" +
+	"\vtaskCatalog\x18\x1a \x01(\v2\x17.components.TaskCatalogH\x19R\vtaskCatalog\x88\x01\x01\x12D\n" +
+	"\rrelationships\x18\x1b \x01(\v2\x19.components.RelationshipsH\x1aR\rrelationships\x88\x01\x01\x12D\n" +
+	"\rvisualDetails\x18\x1c \x01(\v2\x19.components.VisualDetailsH\x1bR\rvisualDetails\x88\x01\x01\x12;\n" +
 	"\n" +
-	"dimensions\x18\x1d \x01(\v2\x16.components.DimensionsR\n" +
-	"dimensions\x12<\n" +
-	"\frouteDetails\x18\x1e \x01(\v2\x18.components.RouteDetailsR\frouteDetails\x123\n" +
-	"\tschedules\x18\x1f \x01(\v2\x15.components.SchedulesR\tschedules\x12*\n" +
-	"\x06health\x18  \x01(\v2\x12.components.HealthR\x06health\x12<\n" +
-	"\fgroupDetails\x18! \x01(\v2\x18.components.GroupDetailsR\fgroupDetails\x120\n" +
-	"\bsupplies\x18\" \x01(\v2\x14.components.SuppliesR\bsupplies\x12'\n" +
-	"\x05orbit\x18# \x01(\v2\x11.components.OrbitR\x05orbitB\rZ\v/componentsb\x06proto3"
+	"dimensions\x18\x1d \x01(\v2\x16.components.DimensionsH\x1cR\n" +
+	"dimensions\x88\x01\x01\x12A\n" +
+	"\frouteDetails\x18\x1e \x01(\v2\x18.components.RouteDetailsH\x1dR\frouteDetails\x88\x01\x01\x128\n" +
+	"\tschedules\x18\x1f \x01(\v2\x15.components.SchedulesH\x1eR\tschedules\x88\x01\x01\x12/\n" +
+	"\x06health\x18  \x01(\v2\x12.components.HealthH\x1fR\x06health\x88\x01\x01\x12A\n" +
+	"\fgroupDetails\x18! \x01(\v2\x18.components.GroupDetailsH R\fgroupDetails\x88\x01\x01\x125\n" +
+	"\bsupplies\x18\" \x01(\v2\x14.components.SuppliesH!R\bsupplies\x88\x01\x01\x12,\n" +
+	"\x05orbit\x18# \x01(\v2\x11.components.OrbitH\"R\x05orbit\x88\x01\x01B\v\n" +
+	"\t_entityIdB\x0e\n" +
+	"\f_descriptionB\t\n" +
+	"\a_isLiveB\x0e\n" +
+	"\f_createdTimeB\r\n" +
+	"\v_expiryTimeB\t\n" +
+	"\a_statusB\v\n" +
+	"\t_locationB\x16\n" +
+	"\x14_locationUncertaintyB\v\n" +
+	"\t_geoShapeB\r\n" +
+	"\v_geoDetailsB\n" +
+	"\n" +
+	"\b_aliasesB\n" +
+	"\n" +
+	"\b_trackedB\x0e\n" +
+	"\f_correlationB\n" +
+	"\n" +
+	"\b_milViewB\v\n" +
+	"\t_ontologyB\n" +
+	"\n" +
+	"\b_sensorsB\v\n" +
+	"\t_payloadsB\r\n" +
+	"\v_powerStateB\r\n" +
+	"\v_provenanceB\f\n" +
+	"\n" +
+	"_overridesB\r\n" +
+	"\v_indicatorsB\x11\n" +
+	"\x0f_targetPriorityB\t\n" +
+	"\a_signalB\x13\n" +
+	"\x11_transponderCodesB\x15\n" +
+	"\x13_dataClassificationB\x0e\n" +
+	"\f_taskCatalogB\x10\n" +
+	"\x0e_relationshipsB\x10\n" +
+	"\x0e_visualDetailsB\r\n" +
+	"\v_dimensionsB\x0f\n" +
+	"\r_routeDetailsB\f\n" +
+	"\n" +
+	"_schedulesB\t\n" +
+	"\a_healthB\x0f\n" +
+	"\r_groupDetailsB\v\n" +
+	"\t_suppliesB\b\n" +
+	"\x06_orbitB\rZ\v/componentsb\x06proto3"
 
 var (
 	file_components_entity_proto_rawDescOnce sync.Once
@@ -516,6 +558,7 @@ func file_components_entity_proto_init() {
 	file_components_groupdetails_proto_init()
 	file_components_supplies_proto_init()
 	file_components_orbit_proto_init()
+	file_components_entity_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

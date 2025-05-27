@@ -13,22 +13,22 @@ message Relationships {
 }
 
 message Relationship {
-  string relatedEntityId = 1;
-  string relationshipId = 2;
-  RelationshipType relationshipType = 3;
+  optional string relatedEntityId = 1;
+  optional string relationshipId = 2;
+  optional RelationshipType relationshipType = 3;
 }
 
 message RelationshipType {
-  TrackedBy trackedBy = 1;
-  GroupChild groupChild = 2;
-  GroupParent groupParent = 3;
-  MergedFrom mergedFrom = 4;
-  ActiveTarget activeTarget = 5;
+  optional TrackedBy trackedBy = 1;
+  optional GroupChild groupChild = 2;
+  optional GroupParent groupParent = 3;
+  optional MergedFrom mergedFrom = 4;
+  optional ActiveTarget activeTarget = 5;
 }
 
 message TrackedBy {
-  Sensors activelyTrackingSensors = 1;
-  google.protobuf.Timestamp lastMeasurementTimeStamp = 2;
+  optional Sensors activelyTrackingSensors = 1;
+  optional google.protobuf.Timestamp lastMeasurementTimeStamp = 2;
 }
 
 message GroupChild {}

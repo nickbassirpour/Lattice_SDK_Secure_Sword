@@ -134,8 +134,8 @@ func (AltIDType) EnumDescriptor() ([]byte, []int) {
 // Message for AlternateIds
 type AlternateIds struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Type          AltIDType              `protobuf:"varint,2,opt,name=type,proto3,enum=components.AltIDType" json:"type,omitempty"`
+	Id            *string                `protobuf:"bytes,1,opt,name=id,proto3,oneof" json:"id,omitempty"`
+	Type          *AltIDType             `protobuf:"varint,2,opt,name=type,proto3,enum=components.AltIDType,oneof" json:"type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -171,15 +171,15 @@ func (*AlternateIds) Descriptor() ([]byte, []int) {
 }
 
 func (x *AlternateIds) GetId() string {
-	if x != nil {
-		return x.Id
+	if x != nil && x.Id != nil {
+		return *x.Id
 	}
 	return ""
 }
 
 func (x *AlternateIds) GetType() AltIDType {
-	if x != nil {
-		return x.Type
+	if x != nil && x.Type != nil {
+		return *x.Type
 	}
 	return AltIDType_ALT_ID_TYPE_INVALID
 }
@@ -188,7 +188,7 @@ func (x *AlternateIds) GetType() AltIDType {
 type Aliases struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AlternateIds  []*AlternateIds        `protobuf:"bytes,1,rep,name=alternateIds,proto3" json:"alternateIds,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Name          *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -231,8 +231,8 @@ func (x *Aliases) GetAlternateIds() []*AlternateIds {
 }
 
 func (x *Aliases) GetName() string {
-	if x != nil {
-		return x.Name
+	if x != nil && x.Name != nil {
+		return *x.Name
 	}
 	return ""
 }
@@ -242,13 +242,16 @@ var File_components_aliases_proto protoreflect.FileDescriptor
 const file_components_aliases_proto_rawDesc = "" +
 	"\n" +
 	"\x18components/aliases.proto\x12\n" +
-	"components\"I\n" +
-	"\fAlternateIds\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12)\n" +
-	"\x04type\x18\x02 \x01(\x0e2\x15.components.AltIDTypeR\x04type\"[\n" +
+	"components\"c\n" +
+	"\fAlternateIds\x12\x13\n" +
+	"\x02id\x18\x01 \x01(\tH\x00R\x02id\x88\x01\x01\x12.\n" +
+	"\x04type\x18\x02 \x01(\x0e2\x15.components.AltIDTypeH\x01R\x04type\x88\x01\x01B\x05\n" +
+	"\x03_idB\a\n" +
+	"\x05_type\"i\n" +
 	"\aAliases\x12<\n" +
-	"\falternateIds\x18\x01 \x03(\v2\x18.components.AlternateIdsR\falternateIds\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name*\x98\x05\n" +
+	"\falternateIds\x18\x01 \x03(\v2\x18.components.AlternateIdsR\falternateIds\x12\x17\n" +
+	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01B\a\n" +
+	"\x05_name*\x98\x05\n" +
 	"\tAltIDType\x12\x17\n" +
 	"\x13ALT_ID_TYPE_INVALID\x10\x00\x12\x1a\n" +
 	"\x16ALT_ID_TYPE_TRACK_ID_2\x10\x01\x12\x1a\n" +
@@ -309,6 +312,8 @@ func file_components_aliases_proto_init() {
 	if File_components_aliases_proto != nil {
 		return
 	}
+	file_components_aliases_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_aliases_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

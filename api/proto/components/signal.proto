@@ -7,46 +7,46 @@ option go_package = "/components";
 import "components/tracked.proto";
 
 message Signal {
-  FrequencyCenter frequencyCenter = 1;
-  FrequencyRange frequencyRange = 2;
-  double bandwidthHz = 3;
-  double signalToNoiseRatio = 4;
-  LineOfBearing lineOfBearing = 5;
-  Fixed fixed = 6;
+  optional FrequencyCenter frequencyCenter = 1;
+  optional FrequencyRange frequencyRange = 2;
+  optional double bandwidthHz = 3;
+  optional double signalToNoiseRatio = 4;
+  optional LineOfBearing lineOfBearing = 5;
+  optional Fixed fixed = 6;
   repeated EmitterNotation emitterNotations = 7;
-  double pulseWidthS = 8;
-  PulseRepetitionInterval pulseRepetitionInterval = 9;
-  ScanCharacteristics scanCharacteristics = 10;
+  optional double pulseWidthS = 8;
+  optional PulseRepetitionInterval pulseRepetitionInterval = 9;
+  optional ScanCharacteristics scanCharacteristics = 10;
 }
 
 message FrequencyCenter {
-  FrequencyHz frequencyHz = 1;
+  optional FrequencyHz frequencyHz = 1;
 }
 
 message FrequencyRange {
-  MinimumFrequencyRangeHz minimumFrequencyRangeHz = 1;
-  MaximumFrequencyRangeHz maximumFrequencyRangeHz = 2;
+  optional MinimumFrequencyRangeHz minimumFrequencyRangeHz = 1;
+  optional MaximumFrequencyRangeHz maximumFrequencyRangeHz = 2;
 }
 
 message Fixed {}
 
 message EmitterNotation {
-  string emitterNotation = 1;
-  double confidence = 2;
+  optional string emitterNotation = 1;
+  optional double confidence = 2;
 }
 
 message PulseRepetitionInterval {
-  PulseRepetitionIntervalS pulseRepetitionIntervalS = 1;
+  optional PulseRepetitionIntervalS pulseRepetitionIntervalS = 1;
 }
 
 message PulseRepetitionIntervalS {
-  double value = 1;
-  double sigma = 2;
+  optional double value = 1;
+  optional double sigma = 2;
 }
 
 message ScanCharacteristics {
-  ScanType scanType = 1;
-  double scanPeriodS = 2;
+  optional ScanType scanType = 1;
+  optional double scanPeriodS = 2;
 }
 
 enum ScanType {
@@ -70,14 +70,14 @@ enum ScanType {
 }
 
 message FrequencyHz {
-  double value = 1;
-  double sigma = 2;
+  optional double value = 1;
+  optional double sigma = 2;
 }
 
 message MinimumFrequencyRangeHz {
-  FrequencyHz frequencyHz = 1;
+  optional FrequencyHz frequencyHz = 1;
 }
 
 message MaximumFrequencyRangeHz {
-  FrequencyHz frequencyHz = 1;
+  optional FrequencyHz frequencyHz = 1;
 }

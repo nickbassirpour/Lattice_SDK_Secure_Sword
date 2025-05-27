@@ -5,31 +5,31 @@ package components;
 option go_package = "/components";
 
 message LocationUncertainty {
-  PositionEnuCov positionEnuCov = 1;
-  VelocityEnuCov velocityEnuCov = 2;
+  optional PositionEnuCov positionEnuCov = 1;
+  optional VelocityEnuCov velocityEnuCov = 2;
 }
 
 message PositionEnuCov {
-  float mxx = 1;
-  float mxy = 2;
-  float mxz = 3;
-  float myy = 4;
-  float myz = 5;
-  float mzz = 6;
+  optional float mxx = 1;
+  optional float mxy = 2;
+  optional float mxz = 3;
+  optional float myy = 4;
+  optional float myz = 5;
+  optional float mzz = 6;
 }
 
 message VelocityEnuCov {
-  float mxx = 1;
-  float mxy = 2;
-  float mxz = 3;
-  float myy = 4;
-  float myz = 5;
-  float mzz = 6;
+  optional float mxx = 1;
+  optional float mxy = 2;
+  optional float mxz = 3;
+  optional float myy = 4;
+  optional float myz = 5;
+  optional float mzz = 6;
 }
 
 message PositionErrorEllipse {
-  double probability = 1;
-  double semiMajorAxisM = 2;
-  double semiMinorAxisM = 3;
-  double orientationD = 4;
+  optional double probability = 1;
+  optional double semiMajorAxisM = 2;
+  optional double semiMinorAxisM = 3;
+  optional double orientationD = 4;
 }

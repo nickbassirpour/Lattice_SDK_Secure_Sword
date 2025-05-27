@@ -8,41 +8,41 @@ import "google/protobuf/timestamp.proto";
 import "components/location.proto";
 
 message Tracked {
-  int32 track_quality_wrapper = 1;
-  int32 sensor_hits = 2;
-  NumberOfObjects number_of_objects = 3;
-  double radar_cross_section = 4;
-  google.protobuf.Timestamp last_measurement_time = 5;
-  LineOfBearing line_of_bearing = 6;
+  optional int32 track_quality_wrapper = 1;
+  optional int32 sensor_hits = 2;
+  optional NumberOfObjects number_of_objects = 3;
+  optional double radar_cross_section = 4;
+  optional google.protobuf.Timestamp last_measurement_time = 5;
+  optional LineOfBearing line_of_bearing = 6;
 }
 
 message NumberOfObjects {
-  uint32 lower_bound = 1;
-  uint32 upper_bound = 2;
+  optional uint32 lower_bound = 1;
+  optional uint32 upper_bound = 2;
 }
 
 message LineOfBearing {
-  AngleOfArrival angle_of_arrival = 1;
-  RangeEstimateM range_estimate_m = 2;
-  MaxRangeM max_range_m = 3;
+  optional AngleOfArrival angle_of_arrival = 1;
+  optional RangeEstimateM range_estimate_m = 2;
+  optional MaxRangeM max_range_m = 3;
 }
 
 message AngleOfArrival {
-  RelativePose relative_pose = 1;
-  BearingElevationCovarianceRad2 bearing_elevation_covariance_rad2 = 2;
+  optional RelativePose relative_pose = 1;
+  optional BearingElevationCovarianceRad2 bearing_elevation_covariance_rad2 = 2;
 }
 
 message RelativePose {
-  Pos pos = 1;
-  AttitudeEnu att_enu = 2;
+  optional Pos pos = 1;
+  optional AttitudeEnu att_enu = 2;
 }
 
 message Pos {
-  double lon = 1;
-  double lat = 2;
-  double alt = 3;
-  bool is2d = 4;
-  AltitudeReference altitude_reference = 5;
+  optional double lon = 1;
+  optional double lat = 2;
+  optional double alt = 3;
+  optional bool is2d = 4;
+  optional AltitudeReference altitude_reference = 5;
 }
 
 enum AltitudeReference {
@@ -56,18 +56,18 @@ enum AltitudeReference {
 }
 
 message BearingElevationCovarianceRad2 {
-  double mxx = 1;
-  double mxy = 2;
-  double myy = 3;
+  optional double mxx = 1;
+  optional double mxy = 2;
+  optional double myy = 3;
 }
 
 message RangeEstimateM {
-  double value = 1;
-  double sigma = 2;
+  optional double value = 1;
+  optional double sigma = 2;
 }
 
 message MaxRangeM {
-  double value = 1;
-  double sigma = 2;
+  optional double value = 1;
+  optional double sigma = 2;
 }
 

@@ -68,14 +68,14 @@ func (x *Supplies) GetFuel() []*Fuel {
 
 type Fuel struct {
 	state                         protoimpl.MessageState `protogen:"open.v1"`
-	FieldId                       string                 `protobuf:"bytes,1,opt,name=fieldId,proto3" json:"fieldId,omitempty"`
-	Name                          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	ReportedDate                  *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=reportedDate,proto3" json:"reportedDate,omitempty"`
-	AmountGallons                 uint32                 `protobuf:"varint,4,opt,name=amountGallons,proto3" json:"amountGallons,omitempty"`
-	MaxAuthorizedCapacityGallons  uint32                 `protobuf:"varint,5,opt,name=maxAuthorizedCapacityGallons,proto3" json:"maxAuthorizedCapacityGallons,omitempty"`
-	OperationalRequirementGallons uint32                 `protobuf:"varint,6,opt,name=operationalRequirementGallons,proto3" json:"operationalRequirementGallons,omitempty"`
-	DataClassification            *DataClassification    `protobuf:"bytes,7,opt,name=dataClassification,proto3" json:"dataClassification,omitempty"`
-	DataSource                    string                 `protobuf:"bytes,8,opt,name=dataSource,proto3" json:"dataSource,omitempty"`
+	FieldId                       *string                `protobuf:"bytes,1,opt,name=fieldId,proto3,oneof" json:"fieldId,omitempty"`
+	Name                          *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	ReportedDate                  *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=reportedDate,proto3,oneof" json:"reportedDate,omitempty"`
+	AmountGallons                 *uint32                `protobuf:"varint,4,opt,name=amountGallons,proto3,oneof" json:"amountGallons,omitempty"`
+	MaxAuthorizedCapacityGallons  *uint32                `protobuf:"varint,5,opt,name=maxAuthorizedCapacityGallons,proto3,oneof" json:"maxAuthorizedCapacityGallons,omitempty"`
+	OperationalRequirementGallons *uint32                `protobuf:"varint,6,opt,name=operationalRequirementGallons,proto3,oneof" json:"operationalRequirementGallons,omitempty"`
+	DataClassification            *DataClassification    `protobuf:"bytes,7,opt,name=dataClassification,proto3,oneof" json:"dataClassification,omitempty"`
+	DataSource                    *string                `protobuf:"bytes,8,opt,name=dataSource,proto3,oneof" json:"dataSource,omitempty"`
 	unknownFields                 protoimpl.UnknownFields
 	sizeCache                     protoimpl.SizeCache
 }
@@ -111,15 +111,15 @@ func (*Fuel) Descriptor() ([]byte, []int) {
 }
 
 func (x *Fuel) GetFieldId() string {
-	if x != nil {
-		return x.FieldId
+	if x != nil && x.FieldId != nil {
+		return *x.FieldId
 	}
 	return ""
 }
 
 func (x *Fuel) GetName() string {
-	if x != nil {
-		return x.Name
+	if x != nil && x.Name != nil {
+		return *x.Name
 	}
 	return ""
 }
@@ -132,22 +132,22 @@ func (x *Fuel) GetReportedDate() *timestamppb.Timestamp {
 }
 
 func (x *Fuel) GetAmountGallons() uint32 {
-	if x != nil {
-		return x.AmountGallons
+	if x != nil && x.AmountGallons != nil {
+		return *x.AmountGallons
 	}
 	return 0
 }
 
 func (x *Fuel) GetMaxAuthorizedCapacityGallons() uint32 {
-	if x != nil {
-		return x.MaxAuthorizedCapacityGallons
+	if x != nil && x.MaxAuthorizedCapacityGallons != nil {
+		return *x.MaxAuthorizedCapacityGallons
 	}
 	return 0
 }
 
 func (x *Fuel) GetOperationalRequirementGallons() uint32 {
-	if x != nil {
-		return x.OperationalRequirementGallons
+	if x != nil && x.OperationalRequirementGallons != nil {
+		return *x.OperationalRequirementGallons
 	}
 	return 0
 }
@@ -160,8 +160,8 @@ func (x *Fuel) GetDataClassification() *DataClassification {
 }
 
 func (x *Fuel) GetDataSource() string {
-	if x != nil {
-		return x.DataSource
+	if x != nil && x.DataSource != nil {
+		return *x.DataSource
 	}
 	return ""
 }
@@ -173,18 +173,27 @@ const file_components_supplies_proto_rawDesc = "" +
 	"\x19components/supplies.proto\x12\n" +
 	"components\x1a#components/dataclassification.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"0\n" +
 	"\bSupplies\x12$\n" +
-	"\x04fuel\x18\x01 \x03(\v2\x10.components.FuelR\x04fuel\"\x94\x03\n" +
-	"\x04Fuel\x12\x18\n" +
-	"\afieldId\x18\x01 \x01(\tR\afieldId\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12>\n" +
-	"\freportedDate\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\freportedDate\x12$\n" +
-	"\ramountGallons\x18\x04 \x01(\rR\ramountGallons\x12B\n" +
-	"\x1cmaxAuthorizedCapacityGallons\x18\x05 \x01(\rR\x1cmaxAuthorizedCapacityGallons\x12D\n" +
-	"\x1doperationalRequirementGallons\x18\x06 \x01(\rR\x1doperationalRequirementGallons\x12N\n" +
-	"\x12dataClassification\x18\a \x01(\v2\x1e.components.DataClassificationR\x12dataClassification\x12\x1e\n" +
+	"\x04fuel\x18\x01 \x03(\v2\x10.components.FuelR\x04fuel\"\xdd\x04\n" +
+	"\x04Fuel\x12\x1d\n" +
+	"\afieldId\x18\x01 \x01(\tH\x00R\afieldId\x88\x01\x01\x12\x17\n" +
+	"\x04name\x18\x02 \x01(\tH\x01R\x04name\x88\x01\x01\x12C\n" +
+	"\freportedDate\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampH\x02R\freportedDate\x88\x01\x01\x12)\n" +
+	"\ramountGallons\x18\x04 \x01(\rH\x03R\ramountGallons\x88\x01\x01\x12G\n" +
+	"\x1cmaxAuthorizedCapacityGallons\x18\x05 \x01(\rH\x04R\x1cmaxAuthorizedCapacityGallons\x88\x01\x01\x12I\n" +
+	"\x1doperationalRequirementGallons\x18\x06 \x01(\rH\x05R\x1doperationalRequirementGallons\x88\x01\x01\x12S\n" +
+	"\x12dataClassification\x18\a \x01(\v2\x1e.components.DataClassificationH\x06R\x12dataClassification\x88\x01\x01\x12#\n" +
 	"\n" +
-	"dataSource\x18\b \x01(\tR\n" +
-	"dataSourceB\rZ\v/componentsb\x06proto3"
+	"dataSource\x18\b \x01(\tH\aR\n" +
+	"dataSource\x88\x01\x01B\n" +
+	"\n" +
+	"\b_fieldIdB\a\n" +
+	"\x05_nameB\x0f\n" +
+	"\r_reportedDateB\x10\n" +
+	"\x0e_amountGallonsB\x1f\n" +
+	"\x1d_maxAuthorizedCapacityGallonsB \n" +
+	"\x1e_operationalRequirementGallonsB\x15\n" +
+	"\x13_dataClassificationB\r\n" +
+	"\v_dataSourceB\rZ\v/componentsb\x06proto3"
 
 var (
 	file_components_supplies_proto_rawDescOnce sync.Once
@@ -222,6 +231,7 @@ func file_components_supplies_proto_init() {
 		return
 	}
 	file_components_dataclassification_proto_init()
+	file_components_supplies_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

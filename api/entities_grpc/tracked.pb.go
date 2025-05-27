@@ -85,12 +85,12 @@ func (AltitudeReference) EnumDescriptor() ([]byte, []int) {
 
 type Tracked struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
-	TrackQualityWrapper int32                  `protobuf:"varint,1,opt,name=track_quality_wrapper,json=trackQualityWrapper,proto3" json:"track_quality_wrapper,omitempty"`
-	SensorHits          int32                  `protobuf:"varint,2,opt,name=sensor_hits,json=sensorHits,proto3" json:"sensor_hits,omitempty"`
-	NumberOfObjects     *NumberOfObjects       `protobuf:"bytes,3,opt,name=number_of_objects,json=numberOfObjects,proto3" json:"number_of_objects,omitempty"`
-	RadarCrossSection   float64                `protobuf:"fixed64,4,opt,name=radar_cross_section,json=radarCrossSection,proto3" json:"radar_cross_section,omitempty"`
-	LastMeasurementTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=last_measurement_time,json=lastMeasurementTime,proto3" json:"last_measurement_time,omitempty"`
-	LineOfBearing       *LineOfBearing         `protobuf:"bytes,6,opt,name=line_of_bearing,json=lineOfBearing,proto3" json:"line_of_bearing,omitempty"`
+	TrackQualityWrapper *int32                 `protobuf:"varint,1,opt,name=track_quality_wrapper,json=trackQualityWrapper,proto3,oneof" json:"track_quality_wrapper,omitempty"`
+	SensorHits          *int32                 `protobuf:"varint,2,opt,name=sensor_hits,json=sensorHits,proto3,oneof" json:"sensor_hits,omitempty"`
+	NumberOfObjects     *NumberOfObjects       `protobuf:"bytes,3,opt,name=number_of_objects,json=numberOfObjects,proto3,oneof" json:"number_of_objects,omitempty"`
+	RadarCrossSection   *float64               `protobuf:"fixed64,4,opt,name=radar_cross_section,json=radarCrossSection,proto3,oneof" json:"radar_cross_section,omitempty"`
+	LastMeasurementTime *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=last_measurement_time,json=lastMeasurementTime,proto3,oneof" json:"last_measurement_time,omitempty"`
+	LineOfBearing       *LineOfBearing         `protobuf:"bytes,6,opt,name=line_of_bearing,json=lineOfBearing,proto3,oneof" json:"line_of_bearing,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -126,15 +126,15 @@ func (*Tracked) Descriptor() ([]byte, []int) {
 }
 
 func (x *Tracked) GetTrackQualityWrapper() int32 {
-	if x != nil {
-		return x.TrackQualityWrapper
+	if x != nil && x.TrackQualityWrapper != nil {
+		return *x.TrackQualityWrapper
 	}
 	return 0
 }
 
 func (x *Tracked) GetSensorHits() int32 {
-	if x != nil {
-		return x.SensorHits
+	if x != nil && x.SensorHits != nil {
+		return *x.SensorHits
 	}
 	return 0
 }
@@ -147,8 +147,8 @@ func (x *Tracked) GetNumberOfObjects() *NumberOfObjects {
 }
 
 func (x *Tracked) GetRadarCrossSection() float64 {
-	if x != nil {
-		return x.RadarCrossSection
+	if x != nil && x.RadarCrossSection != nil {
+		return *x.RadarCrossSection
 	}
 	return 0
 }
@@ -169,8 +169,8 @@ func (x *Tracked) GetLineOfBearing() *LineOfBearing {
 
 type NumberOfObjects struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	LowerBound    uint32                 `protobuf:"varint,1,opt,name=lower_bound,json=lowerBound,proto3" json:"lower_bound,omitempty"`
-	UpperBound    uint32                 `protobuf:"varint,2,opt,name=upper_bound,json=upperBound,proto3" json:"upper_bound,omitempty"`
+	LowerBound    *uint32                `protobuf:"varint,1,opt,name=lower_bound,json=lowerBound,proto3,oneof" json:"lower_bound,omitempty"`
+	UpperBound    *uint32                `protobuf:"varint,2,opt,name=upper_bound,json=upperBound,proto3,oneof" json:"upper_bound,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -206,24 +206,24 @@ func (*NumberOfObjects) Descriptor() ([]byte, []int) {
 }
 
 func (x *NumberOfObjects) GetLowerBound() uint32 {
-	if x != nil {
-		return x.LowerBound
+	if x != nil && x.LowerBound != nil {
+		return *x.LowerBound
 	}
 	return 0
 }
 
 func (x *NumberOfObjects) GetUpperBound() uint32 {
-	if x != nil {
-		return x.UpperBound
+	if x != nil && x.UpperBound != nil {
+		return *x.UpperBound
 	}
 	return 0
 }
 
 type LineOfBearing struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
-	AngleOfArrival *AngleOfArrival        `protobuf:"bytes,1,opt,name=angle_of_arrival,json=angleOfArrival,proto3" json:"angle_of_arrival,omitempty"`
-	RangeEstimateM *RangeEstimateM        `protobuf:"bytes,2,opt,name=range_estimate_m,json=rangeEstimateM,proto3" json:"range_estimate_m,omitempty"`
-	MaxRangeM      *MaxRangeM             `protobuf:"bytes,3,opt,name=max_range_m,json=maxRangeM,proto3" json:"max_range_m,omitempty"`
+	AngleOfArrival *AngleOfArrival        `protobuf:"bytes,1,opt,name=angle_of_arrival,json=angleOfArrival,proto3,oneof" json:"angle_of_arrival,omitempty"`
+	RangeEstimateM *RangeEstimateM        `protobuf:"bytes,2,opt,name=range_estimate_m,json=rangeEstimateM,proto3,oneof" json:"range_estimate_m,omitempty"`
+	MaxRangeM      *MaxRangeM             `protobuf:"bytes,3,opt,name=max_range_m,json=maxRangeM,proto3,oneof" json:"max_range_m,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -281,8 +281,8 @@ func (x *LineOfBearing) GetMaxRangeM() *MaxRangeM {
 
 type AngleOfArrival struct {
 	state                          protoimpl.MessageState          `protogen:"open.v1"`
-	RelativePose                   *RelativePose                   `protobuf:"bytes,1,opt,name=relative_pose,json=relativePose,proto3" json:"relative_pose,omitempty"`
-	BearingElevationCovarianceRad2 *BearingElevationCovarianceRad2 `protobuf:"bytes,2,opt,name=bearing_elevation_covariance_rad2,json=bearingElevationCovarianceRad2,proto3" json:"bearing_elevation_covariance_rad2,omitempty"`
+	RelativePose                   *RelativePose                   `protobuf:"bytes,1,opt,name=relative_pose,json=relativePose,proto3,oneof" json:"relative_pose,omitempty"`
+	BearingElevationCovarianceRad2 *BearingElevationCovarianceRad2 `protobuf:"bytes,2,opt,name=bearing_elevation_covariance_rad2,json=bearingElevationCovarianceRad2,proto3,oneof" json:"bearing_elevation_covariance_rad2,omitempty"`
 	unknownFields                  protoimpl.UnknownFields
 	sizeCache                      protoimpl.SizeCache
 }
@@ -333,8 +333,8 @@ func (x *AngleOfArrival) GetBearingElevationCovarianceRad2() *BearingElevationCo
 
 type RelativePose struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Pos           *Pos                   `protobuf:"bytes,1,opt,name=pos,proto3" json:"pos,omitempty"`
-	AttEnu        *AttitudeEnu           `protobuf:"bytes,2,opt,name=att_enu,json=attEnu,proto3" json:"att_enu,omitempty"`
+	Pos           *Pos                   `protobuf:"bytes,1,opt,name=pos,proto3,oneof" json:"pos,omitempty"`
+	AttEnu        *AttitudeEnu           `protobuf:"bytes,2,opt,name=att_enu,json=attEnu,proto3,oneof" json:"att_enu,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -385,11 +385,11 @@ func (x *RelativePose) GetAttEnu() *AttitudeEnu {
 
 type Pos struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	Lon               float64                `protobuf:"fixed64,1,opt,name=lon,proto3" json:"lon,omitempty"`
-	Lat               float64                `protobuf:"fixed64,2,opt,name=lat,proto3" json:"lat,omitempty"`
-	Alt               float64                `protobuf:"fixed64,3,opt,name=alt,proto3" json:"alt,omitempty"`
-	Is2D              bool                   `protobuf:"varint,4,opt,name=is2d,proto3" json:"is2d,omitempty"`
-	AltitudeReference AltitudeReference      `protobuf:"varint,5,opt,name=altitude_reference,json=altitudeReference,proto3,enum=components.AltitudeReference" json:"altitude_reference,omitempty"`
+	Lon               *float64               `protobuf:"fixed64,1,opt,name=lon,proto3,oneof" json:"lon,omitempty"`
+	Lat               *float64               `protobuf:"fixed64,2,opt,name=lat,proto3,oneof" json:"lat,omitempty"`
+	Alt               *float64               `protobuf:"fixed64,3,opt,name=alt,proto3,oneof" json:"alt,omitempty"`
+	Is2D              *bool                  `protobuf:"varint,4,opt,name=is2d,proto3,oneof" json:"is2d,omitempty"`
+	AltitudeReference *AltitudeReference     `protobuf:"varint,5,opt,name=altitude_reference,json=altitudeReference,proto3,enum=components.AltitudeReference,oneof" json:"altitude_reference,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -425,45 +425,45 @@ func (*Pos) Descriptor() ([]byte, []int) {
 }
 
 func (x *Pos) GetLon() float64 {
-	if x != nil {
-		return x.Lon
+	if x != nil && x.Lon != nil {
+		return *x.Lon
 	}
 	return 0
 }
 
 func (x *Pos) GetLat() float64 {
-	if x != nil {
-		return x.Lat
+	if x != nil && x.Lat != nil {
+		return *x.Lat
 	}
 	return 0
 }
 
 func (x *Pos) GetAlt() float64 {
-	if x != nil {
-		return x.Alt
+	if x != nil && x.Alt != nil {
+		return *x.Alt
 	}
 	return 0
 }
 
 func (x *Pos) GetIs2D() bool {
-	if x != nil {
-		return x.Is2D
+	if x != nil && x.Is2D != nil {
+		return *x.Is2D
 	}
 	return false
 }
 
 func (x *Pos) GetAltitudeReference() AltitudeReference {
-	if x != nil {
-		return x.AltitudeReference
+	if x != nil && x.AltitudeReference != nil {
+		return *x.AltitudeReference
 	}
 	return AltitudeReference_ALTITUDE_REFERENCE_INVALID
 }
 
 type BearingElevationCovarianceRad2 struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Mxx           float64                `protobuf:"fixed64,1,opt,name=mxx,proto3" json:"mxx,omitempty"`
-	Mxy           float64                `protobuf:"fixed64,2,opt,name=mxy,proto3" json:"mxy,omitempty"`
-	Myy           float64                `protobuf:"fixed64,3,opt,name=myy,proto3" json:"myy,omitempty"`
+	Mxx           *float64               `protobuf:"fixed64,1,opt,name=mxx,proto3,oneof" json:"mxx,omitempty"`
+	Mxy           *float64               `protobuf:"fixed64,2,opt,name=mxy,proto3,oneof" json:"mxy,omitempty"`
+	Myy           *float64               `protobuf:"fixed64,3,opt,name=myy,proto3,oneof" json:"myy,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -499,30 +499,30 @@ func (*BearingElevationCovarianceRad2) Descriptor() ([]byte, []int) {
 }
 
 func (x *BearingElevationCovarianceRad2) GetMxx() float64 {
-	if x != nil {
-		return x.Mxx
+	if x != nil && x.Mxx != nil {
+		return *x.Mxx
 	}
 	return 0
 }
 
 func (x *BearingElevationCovarianceRad2) GetMxy() float64 {
-	if x != nil {
-		return x.Mxy
+	if x != nil && x.Mxy != nil {
+		return *x.Mxy
 	}
 	return 0
 }
 
 func (x *BearingElevationCovarianceRad2) GetMyy() float64 {
-	if x != nil {
-		return x.Myy
+	if x != nil && x.Myy != nil {
+		return *x.Myy
 	}
 	return 0
 }
 
 type RangeEstimateM struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Value         float64                `protobuf:"fixed64,1,opt,name=value,proto3" json:"value,omitempty"`
-	Sigma         float64                `protobuf:"fixed64,2,opt,name=sigma,proto3" json:"sigma,omitempty"`
+	Value         *float64               `protobuf:"fixed64,1,opt,name=value,proto3,oneof" json:"value,omitempty"`
+	Sigma         *float64               `protobuf:"fixed64,2,opt,name=sigma,proto3,oneof" json:"sigma,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -558,23 +558,23 @@ func (*RangeEstimateM) Descriptor() ([]byte, []int) {
 }
 
 func (x *RangeEstimateM) GetValue() float64 {
-	if x != nil {
-		return x.Value
+	if x != nil && x.Value != nil {
+		return *x.Value
 	}
 	return 0
 }
 
 func (x *RangeEstimateM) GetSigma() float64 {
-	if x != nil {
-		return x.Sigma
+	if x != nil && x.Sigma != nil {
+		return *x.Sigma
 	}
 	return 0
 }
 
 type MaxRangeM struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Value         float64                `protobuf:"fixed64,1,opt,name=value,proto3" json:"value,omitempty"`
-	Sigma         float64                `protobuf:"fixed64,2,opt,name=sigma,proto3" json:"sigma,omitempty"`
+	Value         *float64               `protobuf:"fixed64,1,opt,name=value,proto3,oneof" json:"value,omitempty"`
+	Sigma         *float64               `protobuf:"fixed64,2,opt,name=sigma,proto3,oneof" json:"sigma,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -610,15 +610,15 @@ func (*MaxRangeM) Descriptor() ([]byte, []int) {
 }
 
 func (x *MaxRangeM) GetValue() float64 {
-	if x != nil {
-		return x.Value
+	if x != nil && x.Value != nil {
+		return *x.Value
 	}
 	return 0
 }
 
 func (x *MaxRangeM) GetSigma() float64 {
-	if x != nil {
-		return x.Sigma
+	if x != nil && x.Sigma != nil {
+		return *x.Sigma
 	}
 	return 0
 }
@@ -628,46 +628,74 @@ var File_components_tracked_proto protoreflect.FileDescriptor
 const file_components_tracked_proto_rawDesc = "" +
 	"\n" +
 	"\x18components/tracked.proto\x12\n" +
-	"components\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19components/location.proto\"\xea\x02\n" +
-	"\aTracked\x122\n" +
-	"\x15track_quality_wrapper\x18\x01 \x01(\x05R\x13trackQualityWrapper\x12\x1f\n" +
-	"\vsensor_hits\x18\x02 \x01(\x05R\n" +
-	"sensorHits\x12G\n" +
-	"\x11number_of_objects\x18\x03 \x01(\v2\x1b.components.NumberOfObjectsR\x0fnumberOfObjects\x12.\n" +
-	"\x13radar_cross_section\x18\x04 \x01(\x01R\x11radarCrossSection\x12N\n" +
-	"\x15last_measurement_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x13lastMeasurementTime\x12A\n" +
-	"\x0fline_of_bearing\x18\x06 \x01(\v2\x19.components.LineOfBearingR\rlineOfBearing\"S\n" +
-	"\x0fNumberOfObjects\x12\x1f\n" +
-	"\vlower_bound\x18\x01 \x01(\rR\n" +
-	"lowerBound\x12\x1f\n" +
-	"\vupper_bound\x18\x02 \x01(\rR\n" +
-	"upperBound\"\xd2\x01\n" +
-	"\rLineOfBearing\x12D\n" +
-	"\x10angle_of_arrival\x18\x01 \x01(\v2\x1a.components.AngleOfArrivalR\x0eangleOfArrival\x12D\n" +
-	"\x10range_estimate_m\x18\x02 \x01(\v2\x1a.components.RangeEstimateMR\x0erangeEstimateM\x125\n" +
-	"\vmax_range_m\x18\x03 \x01(\v2\x15.components.MaxRangeMR\tmaxRangeM\"\xc6\x01\n" +
-	"\x0eAngleOfArrival\x12=\n" +
-	"\rrelative_pose\x18\x01 \x01(\v2\x18.components.RelativePoseR\frelativePose\x12u\n" +
-	"!bearing_elevation_covariance_rad2\x18\x02 \x01(\v2*.components.BearingElevationCovarianceRad2R\x1ebearingElevationCovarianceRad2\"c\n" +
-	"\fRelativePose\x12!\n" +
-	"\x03pos\x18\x01 \x01(\v2\x0f.components.PosR\x03pos\x120\n" +
-	"\aatt_enu\x18\x02 \x01(\v2\x17.components.AttitudeEnuR\x06attEnu\"\x9d\x01\n" +
-	"\x03Pos\x12\x10\n" +
-	"\x03lon\x18\x01 \x01(\x01R\x03lon\x12\x10\n" +
-	"\x03lat\x18\x02 \x01(\x01R\x03lat\x12\x10\n" +
-	"\x03alt\x18\x03 \x01(\x01R\x03alt\x12\x12\n" +
-	"\x04is2d\x18\x04 \x01(\bR\x04is2d\x12L\n" +
-	"\x12altitude_reference\x18\x05 \x01(\x0e2\x1d.components.AltitudeReferenceR\x11altitudeReference\"V\n" +
-	"\x1eBearingElevationCovarianceRad2\x12\x10\n" +
-	"\x03mxx\x18\x01 \x01(\x01R\x03mxx\x12\x10\n" +
-	"\x03mxy\x18\x02 \x01(\x01R\x03mxy\x12\x10\n" +
-	"\x03myy\x18\x03 \x01(\x01R\x03myy\"<\n" +
-	"\x0eRangeEstimateM\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\x01R\x05value\x12\x14\n" +
-	"\x05sigma\x18\x02 \x01(\x01R\x05sigma\"7\n" +
-	"\tMaxRangeM\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\x01R\x05value\x12\x14\n" +
-	"\x05sigma\x18\x02 \x01(\x01R\x05sigma*\x9e\x02\n" +
+	"components\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x19components/location.proto\"\x8e\x04\n" +
+	"\aTracked\x127\n" +
+	"\x15track_quality_wrapper\x18\x01 \x01(\x05H\x00R\x13trackQualityWrapper\x88\x01\x01\x12$\n" +
+	"\vsensor_hits\x18\x02 \x01(\x05H\x01R\n" +
+	"sensorHits\x88\x01\x01\x12L\n" +
+	"\x11number_of_objects\x18\x03 \x01(\v2\x1b.components.NumberOfObjectsH\x02R\x0fnumberOfObjects\x88\x01\x01\x123\n" +
+	"\x13radar_cross_section\x18\x04 \x01(\x01H\x03R\x11radarCrossSection\x88\x01\x01\x12S\n" +
+	"\x15last_measurement_time\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x04R\x13lastMeasurementTime\x88\x01\x01\x12F\n" +
+	"\x0fline_of_bearing\x18\x06 \x01(\v2\x19.components.LineOfBearingH\x05R\rlineOfBearing\x88\x01\x01B\x18\n" +
+	"\x16_track_quality_wrapperB\x0e\n" +
+	"\f_sensor_hitsB\x14\n" +
+	"\x12_number_of_objectsB\x16\n" +
+	"\x14_radar_cross_sectionB\x18\n" +
+	"\x16_last_measurement_timeB\x12\n" +
+	"\x10_line_of_bearing\"}\n" +
+	"\x0fNumberOfObjects\x12$\n" +
+	"\vlower_bound\x18\x01 \x01(\rH\x00R\n" +
+	"lowerBound\x88\x01\x01\x12$\n" +
+	"\vupper_bound\x18\x02 \x01(\rH\x01R\n" +
+	"upperBound\x88\x01\x01B\x0e\n" +
+	"\f_lower_boundB\x0e\n" +
+	"\f_upper_bound\"\x9b\x02\n" +
+	"\rLineOfBearing\x12I\n" +
+	"\x10angle_of_arrival\x18\x01 \x01(\v2\x1a.components.AngleOfArrivalH\x00R\x0eangleOfArrival\x88\x01\x01\x12I\n" +
+	"\x10range_estimate_m\x18\x02 \x01(\v2\x1a.components.RangeEstimateMH\x01R\x0erangeEstimateM\x88\x01\x01\x12:\n" +
+	"\vmax_range_m\x18\x03 \x01(\v2\x15.components.MaxRangeMH\x02R\tmaxRangeM\x88\x01\x01B\x13\n" +
+	"\x11_angle_of_arrivalB\x13\n" +
+	"\x11_range_estimate_mB\x0e\n" +
+	"\f_max_range_m\"\x88\x02\n" +
+	"\x0eAngleOfArrival\x12B\n" +
+	"\rrelative_pose\x18\x01 \x01(\v2\x18.components.RelativePoseH\x00R\frelativePose\x88\x01\x01\x12z\n" +
+	"!bearing_elevation_covariance_rad2\x18\x02 \x01(\v2*.components.BearingElevationCovarianceRad2H\x01R\x1ebearingElevationCovarianceRad2\x88\x01\x01B\x10\n" +
+	"\x0e_relative_poseB$\n" +
+	"\"_bearing_elevation_covariance_rad2\"\x81\x01\n" +
+	"\fRelativePose\x12&\n" +
+	"\x03pos\x18\x01 \x01(\v2\x0f.components.PosH\x00R\x03pos\x88\x01\x01\x125\n" +
+	"\aatt_enu\x18\x02 \x01(\v2\x17.components.AttitudeEnuH\x01R\x06attEnu\x88\x01\x01B\x06\n" +
+	"\x04_posB\n" +
+	"\n" +
+	"\b_att_enu\"\xee\x01\n" +
+	"\x03Pos\x12\x15\n" +
+	"\x03lon\x18\x01 \x01(\x01H\x00R\x03lon\x88\x01\x01\x12\x15\n" +
+	"\x03lat\x18\x02 \x01(\x01H\x01R\x03lat\x88\x01\x01\x12\x15\n" +
+	"\x03alt\x18\x03 \x01(\x01H\x02R\x03alt\x88\x01\x01\x12\x17\n" +
+	"\x04is2d\x18\x04 \x01(\bH\x03R\x04is2d\x88\x01\x01\x12Q\n" +
+	"\x12altitude_reference\x18\x05 \x01(\x0e2\x1d.components.AltitudeReferenceH\x04R\x11altitudeReference\x88\x01\x01B\x06\n" +
+	"\x04_lonB\x06\n" +
+	"\x04_latB\x06\n" +
+	"\x04_altB\a\n" +
+	"\x05_is2dB\x15\n" +
+	"\x13_altitude_reference\"}\n" +
+	"\x1eBearingElevationCovarianceRad2\x12\x15\n" +
+	"\x03mxx\x18\x01 \x01(\x01H\x00R\x03mxx\x88\x01\x01\x12\x15\n" +
+	"\x03mxy\x18\x02 \x01(\x01H\x01R\x03mxy\x88\x01\x01\x12\x15\n" +
+	"\x03myy\x18\x03 \x01(\x01H\x02R\x03myy\x88\x01\x01B\x06\n" +
+	"\x04_mxxB\x06\n" +
+	"\x04_mxyB\x06\n" +
+	"\x04_myy\"Z\n" +
+	"\x0eRangeEstimateM\x12\x19\n" +
+	"\x05value\x18\x01 \x01(\x01H\x00R\x05value\x88\x01\x01\x12\x19\n" +
+	"\x05sigma\x18\x02 \x01(\x01H\x01R\x05sigma\x88\x01\x01B\b\n" +
+	"\x06_valueB\b\n" +
+	"\x06_sigma\"U\n" +
+	"\tMaxRangeM\x12\x19\n" +
+	"\x05value\x18\x01 \x01(\x01H\x00R\x05value\x88\x01\x01\x12\x19\n" +
+	"\x05sigma\x18\x02 \x01(\x01H\x01R\x05sigma\x88\x01\x01B\b\n" +
+	"\x06_valueB\b\n" +
+	"\x06_sigma*\x9e\x02\n" +
 	"\x11AltitudeReference\x12\x1e\n" +
 	"\x1aALTITUDE_REFERENCE_INVALID\x10\x00\x12)\n" +
 	"%ALTITUDE_REFERENCE_HEIGHT_ABOVE_WGS84\x10\x01\x12)\n" +
@@ -730,6 +758,15 @@ func file_components_tracked_proto_init() {
 		return
 	}
 	file_components_location_proto_init()
+	file_components_tracked_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_tracked_proto_msgTypes[1].OneofWrappers = []any{}
+	file_components_tracked_proto_msgTypes[2].OneofWrappers = []any{}
+	file_components_tracked_proto_msgTypes[3].OneofWrappers = []any{}
+	file_components_tracked_proto_msgTypes[4].OneofWrappers = []any{}
+	file_components_tracked_proto_msgTypes[5].OneofWrappers = []any{}
+	file_components_tracked_proto_msgTypes[6].OneofWrappers = []any{}
+	file_components_tracked_proto_msgTypes[7].OneofWrappers = []any{}
+	file_components_tracked_proto_msgTypes[8].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

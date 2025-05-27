@@ -67,7 +67,7 @@ func (x *TaskCatalog) GetTaskDefinitions() []*TaskDefinition {
 
 type TaskDefinition struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	TaskSpecificationUrl string                 `protobuf:"bytes,1,opt,name=taskSpecificationUrl,proto3" json:"taskSpecificationUrl,omitempty"`
+	TaskSpecificationUrl *string                `protobuf:"bytes,1,opt,name=taskSpecificationUrl,proto3,oneof" json:"taskSpecificationUrl,omitempty"`
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -103,8 +103,8 @@ func (*TaskDefinition) Descriptor() ([]byte, []int) {
 }
 
 func (x *TaskDefinition) GetTaskSpecificationUrl() string {
-	if x != nil {
-		return x.TaskSpecificationUrl
+	if x != nil && x.TaskSpecificationUrl != nil {
+		return *x.TaskSpecificationUrl
 	}
 	return ""
 }
@@ -116,9 +116,10 @@ const file_components_task_catalog_proto_rawDesc = "" +
 	"\x1dcomponents/task_catalog.proto\x12\n" +
 	"components\"S\n" +
 	"\vTaskCatalog\x12D\n" +
-	"\x0ftaskDefinitions\x18\x01 \x03(\v2\x1a.components.TaskDefinitionR\x0ftaskDefinitions\"D\n" +
-	"\x0eTaskDefinition\x122\n" +
-	"\x14taskSpecificationUrl\x18\x01 \x01(\tR\x14taskSpecificationUrlB\rZ\v/componentsb\x06proto3"
+	"\x0ftaskDefinitions\x18\x01 \x03(\v2\x1a.components.TaskDefinitionR\x0ftaskDefinitions\"b\n" +
+	"\x0eTaskDefinition\x127\n" +
+	"\x14taskSpecificationUrl\x18\x01 \x01(\tH\x00R\x14taskSpecificationUrl\x88\x01\x01B\x17\n" +
+	"\x15_taskSpecificationUrlB\rZ\v/componentsb\x06proto3"
 
 var (
 	file_components_task_catalog_proto_rawDescOnce sync.Once
@@ -151,6 +152,7 @@ func file_components_task_catalog_proto_init() {
 	if File_components_task_catalog_proto != nil {
 		return
 	}
+	file_components_task_catalog_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

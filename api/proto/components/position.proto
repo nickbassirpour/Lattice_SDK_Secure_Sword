@@ -6,20 +6,20 @@ option go_package = "/components";
 
 message Position {
   // WGS84 geodetic latitude in decimal degrees.
-  double latitudeDegrees = 1;
+  optional double latitudeDegrees = 1;
 
   // WGS84 longitude in decimal degrees.
-  double longitudeDegrees = 2;
+  optional double longitudeDegrees = 2;
 
   // Altitude as height above ellipsoid (WGS84) in meters.
-  double altitudeHaeMeters = 3;
+  optional double altitudeHaeMeters = 3;
 
   // Altitude as AGL (Above Ground Level).
-  double altitudeAglMeters = 4;
+  optional double altitudeAglMeters = 4;
 
   // Altitude as ASF (Above Sea Floor).
-  double altitudeAsfMeters = 5;
+  optional double altitudeAsfMeters = 5;
 
   // Depth from surface of water via pressure sensors.
-  double pressureDepthMeters = 6;
+  optional double pressureDepthMeters = 6;
 }

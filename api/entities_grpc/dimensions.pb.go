@@ -24,7 +24,7 @@ const (
 type Dimensions struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Length of the entity in meters
-	LengthM       float32 `protobuf:"fixed32,1,opt,name=lengthM,proto3" json:"lengthM,omitempty"`
+	LengthM       *float32 `protobuf:"fixed32,1,opt,name=lengthM,proto3,oneof" json:"lengthM,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -60,8 +60,8 @@ func (*Dimensions) Descriptor() ([]byte, []int) {
 }
 
 func (x *Dimensions) GetLengthM() float32 {
-	if x != nil {
-		return x.LengthM
+	if x != nil && x.LengthM != nil {
+		return *x.LengthM
 	}
 	return 0
 }
@@ -71,10 +71,12 @@ var File_components_dimensions_proto protoreflect.FileDescriptor
 const file_components_dimensions_proto_rawDesc = "" +
 	"\n" +
 	"\x1bcomponents/dimensions.proto\x12\n" +
-	"components\"&\n" +
+	"components\"7\n" +
 	"\n" +
-	"Dimensions\x12\x18\n" +
-	"\alengthM\x18\x01 \x01(\x02R\alengthMB\rZ\v/componentsb\x06proto3"
+	"Dimensions\x12\x1d\n" +
+	"\alengthM\x18\x01 \x01(\x02H\x00R\alengthM\x88\x01\x01B\n" +
+	"\n" +
+	"\b_lengthMB\rZ\v/componentsb\x06proto3"
 
 var (
 	file_components_dimensions_proto_rawDescOnce sync.Once
@@ -105,6 +107,7 @@ func file_components_dimensions_proto_init() {
 	if File_components_dimensions_proto != nil {
 		return
 	}
+	file_components_dimensions_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

@@ -75,9 +75,9 @@ func (InterrogationResponse) EnumDescriptor() ([]byte, []int) {
 
 type Mode5 struct {
 	state                      protoimpl.MessageState `protogen:"open.v1"`
-	Mode5InterrogationResponse InterrogationResponse  `protobuf:"varint,1,opt,name=mode5_interrogation_response,json=mode5InterrogationResponse,proto3,enum=components.InterrogationResponse" json:"mode5_interrogation_response,omitempty"`
-	Mode5                      uint32                 `protobuf:"varint,2,opt,name=mode5,proto3" json:"mode5,omitempty"`
-	Mode5PlatformId            uint32                 `protobuf:"varint,3,opt,name=mode5_platform_id,json=mode5PlatformId,proto3" json:"mode5_platform_id,omitempty"`
+	Mode5InterrogationResponse *InterrogationResponse `protobuf:"varint,1,opt,name=mode5_interrogation_response,json=mode5InterrogationResponse,proto3,enum=components.InterrogationResponse,oneof" json:"mode5_interrogation_response,omitempty"`
+	Mode5                      *uint32                `protobuf:"varint,2,opt,name=mode5,proto3,oneof" json:"mode5,omitempty"`
+	Mode5PlatformId            *uint32                `protobuf:"varint,3,opt,name=mode5_platform_id,json=mode5PlatformId,proto3,oneof" json:"mode5_platform_id,omitempty"`
 	unknownFields              protoimpl.UnknownFields
 	sizeCache                  protoimpl.SizeCache
 }
@@ -113,30 +113,30 @@ func (*Mode5) Descriptor() ([]byte, []int) {
 }
 
 func (x *Mode5) GetMode5InterrogationResponse() InterrogationResponse {
-	if x != nil {
-		return x.Mode5InterrogationResponse
+	if x != nil && x.Mode5InterrogationResponse != nil {
+		return *x.Mode5InterrogationResponse
 	}
 	return InterrogationResponse_INTERROGATION_RESPONSE_INVALID
 }
 
 func (x *Mode5) GetMode5() uint32 {
-	if x != nil {
-		return x.Mode5
+	if x != nil && x.Mode5 != nil {
+		return *x.Mode5
 	}
 	return 0
 }
 
 func (x *Mode5) GetMode5PlatformId() uint32 {
-	if x != nil {
-		return x.Mode5PlatformId
+	if x != nil && x.Mode5PlatformId != nil {
+		return *x.Mode5PlatformId
 	}
 	return 0
 }
 
 type ModeS struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Address       uint32                 `protobuf:"varint,2,opt,name=address,proto3" json:"address,omitempty"`
+	Id            *string                `protobuf:"bytes,1,opt,name=id,proto3,oneof" json:"id,omitempty"`
+	Address       *uint32                `protobuf:"varint,2,opt,name=address,proto3,oneof" json:"address,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -172,27 +172,27 @@ func (*ModeS) Descriptor() ([]byte, []int) {
 }
 
 func (x *ModeS) GetId() string {
-	if x != nil {
-		return x.Id
+	if x != nil && x.Id != nil {
+		return *x.Id
 	}
 	return ""
 }
 
 func (x *ModeS) GetAddress() uint32 {
-	if x != nil {
-		return x.Address
+	if x != nil && x.Address != nil {
+		return *x.Address
 	}
 	return 0
 }
 
 type TransponderCodes struct {
 	state                      protoimpl.MessageState `protogen:"open.v1"`
-	Mode1                      uint32                 `protobuf:"varint,1,opt,name=mode1,proto3" json:"mode1,omitempty"`
-	Mode2                      uint32                 `protobuf:"varint,2,opt,name=mode2,proto3" json:"mode2,omitempty"`
-	Mode3                      uint32                 `protobuf:"varint,3,opt,name=mode3,proto3" json:"mode3,omitempty"`
-	Mode4InterrogationResponse InterrogationResponse  `protobuf:"varint,4,opt,name=mode4_interrogation_response,json=mode4InterrogationResponse,proto3,enum=components.InterrogationResponse" json:"mode4_interrogation_response,omitempty"`
-	Mode5                      *Mode5                 `protobuf:"bytes,5,opt,name=mode5,proto3" json:"mode5,omitempty"`
-	ModeS                      *ModeS                 `protobuf:"bytes,6,opt,name=modeS,proto3" json:"modeS,omitempty"`
+	Mode1                      *uint32                `protobuf:"varint,1,opt,name=mode1,proto3,oneof" json:"mode1,omitempty"`
+	Mode2                      *uint32                `protobuf:"varint,2,opt,name=mode2,proto3,oneof" json:"mode2,omitempty"`
+	Mode3                      *uint32                `protobuf:"varint,3,opt,name=mode3,proto3,oneof" json:"mode3,omitempty"`
+	Mode4InterrogationResponse *InterrogationResponse `protobuf:"varint,4,opt,name=mode4_interrogation_response,json=mode4InterrogationResponse,proto3,enum=components.InterrogationResponse,oneof" json:"mode4_interrogation_response,omitempty"`
+	Mode5                      *Mode5                 `protobuf:"bytes,5,opt,name=mode5,proto3,oneof" json:"mode5,omitempty"`
+	ModeS                      *ModeS                 `protobuf:"bytes,6,opt,name=modeS,proto3,oneof" json:"modeS,omitempty"`
 	unknownFields              protoimpl.UnknownFields
 	sizeCache                  protoimpl.SizeCache
 }
@@ -228,29 +228,29 @@ func (*TransponderCodes) Descriptor() ([]byte, []int) {
 }
 
 func (x *TransponderCodes) GetMode1() uint32 {
-	if x != nil {
-		return x.Mode1
+	if x != nil && x.Mode1 != nil {
+		return *x.Mode1
 	}
 	return 0
 }
 
 func (x *TransponderCodes) GetMode2() uint32 {
-	if x != nil {
-		return x.Mode2
+	if x != nil && x.Mode2 != nil {
+		return *x.Mode2
 	}
 	return 0
 }
 
 func (x *TransponderCodes) GetMode3() uint32 {
-	if x != nil {
-		return x.Mode3
+	if x != nil && x.Mode3 != nil {
+		return *x.Mode3
 	}
 	return 0
 }
 
 func (x *TransponderCodes) GetMode4InterrogationResponse() InterrogationResponse {
-	if x != nil {
-		return x.Mode4InterrogationResponse
+	if x != nil && x.Mode4InterrogationResponse != nil {
+		return *x.Mode4InterrogationResponse
 	}
 	return InterrogationResponse_INTERROGATION_RESPONSE_INVALID
 }
@@ -274,21 +274,33 @@ var File_components_transponder_codes_proto protoreflect.FileDescriptor
 const file_components_transponder_codes_proto_rawDesc = "" +
 	"\n" +
 	"\"components/transponder_codes.proto\x12\n" +
-	"components\"\xae\x01\n" +
-	"\x05Mode5\x12c\n" +
-	"\x1cmode5_interrogation_response\x18\x01 \x01(\x0e2!.components.InterrogationResponseR\x1amode5InterrogationResponse\x12\x14\n" +
-	"\x05mode5\x18\x02 \x01(\rR\x05mode5\x12*\n" +
-	"\x11mode5_platform_id\x18\x03 \x01(\rR\x0fmode5PlatformId\"1\n" +
-	"\x05ModeS\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
-	"\aaddress\x18\x02 \x01(\rR\aaddress\"\x8b\x02\n" +
-	"\x10TransponderCodes\x12\x14\n" +
-	"\x05mode1\x18\x01 \x01(\rR\x05mode1\x12\x14\n" +
-	"\x05mode2\x18\x02 \x01(\rR\x05mode2\x12\x14\n" +
-	"\x05mode3\x18\x03 \x01(\rR\x05mode3\x12c\n" +
-	"\x1cmode4_interrogation_response\x18\x04 \x01(\x0e2!.components.InterrogationResponseR\x1amode4InterrogationResponse\x12'\n" +
-	"\x05mode5\x18\x05 \x01(\v2\x11.components.Mode5R\x05mode5\x12'\n" +
-	"\x05modeS\x18\x06 \x01(\v2\x11.components.ModeSR\x05modeS*\xad\x01\n" +
+	"components\"\xfe\x01\n" +
+	"\x05Mode5\x12h\n" +
+	"\x1cmode5_interrogation_response\x18\x01 \x01(\x0e2!.components.InterrogationResponseH\x00R\x1amode5InterrogationResponse\x88\x01\x01\x12\x19\n" +
+	"\x05mode5\x18\x02 \x01(\rH\x01R\x05mode5\x88\x01\x01\x12/\n" +
+	"\x11mode5_platform_id\x18\x03 \x01(\rH\x02R\x0fmode5PlatformId\x88\x01\x01B\x1f\n" +
+	"\x1d_mode5_interrogation_responseB\b\n" +
+	"\x06_mode5B\x14\n" +
+	"\x12_mode5_platform_id\"N\n" +
+	"\x05ModeS\x12\x13\n" +
+	"\x02id\x18\x01 \x01(\tH\x00R\x02id\x88\x01\x01\x12\x1d\n" +
+	"\aaddress\x18\x02 \x01(\rH\x01R\aaddress\x88\x01\x01B\x05\n" +
+	"\x03_idB\n" +
+	"\n" +
+	"\b_address\"\xfc\x02\n" +
+	"\x10TransponderCodes\x12\x19\n" +
+	"\x05mode1\x18\x01 \x01(\rH\x00R\x05mode1\x88\x01\x01\x12\x19\n" +
+	"\x05mode2\x18\x02 \x01(\rH\x01R\x05mode2\x88\x01\x01\x12\x19\n" +
+	"\x05mode3\x18\x03 \x01(\rH\x02R\x05mode3\x88\x01\x01\x12h\n" +
+	"\x1cmode4_interrogation_response\x18\x04 \x01(\x0e2!.components.InterrogationResponseH\x03R\x1amode4InterrogationResponse\x88\x01\x01\x12,\n" +
+	"\x05mode5\x18\x05 \x01(\v2\x11.components.Mode5H\x04R\x05mode5\x88\x01\x01\x12,\n" +
+	"\x05modeS\x18\x06 \x01(\v2\x11.components.ModeSH\x05R\x05modeS\x88\x01\x01B\b\n" +
+	"\x06_mode1B\b\n" +
+	"\x06_mode2B\b\n" +
+	"\x06_mode3B\x1f\n" +
+	"\x1d_mode4_interrogation_responseB\b\n" +
+	"\x06_mode5B\b\n" +
+	"\x06_modeS*\xad\x01\n" +
 	"\x15InterrogationResponse\x12\"\n" +
 	"\x1eINTERROGATION_RESPONSE_INVALID\x10\x00\x12\"\n" +
 	"\x1eINTERROGATION_RESPONSE_CORRECT\x10\x01\x12$\n" +
@@ -332,6 +344,9 @@ func file_components_transponder_codes_proto_init() {
 	if File_components_transponder_codes_proto != nil {
 		return
 	}
+	file_components_transponder_codes_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_transponder_codes_proto_msgTypes[1].OneofWrappers = []any{}
+	file_components_transponder_codes_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

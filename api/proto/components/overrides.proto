@@ -13,13 +13,13 @@ message Overrides {
 }
 
 message Override {
-  string requestId = 1;
-  string fieldPath = 2;
-  google.protobuf.Any maskedFieldValue = 3;
-  OverrideStatus status = 4;
-  Provenance provenance = 5;
-  Type type = 6;
-  string requestTimeStamp = 7;
+  optional string requestId = 1;
+  optional string fieldPath = 2;
+  optional google.protobuf.Any maskedFieldValue = 3;
+  optional OverrideStatus status = 4;
+  optional Provenance provenance = 5;
+  optional Type type = 6;
+  optional string requestTimeStamp = 7;
 }
 
 enum OverrideStatus {

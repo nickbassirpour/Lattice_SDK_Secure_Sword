@@ -7,28 +7,28 @@ option go_package = "/components";
 import "components/position.proto";
 
 message Location {
-  Position position = 1;
-  VelocityEnu velocityEnu = 2;
-  double speedMps = 3;
-  Acceleration acceleration = 4;
-  AttitudeEnu attitudeEnu = 5;
+  optional Position position = 1;
+  optional VelocityEnu velocityEnu = 2;
+  optional double speedMps = 3;
+  optional Acceleration acceleration = 4;
+  optional AttitudeEnu attitudeEnu = 5;
 }
 
 message VelocityEnu {
-  double e = 1;
-  double n = 2;
-  double u = 3;
+  optional double e = 1;
+  optional double n = 2;
+  optional double u = 3;
 }
 
 message Acceleration {
-  double e = 1;
-  double n = 2;
-  double u = 3;
+  optional double e = 1;
+  optional double n = 2;
+  optional double u = 3;
 }
 
 message AttitudeEnu {
-  double x = 1;
-  double y = 2;
-  double z = 3;
-  double w = 4;
+  optional double x = 1;
+  optional double y = 2;
+  optional double z = 3;
+  optional double w = 4;
 }

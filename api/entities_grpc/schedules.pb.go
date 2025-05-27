@@ -117,8 +117,8 @@ func (x *Schedules) GetSchedules() []*Schedule {
 type Schedule struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Windows       []*Window              `protobuf:"bytes,1,rep,name=windows,proto3" json:"windows,omitempty"`
-	ScheduleId    string                 `protobuf:"bytes,2,opt,name=scheduleId,proto3" json:"scheduleId,omitempty"`
-	ScheduleType  ScheduleType           `protobuf:"varint,3,opt,name=scheduleType,proto3,enum=components.ScheduleType" json:"scheduleType,omitempty"`
+	ScheduleId    *string                `protobuf:"bytes,2,opt,name=scheduleId,proto3,oneof" json:"scheduleId,omitempty"`
+	ScheduleType  *ScheduleType          `protobuf:"varint,3,opt,name=scheduleType,proto3,enum=components.ScheduleType,oneof" json:"scheduleType,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -161,15 +161,15 @@ func (x *Schedule) GetWindows() []*Window {
 }
 
 func (x *Schedule) GetScheduleId() string {
-	if x != nil {
-		return x.ScheduleId
+	if x != nil && x.ScheduleId != nil {
+		return *x.ScheduleId
 	}
 	return ""
 }
 
 func (x *Schedule) GetScheduleType() ScheduleType {
-	if x != nil {
-		return x.ScheduleType
+	if x != nil && x.ScheduleType != nil {
+		return *x.ScheduleType
 	}
 	return ScheduleType_SCHEDULE_TYPE_INVALID
 }
@@ -177,9 +177,9 @@ func (x *Schedule) GetScheduleType() ScheduleType {
 type Window struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// in UTC, describes when and at what cadence this window starts, in the quartz flavor of cron
-	CronExpression string `protobuf:"bytes,1,opt,name=cronExpression,proto3" json:"cronExpression,omitempty"`
+	CronExpression *string `protobuf:"bytes,1,opt,name=cronExpression,proto3,oneof" json:"cronExpression,omitempty"`
 	// describes the duration
-	DurationMillis string `protobuf:"bytes,2,opt,name=durationMillis,proto3" json:"durationMillis,omitempty"`
+	DurationMillis *string `protobuf:"bytes,2,opt,name=durationMillis,proto3,oneof" json:"durationMillis,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -215,15 +215,15 @@ func (*Window) Descriptor() ([]byte, []int) {
 }
 
 func (x *Window) GetCronExpression() string {
-	if x != nil {
-		return x.CronExpression
+	if x != nil && x.CronExpression != nil {
+		return *x.CronExpression
 	}
 	return ""
 }
 
 func (x *Window) GetDurationMillis() string {
-	if x != nil {
-		return x.DurationMillis
+	if x != nil && x.DurationMillis != nil {
+		return *x.DurationMillis
 	}
 	return ""
 }
@@ -235,16 +235,20 @@ const file_components_schedules_proto_rawDesc = "" +
 	"\x1acomponents/schedules.proto\x12\n" +
 	"components\"?\n" +
 	"\tSchedules\x122\n" +
-	"\tschedules\x18\x01 \x03(\v2\x14.components.ScheduleR\tschedules\"\x96\x01\n" +
+	"\tschedules\x18\x01 \x03(\v2\x14.components.ScheduleR\tschedules\"\xc0\x01\n" +
 	"\bSchedule\x12,\n" +
-	"\awindows\x18\x01 \x03(\v2\x12.components.WindowR\awindows\x12\x1e\n" +
+	"\awindows\x18\x01 \x03(\v2\x12.components.WindowR\awindows\x12#\n" +
 	"\n" +
-	"scheduleId\x18\x02 \x01(\tR\n" +
-	"scheduleId\x12<\n" +
-	"\fscheduleType\x18\x03 \x01(\x0e2\x18.components.ScheduleTypeR\fscheduleType\"X\n" +
-	"\x06Window\x12&\n" +
-	"\x0ecronExpression\x18\x01 \x01(\tR\x0ecronExpression\x12&\n" +
-	"\x0edurationMillis\x18\x02 \x01(\tR\x0edurationMillis*n\n" +
+	"scheduleId\x18\x02 \x01(\tH\x00R\n" +
+	"scheduleId\x88\x01\x01\x12A\n" +
+	"\fscheduleType\x18\x03 \x01(\x0e2\x18.components.ScheduleTypeH\x01R\fscheduleType\x88\x01\x01B\r\n" +
+	"\v_scheduleIdB\x0f\n" +
+	"\r_scheduleType\"\x88\x01\n" +
+	"\x06Window\x12+\n" +
+	"\x0ecronExpression\x18\x01 \x01(\tH\x00R\x0ecronExpression\x88\x01\x01\x12+\n" +
+	"\x0edurationMillis\x18\x02 \x01(\tH\x01R\x0edurationMillis\x88\x01\x01B\x11\n" +
+	"\x0f_cronExpressionB\x11\n" +
+	"\x0f_durationMillis*n\n" +
 	"\fScheduleType\x12\x19\n" +
 	"\x15SCHEDULE_TYPE_INVALID\x10\x00\x12\x1e\n" +
 	"\x1aSCHEDULE_TYPE_ZONE_ENABLED\x10\x01\x12#\n" +
@@ -286,6 +290,8 @@ func file_components_schedules_proto_init() {
 	if File_components_schedules_proto != nil {
 		return
 	}
+	file_components_schedules_proto_msgTypes[1].OneofWrappers = []any{}
+	file_components_schedules_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

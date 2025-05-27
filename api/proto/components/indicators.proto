@@ -5,10 +5,10 @@ package components;
 option go_package = "/components";
 
 message Indicators {
-  bool simulated = 1;
-  bool exercise = 2;
-  bool emergency = 3;
-  bool c2 = 4;
-  bool egressable = 5;
-  bool starred = 6;
+  optional bool simulated = 1;
+  optional bool exercise = 2;
+  optional bool emergency = 3;
+  optional bool c2 = 4;
+  optional bool egressable = 5;
+  optional bool starred = 6;
 }

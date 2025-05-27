@@ -7,6 +7,6 @@ option go_package = "/components";
 import "google/protobuf/timestamp.proto";
 
 message RouteDetails {
-  string destinationName = 1;
-  google.protobuf.Timestamp estimatedArrivalTime = 2;
+  optional string destinationName = 1;
+  optional google.protobuf.Timestamp estimatedArrivalTime = 2;
 }

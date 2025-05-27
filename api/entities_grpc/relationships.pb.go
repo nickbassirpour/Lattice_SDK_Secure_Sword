@@ -68,9 +68,9 @@ func (x *Relationships) GetRelationships() []*Relationship {
 
 type Relationship struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	RelatedEntityId  string                 `protobuf:"bytes,1,opt,name=relatedEntityId,proto3" json:"relatedEntityId,omitempty"`
-	RelationshipId   string                 `protobuf:"bytes,2,opt,name=relationshipId,proto3" json:"relationshipId,omitempty"`
-	RelationshipType *RelationshipType      `protobuf:"bytes,3,opt,name=relationshipType,proto3" json:"relationshipType,omitempty"`
+	RelatedEntityId  *string                `protobuf:"bytes,1,opt,name=relatedEntityId,proto3,oneof" json:"relatedEntityId,omitempty"`
+	RelationshipId   *string                `protobuf:"bytes,2,opt,name=relationshipId,proto3,oneof" json:"relationshipId,omitempty"`
+	RelationshipType *RelationshipType      `protobuf:"bytes,3,opt,name=relationshipType,proto3,oneof" json:"relationshipType,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -106,15 +106,15 @@ func (*Relationship) Descriptor() ([]byte, []int) {
 }
 
 func (x *Relationship) GetRelatedEntityId() string {
-	if x != nil {
-		return x.RelatedEntityId
+	if x != nil && x.RelatedEntityId != nil {
+		return *x.RelatedEntityId
 	}
 	return ""
 }
 
 func (x *Relationship) GetRelationshipId() string {
-	if x != nil {
-		return x.RelationshipId
+	if x != nil && x.RelationshipId != nil {
+		return *x.RelationshipId
 	}
 	return ""
 }
@@ -128,11 +128,11 @@ func (x *Relationship) GetRelationshipType() *RelationshipType {
 
 type RelationshipType struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TrackedBy     *TrackedBy             `protobuf:"bytes,1,opt,name=trackedBy,proto3" json:"trackedBy,omitempty"`
-	GroupChild    *GroupChild            `protobuf:"bytes,2,opt,name=groupChild,proto3" json:"groupChild,omitempty"`
-	GroupParent   *GroupParent           `protobuf:"bytes,3,opt,name=groupParent,proto3" json:"groupParent,omitempty"`
-	MergedFrom    *MergedFrom            `protobuf:"bytes,4,opt,name=mergedFrom,proto3" json:"mergedFrom,omitempty"`
-	ActiveTarget  *ActiveTarget          `protobuf:"bytes,5,opt,name=activeTarget,proto3" json:"activeTarget,omitempty"`
+	TrackedBy     *TrackedBy             `protobuf:"bytes,1,opt,name=trackedBy,proto3,oneof" json:"trackedBy,omitempty"`
+	GroupChild    *GroupChild            `protobuf:"bytes,2,opt,name=groupChild,proto3,oneof" json:"groupChild,omitempty"`
+	GroupParent   *GroupParent           `protobuf:"bytes,3,opt,name=groupParent,proto3,oneof" json:"groupParent,omitempty"`
+	MergedFrom    *MergedFrom            `protobuf:"bytes,4,opt,name=mergedFrom,proto3,oneof" json:"mergedFrom,omitempty"`
+	ActiveTarget  *ActiveTarget          `protobuf:"bytes,5,opt,name=activeTarget,proto3,oneof" json:"activeTarget,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -204,8 +204,8 @@ func (x *RelationshipType) GetActiveTarget() *ActiveTarget {
 
 type TrackedBy struct {
 	state                    protoimpl.MessageState `protogen:"open.v1"`
-	ActivelyTrackingSensors  *Sensors               `protobuf:"bytes,1,opt,name=activelyTrackingSensors,proto3" json:"activelyTrackingSensors,omitempty"`
-	LastMeasurementTimeStamp *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=lastMeasurementTimeStamp,proto3" json:"lastMeasurementTimeStamp,omitempty"`
+	ActivelyTrackingSensors  *Sensors               `protobuf:"bytes,1,opt,name=activelyTrackingSensors,proto3,oneof" json:"activelyTrackingSensors,omitempty"`
+	LastMeasurementTimeStamp *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=lastMeasurementTimeStamp,proto3,oneof" json:"lastMeasurementTimeStamp,omitempty"`
 	unknownFields            protoimpl.UnknownFields
 	sizeCache                protoimpl.SizeCache
 }
@@ -405,24 +405,35 @@ const file_components_relationships_proto_rawDesc = "" +
 	"\x1ecomponents/relationships.proto\x12\n" +
 	"components\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x18components/sensors.proto\"O\n" +
 	"\rRelationships\x12>\n" +
-	"\rrelationships\x18\x01 \x03(\v2\x18.components.RelationshipR\rrelationships\"\xaa\x01\n" +
-	"\fRelationship\x12(\n" +
-	"\x0frelatedEntityId\x18\x01 \x01(\tR\x0frelatedEntityId\x12&\n" +
-	"\x0erelationshipId\x18\x02 \x01(\tR\x0erelationshipId\x12H\n" +
-	"\x10relationshipType\x18\x03 \x01(\v2\x1c.components.RelationshipTypeR\x10relationshipType\"\xb0\x02\n" +
-	"\x10RelationshipType\x123\n" +
-	"\ttrackedBy\x18\x01 \x01(\v2\x15.components.TrackedByR\ttrackedBy\x126\n" +
+	"\rrelationships\x18\x01 \x03(\v2\x18.components.RelationshipR\rrelationships\"\xf5\x01\n" +
+	"\fRelationship\x12-\n" +
+	"\x0frelatedEntityId\x18\x01 \x01(\tH\x00R\x0frelatedEntityId\x88\x01\x01\x12+\n" +
+	"\x0erelationshipId\x18\x02 \x01(\tH\x01R\x0erelationshipId\x88\x01\x01\x12M\n" +
+	"\x10relationshipType\x18\x03 \x01(\v2\x1c.components.RelationshipTypeH\x02R\x10relationshipType\x88\x01\x01B\x12\n" +
+	"\x10_relatedEntityIdB\x11\n" +
+	"\x0f_relationshipIdB\x13\n" +
+	"\x11_relationshipType\"\x96\x03\n" +
+	"\x10RelationshipType\x128\n" +
+	"\ttrackedBy\x18\x01 \x01(\v2\x15.components.TrackedByH\x00R\ttrackedBy\x88\x01\x01\x12;\n" +
 	"\n" +
-	"groupChild\x18\x02 \x01(\v2\x16.components.GroupChildR\n" +
-	"groupChild\x129\n" +
-	"\vgroupParent\x18\x03 \x01(\v2\x17.components.GroupParentR\vgroupParent\x126\n" +
+	"groupChild\x18\x02 \x01(\v2\x16.components.GroupChildH\x01R\n" +
+	"groupChild\x88\x01\x01\x12>\n" +
+	"\vgroupParent\x18\x03 \x01(\v2\x17.components.GroupParentH\x02R\vgroupParent\x88\x01\x01\x12;\n" +
 	"\n" +
-	"mergedFrom\x18\x04 \x01(\v2\x16.components.MergedFromR\n" +
-	"mergedFrom\x12<\n" +
-	"\factiveTarget\x18\x05 \x01(\v2\x18.components.ActiveTargetR\factiveTarget\"\xb2\x01\n" +
-	"\tTrackedBy\x12M\n" +
-	"\x17activelyTrackingSensors\x18\x01 \x01(\v2\x13.components.SensorsR\x17activelyTrackingSensors\x12V\n" +
-	"\x18lastMeasurementTimeStamp\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x18lastMeasurementTimeStamp\"\f\n" +
+	"mergedFrom\x18\x04 \x01(\v2\x16.components.MergedFromH\x03R\n" +
+	"mergedFrom\x88\x01\x01\x12A\n" +
+	"\factiveTarget\x18\x05 \x01(\v2\x18.components.ActiveTargetH\x04R\factiveTarget\x88\x01\x01B\f\n" +
+	"\n" +
+	"_trackedByB\r\n" +
+	"\v_groupChildB\x0e\n" +
+	"\f_groupParentB\r\n" +
+	"\v_mergedFromB\x0f\n" +
+	"\r_activeTarget\"\xf5\x01\n" +
+	"\tTrackedBy\x12R\n" +
+	"\x17activelyTrackingSensors\x18\x01 \x01(\v2\x13.components.SensorsH\x00R\x17activelyTrackingSensors\x88\x01\x01\x12[\n" +
+	"\x18lastMeasurementTimeStamp\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampH\x01R\x18lastMeasurementTimeStamp\x88\x01\x01B\x1a\n" +
+	"\x18_activelyTrackingSensorsB\x1b\n" +
+	"\x19_lastMeasurementTimeStamp\"\f\n" +
 	"\n" +
 	"GroupChild\"\r\n" +
 	"\vGroupParent\"\f\n" +
@@ -478,6 +489,9 @@ func file_components_relationships_proto_init() {
 		return
 	}
 	file_components_sensors_proto_init()
+	file_components_relationships_proto_msgTypes[1].OneofWrappers = []any{}
+	file_components_relationships_proto_msgTypes[2].OneofWrappers = []any{}
+	file_components_relationships_proto_msgTypes[3].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

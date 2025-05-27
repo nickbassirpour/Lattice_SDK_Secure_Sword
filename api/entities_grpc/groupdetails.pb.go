@@ -96,8 +96,8 @@ func (ArmyEchelon) EnumDescriptor() ([]byte, []int) {
 
 type GroupDetails struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Team          *Team                  `protobuf:"bytes,1,opt,name=team,proto3" json:"team,omitempty"`
-	Echelon       *Echelon               `protobuf:"bytes,2,opt,name=echelon,proto3" json:"echelon,omitempty"`
+	Team          *Team                  `protobuf:"bytes,1,opt,name=team,proto3,oneof" json:"team,omitempty"`
+	Echelon       *Echelon               `protobuf:"bytes,2,opt,name=echelon,proto3,oneof" json:"echelon,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -184,7 +184,7 @@ func (*Team) Descriptor() ([]byte, []int) {
 
 type Echelon struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ArmyEchelon   ArmyEchelon            `protobuf:"varint,1,opt,name=armyEchelon,proto3,enum=components.ArmyEchelon" json:"armyEchelon,omitempty"`
+	ArmyEchelon   *ArmyEchelon           `protobuf:"varint,1,opt,name=armyEchelon,proto3,enum=components.ArmyEchelon,oneof" json:"armyEchelon,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -220,8 +220,8 @@ func (*Echelon) Descriptor() ([]byte, []int) {
 }
 
 func (x *Echelon) GetArmyEchelon() ArmyEchelon {
-	if x != nil {
-		return x.ArmyEchelon
+	if x != nil && x.ArmyEchelon != nil {
+		return *x.ArmyEchelon
 	}
 	return ArmyEchelon_ARMY_ECHELON_INVALID
 }
@@ -231,13 +231,17 @@ var File_components_groupdetails_proto protoreflect.FileDescriptor
 const file_components_groupdetails_proto_rawDesc = "" +
 	"\n" +
 	"\x1dcomponents/groupdetails.proto\x12\n" +
-	"components\"c\n" +
-	"\fGroupDetails\x12$\n" +
-	"\x04team\x18\x01 \x01(\v2\x10.components.TeamR\x04team\x12-\n" +
-	"\aechelon\x18\x02 \x01(\v2\x13.components.EchelonR\aechelon\"\x06\n" +
-	"\x04Team\"D\n" +
-	"\aEchelon\x129\n" +
-	"\varmyEchelon\x18\x01 \x01(\x0e2\x17.components.ArmyEchelonR\varmyEchelon*\xaa\x02\n" +
+	"components\"\x82\x01\n" +
+	"\fGroupDetails\x12)\n" +
+	"\x04team\x18\x01 \x01(\v2\x10.components.TeamH\x00R\x04team\x88\x01\x01\x122\n" +
+	"\aechelon\x18\x02 \x01(\v2\x13.components.EchelonH\x01R\aechelon\x88\x01\x01B\a\n" +
+	"\x05_teamB\n" +
+	"\n" +
+	"\b_echelon\"\x06\n" +
+	"\x04Team\"Y\n" +
+	"\aEchelon\x12>\n" +
+	"\varmyEchelon\x18\x01 \x01(\x0e2\x17.components.ArmyEchelonH\x00R\varmyEchelon\x88\x01\x01B\x0e\n" +
+	"\f_armyEchelon*\xaa\x02\n" +
 	"\vArmyEchelon\x12\x18\n" +
 	"\x14ARMY_ECHELON_INVALID\x10\x00\x12\x1a\n" +
 	"\x16ARMY_ECHELON_FIRE_TEAM\x10\x01\x12\x16\n" +
@@ -288,6 +292,8 @@ func file_components_groupdetails_proto_init() {
 	if File_components_groupdetails_proto != nil {
 		return
 	}
+	file_components_groupdetails_proto_msgTypes[0].OneofWrappers = []any{}
+	file_components_groupdetails_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

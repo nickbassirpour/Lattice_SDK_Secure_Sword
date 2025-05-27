@@ -7,24 +7,24 @@ option go_package = "/components";
 import "components/position.proto";
 
 message GeoShape {
-  Point point = 1;
-  Line line = 2;
-  Polygon polygon = 3;
-  Ellipse ellipse = 4;
-  Ellipsoid ellipsoid = 5;
+  optional Point point = 1;
+  optional Line line = 2;
+  optional Polygon polygon = 3;
+  optional Ellipse ellipse = 4;
+  optional Ellipsoid ellipsoid = 5;
 }
 
 message Point {
-  Position position = 1;
+  optional Position position = 1;
 }
 
 message Line {
-  Position position = 1;
+  optional Position position = 1;
 }
 
 message Polygon {
   repeated Ring rings = 1;
-  bool isRectangle = 2;
+  optional bool isRectangle = 2;
 }
 
 message Ring {
@@ -32,19 +32,19 @@ message Ring {
 }
 
 message LinearRing {
-  Position position = 1;
-  float heightM = 2;
+  optional Position position = 1;
+  optional float heightM = 2;
 }
 
 message Ellipse {
-  double semiMajorAxisM = 1;
-  double semiMinorAxisM = 2;
-  double orientationD = 3;
-  double heightM = 4;
+  optional double semiMajorAxisM = 1;
+  optional double semiMinorAxisM = 2;
+  optional double orientationD = 3;
+  optional double heightM = 4;
 }
 
 message Ellipsoid {
-  double forwardAxisM = 1;
-  double sideAxisM = 2;
-  double upAxisM = 3;
+  optional double forwardAxisM = 1;
+  optional double sideAxisM = 2;
+  optional double upAxisM = 3;
 }
