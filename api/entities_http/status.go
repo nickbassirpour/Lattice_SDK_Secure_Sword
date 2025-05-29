@@ -18,5 +18,5 @@ type Status struct {
 }
 
 type StatusDetail struct {
-	Type string `json:"@type"`
+	Type string `json:"type"`
 }

@@ -7,6 +7,7 @@ option go_package = "/components";
 message LocationUncertainty {
   optional PositionEnuCov positionEnuCov = 1;
   optional VelocityEnuCov velocityEnuCov = 2;
+  optional PositionErrorEllipse positionErrorEllipse = 3;
 }
 
 message PositionEnuCov {

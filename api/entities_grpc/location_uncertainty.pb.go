@@ -22,11 +22,12 @@ const (
 )
 
 type LocationUncertainty struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	PositionEnuCov *PositionEnuCov        `protobuf:"bytes,1,opt,name=positionEnuCov,proto3,oneof" json:"positionEnuCov,omitempty"`
-	VelocityEnuCov *VelocityEnuCov        `protobuf:"bytes,2,opt,name=velocityEnuCov,proto3,oneof" json:"velocityEnuCov,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	PositionEnuCov       *PositionEnuCov        `protobuf:"bytes,1,opt,name=positionEnuCov,proto3,oneof" json:"positionEnuCov,omitempty"`
+	VelocityEnuCov       *VelocityEnuCov        `protobuf:"bytes,2,opt,name=velocityEnuCov,proto3,oneof" json:"velocityEnuCov,omitempty"`
+	PositionErrorEllipse *PositionErrorEllipse  `protobuf:"bytes,3,opt,name=positionErrorEllipse,proto3,oneof" json:"positionErrorEllipse,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *LocationUncertainty) Reset() {
@@ -69,6 +70,13 @@ func (x *LocationUncertainty) GetPositionEnuCov() *PositionEnuCov {
 func (x *LocationUncertainty) GetVelocityEnuCov() *VelocityEnuCov {
 	if x != nil {
 		return x.VelocityEnuCov
+	}
+	return nil
+}
+
+func (x *LocationUncertainty) GetPositionErrorEllipse() *PositionErrorEllipse {
+	if x != nil {
+		return x.PositionErrorEllipse
 	}
 	return nil
 }
@@ -314,12 +322,14 @@ var File_components_location_uncertainty_proto protoreflect.FileDescriptor
 const file_components_location_uncertainty_proto_rawDesc = "" +
 	"\n" +
 	"%components/location_uncertainty.proto\x12\n" +
-	"components\"\xcd\x01\n" +
+	"components\"\xc1\x02\n" +
 	"\x13LocationUncertainty\x12G\n" +
 	"\x0epositionEnuCov\x18\x01 \x01(\v2\x1a.components.PositionEnuCovH\x00R\x0epositionEnuCov\x88\x01\x01\x12G\n" +
-	"\x0evelocityEnuCov\x18\x02 \x01(\v2\x1a.components.VelocityEnuCovH\x01R\x0evelocityEnuCov\x88\x01\x01B\x11\n" +
+	"\x0evelocityEnuCov\x18\x02 \x01(\v2\x1a.components.VelocityEnuCovH\x01R\x0evelocityEnuCov\x88\x01\x01\x12Y\n" +
+	"\x14positionErrorEllipse\x18\x03 \x01(\v2 .components.PositionErrorEllipseH\x02R\x14positionErrorEllipse\x88\x01\x01B\x11\n" +
 	"\x0f_positionEnuCovB\x11\n" +
-	"\x0f_velocityEnuCov\"\xca\x01\n" +
+	"\x0f_velocityEnuCovB\x17\n" +
+	"\x15_positionErrorEllipse\"\xca\x01\n" +
 	"\x0ePositionEnuCov\x12\x15\n" +
 	"\x03mxx\x18\x01 \x01(\x02H\x00R\x03mxx\x88\x01\x01\x12\x15\n" +
 	"\x03mxy\x18\x02 \x01(\x02H\x01R\x03mxy\x88\x01\x01\x12\x15\n" +
@@ -378,11 +388,12 @@ var file_components_location_uncertainty_proto_goTypes = []any{
 var file_components_location_uncertainty_proto_depIdxs = []int32{
 	1, // 0: components.LocationUncertainty.positionEnuCov:type_name -> components.PositionEnuCov
 	2, // 1: components.LocationUncertainty.velocityEnuCov:type_name -> components.VelocityEnuCov
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	3, // 2: components.LocationUncertainty.positionErrorEllipse:type_name -> components.PositionErrorEllipse
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_components_location_uncertainty_proto_init() }

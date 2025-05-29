@@ -5,5 +5,95 @@ import (
 )
 
 func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*components.Entity, error) {
-
+	var err error
+	if new_data.Description != nil {
+		entity.Description = new_data.Description
+	}
+	if new_data.IsLive != nil {
+		entity.IsLive = new_data.IsLive
+	}
+	if new_data.CreatedTime != nil {
+		entity.CreatedTime = new_data.CreatedTime
+	}
+	if new_data.ExpiryTime != nil {
+		entity.ExpiryTime = new_data.ExpiryTime
+	}
+	if new_data.Status != nil {
+		err := UpdateStatus(entity.Status, new_data.Status)
+		if err != nil {
+			return nil, err
+		}
+	}
+	if new_data.Location != nil {
+		err := UpdateLocation(entity.Location, new_data.Location)
+		if err != nil {
+			return nil, err
+		}
+	}
+	if new_data.LocationUncertainty != nil {
+		err := UpdateLocationUncertainty(entity.LocationUncertainty, new_data.LocationUncertainty)
+		if err != nil {
+			return nil, err
+		}
+	}
 }
+
+/*
+
+	LocationUncertainty LocationUncertainty `json:"locationUncertainty"`
+
+	GeoShape GeoShape `json:"geoShape"`
+
+	GeoDetails GeoDetails `json:"geoDetails"`
+
+	Aliases Aliases `json:"aliases"`
+
+	Tracked Tracked `json:"tracked"`
+
+	Correlation Correlation `json:"correlation"`
+
+	MilView MilView `json:"milView"`
+
+	Ontology Ontology `json:"ontology"`
+
+	Sensors Sensors `json:"sensors"`
+
+	Payloads Payloads `json:"payloads"`
+
+	PowerState PowerState `json:"powerState"`
+
+	Provenance Provenance `json:"provenance" validate:"required"`
+
+	Overrides Overrides `json:"overrides"`
+
+	Indicators Indicators `json:"indicators"`
+
+	TargetPriority TargetPriority `json:"targetPriority"`
+
+	Signal Signal `json:"signal"`
+
+	TransponderCodes TransponderCodes `json:"transponderCodes"`
+
+	DataClassification DataClassification `json:"dataClassification"`
+
+	TaskCatalog TaskCatalog `json:"taskCatalog"`
+
+	Relationships Relationships `json:"relationships"`
+
+	VisualDetails VisualDetails `json:"visualDetails"`
+
+	Dimensions Dimensions `json:"dimensions"`
+
+	RouteDetails RouteDetails `json:"routeDetails"`
+
+	Schedules Schedules `json:"schedules"`
+
+	Health Health `json:"health"`
+
+	GroupDetails GroupDetails `json:"groupDetails"`
+
+	Supplies Supplies `json:"supplies"`
+
+	Orbit Orbit `json:"orbit"`
+
+*/
