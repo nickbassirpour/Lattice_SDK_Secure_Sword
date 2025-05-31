@@ -4,36 +4,39 @@ import (
 	components "github.com/nickbassirpour/Lattice_SDK_Secure_Sword.git/api/entities_grpc"
 )
 
-func UpdateLocation(original_location *components.Location, new_location *components.Location) error {
+func UpdateLocation(entity *components.Entity, new_location *components.Location) error {
 	if new_location.Position != nil {
-		err := UpdatePosition(original_location.Position, new_location.Position)
+		err := UpdatePosition(entity, new_location.Position)
 		if err != nil {
 			return err
 		}
-		space := checkAirspaceOrWaterspace(new_location.Position)
+		// Add check for location and match with country borders
+		// once found, log and send report if in allied territory
+		// if in specific fleet (3rd fleet, 5th fleet, etc.) tell Navy
+		// space := checkAirspaceOrWaterspace(new_location.Position)
 	}
 
 	if new_location.VelocityEnu != nil {
-		original_location.VelocityEnu.E = new_location.VelocityEnu.E
-		original_location.VelocityEnu.N = new_location.VelocityEnu.N
-		original_location.VelocityEnu.U = new_location.VelocityEnu.U
+		entity.Location.VelocityEnu.E = new_location.VelocityEnu.E
+		entity.Location.VelocityEnu.N = new_location.VelocityEnu.N
+		entity.Location.VelocityEnu.U = new_location.VelocityEnu.U
 	}
 
 	if new_location.SpeedMps != nil {
-		original_location.SpeedMps = new_location.SpeedMps
+		entity.Location.SpeedMps = new_location.SpeedMps
 	}
 
 	if new_location.Acceleration != nil {
-		original_location.Acceleration.E = new_location.Acceleration.E
-		original_location.Acceleration.N = new_location.Acceleration.N
-		original_location.Acceleration.U = new_location.Acceleration.U
+		entity.Location.Acceleration.E = new_location.Acceleration.E
+		entity.Location.Acceleration.N = new_location.Acceleration.N
+		entity.Location.Acceleration.U = new_location.Acceleration.U
 	}
 
 	if new_location.AttitudeEnu != nil {
-		original_location.AttitudeEnu.X = new_location.AttitudeEnu.X
-		original_location.AttitudeEnu.Y = new_location.AttitudeEnu.Y
-		original_location.AttitudeEnu.Z = new_location.AttitudeEnu.Z
-		original_location.AttitudeEnu.W = new_location.AttitudeEnu.W
+		entity.Location.AttitudeEnu.X = new_location.AttitudeEnu.X
+		entity.Location.AttitudeEnu.Y = new_location.AttitudeEnu.Y
+		entity.Location.AttitudeEnu.Z = new_location.AttitudeEnu.Z
+		entity.Location.AttitudeEnu.W = new_location.AttitudeEnu.W
 	}
 
 	return nil

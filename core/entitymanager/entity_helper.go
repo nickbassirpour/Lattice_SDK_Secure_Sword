@@ -19,19 +19,37 @@ func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*
 		entity.ExpiryTime = new_data.ExpiryTime
 	}
 	if new_data.Status != nil {
-		err := UpdateStatus(entity.Status, new_data.Status)
+		err := UpdateStatus(entity, new_data.Status)
 		if err != nil {
 			return nil, err
 		}
 	}
 	if new_data.Location != nil {
-		err := UpdateLocation(entity.Location, new_data.Location)
+		err := UpdateLocation(entity, new_data.Location)
 		if err != nil {
 			return nil, err
 		}
 	}
 	if new_data.LocationUncertainty != nil {
-		err := UpdateLocationUncertainty(entity.LocationUncertainty, new_data.LocationUncertainty)
+		err := UpdateLocationUncertainty(entity, new_data.LocationUncertainty)
+		if err != nil {
+			return nil, err
+		}
+	}
+	if new_data.GeoShape != nil {
+		err := UpdateGeoShape(entity, new_data.GeoShape)
+		if err != nil {
+			return nil, err
+		}
+	}
+	if new_data.GeoDetails != nil {
+		err := UpdateGeoDetails(entity, new_data.GeoDetails)
+		if err != nil {
+			return nil, err
+		}
+	}
+	if new_data.Aliases != nil {
+		err := UpdateAliases(entity, new_data.Aliases)
 		if err != nil {
 			return nil, err
 		}
@@ -39,14 +57,6 @@ func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*
 }
 
 /*
-
-	LocationUncertainty LocationUncertainty `json:"locationUncertainty"`
-
-	GeoShape GeoShape `json:"geoShape"`
-
-	GeoDetails GeoDetails `json:"geoDetails"`
-
-	Aliases Aliases `json:"aliases"`
 
 	Tracked Tracked `json:"tracked"`
 
