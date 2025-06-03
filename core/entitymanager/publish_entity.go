@@ -22,7 +22,7 @@ func (s *Server) PublishEntity(ctx context.Context, req *components.PublishEntit
 	if entity.EntityId == nil {
 		return CreateEntity(entity, s)
 	} else {
-		// return UpdateEntity(entity, s)
+		return UpdateEntity(entity, s)
 	}
 }
 
@@ -41,17 +41,25 @@ func CreateEntity(entity *components.Entity, s *Server) (*components.PublishEnti
 	}, nil
 }
 
-func UpdateEntity(new_data *components.Entity, s *Server) (*components.PublishEntitiesResponse, error) {
-	// s.mu.Lock()
-	// defer s.mu.Unlock()
+func UpdateEntity(new_data *components.Entity, s *Server) (*components.PublishEntityResponse, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
 
-	// entity, ok := s.entities[*new_data.EntityId]
-	// if !ok {
-	// 	return nil, status.Errorf(codes.NotFound, "entity with ID %s not found", new_data.EntityId)
-	// }
+	entity, ok := s.entities[*new_data.EntityId]
+	if !ok {
+		return nil, status.Errorf(codes.NotFound, "entity with ID %s not found", new_data.EntityId)
+	}
 
-	// new_data, err = UpdateComponents(entity, new_data)
-	// if err != nil {
-	// 	return nil, err
-	// }
+	new_data, err := UpdateComponents(entity, new_data)
+	if err != nil {
+		return &components.PublishEntityResponse{
+			Success: false,
+			Message: err.Error(),
+		}, err
+	}
+
+	return &components.PublishEntityResponse{
+		Success: true,
+		Message: "Updated Entity",
+	}, nil
 }

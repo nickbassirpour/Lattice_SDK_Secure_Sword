@@ -9,9 +9,9 @@ import (
 
 func SampleEntity() *components.Entity {
 	return &components.Entity{
-		EntityId:    "",
-		Description: "Sample entity for testing",
-		IsLive:      true,
+		EntityId:    Pointer(""),
+		Description: Pointer("Sample entity for testing"),
+		IsLive:      Pointer(true),
 		CreatedTime: timestamppb.New(time.Now()),
 		ExpiryTime:  timestamppb.New(time.Now().Add(48 * time.Hour)),
 		Status:      SampleStatus(),
@@ -19,5 +19,10 @@ func SampleEntity() *components.Entity {
 		Provenance:  SampleProvenance(),
 		Aliases:     SampleAliases(),
 		Ontology:    SampleOntology(),
+		GeoDetails:  SampleGeoDetails(),
 	}
+}
+
+func Pointer[T any](pointer T) *T {
+	return &pointer
 }

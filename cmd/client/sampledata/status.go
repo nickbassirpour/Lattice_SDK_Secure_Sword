@@ -4,7 +4,7 @@ import components "github.com/nickbassirpour/Lattice_SDK_Secure_Sword.git/api/en
 
 func SampleStatus() *components.Status {
 	return &components.Status{
-		Code:    0,
-		Message: "Entity created",
+		Code:    Pointer(int32(0)),
+		Message: Pointer("Entity created"),
 	}
 }

@@ -4,8 +4,8 @@ import components "github.com/nickbassirpour/Lattice_SDK_Secure_Sword.git/api/en
 
 func SamplePosition() *components.Position {
 	return &components.Position{
-		LatitudeDegrees:   37.7749,
-		LongitudeDegrees:  -122.4194,
-		AltitudeAglMeters: 1256.34,
+		LatitudeDegrees:   Pointer(37.7749),
+		LongitudeDegrees:  Pointer(-122.4194),
+		AltitudeAglMeters: Pointer(1256.34),
 	}
 }

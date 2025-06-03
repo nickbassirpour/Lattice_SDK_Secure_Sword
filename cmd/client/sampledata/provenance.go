@@ -9,8 +9,8 @@ import (
 
 func SampleProvenance() *components.Provenance {
 	return &components.Provenance{
-		IntegrationName:  "sample-integration",
-		DataType:         "ADSB",
+		IntegrationName:  Pointer("sample-integration"),
+		DataType:         Pointer("ADSB"),
 		SourceUpdateTime: timestamppb.New(time.Now()),
 	}
 }

@@ -4,6 +4,6 @@ import components "github.com/nickbassirpour/Lattice_SDK_Secure_Sword.git/api/en
 
 func SampleAliases() *components.Aliases {
 	return &components.Aliases{
-		Name: "sample-plane",
+		Name: Pointer("sample-plane"),
 	}
 }

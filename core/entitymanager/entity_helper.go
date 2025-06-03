@@ -5,7 +5,6 @@ import (
 )
 
 func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*components.Entity, error) {
-	var err error
 	if new_data.Description != nil {
 		entity.Description = new_data.Description
 	}
@@ -54,6 +53,13 @@ func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*
 			return nil, err
 		}
 	}
+	if new_data.Tracked != nil {
+		err := UpdateTracked(entity, new_data.Tracked)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return entity, nil
 }
 
 /*

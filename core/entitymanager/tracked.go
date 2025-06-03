@@ -118,38 +118,24 @@ func UpdateRelativePose(entity *components.Entity, new_tracked *components.Track
 	return nil
 }
 
-/*
-
-// Available for Entities that are tracked.
-type Tracked struct {
-
-	LineOfBearing LineOfBearing `json:"lineOfBearing"`
+func UpdateRangeEstimateM(entity *components.Entity, new_tracked *components.Tracked) error {
+	range_estimate := new_tracked.LineOfBearing.RangeEstimateM
+	if range_estimate.Value != nil {
+		entity.Tracked.LineOfBearing.RangeEstimateM.Value = range_estimate.Value
+	}
+	if range_estimate.Sigma != nil {
+		entity.Tracked.LineOfBearing.RangeEstimateM.Sigma = range_estimate.Sigma
+	}
+	return nil
 }
 
-// The relative position of a track with respect to the entity that is tracking it. Used for tracks that do not yet
-// have a 3D position. For this entity (A), being tracked by some entity (B), this LineOfBearing would express a
-// ray from B to A.
-type LineOfBearing struct {
-	RangeEstimateM RangeEstimateM `json:"rangeEstimateM"`
-	MaxRangeM      MaxRangeM      `json:"maxRangeM"`
+func UpdateMaxRangeM(entity *components.Entity, new_tracked *components.Tracked) error {
+	max_range_m := new_tracked.LineOfBearing.MaxRangeM
+	if max_range_m.Value != nil {
+		entity.Tracked.LineOfBearing.MaxRangeM.Value = max_range_m.Value
+	}
+	if max_range_m.Sigma != nil {
+		entity.Tracked.LineOfBearing.MaxRangeM.Sigma = max_range_m.Sigma
+	}
+	return nil
 }
-
-
-// The estimated distance of the detection
-type RangeEstimateM struct {
-	// The value of the measurement.
-	Value float64 `json:"value"`
-
-	// Estimated one standard deviation in same unit as the value.
-	Sigma float64 `json:"sigma"`
-}
-
-type MaxRangeM struct {
-	// The value of the measurement.
-	Value float64 `json:"value"`
-
-	// Estimated one standard deviation in same unit as the value.
-	Sigma float64 `json:"sigma"`
-}
-
-*/
