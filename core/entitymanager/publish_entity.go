@@ -5,6 +5,7 @@ import (
 	"errors"
 	"log"
 
+	"github.com/google/uuid"
 	components "github.com/nickbassirpour/Lattice_SDK_Secure_Sword.git/api/entities_grpc"
 	"github.com/nickbassirpour/Lattice_SDK_Secure_Sword.git/core/validation"
 	"google.golang.org/grpc/codes"
@@ -27,9 +28,12 @@ func (s *Server) PublishEntity(ctx context.Context, req *components.PublishEntit
 }
 
 func CreateEntity(entity *components.Entity, s *Server) (*components.PublishEntityResponse, error) {
-	if err := validation.ValidateEntity(entity); err != nil {
+	if err := validation.ValidateEntity(entity, false); err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "validation failed: %v", err)
 	}
+
+	id := uuid.New().String()
+	entity.EntityId = &id
 
 	s.mu.Lock()
 	s.entities[*entity.EntityId] = entity
@@ -47,7 +51,7 @@ func UpdateEntity(new_data *components.Entity, s *Server) (*components.PublishEn
 
 	entity, ok := s.entities[*new_data.EntityId]
 	if !ok {
-		return nil, status.Errorf(codes.NotFound, "entity with ID %s not found", new_data.EntityId)
+		return nil, status.Errorf(codes.NotFound, "entity with ID %s not found", *new_data.EntityId)
 	}
 
 	new_data, err := UpdateComponents(entity, new_data)
@@ -58,6 +62,7 @@ func UpdateEntity(new_data *components.Entity, s *Server) (*components.PublishEn
 		}, err
 	}
 
+	log.Printf("Successfully updated entity: %+v", new_data.EntityId)
 	return &components.PublishEntityResponse{
 		Success: true,
 		Message: "Updated Entity",

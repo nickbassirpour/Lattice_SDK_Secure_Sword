@@ -25,7 +25,11 @@ func UpdateTracked(entity *components.Entity, new_tracked *components.Tracked) e
 	}
 	if new_tracked.LineOfBearing != nil {
 		err := UpdateLineOfBearing(entity, new_tracked)
+		if err != nil {
+			return err
+		}
 	}
+	return nil
 }
 
 func UpdateNumberOfObjects(entity *components.Entity, new_tracked *components.Tracked) error {
@@ -58,6 +62,7 @@ func UpdateLineOfBearing(entity *components.Entity, new_tracked *components.Trac
 			return err
 		}
 	}
+	return nil
 }
 
 func UpdateAngleOfArrival(entity *components.Entity, new_tracked *components.Tracked) error {

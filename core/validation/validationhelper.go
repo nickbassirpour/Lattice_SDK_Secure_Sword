@@ -6,11 +6,11 @@ import (
 	components "github.com/nickbassirpour/Lattice_SDK_Secure_Sword.git/api/entities_grpc"
 )
 
-func ValidateEntity(entity *components.Entity) error {
+func ValidateEntity(entity *components.Entity, is_updating bool) error {
 	if entity == nil {
 		return errors.New("entity is nil")
 	}
-	if entity.EntityId == nil {
+	if is_updating && entity.EntityId == nil {
 		return errors.New("missing EntityId")
 	}
 	if entity.ExpiryTime == nil || entity.ExpiryTime.AsTime().IsZero() {
@@ -19,7 +19,7 @@ func ValidateEntity(entity *components.Entity) error {
 	if entity.CreatedTime == nil || entity.CreatedTime.AsTime().IsZero() {
 		return errors.New("missing CreatedTime")
 	}
-	if entity.IsLive != nil {
+	if entity.IsLive == nil {
 		return errors.New("missing IsLive")
 	}
 	if entity.Provenance != nil {

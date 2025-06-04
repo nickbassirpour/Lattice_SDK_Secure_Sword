@@ -10,7 +10,7 @@ import (
 )
 
 func TestPublishEntity(t *testing.T) {
-	server := &entitymanager.Server{}
+	server := entitymanager.NewServer()
 	sample_entity := sampledata.SampleEntity()
 
 	req := &components.PublishEntityRequest{

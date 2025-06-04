@@ -113,3 +113,7 @@ func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*
 	Orbit Orbit `json:"orbit"`
 
 */
+
+func Pointer[T any](pointer T) *T {
+	return &pointer
+}

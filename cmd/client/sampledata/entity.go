@@ -9,17 +9,19 @@ import (
 
 func SampleEntity() *components.Entity {
 	return &components.Entity{
-		EntityId:    Pointer(""),
-		Description: Pointer("Sample entity for testing"),
-		IsLive:      Pointer(true),
-		CreatedTime: timestamppb.New(time.Now()),
-		ExpiryTime:  timestamppb.New(time.Now().Add(48 * time.Hour)),
-		Status:      SampleStatus(),
-		Location:    SampleLocation(),
-		Provenance:  SampleProvenance(),
-		Aliases:     SampleAliases(),
-		Ontology:    SampleOntology(),
-		GeoDetails:  SampleGeoDetails(),
+		EntityId:            nil,
+		Description:         Pointer("Sample entity for testing"),
+		IsLive:              Pointer(true),
+		CreatedTime:         timestamppb.New(time.Now()),
+		ExpiryTime:          timestamppb.New(time.Now().Add(48 * time.Hour)),
+		Status:              SampleStatus(),
+		Location:            SampleLocation(),
+		Provenance:          SampleProvenance(),
+		Aliases:             SampleAliases(),
+		Ontology:            SampleOntology(),
+		GeoDetails:          SampleGeoDetails(),
+		GeoShape:            SampleGeoShape(),
+		LocationUncertainty: SampleLocationUncertainty(),
 	}
 }
 
