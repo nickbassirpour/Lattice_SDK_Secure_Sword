@@ -127,6 +127,7 @@ type Correlation struct {
 	Primary       *Primary               `protobuf:"bytes,1,opt,name=primary,proto3,oneof" json:"primary,omitempty"`
 	Secondary     *Secondary             `protobuf:"bytes,2,opt,name=secondary,proto3,oneof" json:"secondary,omitempty"`
 	Membership    *Membership            `protobuf:"bytes,3,opt,name=membership,proto3,oneof" json:"membership,omitempty"`
+	Decorrelation *Decorrelation         `protobuf:"bytes,4,opt,name=decorrelation,proto3,oneof" json:"decorrelation,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -178,6 +179,13 @@ func (x *Correlation) GetSecondary() *Secondary {
 func (x *Correlation) GetMembership() *Membership {
 	if x != nil {
 		return x.Membership
+	}
+	return nil
+}
+
+func (x *Correlation) GetDecorrelation() *Decorrelation {
+	if x != nil {
+		return x.Decorrelation
 	}
 	return nil
 }
@@ -564,18 +572,20 @@ var File_components_correlation_proto protoreflect.FileDescriptor
 const file_components_correlation_proto_rawDesc = "" +
 	"\n" +
 	"\x1ccomponents/correlation.proto\x12\n" +
-	"components\x1a\x1bcomponents/provenance.proto\"\xe1\x01\n" +
+	"components\x1a\x1bcomponents/provenance.proto\"\xb9\x02\n" +
 	"\vCorrelation\x122\n" +
 	"\aprimary\x18\x01 \x01(\v2\x13.components.PrimaryH\x00R\aprimary\x88\x01\x01\x128\n" +
 	"\tsecondary\x18\x02 \x01(\v2\x15.components.SecondaryH\x01R\tsecondary\x88\x01\x01\x12;\n" +
 	"\n" +
 	"membership\x18\x03 \x01(\v2\x16.components.MembershipH\x02R\n" +
-	"membership\x88\x01\x01B\n" +
+	"membership\x88\x01\x01\x12D\n" +
+	"\rdecorrelation\x18\x04 \x01(\v2\x19.components.DecorrelationH\x03R\rdecorrelation\x88\x01\x01B\n" +
 	"\n" +
 	"\b_primaryB\f\n" +
 	"\n" +
 	"_secondaryB\r\n" +
-	"\v_membership\"9\n" +
+	"\v_membershipB\x10\n" +
+	"\x0e_decorrelation\"9\n" +
 	"\aPrimary\x12.\n" +
 	"\x12secondaryEntityIds\x18\x01 \x03(\tR\x12secondaryEntityIds\"\x92\x01\n" +
 	"\tSecondary\x12-\n" +
@@ -656,22 +666,23 @@ var file_components_correlation_proto_depIdxs = []int32{
 	3,  // 0: components.Correlation.primary:type_name -> components.Primary
 	4,  // 1: components.Correlation.secondary:type_name -> components.Secondary
 	6,  // 2: components.Correlation.membership:type_name -> components.Membership
-	5,  // 3: components.Secondary.metadata:type_name -> components.Metadata
-	10, // 4: components.Metadata.provenance:type_name -> components.Provenance
-	0,  // 5: components.Metadata.replicationMode:type_name -> components.ReplicationMode
-	1,  // 6: components.Metadata.type:type_name -> components.CorrelationType
-	3,  // 7: components.Membership.primary:type_name -> components.Primary
-	4,  // 8: components.Membership.nonPrimary:type_name -> components.Secondary
-	5,  // 9: components.Membership.metadata:type_name -> components.Metadata
-	8,  // 10: components.Decorrelation.all:type_name -> components.All
-	9,  // 11: components.Decorrelation.decorrelatedEntities:type_name -> components.DecorrelatedEntity
-	5,  // 12: components.All.metadata:type_name -> components.Metadata
-	5,  // 13: components.DecorrelatedEntity.metadata:type_name -> components.Metadata
-	14, // [14:14] is the sub-list for method output_type
-	14, // [14:14] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	7,  // 3: components.Correlation.decorrelation:type_name -> components.Decorrelation
+	5,  // 4: components.Secondary.metadata:type_name -> components.Metadata
+	10, // 5: components.Metadata.provenance:type_name -> components.Provenance
+	0,  // 6: components.Metadata.replicationMode:type_name -> components.ReplicationMode
+	1,  // 7: components.Metadata.type:type_name -> components.CorrelationType
+	3,  // 8: components.Membership.primary:type_name -> components.Primary
+	4,  // 9: components.Membership.nonPrimary:type_name -> components.Secondary
+	5,  // 10: components.Membership.metadata:type_name -> components.Metadata
+	8,  // 11: components.Decorrelation.all:type_name -> components.All
+	9,  // 12: components.Decorrelation.decorrelatedEntities:type_name -> components.DecorrelatedEntity
+	5,  // 13: components.All.metadata:type_name -> components.Metadata
+	5,  // 14: components.DecorrelatedEntity.metadata:type_name -> components.Metadata
+	15, // [15:15] is the sub-list for method output_type
+	15, // [15:15] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_components_correlation_proto_init() }

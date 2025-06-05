@@ -8,6 +8,8 @@ type Correlation struct {
 	Secondary Secondary `json:"secondary"`
 
 	Membership Membership `json:"membership"`
+
+	Decorrelation Decorrelation `json:"decorrelation"`
 }
 
 // This entity is the primary of a correlation meaning that it serves as

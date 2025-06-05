@@ -11,6 +11,7 @@ message Correlation {
   optional Primary primary = 1;
   optional Secondary secondary = 2;
   optional Membership membership = 3;
+  optional Decorrelation decorrelation = 4;
 }
 
 // Primary type for Correlation

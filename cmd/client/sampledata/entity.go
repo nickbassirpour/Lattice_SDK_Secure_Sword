@@ -22,6 +22,9 @@ func SampleEntity() *components.Entity {
 		GeoDetails:          SampleGeoDetails(),
 		GeoShape:            SampleGeoShape(),
 		LocationUncertainty: SampleLocationUncertainty(),
+		Tracked:             SampleEntity().Tracked,
+		Correlation:         SampleCorrelation(),
+		MilView:             SampleMilView(),
 	}
 }
 

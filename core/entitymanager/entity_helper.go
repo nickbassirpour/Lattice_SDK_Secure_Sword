@@ -59,26 +59,40 @@ func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*
 			return nil, err
 		}
 	}
+	if new_data.Correlation != nil {
+		err := UpdateCorrelation(entity, new_data.Correlation)
+		if err != nil {
+			return nil, err
+		}
+	}
+	if new_data.MilView != nil {
+		err := UpdateMilView(entity, new_data.MilView)
+		if err != nil {
+			return nil, err
+		}
+	}
+	if new_data.Ontology != nil {
+		err := UpdateOntology(entity, new_data.Ontology)
+		if err != nil {
+			return nil, err
+		}
+	}
+	if new_data.Sensors != nil {
+		err := UpdateSensors(entity, new_data.Sensors)
+		if err != nil {
+			return nil, err
+		}
+	}
 	return entity, nil
 }
 
 /*
-
-	Tracked Tracked `json:"tracked"`
-
-	Correlation Correlation `json:"correlation"`
-
-	MilView MilView `json:"milView"`
-
-	Ontology Ontology `json:"ontology"`
 
 	Sensors Sensors `json:"sensors"`
 
 	Payloads Payloads `json:"payloads"`
 
 	PowerState PowerState `json:"powerState"`
-
-	Provenance Provenance `json:"provenance" validate:"required"`
 
 	Overrides Overrides `json:"overrides"`
 
