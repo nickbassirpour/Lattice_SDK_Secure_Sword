@@ -6,7 +6,7 @@ import (
 
 func UpdateLocation(entity *components.Entity, new_location *components.Location) error {
 	if new_location.Position != nil {
-		err := UpdatePosition(entity, new_location.Position)
+		err := UpdatePosition(entity.Location.Position, new_location.Position)
 		if err != nil {
 			return err
 		}

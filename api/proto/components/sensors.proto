@@ -11,7 +11,7 @@ import "components/tracked.proto";
 import "components/position.proto";
 
 message Sensors {
-  repeated Sensor sensor = 1;
+  repeated Sensor sensors = 1;
 }
 
 message Sensor {

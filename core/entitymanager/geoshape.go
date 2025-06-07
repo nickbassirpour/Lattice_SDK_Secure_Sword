@@ -7,7 +7,7 @@ import (
 func UpdateGeoShape(entity *components.Entity, new_geoshape *components.GeoShape) error {
 	if new_geoshape.Point != nil {
 		if new_geoshape.Point.Position != nil {
-			err := UpdatePosition(entity, new_geoshape.Point.Position)
+			err := UpdatePosition(entity.GeoShape.Point.Position, new_geoshape.Point.Position)
 			if err != nil {
 				return err
 			}
@@ -15,7 +15,7 @@ func UpdateGeoShape(entity *components.Entity, new_geoshape *components.GeoShape
 	}
 	if new_geoshape.Line != nil {
 		if new_geoshape.Line.Position != nil {
-			err := UpdatePosition(entity, new_geoshape.Line.Position)
+			err := UpdatePosition(entity.GeoShape.Line.Position, new_geoshape.Line.Position)
 			if err != nil {
 				return err
 			}

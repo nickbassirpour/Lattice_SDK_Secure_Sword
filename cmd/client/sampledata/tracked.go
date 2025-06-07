@@ -7,7 +7,7 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-func UpdateTracked() *components.Tracked {
+func SampleTracked() *components.Tracked {
 	return &components.Tracked{
 		TrackQualityWrapper: Pointer(int32(34)),
 		SensorHits:          Pointer(int32(67)),
@@ -41,15 +41,7 @@ func SampleLineOfBearing() *components.LineOfBearing {
 
 func SampleAngelOfArrival() *components.AngleOfArrival {
 	return &components.AngleOfArrival{
-		RelativePose: &components.RelativePose{
-			Pos: SamplePos(),
-			AttEnu: &components.AttitudeEnu{
-				X: Pointer(float64(902.2)),
-				Y: Pointer(float64(102.6)),
-				Z: Pointer(float64(52.34)),
-				W: Pointer(float64(672.1)),
-			},
-		},
+		RelativePose: SampleRelativePose(),
 		BearingElevationCovarianceRad2: &components.BearingElevationCovarianceRad2{
 			Mxx: Pointer(float64(745.23)),
 			Mxy: Pointer(float64(5467.2)),
@@ -65,5 +57,17 @@ func SamplePos() *components.Pos {
 		Alt:               Pointer(float64(521.34)),
 		Is2D:              Pointer(false),
 		AltitudeReference: components.AltitudeReference_ALTITUDE_REFERENCE_ABOVE_SEA_FLOOR.Enum(),
+	}
+}
+
+func SampleRelativePose() *components.RelativePose {
+	return &components.RelativePose{
+		Pos: SamplePos(),
+		AttEnu: &components.AttitudeEnu{
+			X: Pointer(float64(902.2)),
+			Y: Pointer(float64(102.6)),
+			Z: Pointer(float64(52.34)),
+			W: Pointer(float64(672.1)),
+		},
 	}
 }

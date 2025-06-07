@@ -66,58 +66,58 @@ func UpdateLineOfBearing(entity *components.Entity, new_tracked *components.Trac
 }
 
 func UpdateAngleOfArrival(entity *components.Entity, new_tracked *components.Tracked) error {
-	angle_of_arrival := new_tracked.LineOfBearing.AngleOfArrival
-	if angle_of_arrival.RelativePose != nil {
-		err := UpdateRelativePose(entity, new_tracked)
+	new_angle_of_arrival := new_tracked.LineOfBearing.AngleOfArrival
+	existing_angle_of_arrival := entity.Tracked.LineOfBearing.AngleOfArrival
+	if new_angle_of_arrival.RelativePose != nil {
+		err := UpdateRelativePose(existing_angle_of_arrival.RelativePose, new_angle_of_arrival.RelativePose)
 		if err != nil {
 			return err
 		}
 	}
-	if angle_of_arrival.BearingElevationCovarianceRad2 != nil {
-		if angle_of_arrival.BearingElevationCovarianceRad2.Mxx != nil {
-			entity.Tracked.LineOfBearing.AngleOfArrival.BearingElevationCovarianceRad2.Mxx = angle_of_arrival.BearingElevationCovarianceRad2.Mxx
+	if new_angle_of_arrival.BearingElevationCovarianceRad2 != nil {
+		if new_angle_of_arrival.BearingElevationCovarianceRad2.Mxx != nil {
+			entity.Tracked.LineOfBearing.AngleOfArrival.BearingElevationCovarianceRad2.Mxx = new_angle_of_arrival.BearingElevationCovarianceRad2.Mxx
 		}
-		if angle_of_arrival.BearingElevationCovarianceRad2.Mxy != nil {
-			entity.Tracked.LineOfBearing.AngleOfArrival.BearingElevationCovarianceRad2.Mxy = angle_of_arrival.BearingElevationCovarianceRad2.Mxy
+		if new_angle_of_arrival.BearingElevationCovarianceRad2.Mxy != nil {
+			entity.Tracked.LineOfBearing.AngleOfArrival.BearingElevationCovarianceRad2.Mxy = new_angle_of_arrival.BearingElevationCovarianceRad2.Mxy
 		}
-		if angle_of_arrival.BearingElevationCovarianceRad2.Myy != nil {
-			entity.Tracked.LineOfBearing.AngleOfArrival.BearingElevationCovarianceRad2.Myy = angle_of_arrival.BearingElevationCovarianceRad2.Myy
+		if new_angle_of_arrival.BearingElevationCovarianceRad2.Myy != nil {
+			entity.Tracked.LineOfBearing.AngleOfArrival.BearingElevationCovarianceRad2.Myy = new_angle_of_arrival.BearingElevationCovarianceRad2.Myy
 		}
 	}
 	return nil
 }
 
-func UpdateRelativePose(entity *components.Entity, new_tracked *components.Tracked) error {
-	relative_pose := new_tracked.LineOfBearing.AngleOfArrival.RelativePose
-	if relative_pose.Pos != nil {
-		if relative_pose.Pos.Lon != nil {
-			entity.Tracked.LineOfBearing.AngleOfArrival.RelativePose.Pos.Lon = relative_pose.Pos.Lon
+func UpdateRelativePose(existing_rel_pose *components.RelativePose, new_rel_pose *components.RelativePose) error {
+	if new_rel_pose.Pos != nil {
+		if new_rel_pose.Pos.Lon != nil {
+			existing_rel_pose.Pos.Lon = new_rel_pose.Pos.Lon
 		}
-		if relative_pose.Pos.Lat != nil {
-			entity.Tracked.LineOfBearing.AngleOfArrival.RelativePose.Pos.Lat = relative_pose.Pos.Lat
+		if new_rel_pose.Pos.Lat != nil {
+			existing_rel_pose.Pos.Lat = new_rel_pose.Pos.Lat
 		}
-		if relative_pose.Pos.Alt != nil {
-			entity.Tracked.LineOfBearing.AngleOfArrival.RelativePose.Pos.Alt = relative_pose.Pos.Alt
+		if new_rel_pose.Pos.Alt != nil {
+			existing_rel_pose.Pos.Alt = new_rel_pose.Pos.Alt
 		}
-		if relative_pose.Pos.Is2D != nil {
-			entity.Tracked.LineOfBearing.AngleOfArrival.RelativePose.Pos.Is2D = relative_pose.Pos.Is2D
+		if new_rel_pose.Pos.Is2D != nil {
+			existing_rel_pose.Pos.Is2D = new_rel_pose.Pos.Is2D
 		}
-		if relative_pose.Pos.AltitudeReference != nil {
-			entity.Tracked.LineOfBearing.AngleOfArrival.RelativePose.Pos.AltitudeReference = relative_pose.Pos.AltitudeReference
+		if new_rel_pose.Pos.AltitudeReference != nil {
+			existing_rel_pose.Pos.AltitudeReference = new_rel_pose.Pos.AltitudeReference
 		}
 	}
-	if relative_pose.AttEnu != nil {
-		if relative_pose.AttEnu.X != nil {
-			entity.Location.AttitudeEnu.X = relative_pose.AttEnu.X
+	if new_rel_pose.AttEnu != nil {
+		if new_rel_pose.AttEnu.X != nil {
+			existing_rel_pose.AttEnu.X = new_rel_pose.AttEnu.X
 		}
-		if relative_pose.AttEnu.Y != nil {
-			entity.Location.AttitudeEnu.Y = relative_pose.AttEnu.Y
+		if new_rel_pose.AttEnu.Y != nil {
+			existing_rel_pose.AttEnu.Y = new_rel_pose.AttEnu.Y
 		}
-		if relative_pose.AttEnu.Z != nil {
-			entity.Location.AttitudeEnu.Z = relative_pose.AttEnu.Z
+		if new_rel_pose.AttEnu.Z != nil {
+			existing_rel_pose.AttEnu.Z = new_rel_pose.AttEnu.Z
 		}
-		if relative_pose.AttEnu.W != nil {
-			entity.Location.AttitudeEnu.W = relative_pose.AttEnu.W
+		if new_rel_pose.AttEnu.W != nil {
+			existing_rel_pose.AttEnu.W = new_rel_pose.AttEnu.W
 		}
 	}
 	return nil

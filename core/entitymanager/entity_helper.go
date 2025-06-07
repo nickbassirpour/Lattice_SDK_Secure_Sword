@@ -78,7 +78,19 @@ func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*
 		}
 	}
 	if new_data.Sensors != nil {
-		err := UpdateSensors(entity, new_data.Sensors)
+		err := UpdateSensors(entity, new_data.Sensors.Sensors)
+		if err != nil {
+			return nil, err
+		}
+	}
+	if new_data.Payloads != nil {
+		err := UpdatePayloads(entity, new_data.Payloads)
+		if err != nil {
+			return nil, err
+		}
+	}
+	if new_data.PowerState != nil {
+		err := UpdatePowerState(entity, new_data.PowerState)
 		if err != nil {
 			return nil, err
 		}
@@ -87,11 +99,6 @@ func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*
 }
 
 /*
-
-	Sensors Sensors `json:"sensors"`
-
-	Payloads Payloads `json:"payloads"`
-
 	PowerState PowerState `json:"powerState"`
 
 	Overrides Overrides `json:"overrides"`

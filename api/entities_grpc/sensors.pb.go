@@ -204,7 +204,7 @@ func (Mode) EnumDescriptor() ([]byte, []int) {
 
 type Sensors struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Sensor        []*Sensor              `protobuf:"bytes,1,rep,name=sensor,proto3" json:"sensor,omitempty"`
+	Sensors       []*Sensor              `protobuf:"bytes,1,rep,name=sensors,proto3" json:"sensors,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -239,9 +239,9 @@ func (*Sensors) Descriptor() ([]byte, []int) {
 	return file_components_sensors_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Sensors) GetSensor() []*Sensor {
+func (x *Sensors) GetSensors() []*Sensor {
 	if x != nil {
-		return x.Sensor
+		return x.Sensors
 	}
 	return nil
 }
@@ -763,9 +763,9 @@ var File_components_sensors_proto protoreflect.FileDescriptor
 const file_components_sensors_proto_rawDesc = "" +
 	"\n" +
 	"\x18components/sensors.proto\x12\n" +
-	"components\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17components/signal.proto\x1a\x18components/tracked.proto\x1a\x19components/position.proto\"5\n" +
-	"\aSensors\x12*\n" +
-	"\x06sensor\x18\x01 \x03(\v2\x12.components.SensorR\x06sensor\"\xc0\x04\n" +
+	"components\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17components/signal.proto\x1a\x18components/tracked.proto\x1a\x19components/position.proto\"7\n" +
+	"\aSensors\x12,\n" +
+	"\asensors\x18\x01 \x03(\v2\x12.components.SensorR\asensors\"\xc0\x04\n" +
 	"\x06Sensor\x12\x1f\n" +
 	"\bsensorId\x18\x01 \x01(\tH\x00R\bsensorId\x88\x01\x01\x12M\n" +
 	"\x10operationalState\x18\x02 \x01(\x0e2\x1c.components.OperationalStateH\x01R\x10operationalState\x88\x01\x01\x12;\n" +
@@ -894,7 +894,7 @@ var file_components_sensors_proto_goTypes = []any{
 	(*RelativePose)(nil),            // 16: components.RelativePose
 }
 var file_components_sensors_proto_depIdxs = []int32{
-	4,  // 0: components.Sensors.sensor:type_name -> components.Sensor
+	4,  // 0: components.Sensors.sensors:type_name -> components.Sensor
 	1,  // 1: components.Sensor.operationalState:type_name -> components.OperationalState
 	0,  // 2: components.Sensor.sensorType:type_name -> components.SensorType
 	5,  // 3: components.Sensor.rfConfiguration:type_name -> components.RFConfiguration
