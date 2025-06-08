@@ -101,16 +101,16 @@ func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*
 			return nil, err
 		}
 	}
+	if new_data.TargetPriority != nil {
+		err := UpdateTargetPriority(entity, new_data.TargetPriority)
+		if err != nil {
+			return nil, err
+		}
+	}
 	return entity, nil
 }
 
 /*
-Overrides Overrides `json:"overrides"`
-
-Indicators Indicators `json:"indicators"`
-
-TargetPriority TargetPriority `json:"targetPriority"`
-
 Signal Signal `json:"signal"`
 
 TransponderCodes TransponderCodes `json:"transponderCodes"`

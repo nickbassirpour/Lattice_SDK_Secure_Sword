@@ -29,6 +29,9 @@ func SampleEntity() *components.Entity {
 		Sensors:             SampleSensors(),
 		Payloads:            SamplePayloads(),
 		PowerState:          SamplePowerState(),
+		Overrides:           SampleOverrides(),
+		Indicators:          SampleIndicators(),
+		TargetPriority:      SampleTargetPriority(),
 	}
 }
 
