@@ -10,6 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -131,7 +132,7 @@ func (Type) EnumDescriptor() ([]byte, []int) {
 
 type Overrides struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Override      []*Override            `protobuf:"bytes,1,rep,name=override,proto3" json:"override,omitempty"`
+	Overrides     []*Override            `protobuf:"bytes,1,rep,name=overrides,proto3" json:"overrides,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -166,9 +167,9 @@ func (*Overrides) Descriptor() ([]byte, []int) {
 	return file_components_overrides_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Overrides) GetOverride() []*Override {
+func (x *Overrides) GetOverrides() []*Override {
 	if x != nil {
-		return x.Override
+		return x.Overrides
 	}
 	return nil
 }
@@ -181,7 +182,7 @@ type Override struct {
 	Status           *OverrideStatus        `protobuf:"varint,4,opt,name=status,proto3,enum=components.OverrideStatus,oneof" json:"status,omitempty"`
 	Provenance       *Provenance            `protobuf:"bytes,5,opt,name=provenance,proto3,oneof" json:"provenance,omitempty"`
 	Type             *Type                  `protobuf:"varint,6,opt,name=type,proto3,enum=components.Type,oneof" json:"type,omitempty"`
-	RequestTimeStamp *string                `protobuf:"bytes,7,opt,name=requestTimeStamp,proto3,oneof" json:"requestTimeStamp,omitempty"`
+	RequestTimeStamp *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=requestTimeStamp,proto3,oneof" json:"requestTimeStamp,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -258,11 +259,11 @@ func (x *Override) GetType() Type {
 	return Type_OVERRIDE_TYPE_INVALID
 }
 
-func (x *Override) GetRequestTimeStamp() string {
-	if x != nil && x.RequestTimeStamp != nil {
-		return *x.RequestTimeStamp
+func (x *Override) GetRequestTimeStamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.RequestTimeStamp
 	}
-	return ""
+	return nil
 }
 
 var File_components_overrides_proto protoreflect.FileDescriptor
@@ -270,9 +271,9 @@ var File_components_overrides_proto protoreflect.FileDescriptor
 const file_components_overrides_proto_rawDesc = "" +
 	"\n" +
 	"\x1acomponents/overrides.proto\x12\n" +
-	"components\x1a\x19google/protobuf/any.proto\x1a\x1bcomponents/provenance.proto\"=\n" +
-	"\tOverrides\x120\n" +
-	"\boverride\x18\x01 \x03(\v2\x14.components.OverrideR\boverride\"\xd2\x03\n" +
+	"components\x1a\x19google/protobuf/any.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bcomponents/provenance.proto\"?\n" +
+	"\tOverrides\x122\n" +
+	"\toverrides\x18\x01 \x03(\v2\x14.components.OverrideR\toverrides\"\xee\x03\n" +
 	"\bOverride\x12!\n" +
 	"\trequestId\x18\x01 \x01(\tH\x00R\trequestId\x88\x01\x01\x12!\n" +
 	"\tfieldPath\x18\x02 \x01(\tH\x01R\tfieldPath\x88\x01\x01\x12E\n" +
@@ -281,8 +282,8 @@ const file_components_overrides_proto_rawDesc = "" +
 	"\n" +
 	"provenance\x18\x05 \x01(\v2\x16.components.ProvenanceH\x04R\n" +
 	"provenance\x88\x01\x01\x12)\n" +
-	"\x04type\x18\x06 \x01(\x0e2\x10.components.TypeH\x05R\x04type\x88\x01\x01\x12/\n" +
-	"\x10requestTimeStamp\x18\a \x01(\tH\x06R\x10requestTimeStamp\x88\x01\x01B\f\n" +
+	"\x04type\x18\x06 \x01(\x0e2\x10.components.TypeH\x05R\x04type\x88\x01\x01\x12K\n" +
+	"\x10requestTimeStamp\x18\a \x01(\v2\x1a.google.protobuf.TimestampH\x06R\x10requestTimeStamp\x88\x01\x01B\f\n" +
 	"\n" +
 	"_requestIdB\f\n" +
 	"\n" +
@@ -319,24 +320,26 @@ func file_components_overrides_proto_rawDescGZIP() []byte {
 var file_components_overrides_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_components_overrides_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_components_overrides_proto_goTypes = []any{
-	(OverrideStatus)(0), // 0: components.OverrideStatus
-	(Type)(0),           // 1: components.Type
-	(*Overrides)(nil),   // 2: components.Overrides
-	(*Override)(nil),    // 3: components.Override
-	(*anypb.Any)(nil),   // 4: google.protobuf.Any
-	(*Provenance)(nil),  // 5: components.Provenance
+	(OverrideStatus)(0),           // 0: components.OverrideStatus
+	(Type)(0),                     // 1: components.Type
+	(*Overrides)(nil),             // 2: components.Overrides
+	(*Override)(nil),              // 3: components.Override
+	(*anypb.Any)(nil),             // 4: google.protobuf.Any
+	(*Provenance)(nil),            // 5: components.Provenance
+	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
 }
 var file_components_overrides_proto_depIdxs = []int32{
-	3, // 0: components.Overrides.override:type_name -> components.Override
+	3, // 0: components.Overrides.overrides:type_name -> components.Override
 	4, // 1: components.Override.maskedFieldValue:type_name -> google.protobuf.Any
 	0, // 2: components.Override.status:type_name -> components.OverrideStatus
 	5, // 3: components.Override.provenance:type_name -> components.Provenance
 	1, // 4: components.Override.type:type_name -> components.Type
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	6, // 5: components.Override.requestTimeStamp:type_name -> google.protobuf.Timestamp
+	6, // [6:6] is the sub-list for method output_type
+	6, // [6:6] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_components_overrides_proto_init() }

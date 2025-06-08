@@ -21,4 +21,5 @@ func SampleConfig() []*components.Config {
 
 	configs_list = append(configs_list, sample_config)
 
+	return configs_list
 }

@@ -4,6 +4,7 @@ import (
 	"time"
 
 	components "github.com/nickbassirpour/Lattice_SDK_Secure_Sword.git/api/entities_grpc"
+	"google.golang.org/protobuf/types/known/anypb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
@@ -33,4 +34,12 @@ func SampleEntity() *components.Entity {
 
 func Pointer[T any](pointer T) *T {
 	return &pointer
+}
+
+func WrapEntityAsAny(entity *components.Entity) (*anypb.Any, error) {
+	entity_set_to_any, err := anypb.New(entity)
+	if err != nil {
+		return nil, err
+	}
+	return entity_set_to_any, nil
 }

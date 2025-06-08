@@ -5,11 +5,11 @@ package components;
 option go_package = "/components";
 
 import "google/protobuf/any.proto";
-
+import "google/protobuf/timestamp.proto";
 import "components/provenance.proto";
 
 message Overrides {
-  repeated Override override = 1;
+  repeated Override overrides = 1;
 }
 
 message Override {
@@ -19,7 +19,7 @@ message Override {
   optional OverrideStatus status = 4;
   optional Provenance provenance = 5;
   optional Type type = 6;
-  optional string requestTimeStamp = 7;
+  optional google.protobuf.Timestamp requestTimeStamp = 7;
 }
 
 enum OverrideStatus {

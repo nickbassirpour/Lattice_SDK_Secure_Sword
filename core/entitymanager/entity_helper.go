@@ -95,46 +95,48 @@ func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*
 			return nil, err
 		}
 	}
+	if new_data.Overrides != nil {
+		err := UpdateOverrides(entity, new_data.Overrides)
+		if err != nil {
+			return nil, err
+		}
+	}
 	return entity, nil
 }
 
 /*
-	PowerState PowerState `json:"powerState"`
+Overrides Overrides `json:"overrides"`
 
-	Overrides Overrides `json:"overrides"`
+Indicators Indicators `json:"indicators"`
 
-	Indicators Indicators `json:"indicators"`
+TargetPriority TargetPriority `json:"targetPriority"`
 
-	TargetPriority TargetPriority `json:"targetPriority"`
+Signal Signal `json:"signal"`
 
-	Signal Signal `json:"signal"`
+TransponderCodes TransponderCodes `json:"transponderCodes"`
 
-	TransponderCodes TransponderCodes `json:"transponderCodes"`
+DataClassification DataClassification `json:"dataClassification"`
 
-	DataClassification DataClassification `json:"dataClassification"`
+TaskCatalog TaskCatalog `json:"taskCatalog"`
 
-	TaskCatalog TaskCatalog `json:"taskCatalog"`
+Relationships Relationships `json:"relationships"`
 
-	Relationships Relationships `json:"relationships"`
+VisualDetails VisualDetails `json:"visualDetails"`
 
-	VisualDetails VisualDetails `json:"visualDetails"`
+Dimensions Dimensions `json:"dimensions"`
 
-	Dimensions Dimensions `json:"dimensions"`
+RouteDetails RouteDetails `json:"routeDetails"`
 
-	RouteDetails RouteDetails `json:"routeDetails"`
+Schedules Schedules `json:"schedules"`
 
-	Schedules Schedules `json:"schedules"`
+Health Health `json:"health"`
 
-	Health Health `json:"health"`
+GroupDetails GroupDetails `json:"groupDetails"`
 
-	GroupDetails GroupDetails `json:"groupDetails"`
+Supplies Supplies `json:"supplies"`
 
-	Supplies Supplies `json:"supplies"`
-
-	Orbit Orbit `json:"orbit"`
-
+Orbit Orbit `json:"orbit"`
 */
-
 func Pointer[T any](pointer T) *T {
 	return &pointer
 }
