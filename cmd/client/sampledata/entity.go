@@ -32,6 +32,7 @@ func SampleEntity() *components.Entity {
 		Overrides:           SampleOverrides(),
 		Indicators:          SampleIndicators(),
 		TargetPriority:      SampleTargetPriority(),
+		Signal:              SampleSignal(),
 	}
 }
 

@@ -24,7 +24,7 @@ func UpdateTracked(entity *components.Entity, new_tracked *components.Tracked) e
 		entity.Tracked.LastMeasurementTime = new_tracked.LastMeasurementTime
 	}
 	if new_tracked.LineOfBearing != nil {
-		err := UpdateLineOfBearing(entity, new_tracked)
+		err := UpdateLineOfBearing(entity.Signal.LineOfBearing, new_tracked.LineOfBearing)
 		if err != nil {
 			return err
 		}
@@ -43,21 +43,21 @@ func UpdateNumberOfObjects(entity *components.Entity, new_tracked *components.Tr
 	// Write logic to define strength calculation with upper/lower data
 }
 
-func UpdateLineOfBearing(entity *components.Entity, new_tracked *components.Tracked) error {
-	if new_tracked.LineOfBearing.AngleOfArrival != nil {
-		err := UpdateAngleOfArrival(entity, new_tracked)
+func UpdateLineOfBearing(existing_lob *components.LineOfBearing, new_lob *components.LineOfBearing) error {
+	if new_lob.AngleOfArrival != nil {
+		err := UpdateAngleOfArrival(existing_lob.AngleOfArrival, new_lob.AngleOfArrival)
 		if err != nil {
 			return err
 		}
 	}
-	if new_tracked.LineOfBearing.RangeEstimateM != nil {
-		err := UpdateRangeEstimateM(entity, new_tracked)
+	if new_lob.RangeEstimateM != nil {
+		err := UpdateRangeEstimateM(existing_lob.RangeEstimateM, new_lob.RangeEstimateM)
 		if err != nil {
 			return err
 		}
 	}
-	if new_tracked.LineOfBearing.MaxRangeM != nil {
-		err := UpdateMaxRangeM(entity, new_tracked)
+	if new_lob.MaxRangeM != nil {
+		err := UpdateMaxRangeM(existing_lob.MaxRangeM, new_lob.MaxRangeM)
 		if err != nil {
 			return err
 		}
@@ -65,24 +65,22 @@ func UpdateLineOfBearing(entity *components.Entity, new_tracked *components.Trac
 	return nil
 }
 
-func UpdateAngleOfArrival(entity *components.Entity, new_tracked *components.Tracked) error {
-	new_angle_of_arrival := new_tracked.LineOfBearing.AngleOfArrival
-	existing_angle_of_arrival := entity.Tracked.LineOfBearing.AngleOfArrival
-	if new_angle_of_arrival.RelativePose != nil {
-		err := UpdateRelativePose(existing_angle_of_arrival.RelativePose, new_angle_of_arrival.RelativePose)
+func UpdateAngleOfArrival(existing_angle_of_arr *components.AngleOfArrival, new_angle_of_arr *components.AngleOfArrival) error {
+	if new_angle_of_arr.RelativePose != nil {
+		err := UpdateRelativePose(existing_angle_of_arr.RelativePose, new_angle_of_arr.RelativePose)
 		if err != nil {
 			return err
 		}
 	}
-	if new_angle_of_arrival.BearingElevationCovarianceRad2 != nil {
-		if new_angle_of_arrival.BearingElevationCovarianceRad2.Mxx != nil {
-			entity.Tracked.LineOfBearing.AngleOfArrival.BearingElevationCovarianceRad2.Mxx = new_angle_of_arrival.BearingElevationCovarianceRad2.Mxx
+	if new_angle_of_arr.BearingElevationCovarianceRad2 != nil {
+		if new_angle_of_arr.BearingElevationCovarianceRad2.Mxx != nil {
+			existing_angle_of_arr.BearingElevationCovarianceRad2.Mxx = new_angle_of_arr.BearingElevationCovarianceRad2.Mxx
 		}
-		if new_angle_of_arrival.BearingElevationCovarianceRad2.Mxy != nil {
-			entity.Tracked.LineOfBearing.AngleOfArrival.BearingElevationCovarianceRad2.Mxy = new_angle_of_arrival.BearingElevationCovarianceRad2.Mxy
+		if new_angle_of_arr.BearingElevationCovarianceRad2.Mxy != nil {
+			existing_angle_of_arr.BearingElevationCovarianceRad2.Mxy = new_angle_of_arr.BearingElevationCovarianceRad2.Mxy
 		}
-		if new_angle_of_arrival.BearingElevationCovarianceRad2.Myy != nil {
-			entity.Tracked.LineOfBearing.AngleOfArrival.BearingElevationCovarianceRad2.Myy = new_angle_of_arrival.BearingElevationCovarianceRad2.Myy
+		if new_angle_of_arr.BearingElevationCovarianceRad2.Myy != nil {
+			existing_angle_of_arr.BearingElevationCovarianceRad2.Myy = new_angle_of_arr.BearingElevationCovarianceRad2.Myy
 		}
 	}
 	return nil
@@ -123,24 +121,23 @@ func UpdateRelativePose(existing_rel_pose *components.RelativePose, new_rel_pose
 	return nil
 }
 
-func UpdateRangeEstimateM(entity *components.Entity, new_tracked *components.Tracked) error {
-	range_estimate := new_tracked.LineOfBearing.RangeEstimateM
-	if range_estimate.Value != nil {
-		entity.Tracked.LineOfBearing.RangeEstimateM.Value = range_estimate.Value
+func UpdateRangeEstimateM(existing_range_est_m *components.RangeEstimateM, new_range_est_m *components.RangeEstimateM) error {
+
+	if new_range_est_m.Value != nil {
+		existing_range_est_m.Value = new_range_est_m.Value
 	}
-	if range_estimate.Sigma != nil {
-		entity.Tracked.LineOfBearing.RangeEstimateM.Sigma = range_estimate.Sigma
+	if new_range_est_m.Sigma != nil {
+		existing_range_est_m.Sigma = new_range_est_m.Sigma
 	}
 	return nil
 }
 
-func UpdateMaxRangeM(entity *components.Entity, new_tracked *components.Tracked) error {
-	max_range_m := new_tracked.LineOfBearing.MaxRangeM
-	if max_range_m.Value != nil {
-		entity.Tracked.LineOfBearing.MaxRangeM.Value = max_range_m.Value
+func UpdateMaxRangeM(existing_max_range_m *components.MaxRangeM, new_max_range_m *components.MaxRangeM) error {
+	if new_max_range_m.Value != nil {
+		existing_max_range_m.Value = new_max_range_m.Value
 	}
-	if max_range_m.Sigma != nil {
-		entity.Tracked.LineOfBearing.MaxRangeM.Sigma = max_range_m.Sigma
+	if new_max_range_m.Sigma != nil {
+		existing_max_range_m.Sigma = new_max_range_m.Sigma
 	}
 	return nil
 }

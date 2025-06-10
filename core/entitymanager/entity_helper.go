@@ -107,6 +107,12 @@ func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*
 			return nil, err
 		}
 	}
+	if new_data.Signal != nil {
+		err := UpdateSignal(entity, new_data.Signal)
+		if err != nil {
+			return nil, err
+		}
+	}
 	return entity, nil
 }
 
@@ -137,6 +143,7 @@ Supplies Supplies `json:"supplies"`
 
 Orbit Orbit `json:"orbit"`
 */
+
 func Pointer[T any](pointer T) *T {
 	return &pointer
 }
