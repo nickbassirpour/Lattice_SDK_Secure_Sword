@@ -114,10 +114,16 @@ func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*
 		}
 	}
 	return entity, nil
+	if new_data.TransponderCodes != nil {
+		err := UpdateTransponderCodes(entity, new_data.TransponderCodes)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return entity, nil
 }
 
-/*
-Signal Signal `json:"signal"`
+/*\
 
 TransponderCodes TransponderCodes `json:"transponderCodes"`
 
