@@ -33,6 +33,7 @@ func SampleEntity() *components.Entity {
 		Indicators:          SampleIndicators(),
 		TargetPriority:      SampleTargetPriority(),
 		Signal:              SampleSignal(),
+		TransponderCodes:    SampleTransponderCodes(),
 	}
 }
 
