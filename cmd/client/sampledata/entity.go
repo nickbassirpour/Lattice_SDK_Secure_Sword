@@ -34,6 +34,7 @@ func SampleEntity() *components.Entity {
 		TargetPriority:      SampleTargetPriority(),
 		Signal:              SampleSignal(),
 		TransponderCodes:    SampleTransponderCodes(),
+		DataClassification:  SampleDataClassification(),
 	}
 }
 

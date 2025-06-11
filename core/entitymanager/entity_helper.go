@@ -113,20 +113,23 @@ func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*
 			return nil, err
 		}
 	}
-	return entity, nil
 	if new_data.TransponderCodes != nil {
 		err := UpdateTransponderCodes(entity, new_data.TransponderCodes)
 		if err != nil {
 			return nil, err
 		}
 	}
+	if new_data.DataClassification != nil {
+		err := UpdateDataClassification(entity, new_data.DataClassification)
+		if err != nil {
+			return nil, err
+		}
+	}
+
 	return entity, nil
 }
 
 /*\
-
-TransponderCodes TransponderCodes `json:"transponderCodes"`
-
 DataClassification DataClassification `json:"dataClassification"`
 
 TaskCatalog TaskCatalog `json:"taskCatalog"`
