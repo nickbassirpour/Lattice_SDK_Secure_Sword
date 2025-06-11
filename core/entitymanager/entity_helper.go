@@ -78,10 +78,11 @@ func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*
 		}
 	}
 	if new_data.Sensors != nil {
-		err := UpdateSensors(entity, new_data.Sensors.Sensors)
+		newSensors, err := UpdateSensors(entity.Sensors.Sensors, new_data.Sensors.Sensors)
 		if err != nil {
 			return nil, err
 		}
+		entity.Sensors.Sensors = newSensors
 	}
 	if new_data.Payloads != nil {
 		err := UpdatePayloads(entity, new_data.Payloads)
@@ -131,12 +132,16 @@ func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*
 			return nil, err
 		}
 	}
+	if new_data.Relationships != nil {
+		err := UpdateRelationships(entity, new_data.Relationships)
+		if err != nil {
+			return nil, err
+		}
+	}
 	return entity, nil
 }
 
 /*
-TaskCatalog TaskCatalog `json:"taskCatalog"`
-
 Relationships Relationships `json:"relationships"`
 
 VisualDetails VisualDetails `json:"visualDetails"`

@@ -4,23 +4,23 @@ import (
 	components "github.com/nickbassirpour/Lattice_SDK_Secure_Sword.git/api/entities_grpc"
 )
 
-func UpdateSensors(entity *components.Entity, new_sensors []*components.Sensor) error {
+func UpdateSensors(existingSensors []*components.Sensor, newSensors []*components.Sensor) ([]*components.Sensor, error) {
 	existing_sensors := make(map[string]*components.Sensor)
-	for _, sensor := range entity.Sensors.GetSensors() {
+	for _, sensor := range existingSensors {
 		existing_sensors[*sensor.SensorId] = sensor
 	}
 
-	for _, new_sensor := range new_sensors {
+	for _, new_sensor := range newSensors {
 		if exists, found := existing_sensors[*new_sensor.SensorId]; found {
 			err := UpdateSensor(exists, new_sensor)
 			if err != nil {
-				return err
+				return nil, err
 			}
 		} else {
-			entity.Sensors.Sensors = append(entity.Sensors.Sensors, new_sensor)
+			existingSensors = append(existingSensors, new_sensor)
 		}
 	}
-	return nil
+	return existingSensors, nil
 }
 
 func UpdateSensor(existing_sensor *components.Sensor, new_sensor *components.Sensor) error {
