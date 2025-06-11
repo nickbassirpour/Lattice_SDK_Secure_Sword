@@ -35,6 +35,7 @@ func SampleEntity() *components.Entity {
 		Signal:              SampleSignal(),
 		TransponderCodes:    SampleTransponderCodes(),
 		DataClassification:  SampleDataClassification(),
+		TaskCatalog:         SampleTaskCatalog(),
 	}
 }
 

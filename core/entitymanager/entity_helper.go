@@ -125,13 +125,16 @@ func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*
 			return nil, err
 		}
 	}
-
+	if new_data.TaskCatalog != nil {
+		err := UpdateTaskCatalog(entity, new_data.TaskCatalog)
+		if err != nil {
+			return nil, err
+		}
+	}
 	return entity, nil
 }
 
-/*\
-DataClassification DataClassification `json:"dataClassification"`
-
+/*
 TaskCatalog TaskCatalog `json:"taskCatalog"`
 
 Relationships Relationships `json:"relationships"`
