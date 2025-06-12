@@ -4,136 +4,166 @@ import (
 	components "github.com/nickbassirpour/Lattice_SDK_Secure_Sword.git/api/entities_grpc"
 )
 
-func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*components.Entity, error) {
-	if new_data.Description != nil {
-		entity.Description = new_data.Description
+func UpdateComponents(entity *components.Entity, newData *components.Entity) (*components.Entity, error) {
+	if newData.Description != nil {
+		entity.Description = newData.Description
 	}
-	if new_data.IsLive != nil {
-		entity.IsLive = new_data.IsLive
+	if newData.IsLive != nil {
+		entity.IsLive = newData.IsLive
 	}
-	if new_data.CreatedTime != nil {
-		entity.CreatedTime = new_data.CreatedTime
+	if newData.CreatedTime != nil {
+		entity.CreatedTime = newData.CreatedTime
 	}
-	if new_data.ExpiryTime != nil {
-		entity.ExpiryTime = new_data.ExpiryTime
+	if newData.ExpiryTime != nil {
+		entity.ExpiryTime = newData.ExpiryTime
 	}
-	if new_data.Status != nil {
-		err := UpdateStatus(entity, new_data.Status)
+	if newData.Status != nil {
+		err := UpdateStatus(entity, newData.Status)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.Location != nil {
-		err := UpdateLocation(entity, new_data.Location)
+	if newData.Location != nil {
+		err := UpdateLocation(entity, newData.Location)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.LocationUncertainty != nil {
-		err := UpdateLocationUncertainty(entity, new_data.LocationUncertainty)
+	if newData.LocationUncertainty != nil {
+		err := UpdateLocationUncertainty(entity, newData.LocationUncertainty)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.GeoShape != nil {
-		err := UpdateGeoShape(entity, new_data.GeoShape)
+	if newData.GeoShape != nil {
+		err := UpdateGeoShape(entity, newData.GeoShape)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.GeoDetails != nil {
-		err := UpdateGeoDetails(entity, new_data.GeoDetails)
+	if newData.GeoDetails != nil {
+		err := UpdateGeoDetails(entity, newData.GeoDetails)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.Aliases != nil {
-		err := UpdateAliases(entity, new_data.Aliases)
+	if newData.Aliases != nil {
+		err := UpdateAliases(entity, newData.Aliases)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.Tracked != nil {
-		err := UpdateTracked(entity, new_data.Tracked)
+	if newData.Tracked != nil {
+		err := UpdateTracked(entity, newData.Tracked)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.Correlation != nil {
-		err := UpdateCorrelation(entity, new_data.Correlation)
+	if newData.Correlation != nil {
+		err := UpdateCorrelation(entity, newData.Correlation)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.MilView != nil {
-		err := UpdateMilView(entity, new_data.MilView)
+	if newData.MilView != nil {
+		err := UpdateMilView(entity, newData.MilView)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.Ontology != nil {
-		err := UpdateOntology(entity, new_data.Ontology)
+	if newData.Ontology != nil {
+		err := UpdateOntology(entity, newData.Ontology)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.Sensors != nil {
-		newSensors, err := UpdateSensors(entity.Sensors.Sensors, new_data.Sensors.Sensors)
+	if newData.Sensors != nil {
+		newSensors, err := UpdateSensors(entity.Sensors.Sensors, newData.Sensors.Sensors)
 		if err != nil {
 			return nil, err
 		}
 		entity.Sensors.Sensors = newSensors
 	}
-	if new_data.Payloads != nil {
-		err := UpdatePayloads(entity, new_data.Payloads)
+	if newData.Payloads != nil {
+		err := UpdatePayloads(entity, newData.Payloads)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.PowerState != nil {
-		err := UpdatePowerState(entity, new_data.PowerState)
+	if newData.PowerState != nil {
+		err := UpdatePowerState(entity, newData.PowerState)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.Overrides != nil {
-		err := UpdateOverrides(entity, new_data.Overrides)
+	if newData.Overrides != nil {
+		err := UpdateOverrides(entity, newData.Overrides)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.TargetPriority != nil {
-		err := UpdateTargetPriority(entity, new_data.TargetPriority)
+	if newData.TargetPriority != nil {
+		err := UpdateTargetPriority(entity, newData.TargetPriority)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.Signal != nil {
-		err := UpdateSignal(entity, new_data.Signal)
+	if newData.Signal != nil {
+		err := UpdateSignal(entity, newData.Signal)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.TransponderCodes != nil {
-		err := UpdateTransponderCodes(entity, new_data.TransponderCodes)
+	if newData.TransponderCodes != nil {
+		err := UpdateTransponderCodes(entity, newData.TransponderCodes)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.DataClassification != nil {
-		err := UpdateDataClassification(entity, new_data.DataClassification)
+	if newData.DataClassification != nil {
+		err := UpdateDataClassification(entity, newData.DataClassification)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.TaskCatalog != nil {
-		err := UpdateTaskCatalog(entity, new_data.TaskCatalog)
+	if newData.TaskCatalog != nil {
+		err := UpdateTaskCatalog(entity, newData.TaskCatalog)
 		if err != nil {
 			return nil, err
 		}
 	}
-	if new_data.Relationships != nil {
-		err := UpdateRelationships(entity, new_data.Relationships)
+	if newData.Relationships != nil {
+		err := UpdateRelationships(entity, newData.Relationships)
+		if err != nil {
+			return nil, err
+		}
+	}
+	if newData.VisualDetails != nil {
+		err := UpdateVisualDetails(entity, newData.VisualDetails)
+		if err != nil {
+			return nil, err
+		}
+	}
+	if newData.Dimensions != nil {
+		err := UpdateDimensions(entity, newData.Dimensions)
+		if err != nil {
+			return nil, err
+		}
+	}
+	if newData.RouteDetails != nil {
+		err := UpdateRouteDetails(entity, newData.RouteDetails)
+		if err != nil {
+			return nil, err
+		}
+	}
+	if newData.Schedules != nil {
+		err := UpdateSchedules(entity, newData.Schedules)
+		if err != nil {
+			return nil, err
+		}
+	}
+	if newData.Health != nil {
+		err := UpdateHealth(entity, newData.Health)
 		if err != nil {
 			return nil, err
 		}
@@ -142,15 +172,7 @@ func UpdateComponents(entity *components.Entity, new_data *components.Entity) (*
 }
 
 /*
-Relationships Relationships `json:"relationships"`
 
-VisualDetails VisualDetails `json:"visualDetails"`
-
-Dimensions Dimensions `json:"dimensions"`
-
-RouteDetails RouteDetails `json:"routeDetails"`
-
-Schedules Schedules `json:"schedules"`
 
 Health Health `json:"health"`
 

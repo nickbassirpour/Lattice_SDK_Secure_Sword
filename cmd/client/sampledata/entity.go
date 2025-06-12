@@ -36,6 +36,11 @@ func SampleEntity() *components.Entity {
 		TransponderCodes:    SampleTransponderCodes(),
 		DataClassification:  SampleDataClassification(),
 		TaskCatalog:         SampleTaskCatalog(),
+		Relationships:       SampleRelationships(),
+		VisualDetails:       SampleVisualDetails(),
+		Dimensions:          SampleDimensions(),
+		RouteDetails:        SampleRouteDetails(),
+		Schedules:           SampleSchedules(),
 	}
 }
 

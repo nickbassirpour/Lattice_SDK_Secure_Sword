@@ -33,13 +33,14 @@ func UpdateCorrelation(entity *components.Entity, new_correlation *components.Co
 			return err
 		}
 	}
+	return nil
 }
 
 func UpdateMetadata(entity *components.Entity, metadata *components.Metadata) error {
 	if metadata.Provenance != nil {
 		err := UpdateProvenance(entity, metadata.Provenance)
 		if err != nil {
-			return nil, err
+			return err
 		}
 	}
 	if metadata.ReplicationMode != nil {
