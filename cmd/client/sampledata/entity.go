@@ -41,6 +41,8 @@ func SampleEntity() *components.Entity {
 		Dimensions:          SampleDimensions(),
 		RouteDetails:        SampleRouteDetails(),
 		Schedules:           SampleSchedules(),
+		Health:              SampleHealth(),
+		GroupDetails:        SampleGroupDetails(),
 	}
 }
 

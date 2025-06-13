@@ -168,15 +168,16 @@ func UpdateComponents(entity *components.Entity, newData *components.Entity) (*c
 			return nil, err
 		}
 	}
+	if newData.GroupDetails != nil {
+		err := UpdateGroupDetails(entity, newData.GroupDetails)
+		if err != nil {
+			return nil, err
+		}
+	}
 	return entity, nil
 }
 
 /*
-
-
-Health Health `json:"health"`
-
-GroupDetails GroupDetails `json:"groupDetails"`
 
 Supplies Supplies `json:"supplies"`
 

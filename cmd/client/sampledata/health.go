@@ -18,7 +18,7 @@ func SampleHealth() *components.Health {
 }
 
 func sampleComponents() []*components.Component {
-	components := []*components.Component{}
+	componentSlice := []*components.Component{}
 	component := &components.Component{
 		Id:         Pointer("199013"),
 		Name:       Pointer("67 Radar"),
@@ -26,8 +26,8 @@ func sampleComponents() []*components.Component {
 		Messages:   sampleMessages(),
 		UpdateTime: timestamppb.New(time.Now()),
 	}
-	components = append(components, component)
-	return components
+	componentSlice = append(componentSlice, component)
+	return componentSlice
 }
 
 func sampleMessages() []*components.Message {
@@ -41,27 +41,24 @@ func sampleMessages() []*components.Message {
 }
 
 func sampleActiveAlerts() []*components.ActiveAlert {
-
+	activeAlerts := []*components.ActiveAlert{}
+	activeAlert := &components.ActiveAlert{
+		AlertCode:        Pointer("100-1079-88923"),
+		Description:      Pointer("sample active alert description"),
+		Level:            Pointer(components.AlertLevel_ALERT_LEVEL_ADVISORY),
+		ActivatedTime:    timestamppb.New(time.Now()),
+		ActiveConditions: sampleActiveConditions(),
+	}
+	activeAlerts = append(activeAlerts, activeAlert)
+	return activeAlerts
 }
 
-/*
-
-type Component struct {
-	// Consistent internal ID for this component.
-	Id string `json:"id"`
-
-	// Display name for this component.
-	Name string `json:"name"`
-
-	// Health for this component.
-	Health HealthStatus `json:"health"`
-
-	// Human-readable describing the component state. These messages
-	// should be understandable by end users.
-	Messages []Message `json:"messages"`
-
-	// The last update time for this specific component. If this timestamp
-	// is unset, the data is assumed to be most recent
-	UpdateTime time.Time `json:"updateTime"`
+func sampleActiveConditions() []*components.ActiveCondition {
+	activeConditions := []*components.ActiveCondition{}
+	activeCondition := &components.ActiveCondition{
+		ConditionCode: Pointer("1002-23954"),
+		Description:   Pointer("sample active condition"),
+	}
+	activeConditions = append(activeConditions, activeCondition)
+	return activeConditions
 }
-*/

@@ -29,7 +29,7 @@ type Fuel struct {
 
 	// fuel in a single asset may have different levels of classification use case:
 	// fuel for a SECRET asset while diesel fuel may be UNCLASSIFIED
-	DataClassification DataClassifiction `json:"dataClassification"`
+	DataClassification DataClassification `json:"dataClassification"`
 
 	// source of information
 	DataSource string `json:"dataSource"`
