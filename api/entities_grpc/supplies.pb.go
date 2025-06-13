@@ -68,7 +68,7 @@ func (x *Supplies) GetFuel() []*Fuel {
 
 type Fuel struct {
 	state                         protoimpl.MessageState `protogen:"open.v1"`
-	FieldId                       *string                `protobuf:"bytes,1,opt,name=fieldId,proto3,oneof" json:"fieldId,omitempty"`
+	FuelId                        *string                `protobuf:"bytes,1,opt,name=fuelId,proto3,oneof" json:"fuelId,omitempty"`
 	Name                          *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
 	ReportedDate                  *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=reportedDate,proto3,oneof" json:"reportedDate,omitempty"`
 	AmountGallons                 *uint32                `protobuf:"varint,4,opt,name=amountGallons,proto3,oneof" json:"amountGallons,omitempty"`
@@ -110,9 +110,9 @@ func (*Fuel) Descriptor() ([]byte, []int) {
 	return file_components_supplies_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Fuel) GetFieldId() string {
-	if x != nil && x.FieldId != nil {
-		return *x.FieldId
+func (x *Fuel) GetFuelId() string {
+	if x != nil && x.FuelId != nil {
+		return *x.FuelId
 	}
 	return ""
 }
@@ -173,9 +173,9 @@ const file_components_supplies_proto_rawDesc = "" +
 	"\x19components/supplies.proto\x12\n" +
 	"components\x1a#components/dataclassification.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"0\n" +
 	"\bSupplies\x12$\n" +
-	"\x04fuel\x18\x01 \x03(\v2\x10.components.FuelR\x04fuel\"\xdd\x04\n" +
-	"\x04Fuel\x12\x1d\n" +
-	"\afieldId\x18\x01 \x01(\tH\x00R\afieldId\x88\x01\x01\x12\x17\n" +
+	"\x04fuel\x18\x01 \x03(\v2\x10.components.FuelR\x04fuel\"\xda\x04\n" +
+	"\x04Fuel\x12\x1b\n" +
+	"\x06fuelId\x18\x01 \x01(\tH\x00R\x06fuelId\x88\x01\x01\x12\x17\n" +
 	"\x04name\x18\x02 \x01(\tH\x01R\x04name\x88\x01\x01\x12C\n" +
 	"\freportedDate\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampH\x02R\freportedDate\x88\x01\x01\x12)\n" +
 	"\ramountGallons\x18\x04 \x01(\rH\x03R\ramountGallons\x88\x01\x01\x12G\n" +
@@ -184,9 +184,8 @@ const file_components_supplies_proto_rawDesc = "" +
 	"\x12dataClassification\x18\a \x01(\v2\x1e.components.DataClassificationH\x06R\x12dataClassification\x88\x01\x01\x12#\n" +
 	"\n" +
 	"dataSource\x18\b \x01(\tH\aR\n" +
-	"dataSource\x88\x01\x01B\n" +
-	"\n" +
-	"\b_fieldIdB\a\n" +
+	"dataSource\x88\x01\x01B\t\n" +
+	"\a_fuelIdB\a\n" +
 	"\x05_nameB\x0f\n" +
 	"\r_reportedDateB\x10\n" +
 	"\x0e_amountGallonsB\x1f\n" +

@@ -174,6 +174,12 @@ func UpdateComponents(entity *components.Entity, newData *components.Entity) (*c
 			return nil, err
 		}
 	}
+	if newData.Supplies != nil {
+		err := UpdateSupplies(entity, newData.Supplies)
+		if err != nil {
+			return nil, err
+		}
+	}
 	return entity, nil
 }
 

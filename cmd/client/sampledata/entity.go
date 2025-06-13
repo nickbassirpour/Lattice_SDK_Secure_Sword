@@ -43,6 +43,7 @@ func SampleEntity() *components.Entity {
 		Schedules:           SampleSchedules(),
 		Health:              SampleHealth(),
 		GroupDetails:        SampleGroupDetails(),
+		Supplies:            SampleSupplies(),
 	}
 }
 

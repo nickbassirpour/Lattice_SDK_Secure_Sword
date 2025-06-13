@@ -13,7 +13,7 @@ message Supplies {
 }
 
 message Fuel {
-  optional string fieldId = 1;
+  optional string fuelId = 1;
   optional string name = 2;
   optional google.protobuf.Timestamp reportedDate = 3;
   optional uint32 amountGallons = 4;
