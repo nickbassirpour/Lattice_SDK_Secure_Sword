@@ -180,6 +180,12 @@ func UpdateComponents(entity *components.Entity, newData *components.Entity) (*c
 			return nil, err
 		}
 	}
+	if newData.Orbit != nil {
+		err := UpdateOrbit(entity, newData.Orbit)
+		if err != nil {
+			return nil, err
+		}
+	}
 	return entity, nil
 }
 
