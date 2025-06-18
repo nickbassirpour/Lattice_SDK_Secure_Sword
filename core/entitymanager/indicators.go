@@ -23,4 +23,5 @@ func UpdateIndicators(entity *components.Entity, new_indicators *components.Indi
 	if new_indicators.Starred != nil {
 		entity.Indicators.Starred = new_indicators.Starred
 	}
+	return nil
 }

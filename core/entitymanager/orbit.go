@@ -32,6 +32,7 @@ func UpdateOrbit(entity *components.Entity, newOrbit *components.Orbit) error {
 		}
 		return nil
 	}
+	return nil
 }
 
 func updateOrbitMetadata(existingOrbitMetadata *components.OrbitMetadata, newOrbitMetadata *components.OrbitMetadata) error {
