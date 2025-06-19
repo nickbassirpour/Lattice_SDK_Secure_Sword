@@ -18,10 +18,6 @@ message PublishEntityResponse {
     string message = 2; 
 }
 
-message PublishEntitiesRequest {
-    repeated Entity entities = 1;
-}
-
 message PublishEntitiesResponse {
     bool success = 1;
     string message = 2;
@@ -57,7 +53,7 @@ message RemoveEntityOverrideResponse {
 service EntityManager {
     rpc PublishEntity(PublishEntityRequest) returns (PublishEntityResponse);
 
-    rpc PublishEntities(PublishEntityRequest) returns (PublishEntitiesResponse);
+    rpc PublishEntities(stream Entity) returns (PublishEntitiesResponse);
 
     rpc GetEntity(GetEntityRequest) returns (GetEntityResponse);
 

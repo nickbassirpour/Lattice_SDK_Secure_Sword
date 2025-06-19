@@ -32,6 +32,18 @@ func TestPublishEntity(t *testing.T) {
 	}
 }
 
+func TestUpdatePublishedEntity(t *testing.T) {
+	server := entitymanager.NewServer()
+	sample_entity := sampledata.SampleEntity()
+
+	req := &components.PublishEntityRequest{
+		Entity: sample_entity,
+	}
+
+	server.PublishEntity(context.Background(), req)
+
+}
+
 func TestPublishEntity_InvalidRequest(t *testing.T) {
 	server := &entitymanager.Server{}
 

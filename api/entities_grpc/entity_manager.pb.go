@@ -117,50 +117,6 @@ func (x *PublishEntityResponse) GetMessage() string {
 	return ""
 }
 
-type PublishEntitiesRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Entities      []*Entity              `protobuf:"bytes,1,rep,name=entities,proto3" json:"entities,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *PublishEntitiesRequest) Reset() {
-	*x = PublishEntitiesRequest{}
-	mi := &file_components_entity_manager_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PublishEntitiesRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PublishEntitiesRequest) ProtoMessage() {}
-
-func (x *PublishEntitiesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_components_entity_manager_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PublishEntitiesRequest.ProtoReflect.Descriptor instead.
-func (*PublishEntitiesRequest) Descriptor() ([]byte, []int) {
-	return file_components_entity_manager_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *PublishEntitiesRequest) GetEntities() []*Entity {
-	if x != nil {
-		return x.Entities
-	}
-	return nil
-}
-
 type PublishEntitiesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
@@ -171,7 +127,7 @@ type PublishEntitiesResponse struct {
 
 func (x *PublishEntitiesResponse) Reset() {
 	*x = PublishEntitiesResponse{}
-	mi := &file_components_entity_manager_proto_msgTypes[3]
+	mi := &file_components_entity_manager_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -183,7 +139,7 @@ func (x *PublishEntitiesResponse) String() string {
 func (*PublishEntitiesResponse) ProtoMessage() {}
 
 func (x *PublishEntitiesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_components_entity_manager_proto_msgTypes[3]
+	mi := &file_components_entity_manager_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -196,7 +152,7 @@ func (x *PublishEntitiesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishEntitiesResponse.ProtoReflect.Descriptor instead.
 func (*PublishEntitiesResponse) Descriptor() ([]byte, []int) {
-	return file_components_entity_manager_proto_rawDescGZIP(), []int{3}
+	return file_components_entity_manager_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *PublishEntitiesResponse) GetSuccess() bool {
@@ -222,7 +178,7 @@ type GetEntityRequest struct {
 
 func (x *GetEntityRequest) Reset() {
 	*x = GetEntityRequest{}
-	mi := &file_components_entity_manager_proto_msgTypes[4]
+	mi := &file_components_entity_manager_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -234,7 +190,7 @@ func (x *GetEntityRequest) String() string {
 func (*GetEntityRequest) ProtoMessage() {}
 
 func (x *GetEntityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_components_entity_manager_proto_msgTypes[4]
+	mi := &file_components_entity_manager_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -247,7 +203,7 @@ func (x *GetEntityRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetEntityRequest.ProtoReflect.Descriptor instead.
 func (*GetEntityRequest) Descriptor() ([]byte, []int) {
-	return file_components_entity_manager_proto_rawDescGZIP(), []int{4}
+	return file_components_entity_manager_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetEntityRequest) GetEntityId() string {
@@ -266,7 +222,7 @@ type GetEntityResponse struct {
 
 func (x *GetEntityResponse) Reset() {
 	*x = GetEntityResponse{}
-	mi := &file_components_entity_manager_proto_msgTypes[5]
+	mi := &file_components_entity_manager_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -278,7 +234,7 @@ func (x *GetEntityResponse) String() string {
 func (*GetEntityResponse) ProtoMessage() {}
 
 func (x *GetEntityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_components_entity_manager_proto_msgTypes[5]
+	mi := &file_components_entity_manager_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -291,7 +247,7 @@ func (x *GetEntityResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetEntityResponse.ProtoReflect.Descriptor instead.
 func (*GetEntityResponse) Descriptor() ([]byte, []int) {
-	return file_components_entity_manager_proto_rawDescGZIP(), []int{5}
+	return file_components_entity_manager_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetEntityResponse) GetEntity() *Entity {
@@ -312,7 +268,7 @@ type OverrideEntityRequest struct {
 
 func (x *OverrideEntityRequest) Reset() {
 	*x = OverrideEntityRequest{}
-	mi := &file_components_entity_manager_proto_msgTypes[6]
+	mi := &file_components_entity_manager_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -324,7 +280,7 @@ func (x *OverrideEntityRequest) String() string {
 func (*OverrideEntityRequest) ProtoMessage() {}
 
 func (x *OverrideEntityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_components_entity_manager_proto_msgTypes[6]
+	mi := &file_components_entity_manager_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -337,7 +293,7 @@ func (x *OverrideEntityRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OverrideEntityRequest.ProtoReflect.Descriptor instead.
 func (*OverrideEntityRequest) Descriptor() ([]byte, []int) {
-	return file_components_entity_manager_proto_rawDescGZIP(), []int{6}
+	return file_components_entity_manager_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *OverrideEntityRequest) GetEntity() *Entity {
@@ -370,7 +326,7 @@ type OverrideEntityResponse struct {
 
 func (x *OverrideEntityResponse) Reset() {
 	*x = OverrideEntityResponse{}
-	mi := &file_components_entity_manager_proto_msgTypes[7]
+	mi := &file_components_entity_manager_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -382,7 +338,7 @@ func (x *OverrideEntityResponse) String() string {
 func (*OverrideEntityResponse) ProtoMessage() {}
 
 func (x *OverrideEntityResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_components_entity_manager_proto_msgTypes[7]
+	mi := &file_components_entity_manager_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -395,7 +351,7 @@ func (x *OverrideEntityResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OverrideEntityResponse.ProtoReflect.Descriptor instead.
 func (*OverrideEntityResponse) Descriptor() ([]byte, []int) {
-	return file_components_entity_manager_proto_rawDescGZIP(), []int{7}
+	return file_components_entity_manager_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *OverrideEntityResponse) GetStatus() OverrideStatus {
@@ -415,7 +371,7 @@ type RemoveEntityOverrideRequest struct {
 
 func (x *RemoveEntityOverrideRequest) Reset() {
 	*x = RemoveEntityOverrideRequest{}
-	mi := &file_components_entity_manager_proto_msgTypes[8]
+	mi := &file_components_entity_manager_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -427,7 +383,7 @@ func (x *RemoveEntityOverrideRequest) String() string {
 func (*RemoveEntityOverrideRequest) ProtoMessage() {}
 
 func (x *RemoveEntityOverrideRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_components_entity_manager_proto_msgTypes[8]
+	mi := &file_components_entity_manager_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -440,7 +396,7 @@ func (x *RemoveEntityOverrideRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveEntityOverrideRequest.ProtoReflect.Descriptor instead.
 func (*RemoveEntityOverrideRequest) Descriptor() ([]byte, []int) {
-	return file_components_entity_manager_proto_rawDescGZIP(), []int{8}
+	return file_components_entity_manager_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *RemoveEntityOverrideRequest) GetEntity() *Entity {
@@ -465,7 +421,7 @@ type RemoveEntityOverrideResponse struct {
 
 func (x *RemoveEntityOverrideResponse) Reset() {
 	*x = RemoveEntityOverrideResponse{}
-	mi := &file_components_entity_manager_proto_msgTypes[9]
+	mi := &file_components_entity_manager_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -477,7 +433,7 @@ func (x *RemoveEntityOverrideResponse) String() string {
 func (*RemoveEntityOverrideResponse) ProtoMessage() {}
 
 func (x *RemoveEntityOverrideResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_components_entity_manager_proto_msgTypes[9]
+	mi := &file_components_entity_manager_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -490,7 +446,7 @@ func (x *RemoveEntityOverrideResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveEntityOverrideResponse.ProtoReflect.Descriptor instead.
 func (*RemoveEntityOverrideResponse) Descriptor() ([]byte, []int) {
-	return file_components_entity_manager_proto_rawDescGZIP(), []int{9}
+	return file_components_entity_manager_proto_rawDescGZIP(), []int{8}
 }
 
 var File_components_entity_manager_proto protoreflect.FileDescriptor
@@ -503,9 +459,7 @@ const file_components_entity_manager_proto_rawDesc = "" +
 	"\x06entity\x18\x01 \x01(\v2\x12.components.EntityR\x06entity\"K\n" +
 	"\x15PublishEntityResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"H\n" +
-	"\x16PublishEntitiesRequest\x12.\n" +
-	"\bentities\x18\x01 \x03(\v2\x12.components.EntityR\bentities\"M\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"M\n" +
 	"\x17PublishEntitiesResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"/\n" +
@@ -526,10 +480,10 @@ const file_components_entity_manager_proto_rawDesc = "" +
 	"\x06entity\x18\x01 \x01(\v2\x12.components.EntityR\x06entity\x12\x1d\n" +
 	"\n" +
 	"field_path\x18\x02 \x03(\tR\tfieldPath\"\x1e\n" +
-	"\x1cRemoveEntityOverrideResponse2\xcd\x03\n" +
+	"\x1cRemoveEntityOverrideResponse2\xc1\x03\n" +
 	"\rEntityManager\x12T\n" +
-	"\rPublishEntity\x12 .components.PublishEntityRequest\x1a!.components.PublishEntityResponse\x12X\n" +
-	"\x0fPublishEntities\x12 .components.PublishEntityRequest\x1a#.components.PublishEntitiesResponse\x12H\n" +
+	"\rPublishEntity\x12 .components.PublishEntityRequest\x1a!.components.PublishEntityResponse\x12L\n" +
+	"\x0fPublishEntities\x12\x12.components.Entity\x1a#.components.PublishEntitiesResponse(\x01\x12H\n" +
 	"\tGetEntity\x12\x1c.components.GetEntityRequest\x1a\x1d.components.GetEntityResponse\x12W\n" +
 	"\x0eOverrideEntity\x12!.components.OverrideEntityRequest\x1a\".components.OverrideEntityResponse\x12i\n" +
 	"\x14RemoveEntityOverride\x12'.components.RemoveEntityOverrideRequest\x1a(.components.RemoveEntityOverrideResponseB\rZ\v/componentsb\x06proto3"
@@ -546,45 +500,43 @@ func file_components_entity_manager_proto_rawDescGZIP() []byte {
 	return file_components_entity_manager_proto_rawDescData
 }
 
-var file_components_entity_manager_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_components_entity_manager_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_components_entity_manager_proto_goTypes = []any{
 	(*PublishEntityRequest)(nil),         // 0: components.PublishEntityRequest
 	(*PublishEntityResponse)(nil),        // 1: components.PublishEntityResponse
-	(*PublishEntitiesRequest)(nil),       // 2: components.PublishEntitiesRequest
-	(*PublishEntitiesResponse)(nil),      // 3: components.PublishEntitiesResponse
-	(*GetEntityRequest)(nil),             // 4: components.GetEntityRequest
-	(*GetEntityResponse)(nil),            // 5: components.GetEntityResponse
-	(*OverrideEntityRequest)(nil),        // 6: components.OverrideEntityRequest
-	(*OverrideEntityResponse)(nil),       // 7: components.OverrideEntityResponse
-	(*RemoveEntityOverrideRequest)(nil),  // 8: components.RemoveEntityOverrideRequest
-	(*RemoveEntityOverrideResponse)(nil), // 9: components.RemoveEntityOverrideResponse
-	(*Entity)(nil),                       // 10: components.Entity
-	(*Provenance)(nil),                   // 11: components.Provenance
-	(OverrideStatus)(0),                  // 12: components.OverrideStatus
+	(*PublishEntitiesResponse)(nil),      // 2: components.PublishEntitiesResponse
+	(*GetEntityRequest)(nil),             // 3: components.GetEntityRequest
+	(*GetEntityResponse)(nil),            // 4: components.GetEntityResponse
+	(*OverrideEntityRequest)(nil),        // 5: components.OverrideEntityRequest
+	(*OverrideEntityResponse)(nil),       // 6: components.OverrideEntityResponse
+	(*RemoveEntityOverrideRequest)(nil),  // 7: components.RemoveEntityOverrideRequest
+	(*RemoveEntityOverrideResponse)(nil), // 8: components.RemoveEntityOverrideResponse
+	(*Entity)(nil),                       // 9: components.Entity
+	(*Provenance)(nil),                   // 10: components.Provenance
+	(OverrideStatus)(0),                  // 11: components.OverrideStatus
 }
 var file_components_entity_manager_proto_depIdxs = []int32{
-	10, // 0: components.PublishEntityRequest.entity:type_name -> components.Entity
-	10, // 1: components.PublishEntitiesRequest.entities:type_name -> components.Entity
-	10, // 2: components.GetEntityResponse.entity:type_name -> components.Entity
-	10, // 3: components.OverrideEntityRequest.entity:type_name -> components.Entity
-	11, // 4: components.OverrideEntityRequest.provenance:type_name -> components.Provenance
-	12, // 5: components.OverrideEntityResponse.status:type_name -> components.OverrideStatus
-	10, // 6: components.RemoveEntityOverrideRequest.entity:type_name -> components.Entity
-	0,  // 7: components.EntityManager.PublishEntity:input_type -> components.PublishEntityRequest
-	0,  // 8: components.EntityManager.PublishEntities:input_type -> components.PublishEntityRequest
-	4,  // 9: components.EntityManager.GetEntity:input_type -> components.GetEntityRequest
-	6,  // 10: components.EntityManager.OverrideEntity:input_type -> components.OverrideEntityRequest
-	8,  // 11: components.EntityManager.RemoveEntityOverride:input_type -> components.RemoveEntityOverrideRequest
-	1,  // 12: components.EntityManager.PublishEntity:output_type -> components.PublishEntityResponse
-	3,  // 13: components.EntityManager.PublishEntities:output_type -> components.PublishEntitiesResponse
-	5,  // 14: components.EntityManager.GetEntity:output_type -> components.GetEntityResponse
-	7,  // 15: components.EntityManager.OverrideEntity:output_type -> components.OverrideEntityResponse
-	9,  // 16: components.EntityManager.RemoveEntityOverride:output_type -> components.RemoveEntityOverrideResponse
-	12, // [12:17] is the sub-list for method output_type
-	7,  // [7:12] is the sub-list for method input_type
-	7,  // [7:7] is the sub-list for extension type_name
-	7,  // [7:7] is the sub-list for extension extendee
-	0,  // [0:7] is the sub-list for field type_name
+	9,  // 0: components.PublishEntityRequest.entity:type_name -> components.Entity
+	9,  // 1: components.GetEntityResponse.entity:type_name -> components.Entity
+	9,  // 2: components.OverrideEntityRequest.entity:type_name -> components.Entity
+	10, // 3: components.OverrideEntityRequest.provenance:type_name -> components.Provenance
+	11, // 4: components.OverrideEntityResponse.status:type_name -> components.OverrideStatus
+	9,  // 5: components.RemoveEntityOverrideRequest.entity:type_name -> components.Entity
+	0,  // 6: components.EntityManager.PublishEntity:input_type -> components.PublishEntityRequest
+	9,  // 7: components.EntityManager.PublishEntities:input_type -> components.Entity
+	3,  // 8: components.EntityManager.GetEntity:input_type -> components.GetEntityRequest
+	5,  // 9: components.EntityManager.OverrideEntity:input_type -> components.OverrideEntityRequest
+	7,  // 10: components.EntityManager.RemoveEntityOverride:input_type -> components.RemoveEntityOverrideRequest
+	1,  // 11: components.EntityManager.PublishEntity:output_type -> components.PublishEntityResponse
+	2,  // 12: components.EntityManager.PublishEntities:output_type -> components.PublishEntitiesResponse
+	4,  // 13: components.EntityManager.GetEntity:output_type -> components.GetEntityResponse
+	6,  // 14: components.EntityManager.OverrideEntity:output_type -> components.OverrideEntityResponse
+	8,  // 15: components.EntityManager.RemoveEntityOverride:output_type -> components.RemoveEntityOverrideResponse
+	11, // [11:16] is the sub-list for method output_type
+	6,  // [6:11] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_components_entity_manager_proto_init() }
@@ -601,7 +553,7 @@ func file_components_entity_manager_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_components_entity_manager_proto_rawDesc), len(file_components_entity_manager_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

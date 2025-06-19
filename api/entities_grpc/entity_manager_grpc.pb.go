@@ -31,7 +31,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EntityManagerClient interface {
 	PublishEntity(ctx context.Context, in *PublishEntityRequest, opts ...grpc.CallOption) (*PublishEntityResponse, error)
-	PublishEntities(ctx context.Context, in *PublishEntityRequest, opts ...grpc.CallOption) (*PublishEntitiesResponse, error)
+	PublishEntities(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[Entity, PublishEntitiesResponse], error)
 	GetEntity(ctx context.Context, in *GetEntityRequest, opts ...grpc.CallOption) (*GetEntityResponse, error)
 	OverrideEntity(ctx context.Context, in *OverrideEntityRequest, opts ...grpc.CallOption) (*OverrideEntityResponse, error)
 	RemoveEntityOverride(ctx context.Context, in *RemoveEntityOverrideRequest, opts ...grpc.CallOption) (*RemoveEntityOverrideResponse, error)
@@ -55,15 +55,18 @@ func (c *entityManagerClient) PublishEntity(ctx context.Context, in *PublishEnti
 	return out, nil
 }
 
-func (c *entityManagerClient) PublishEntities(ctx context.Context, in *PublishEntityRequest, opts ...grpc.CallOption) (*PublishEntitiesResponse, error) {
+func (c *entityManagerClient) PublishEntities(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[Entity, PublishEntitiesResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PublishEntitiesResponse)
-	err := c.cc.Invoke(ctx, EntityManager_PublishEntities_FullMethodName, in, out, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &EntityManager_ServiceDesc.Streams[0], EntityManager_PublishEntities_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &grpc.GenericClientStream[Entity, PublishEntitiesResponse]{ClientStream: stream}
+	return x, nil
 }
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type EntityManager_PublishEntitiesClient = grpc.ClientStreamingClient[Entity, PublishEntitiesResponse]
 
 func (c *entityManagerClient) GetEntity(ctx context.Context, in *GetEntityRequest, opts ...grpc.CallOption) (*GetEntityResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -100,7 +103,7 @@ func (c *entityManagerClient) RemoveEntityOverride(ctx context.Context, in *Remo
 // for forward compatibility.
 type EntityManagerServer interface {
 	PublishEntity(context.Context, *PublishEntityRequest) (*PublishEntityResponse, error)
-	PublishEntities(context.Context, *PublishEntityRequest) (*PublishEntitiesResponse, error)
+	PublishEntities(grpc.ClientStreamingServer[Entity, PublishEntitiesResponse]) error
 	GetEntity(context.Context, *GetEntityRequest) (*GetEntityResponse, error)
 	OverrideEntity(context.Context, *OverrideEntityRequest) (*OverrideEntityResponse, error)
 	RemoveEntityOverride(context.Context, *RemoveEntityOverrideRequest) (*RemoveEntityOverrideResponse, error)
@@ -117,8 +120,8 @@ type UnimplementedEntityManagerServer struct{}
 func (UnimplementedEntityManagerServer) PublishEntity(context.Context, *PublishEntityRequest) (*PublishEntityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PublishEntity not implemented")
 }
-func (UnimplementedEntityManagerServer) PublishEntities(context.Context, *PublishEntityRequest) (*PublishEntitiesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PublishEntities not implemented")
+func (UnimplementedEntityManagerServer) PublishEntities(grpc.ClientStreamingServer[Entity, PublishEntitiesResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method PublishEntities not implemented")
 }
 func (UnimplementedEntityManagerServer) GetEntity(context.Context, *GetEntityRequest) (*GetEntityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetEntity not implemented")
@@ -168,23 +171,12 @@ func _EntityManager_PublishEntity_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EntityManager_PublishEntities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PublishEntityRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EntityManagerServer).PublishEntities(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EntityManager_PublishEntities_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EntityManagerServer).PublishEntities(ctx, req.(*PublishEntityRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+func _EntityManager_PublishEntities_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(EntityManagerServer).PublishEntities(&grpc.GenericServerStream[Entity, PublishEntitiesResponse]{ServerStream: stream})
 }
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type EntityManager_PublishEntitiesServer = grpc.ClientStreamingServer[Entity, PublishEntitiesResponse]
 
 func _EntityManager_GetEntity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetEntityRequest)
@@ -252,10 +244,6 @@ var EntityManager_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _EntityManager_PublishEntity_Handler,
 		},
 		{
-			MethodName: "PublishEntities",
-			Handler:    _EntityManager_PublishEntities_Handler,
-		},
-		{
 			MethodName: "GetEntity",
 			Handler:    _EntityManager_GetEntity_Handler,
 		},
@@ -268,6 +256,12 @@ var EntityManager_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _EntityManager_RemoveEntityOverride_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "PublishEntities",
+			Handler:       _EntityManager_PublishEntities_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "components/entity_manager.proto",
 }

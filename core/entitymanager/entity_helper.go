@@ -189,13 +189,6 @@ func UpdateComponents(entity *components.Entity, newData *components.Entity) (*c
 	return entity, nil
 }
 
-/*
-
-Supplies Supplies `json:"supplies"`
-
-Orbit Orbit `json:"orbit"`
-*/
-
 func Pointer[T any](pointer T) *T {
 	return &pointer
 }
