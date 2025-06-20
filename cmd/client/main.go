@@ -1,11 +1,10 @@
 package main
 
 import (
-	"context"
 	"log"
-	"time"
 
 	components "github.com/nickbassirpour/Lattice_SDK_Secure_Sword.git/api/entities_grpc"
+	clientmethods "github.com/nickbassirpour/Lattice_SDK_Secure_Sword.git/cmd/client/clientmethods"
 	sampledata "github.com/nickbassirpour/Lattice_SDK_Secure_Sword.git/cmd/client/sampledata"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -19,14 +18,8 @@ func main() {
 	defer conn.Close()
 
 	client := components.NewEntityManagerClient(conn)
+	entity := sampledata.SampleEntity()
 
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-	defer cancel()
+	clientmethods.SendEntityRequest(client, entity)
 
-	resp, err := client.PublishEntity(ctx, &components.PublishEntityRequest{Entity: sampledata.SampleEntity()})
-	if err != nil {
-		log.Fatalf("could not publish entity: %v", err)
-	}
-
-	log.Printf("Response: %v", resp)
 }
